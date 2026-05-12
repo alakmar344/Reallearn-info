@@ -1,4 +1,4 @@
-# RealLearn-info
+# reallearn-info
 
 This repository contains a minimalist black-and-white info page for **RealLearn**.
 
