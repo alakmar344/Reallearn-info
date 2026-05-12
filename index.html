@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RealLearn — Info Page</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --panel: #101010;
+        --text: #f4f4f4;
+        --muted: #c8c8c8;
+        --line: #2a2a2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        background:
+          radial-gradient(1100px 700px at 10% -10%, #1a1a1a, transparent 60%),
+          radial-gradient(900px 600px at 90% 0%, #141414, transparent 55%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+        padding: 40px 0 80px;
+      }
+
+      .hero {
+        background: linear-gradient(145deg, #161616, #0d0d0d);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: clamp(24px, 4vw, 46px);
+        box-shadow:
+          0 24px 40px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: perspective(1300px) rotateX(1.2deg);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Georgia", "Times New Roman", serif;
+        letter-spacing: 0.2px;
+        margin: 0 0 12px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+
+      h2 {
+        margin-top: 40px;
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+      }
+
+      p,
+      li {
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--text);
+      }
+
+      .tag {
+        display: inline-block;
+        margin-bottom: 8px;
+        border: 1px solid #383838;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 12px;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        max-width: 75ch;
+      }
+
+      .grid {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: linear-gradient(160deg, #171717, #0e0e0e);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+        transform: translateZ(0);
+        box-shadow:
+          0 12px 22px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .preview {
+        margin-top: 22px;
+        border-radius: 18px;
+        width: 100%;
+        border: 1px solid var(--line);
+        box-shadow:
+          0 26px 38px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      }
+
+      .toc,
+      section {
+        margin-top: 28px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #0b0b0b;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <span class="tag">RealLearn</span>
+        <h1>The World Is Your Textbook</h1>
+        <p class="lead">
+          RealLearn is an AI-powered learning product that turns a single
+          question into a structured, high-retention learning journey. Instead
+          of giving one generic answer, RealLearn teaches in stages, checks
+          understanding, and connects learning to real-world events happening
+          right now.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Live Product</h3>
+            <a href="https://reallearn-taupe.vercel.app/" target="_blank" rel="noreferrer noopener">
+              https://reallearn-taupe.vercel.app/
+            </a>
+          </article>
+          <article class="card">
+            <h3>Demo Video</h3>
+            <a href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noreferrer noopener">
+              Watch Demo Video
+            </a>
+          </article>
+          <article class="card">
+            <h3>Kaggle Write-up</h3>
+            <a
+              href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Read the write-up
+            </a>
+          </article>
+        </div>
+        <img
+          class="preview"
+          src="https://github.com/user-attachments/assets/53f7be80-1388-4b9c-b4c7-42e3c4c889ff"
+          alt="RealLearn product preview"
+        />
+      </header>
+
+      <nav class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li>What RealLearn is</li>
+          <li>What problem it solves</li>
+          <li>How RealLearn works end-to-end</li>
+          <li>Detailed feature breakdown</li>
+          <li>How RealLearn helps in the real-world</li>
+          <li>Tech stack</li>
+          <li>Architecture and deployment</li>
+          <li>API behavior and SSE streaming</li>
+          <li>Project structure</li>
+          <li>Environment variables</li>
+          <li>Local development</li>
+          <li>Validation commands</li>
+          <li>Roadmap ideas</li>
+          <li>License</li>
+        </ul>
+      </nav>
+
+      <section>
+        <h2>Gemma 4 Usage</h2>
+        <p>
+          RealLearn is powered by <strong>Gemma 4 (gemma-4-26b-a4b-it)</strong>
+          through the Gemini API. The architecture uses structured prompting and
+          robust post-processing to maintain quality and consistency.
+        </p>
+        <ul>
+          <li>Structured output with strict 3-part JSON schema and quiz pairs</li>
+          <li>Native multilingual generation in 8 supported Indian languages</li>
+          <li>Adaptive difficulty for Class 6–8, Class 9–10, and College levels</li>
+          <li>Serper-powered real-world grounding for current-event relevance</li>
+          <li>5-stage JSON repair and strict schema validation</li>
+          <li>Average generation time target: 15–25 seconds</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What RealLearn is</h2>
+        <p>
+          A guided-learning platform for students who need clarity on difficult
+          topics, language comfort, active understanding checks, and better
+          theory-to-reality transfer.
+        </p>
+      </section>
+
+      <section>
+        <h2>What problem it solves</h2>
+        <p>
+          Traditional one-shot AI answers are often shallow, mismatched to
+          learner level, disconnected from current reality, and easy to forget.
+          RealLearn solves this with staged teaching and mandatory comprehension
+          checkpoints.
+        </p>
+      </section>
+
+      <section>
+        <h2>How RealLearn works end-to-end</h2>
+        <ol>
+          <li>Learner enters a question.</li>
+          <li>Learner selects language and level.</li>
+          <li>Frontend requests <code>/api/generate-lesson</code>.</li>
+          <li>Backend fetches recent context when available.</li>
+          <li>Gemma generates strict JSON journey output.</li>
+          <li>Backend validates/repairs output if needed.</li>
+          <li>Frontend renders 3 parts + sources + quizzes.</li>
+          <li>Quiz pass unlocks next part.</li>
+          <li>Learner completes takeaways and follow-up loop.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Detailed feature breakdown</h2>
+        <ul>
+          <li>3-part unlockable lesson journey (Foundation → Mechanism → Real world now)</li>
+          <li>Quiz-gated progression (2 MCQs per part, 4 options each)</li>
+          <li>Multi-language support (English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada)</li>
+          <li>Adaptive depth by learner level</li>
+          <li>Real-world context integration using recent news</li>
+          <li>SSE streaming with heartbeat keep-alive ping events</li>
+          <li>Reliability layer for malformed model output</li>
+          <li>Follow-up learning loop for continued journeys</li>
+          <li>Session-persisted frontend state</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How RealLearn helps in the real-world</h2>
+        <ul>
+          <li>“I don’t know where to start.” → Part 1 creates an entry point.</li>
+          <li>“I read but don’t understand.” → Quiz gating enforces comprehension.</li>
+          <li>“It feels disconnected.” → Part 3 links to live current events.</li>
+          <li>“Too basic or too complex.” → Level-based depth calibration.</li>
+          <li>“English-only blocks me.” → Native multilingual generation.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech stack</h2>
+        <p><strong>Frontend (Vercel):</strong> Next.js 15, React 19, TypeScript, Zustand, React Markdown, Tailwind CSS.</p>
+        <p><strong>Backend (Render):</strong> Node.js, Express, SSE + JSON APIs, Gemma integration, Serper context enrichment, validation and repair layer.</p>
+      </section>
+
+      <section>
+        <h2>Architecture and deployment</h2>
+        <ul>
+          <li><code>frontend/</code> → Next.js app on Vercel</li>
+          <li><code>backend/</code> → Express API on Render</li>
+          <li>Primary endpoint: <code>POST /api/generate-lesson</code></li>
+          <li>Health endpoint: <code>GET /health</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>API behavior and SSE streaming</h2>
+        <ul>
+          <li><code>event: ping</code> → keep-alive heartbeat</li>
+          <li><code>event: lesson</code> → final lesson payload</li>
+          <li><code>event: done</code> → successful stream end</li>
+          <li><code>event: error</code> → failure message</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Project structure</h2>
+        <pre><code>Real-learn/
+├── frontend/         # Next.js app (UI, state, client flow)
+├── backend/          # Express API, AI calls, validation, context fetch
+└── README.md</code></pre>
+      </section>
+
+      <section>
+        <h2>Environment variables</h2>
+        <ul>
+          <li><code>NEXT_PUBLIC_BACKEND_URL</code>, <code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS</code></li>
+          <li><code>GEMMA_API_KEY</code>, <code>GEMMA_MODEL</code>, <code>GEMMA_FALLBACK_MODELS</code></li>
+          <li><code>GEMMA_MAX_RETRIES</code>, <code>GEMMA_RETRY_DELAY_MS</code>, <code>GEMMA_MAX_RETRY_DELAY_MS</code></li>
+          <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD</code>, <code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS</code></li>
+          <li><code>SERPER_API_KEY</code>, <code>MAX_CONCURRENT_LESSON_REQUESTS</code></li>
+          <li><code>LESSON_FAILURE_ALERT_THRESHOLD</code>, <code>SSE_HEARTBEAT_INTERVAL_MS</code></li>
+          <li><code>FRONTEND_ORIGIN</code>, <code>PORT</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Local development</h2>
+        <pre><code>cd backend
+npm install
+npm start
+
+cd frontend
+npm install
+npm run dev</code></pre>
+      </section>
+
+      <section>
+        <h2>Validation commands</h2>
+        <pre><code>cd frontend
+npm run lint
+npm run build</code></pre>
+      </section>
+
+      <section>
+        <h2>Roadmap ideas</h2>
+        <ul>
+          <li>Learning outcome analytics</li>
+          <li>Spaced repetition for takeaways</li>
+          <li>User accounts and long-term progress</li>
+          <li>Teacher/classroom mode</li>
+          <li>Voice input/output in multiple languages</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>License</h2>
+        <p>This project is licensed under the MIT License.</p>
+      </section>
+    </main>
+  </body>
+</html>
