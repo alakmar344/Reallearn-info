@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RealLearn — Info Page</title>
+    <title>reallearn — Info Page</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Space+Grotesk:wght@400;500;700&display=swap");
+
       :root {
-        --bg: #050505;
-        --panel: #101010;
-        --text: #f4f4f4;
-        --muted: #c8c8c8;
-        --line: #2a2a2a;
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --text: #0d0d0d;
+        --muted: #2f2f2f;
+        --line: #dcdcdc;
       }
 
       * {
@@ -19,10 +21,10 @@
 
       body {
         margin: 0;
-        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        font-family: "Space Grotesk", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
         background:
-          radial-gradient(1100px 700px at 10% -10%, #1a1a1a, transparent 60%),
-          radial-gradient(900px 600px at 90% 0%, #141414, transparent 55%),
+          radial-gradient(1100px 700px at 8% -10%, #f1f1f1, transparent 60%),
+          radial-gradient(900px 600px at 90% 0%, #f6f6f6, transparent 55%),
           var(--bg);
         color: var(--text);
         line-height: 1.6;
@@ -35,20 +37,22 @@
       }
 
       .hero {
-        background: linear-gradient(145deg, #161616, #0d0d0d);
+        position: relative;
+        background: linear-gradient(145deg, #ffffff, #f8f8f8);
         border: 1px solid var(--line);
         border-radius: 24px;
         padding: clamp(24px, 4vw, 46px);
         box-shadow:
-          0 24px 40px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transform: perspective(1300px) rotateX(1.2deg);
+          0 24px 40px rgba(0, 0, 0, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        transform: perspective(1300px) rotateX(0.9deg);
+        overflow: hidden;
       }
 
       h1,
       h2,
       h3 {
-        font-family: "Georgia", "Times New Roman", serif;
+        font-family: "Bodoni Moda", "Playfair Display", "Georgia", "Times New Roman", serif;
         letter-spacing: 0.2px;
         margin: 0 0 12px;
       }
@@ -74,7 +78,7 @@
       .tag {
         display: inline-block;
         margin-bottom: 8px;
-        border: 1px solid #383838;
+        border: 1px solid #b8b8b8;
         border-radius: 999px;
         padding: 6px 12px;
         font-size: 12px;
@@ -95,14 +99,14 @@
       }
 
       .card {
-        background: linear-gradient(160deg, #171717, #0e0e0e);
+        background: linear-gradient(160deg, #ffffff, #f5f5f5);
         border: 1px solid var(--line);
         border-radius: 16px;
         padding: 16px;
         transform: translateZ(0);
         box-shadow:
-          0 12px 22px rgba(0, 0, 0, 0.35),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+          0 12px 22px rgba(0, 0, 0, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
       }
 
       .preview {
@@ -111,8 +115,8 @@
         width: 100%;
         border: 1px solid var(--line);
         box-shadow:
-          0 26px 38px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+          0 26px 38px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
       }
 
       .toc,
@@ -121,26 +125,60 @@
         padding: 24px;
         border: 1px solid var(--line);
         border-radius: 16px;
-        background: #0b0b0b;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
       }
 
       ul,
       ol {
         padding-left: 20px;
       }
+
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+      }
+
+      .hero::before {
+        width: 260px;
+        height: 260px;
+        top: -130px;
+        right: -80px;
+        background: radial-gradient(circle at center, #f0f0f0, transparent 70%);
+      }
+
+      .hero::after {
+        width: 180px;
+        height: 180px;
+        bottom: -90px;
+        left: -40px;
+        background: radial-gradient(circle at center, #f3f3f3, transparent 70%);
+      }
+
+      .marketing {
+        margin-top: 16px;
+        font-weight: 500;
+        color: #161616;
+      }
     </style>
   </head>
   <body>
     <main class="container">
       <header class="hero">
-        <span class="tag">RealLearn</span>
+        <span class="tag">reallearn</span>
         <h1>The World Is Your Textbook</h1>
         <p class="lead">
-          RealLearn is an AI-powered learning product that turns a single
+          reallearn is an AI-powered learning product that turns a single
           question into a structured, high-retention learning journey. Instead
-          of giving one generic answer, RealLearn teaches in stages, checks
+          of giving one generic answer, reallearn teaches in stages, checks
           understanding, and connects learning to real-world events happening
           right now.
+        </p>
+        <p class="marketing">
+          Modern learning, premium clarity, and future-ready understanding in one seamless experience.
         </p>
         <div class="grid">
           <article class="card">
@@ -168,19 +206,19 @@
         </div>
         <img
           class="preview"
-          src="https://github.com/user-attachments/assets/53f7be80-1388-4b9c-b4c7-42e3c4c889ff"
-          alt="RealLearn product preview"
+          src="https://github.com/user-attachments/assets/835f71a3-ce53-415e-813f-00a2e57ecc51"
+          alt="reallearn product preview"
         />
       </header>
 
       <nav class="toc">
         <h2>Table of Contents</h2>
         <ul>
-          <li>What RealLearn is</li>
+          <li>What reallearn is</li>
           <li>What problem it solves</li>
-          <li>How RealLearn works end-to-end</li>
+          <li>How reallearn works end-to-end</li>
           <li>Detailed feature breakdown</li>
-          <li>How RealLearn helps in the real-world</li>
+          <li>How reallearn helps in the real-world</li>
           <li>Tech stack</li>
           <li>Architecture and deployment</li>
           <li>API behavior and SSE streaming</li>
@@ -196,7 +234,7 @@
       <section>
         <h2>Gemma 4 Usage</h2>
         <p>
-          RealLearn is powered by <strong>Gemma 4 (gemma-4-26b-a4b-it)</strong>
+          reallearn is powered by <strong>Gemma 4 26B (gemma-4-26b-a4b-it)</strong>
           through the Gemini API. The architecture uses structured prompting and
           robust post-processing to maintain quality and consistency.
         </p>
@@ -211,7 +249,7 @@
       </section>
 
       <section>
-        <h2>What RealLearn is</h2>
+        <h2>What reallearn is</h2>
         <p>
           A guided-learning platform for students who need clarity on difficult
           topics, language comfort, active understanding checks, and better
@@ -224,13 +262,13 @@
         <p>
           Traditional one-shot AI answers are often shallow, mismatched to
           learner level, disconnected from current reality, and easy to forget.
-          RealLearn solves this with staged teaching and mandatory comprehension
+          reallearn solves this with staged teaching and mandatory comprehension
           checkpoints.
         </p>
       </section>
 
       <section>
-        <h2>How RealLearn works end-to-end</h2>
+        <h2>How reallearn works end-to-end</h2>
         <ol>
           <li>Learner enters a question.</li>
           <li>Learner selects language and level.</li>
@@ -260,7 +298,7 @@
       </section>
 
       <section>
-        <h2>How RealLearn helps in the real-world</h2>
+        <h2>How reallearn helps in the real-world</h2>
         <ul>
           <li>“I don’t know where to start.” → Part 1 creates an entry point.</li>
           <li>“I read but don’t understand.” → Quiz gating enforces comprehension.</li>
@@ -298,7 +336,7 @@
 
       <section>
         <h2>Project structure</h2>
-        <pre><code>RealLearn/  # main product repository structure
+        <pre><code>reallearn/  # main product repository structure
 ├── frontend/         # Next.js app (UI, state, client flow)
 ├── backend/          # Express API, AI calls, validation, context fetch
 └── README.md</code></pre>
@@ -310,8 +348,7 @@
           <li><code>NEXT_PUBLIC_BACKEND_URL=https://&lt;your-render-backend&gt;.onrender.com</code></li>
           <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS=120000</code> (optional)</li>
           <li><code>GEMMA_API_KEY=...</code></li>
-          <li><code>GEMMA_MODEL=gemma-4-26b-a4b-it</code> (optional override)</li>
-          <li><code>GEMMA_FALLBACK_MODELS=model-a,model-b</code> (optional; default empty)</li>
+          <li><code>GEMMA_MODEL=gemma-4-26b-a4b-it</code> (used by reallearn)</li>
           <li><code>GEMMA_MAX_RETRIES=2</code>, <code>GEMMA_RETRY_DELAY_MS=700</code>, <code>GEMMA_MAX_RETRY_DELAY_MS=5000</code> (optional retry tuning)</li>
           <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD=5</code>, <code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS=60000</code> (optional timeout circuit)</li>
           <li><code>SERPER_API_KEY=...</code></li>
