@@ -145,13 +145,13 @@
         <div class="grid">
           <article class="card">
             <h3>Live Product</h3>
-            <a href="https://reallearn-taupe.vercel.app/" target="_blank" rel="noreferrer noopener">
+            <a href="https://reallearn-taupe.vercel.app/" target="_blank" rel="noopener">
               https://reallearn-taupe.vercel.app/
             </a>
           </article>
           <article class="card">
             <h3>Demo Video</h3>
-            <a href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noreferrer noopener">
+            <a href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noopener">
               Watch Demo Video
             </a>
           </article>
@@ -160,7 +160,7 @@
             <a
               href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener"
             >
               Read the write-up
             </a>
@@ -307,13 +307,19 @@
       <section>
         <h2>Environment variables</h2>
         <ul>
-          <li><code>NEXT_PUBLIC_BACKEND_URL</code>, <code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS</code></li>
-          <li><code>GEMMA_API_KEY</code>, <code>GEMMA_MODEL</code>, <code>GEMMA_FALLBACK_MODELS</code></li>
-          <li><code>GEMMA_MAX_RETRIES</code>, <code>GEMMA_RETRY_DELAY_MS</code>, <code>GEMMA_MAX_RETRY_DELAY_MS</code></li>
-          <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD</code>, <code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS</code></li>
-          <li><code>SERPER_API_KEY</code>, <code>MAX_CONCURRENT_LESSON_REQUESTS</code></li>
-          <li><code>LESSON_FAILURE_ALERT_THRESHOLD</code>, <code>SSE_HEARTBEAT_INTERVAL_MS</code></li>
-          <li><code>FRONTEND_ORIGIN</code>, <code>PORT</code></li>
+          <li><code>NEXT_PUBLIC_BACKEND_URL=https://&lt;your-render-backend&gt;.onrender.com</code></li>
+          <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS=120000</code> (optional)</li>
+          <li><code>GEMMA_API_KEY=...</code></li>
+          <li><code>GEMMA_MODEL=gemma-4-7b-it</code> (optional)</li>
+          <li><code>GEMMA_FALLBACK_MODELS=model-a,model-b</code> (optional; default empty)</li>
+          <li><code>GEMMA_MAX_RETRIES=2</code>, <code>GEMMA_RETRY_DELAY_MS=700</code>, <code>GEMMA_MAX_RETRY_DELAY_MS=5000</code> (optional retry tuning)</li>
+          <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD=5</code>, <code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS=60000</code> (optional timeout circuit)</li>
+          <li><code>SERPER_API_KEY=...</code></li>
+          <li><code>MAX_CONCURRENT_LESSON_REQUESTS=3</code> (optional)</li>
+          <li><code>LESSON_FAILURE_ALERT_THRESHOLD=5</code> (optional)</li>
+          <li><code>SSE_HEARTBEAT_INTERVAL_MS=15000</code> (optional; capped at 55000)</li>
+          <li><code>FRONTEND_ORIGIN=https://&lt;your-vercel-frontend&gt;.vercel.app</code></li>
+          <li><code>PORT=10000</code> (optional on Render)</li>
         </ul>
       </section>
 
