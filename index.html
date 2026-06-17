@@ -3,517 +3,1035 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>reallearn — Documentation</title>
+    <title>reallearn — Where Curiosity Becomes Clarity</title>
+    <meta name="description" content="reallearn transforms a single question into a structured, high-retention learning journey powered by AI. Don't just answer — teach.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+      /* ══════════════════════════════════════════
+         DESIGN SYSTEM — reallearn v2.0
+         ══════════════════════════════════════════ */
       :root {
-        --bg: #0A0A0A;
-        --card: #131312;
-        --text: #E6E1D8;
-        --text-sec: #A39E95;
-        --muted: #6B665E;
-        --accent: #C25E3A;
-        --accent-soft: rgba(194,94,58,0.09);
-        --accent-hover: #D4714F;
-        --line: #1E1D1B;
-        --line-strong: #2C2A27;
-        --code-bg: #0D0D0C;
-        --green: #5A9E6F;
+        --bg: #050507;
+        --bg-raised: #0C0C10;
+        --bg-surface: #111116;
+        --glass: rgba(255,255,255,0.03);
+        --glass-border: rgba(255,255,255,0.06);
+        --glass-hover: rgba(255,255,255,0.06);
+        --text: #F0EDE6;
+        --text-secondary: #9B978F;
+        --text-muted: #5E5B54;
+        --accent: #E07A4A;
+        --accent-glow: rgba(224,122,74,0.15);
+        --accent-soft: rgba(224,122,74,0.08);
+        --accent-hover: #EF8D60;
+        --green: #5EBB78;
+        --green-glow: rgba(94,187,120,0.12);
+        --code-bg: #0A0A0E;
+        --border: rgba(255,255,255,0.05);
+        --border-strong: rgba(255,255,255,0.09);
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 20px;
+        --radius-xl: 28px;
+        --transition: cubic-bezier(0.16,1,0.3,1);
       }
 
       *{box-sizing:border-box;margin:0;padding:0}
-      html{scroll-behavior:smooth}
+      html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 
       body{
-        font-family:"Space Grotesk",sans-serif;
+        font-family:"Inter",system-ui,-apple-system,sans-serif;
         background:var(--bg);
         color:var(--text);
-        line-height:1.75;
+        line-height:1.8;
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
+        overflow-x:hidden;
       }
 
-      /* Dot-grid texture */
-      body::before{
-        content:"";
-        position:fixed;inset:0;
-        background-image:url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='0.5' fill='%23181716'/%3E%3C/svg%3E");
-        pointer-events:none;z-index:0;
+      /* ═══ Aurora Background ═══ */
+      .aurora{
+        position:fixed;inset:0;z-index:0;pointer-events:none;
+        overflow:hidden;
+      }
+      .aurora-orb{
+        position:absolute;border-radius:50%;filter:blur(120px);opacity:0.4;
+        animation:auroraFloat 20s ease-in-out infinite alternate;
+      }
+      .aurora-orb:nth-child(1){
+        width:600px;height:600px;top:-15%;left:-10%;
+        background:radial-gradient(circle,rgba(224,122,74,0.18),transparent 70%);
+      }
+      .aurora-orb:nth-child(2){
+        width:500px;height:500px;bottom:-10%;right:-8%;
+        background:radial-gradient(circle,rgba(94,187,120,0.1),transparent 70%);
+        animation-delay:-7s;animation-duration:25s;
+      }
+      .aurora-orb:nth-child(3){
+        width:400px;height:400px;top:40%;left:50%;
+        background:radial-gradient(circle,rgba(224,122,74,0.06),transparent 70%);
+        animation-delay:-13s;animation-duration:30s;
+      }
+      @keyframes auroraFloat{
+        0%{transform:translate(0,0) scale(1)}
+        33%{transform:translate(30px,-40px) scale(1.05)}
+        66%{transform:translate(-20px,30px) scale(0.95)}
+        100%{transform:translate(10px,-20px) scale(1.02)}
       }
 
-      /* ── Scroll progress ── */
-      .scroll-bar{
+      /* ═══ Grain Texture ═══ */
+      .grain{
+        position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.35;
+        background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      }
+
+      /* ═══ Scroll Progress ═══ */
+      .scroll-progress{
         position:fixed;top:0;left:0;height:2px;
-        background:var(--accent);z-index:1000;width:0;
+        background:linear-gradient(90deg,var(--accent),var(--green));
+        z-index:9999;width:0;transition:none;
+        box-shadow:0 0 12px var(--accent-glow);
       }
 
-      /* ── Layout ── */
+      /* ═══ Layout ═══ */
       .layout{
-        position:relative;z-index:1;
+        position:relative;z-index:2;
         display:flex;min-height:100vh;
       }
 
-      /* ── Sidebar ── */
+      /* ═══ Sidebar ═══ */
       .sidebar{
         position:sticky;top:0;
-        width:256px;min-width:256px;height:100vh;
-        padding:36px 14px 36px 28px;
-        border-right:1px solid var(--line);
+        width:272px;min-width:272px;height:100vh;
+        padding:40px 18px 40px 32px;
+        border-right:1px solid var(--border);
         overflow-y:auto;display:flex;flex-direction:column;
+        background:rgba(5,5,7,0.6);
+        backdrop-filter:blur(20px);
       }
-      .sidebar-logo{
-        font-family:"DM Serif Display",serif;
-        font-size:1.35rem;letter-spacing:-.5px;margin-bottom:3px;
+      .sidebar-brand{
+        display:flex;align-items:center;gap:12px;margin-bottom:4px;
       }
-      .sidebar-logo span{color:var(--accent)}
-      .sidebar-label{
-        font-size:.63rem;letter-spacing:2.8px;text-transform:uppercase;
-        color:var(--muted);margin-bottom:28px;font-weight:500;
+      .brand-icon{
+        width:34px;height:34px;border-radius:10px;
+        background:linear-gradient(135deg,var(--accent),#c0683a);
+        display:flex;align-items:center;justify-content:center;
+        font-family:"Instrument Serif",serif;font-size:1.1rem;color:#fff;
+        box-shadow:0 4px 16px var(--accent-glow);
       }
+      .brand-text{
+        font-family:"Instrument Serif",serif;
+        font-size:1.4rem;letter-spacing:-0.5px;
+      }
+      .brand-text span{color:var(--accent)}
+      .sidebar-subtitle{
+        font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+        color:var(--text-muted);margin-bottom:32px;font-weight:500;
+        padding-left:46px;
+      }
+
       .sidebar nav ul{list-style:none}
       .sidebar nav ul li{margin-bottom:1px}
       .sidebar nav ul li a{
-        display:block;padding:6px 12px;font-size:.78rem;
-        color:var(--muted);text-decoration:none;border-radius:6px;
-        border-left:2px solid transparent;transition:all .2s ease;line-height:1.45;
+        display:flex;align-items:center;gap:10px;
+        padding:7px 14px;font-size:0.78rem;
+        color:var(--text-muted);text-decoration:none;border-radius:var(--radius-sm);
+        border-left:2px solid transparent;transition:all 0.25s var(--transition);
+        line-height:1.4;
       }
-      .sidebar nav ul li a:hover{color:var(--text-sec);background:rgba(255,255,255,.02)}
+      .sidebar nav ul li a .nav-icon{
+        font-size:0.7rem;opacity:0.5;width:16px;text-align:center;
+        transition:opacity 0.25s;
+      }
+      .sidebar nav ul li a:hover{
+        color:var(--text-secondary);background:var(--glass);
+      }
+      .sidebar nav ul li a:hover .nav-icon{opacity:0.8}
       .sidebar nav ul li a.active{
         color:var(--accent);background:var(--accent-soft);
         border-left-color:var(--accent);font-weight:500;
       }
+      .sidebar nav ul li a.active .nav-icon{opacity:1}
+
       .sidebar-footer{
-        margin-top:auto;padding-top:20px;
-        border-top:1px solid var(--line);
+        margin-top:auto;padding-top:24px;
+        border-top:1px solid var(--border);
       }
       .sidebar-status{
-        display:flex;align-items:center;gap:8px;
-        font-size:.7rem;color:var(--muted);margin-bottom:6px;
+        display:flex;align-items:center;gap:10px;
+        font-size:0.7rem;color:var(--text-muted);margin-bottom:8px;
       }
-      .status-dot{
-        width:6px;height:6px;border-radius:50%;
+      .status-indicator{
+        width:7px;height:7px;border-radius:50%;
         background:var(--green);flex-shrink:0;
-        animation:pulse 2.4s ease-in-out infinite;
+        box-shadow:0 0 8px var(--green-glow);
+        animation:statusPulse 2.5s ease-in-out infinite;
       }
-      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-      .sidebar-version{font-size:.65rem;color:var(--muted);letter-spacing:1px}
+      @keyframes statusPulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--green-glow)}50%{opacity:0.4;box-shadow:0 0 2px var(--green-glow)}}
+      .sidebar-version{
+        font-family:"JetBrains Mono",monospace;
+        font-size:0.62rem;color:var(--text-muted);letter-spacing:1.5px;
+      }
 
-      /* ── Main ── */
+      /* ═══ Main Content ═══ */
       .main-content{
-        flex:1;padding:52px 56px 120px;max-width:840px;
+        flex:1;padding:56px 64px 140px;max-width:880px;
       }
 
-      /* ── Hero ── */
+      /* ═══ Hero ═══ */
       .hero{
-        padding-bottom:48px;margin-bottom:0;
-        border-bottom:1px solid var(--line);
+        padding-bottom:56px;margin-bottom:0;
+        border-bottom:1px solid var(--border);
       }
-      .hero-tag{
-        display:inline-block;border:1px solid var(--accent);
-        color:var(--accent);border-radius:999px;
-        padding:5px 15px;font-size:.63rem;letter-spacing:2.8px;
-        text-transform:uppercase;font-weight:600;margin-bottom:22px;
+      .hero-badge{
+        display:inline-flex;align-items:center;gap:8px;
+        border:1px solid var(--glass-border);
+        background:var(--glass);border-radius:999px;
+        padding:6px 18px;font-size:0.62rem;letter-spacing:3px;
+        text-transform:uppercase;font-weight:600;margin-bottom:28px;
+        color:var(--accent);
+        backdrop-filter:blur(8px);
       }
+      .hero-badge .badge-dot{
+        width:5px;height:5px;border-radius:50%;
+        background:var(--accent);
+        box-shadow:0 0 6px var(--accent-glow);
+        animation:statusPulse 2s ease-in-out infinite;
+      }
+
       h1{
-        font-family:"DM Serif Display",serif;
-        font-size:clamp(2.6rem,5.5vw,4.2rem);
-        line-height:1.06;letter-spacing:-1.5px;
-        margin-bottom:26px;font-weight:400;
+        font-family:"Instrument Serif",serif;
+        font-size:clamp(2.8rem,6vw,4.6rem);
+        line-height:1.05;letter-spacing:-2px;
+        margin-bottom:28px;font-weight:400;
       }
       h1 em{font-style:italic;color:var(--accent)}
-      .lead{
-        font-size:1.05rem;color:var(--text-sec);
-        max-width:60ch;line-height:1.85;margin-bottom:14px;font-weight:300;
+
+      .hero-lead{
+        font-size:1.1rem;color:var(--text-secondary);
+        max-width:62ch;line-height:1.9;margin-bottom:16px;font-weight:300;
       }
-      .marketing{
-        font-weight:500;color:var(--text);
-        font-size:.92rem;max-width:52ch;
+      .hero-cta{
+        font-size:0.95rem;color:var(--text);
+        font-weight:500;max-width:54ch;line-height:1.8;
+      }
+      .hero-cta .highlight{
+        color:var(--accent);
+        background:linear-gradient(180deg,transparent 55%,var(--accent-glow) 55%);
+        padding:0 2px;
       }
 
-      /* ── Grid ── */
-      .grid{
+      /* ═══ Link Cards ═══ */
+      .link-grid{
         display:grid;grid-template-columns:repeat(3,1fr);
-        gap:12px;margin-top:28px;
+        gap:14px;margin-top:36px;
       }
-      .card{
-        background:var(--card);border:1px solid var(--line);
-        border-radius:12px;padding:20px;
-        transition:border-color .25s ease,transform .25s ease;
+      .link-card{
+        position:relative;overflow:hidden;
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:22px 20px;
+        transition:all 0.35s var(--transition);
+        backdrop-filter:blur(8px);
       }
-      .card:hover{border-color:var(--line-strong);transform:translateY(-2px)}
-      .card h3{
-        font-family:"DM Serif Display",serif;
-        font-size:1.05rem;margin-bottom:8px;font-weight:400;
+      .link-card::before{
+        content:"";position:absolute;inset:0;
+        background:linear-gradient(135deg,var(--accent-glow),transparent 60%);
+        opacity:0;transition:opacity 0.35s;
       }
-      .card a{
+      .link-card:hover::before{opacity:1}
+      .link-card:hover{
+        border-color:var(--border-strong);
+        transform:translateY(-3px);
+        box-shadow:0 12px 40px rgba(0,0,0,0.3);
+      }
+      .link-card h3{
+        font-family:"Instrument Serif",serif;
+        font-size:1.08rem;margin-bottom:10px;font-weight:400;
+        position:relative;
+      }
+      .link-card a{
         color:var(--accent);text-decoration:none;
-        font-size:.8rem;transition:color .2s;
+        font-size:0.8rem;font-weight:500;
+        display:inline-flex;align-items:center;gap:6px;
+        transition:all 0.25s;position:relative;
       }
-      .card a:hover{color:var(--accent-hover);text-decoration:underline}
+      .link-card a .arrow{
+        transition:transform 0.25s var(--transition);
+        font-size:0.85rem;
+      }
+      .link-card a:hover{color:var(--accent-hover)}
+      .link-card a:hover .arrow{transform:translateX(4px)}
 
-      /* ── Preview ── */
-      .preview-wrap{
-        margin-top:32px;border-radius:14px;overflow:hidden;
-        border:1px solid var(--line);
+      /* ═══ Preview Image ═══ */
+      .preview-frame{
+        margin-top:40px;border-radius:var(--radius-lg);overflow:hidden;
+        border:1px solid var(--glass-border);
+        box-shadow:0 20px 60px rgba(0,0,0,0.4);
+        position:relative;
+      }
+      .preview-frame::after{
+        content:"";position:absolute;inset:0;
+        background:linear-gradient(180deg,transparent 50%,rgba(5,5,7,0.6));
+        pointer-events:none;
+      }
+      .preview-chrome{
+        background:var(--bg-surface);padding:12px 16px;
+        display:flex;align-items:center;gap:8px;
+        border-bottom:1px solid var(--border);
+      }
+      .chrome-dot{width:8px;height:8px;border-radius:50%}
+      .chrome-dot:nth-child(1){background:#E5534B}
+      .chrome-dot:nth-child(2){background:#DAA037}
+      .chrome-dot:nth-child(3){background:#5EBB78}
+      .chrome-url{
+        font-family:"JetBrains Mono",monospace;
+        font-size:0.65rem;color:var(--text-muted);
+        margin-left:10px;
+        background:var(--bg);padding:3px 12px;border-radius:6px;
+        border:1px solid var(--border);
       }
       .preview{width:100%;display:block}
 
-      /* ── Sections ── */
+      /* ═══ Sections ═══ */
       .section{
-        padding:36px 0;border-bottom:1px solid var(--line);
-        opacity:0;transform:translateY(18px);
-        transition:opacity .55s ease,transform .55s ease;
+        padding:44px 0;border-bottom:1px solid var(--border);
+        opacity:0;transform:translateY(24px);
+        transition:opacity 0.65s var(--transition),transform 0.65s var(--transition);
       }
       .section.visible{opacity:1;transform:translateY(0)}
       .section:last-child{border-bottom:none}
 
       h2{
-        font-family:"DM Serif Display",serif;
-        font-size:clamp(1.45rem,3vw,1.85rem);
-        margin-bottom:18px;font-weight:400;
-        display:flex;align-items:center;gap:12px;
+        font-family:"Instrument Serif",serif;
+        font-size:clamp(1.55rem,3.2vw,2rem);
+        margin-bottom:22px;font-weight:400;
+        display:flex;align-items:center;gap:14px;
+        letter-spacing:-0.5px;
       }
-      .dot{
-        width:8px;height:8px;background:var(--accent);
+      .section-dot{
+        width:9px;height:9px;background:var(--accent);
         border-radius:50%;flex-shrink:0;
+        box-shadow:0 0 10px var(--accent-glow);
       }
+
       h3{
-        font-family:"DM Serif Display",serif;
-        font-size:1.1rem;margin-bottom:6px;font-weight:400;
+        font-family:"Instrument Serif",serif;
+        font-size:1.15rem;margin-bottom:8px;font-weight:400;
+        color:var(--text);
       }
+
       p{
-        color:var(--text-sec);margin-bottom:12px;
-        max-width:66ch;font-weight:300;
+        color:var(--text-secondary);margin-bottom:14px;
+        max-width:68ch;font-weight:300;font-size:0.95rem;
       }
       strong{color:var(--text);font-weight:600}
-      ul,ol{padding-left:18px;color:var(--text-sec);margin-bottom:12px}
-      li{margin-bottom:6px;padding-left:4px;font-weight:300}
+
+      ul,ol{padding-left:20px;color:var(--text-secondary);margin-bottom:14px}
+      li{margin-bottom:8px;padding-left:6px;font-weight:300;font-size:0.92rem;line-height:1.7}
       li::marker{color:var(--accent)}
+
       code{
-        font-family:"JetBrains Mono",monospace;font-size:.8em;
-        background:var(--code-bg);border:1px solid var(--line);
-        border-radius:4px;padding:2px 7px;color:var(--accent);
+        font-family:"JetBrains Mono",monospace;font-size:0.78em;
+        background:var(--code-bg);border:1px solid var(--border);
+        border-radius:5px;padding:2px 8px;color:var(--accent);
       }
       pre{
-        background:var(--code-bg);border:1px solid var(--line);
-        border-radius:12px;padding:20px 24px;overflow-x:auto;margin:16px 0;
+        background:var(--code-bg);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:22px 26px;overflow-x:auto;margin:18px 0;
+        box-shadow:inset 0 2px 8px rgba(0,0,0,0.3);
       }
       pre code{
         background:none;border:none;padding:0;
-        color:var(--text-sec);font-size:.8rem;line-height:1.85;
+        color:var(--text-secondary);font-size:0.8rem;line-height:1.9;
       }
-      a{color:var(--accent);text-decoration:none}
-      a:hover{text-decoration:underline}
+      a{color:var(--accent);text-decoration:none;transition:color 0.2s}
+      a:hover{color:var(--accent-hover);text-decoration:underline}
 
-      /* ── Callout ── */
+      /* ═══ Callout ═══ */
       .callout{
-        background:var(--accent-soft);
-        border:1px solid rgba(194,94,58,.14);
-        border-radius:10px;padding:16px 20px;margin:16px 0;
-        font-size:.88rem;color:var(--text-sec);
+        background:linear-gradient(135deg,var(--accent-soft),rgba(224,122,74,0.03));
+        border:1px solid rgba(224,122,74,0.12);
+        border-radius:var(--radius-md);padding:20px 24px;margin:18px 0;
+        font-size:0.9rem;color:var(--text-secondary);
+        position:relative;overflow:hidden;
+      }
+      .callout::before{
+        content:"";position:absolute;left:0;top:0;bottom:0;
+        width:3px;background:var(--accent);border-radius:3px;
       }
       .callout strong{color:var(--accent)}
 
-      /* ── Back to top ── */
+      /* ═══ Feature Grid ═══ */
+      .feature-grid{
+        display:grid;grid-template-columns:repeat(2,1fr);
+        gap:14px;margin:20px 0;
+      }
+      .feature-item{
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:18px 20px;
+        transition:all 0.3s var(--transition);
+      }
+      .feature-item:hover{
+        border-color:var(--border-strong);
+        background:var(--glass-hover);
+        transform:translateY(-2px);
+      }
+      .feature-item .fi-label{
+        font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;
+        color:var(--text-muted);margin-bottom:6px;font-weight:500;
+      }
+      .feature-item .fi-value{
+        font-size:0.92rem;color:var(--text);font-weight:400;
+        line-height:1.5;
+      }
+
+      /* ═══ Impact Cards ═══ */
+      .impact-list{margin:16px 0}
+      .impact-card{
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:18px 22px;
+        margin-bottom:10px;transition:all 0.3s var(--transition);
+        display:flex;align-items:flex-start;gap:16px;
+      }
+      .impact-card:hover{
+        border-color:var(--border-strong);
+        background:var(--glass-hover);
+      }
+      .impact-icon{
+        width:36px;height:36px;border-radius:10px;
+        background:var(--accent-soft);display:flex;
+        align-items:center;justify-content:center;
+        font-size:1rem;flex-shrink:0;
+        border:1px solid rgba(224,122,74,0.1);
+      }
+      .impact-text .impact-quote{
+        font-size:0.82rem;color:var(--accent);font-weight:600;
+        margin-bottom:3px;font-style:italic;
+      }
+      .impact-text .impact-resolution{
+        font-size:0.88rem;color:var(--text-secondary);font-weight:300;
+      }
+
+      /* ═══ Tech Stack Cards ═══ */
+      .tech-cards{
+        display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;
+      }
+      .tech-card{
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:22px 20px;
+        backdrop-filter:blur(8px);
+      }
+      .tech-card .tc-label{
+        font-size:0.62rem;letter-spacing:2.5px;text-transform:uppercase;
+        color:var(--text-muted);margin-bottom:12px;font-weight:600;
+        display:flex;align-items:center;gap:8px;
+      }
+      .tc-label .tc-dot{
+        width:6px;height:6px;border-radius:50%;
+      }
+      .tc-frontend .tc-dot{background:var(--accent)}
+      .tc-backend .tc-dot{background:var(--green)}
+      .tech-card .tc-stack{
+        font-size:0.88rem;color:var(--text-secondary);
+        line-height:1.7;font-weight:300;
+      }
+      .tech-card .tc-stack strong{color:var(--text);font-weight:500}
+
+      /* ═══ SSE Events Table ═══ */
+      .sse-table{
+        width:100%;border-collapse:collapse;margin:16px 0;
+        font-size:0.85rem;
+      }
+      .sse-table th{
+        text-align:left;padding:10px 16px;
+        font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;
+        color:var(--text-muted);font-weight:600;
+        border-bottom:1px solid var(--border-strong);
+      }
+      .sse-table td{
+        padding:10px 16px;border-bottom:1px solid var(--border);
+        color:var(--text-secondary);font-weight:300;
+      }
+      .sse-table td:first-child{
+        font-family:"JetBrains Mono",monospace;
+        font-size:0.78rem;color:var(--accent);
+      }
+
+      /* ═══ Stats Row ═══ */
+      .stats-row{
+        display:grid;grid-template-columns:repeat(4,1fr);
+        gap:12px;margin:28px 0;
+      }
+      .stat-card{
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-md);padding:18px 16px;
+        text-align:center;transition:all 0.3s var(--transition);
+      }
+      .stat-card:hover{
+        border-color:var(--border-strong);
+        transform:translateY(-2px);
+      }
+      .stat-value{
+        font-family:"Instrument Serif",serif;
+        font-size:1.8rem;color:var(--text);margin-bottom:4px;
+        letter-spacing:-1px;
+      }
+      .stat-label{
+        font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;
+        color:var(--text-muted);font-weight:500;
+      }
+
+      /* ═══ Roadmap ═══ */
+      .roadmap-grid{
+        display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+        gap:12px;margin:16px 0;
+      }
+      .roadmap-item{
+        background:var(--glass);border:1px solid var(--glass-border);
+        border-radius:var(--radius-sm);padding:14px 16px;
+        font-size:0.85rem;color:var(--text-secondary);
+        transition:all 0.3s var(--transition);
+      }
+      .roadmap-item:hover{
+        border-color:var(--border-strong);
+        color:var(--text);
+      }
+
+      /* ═══ Back to Top ═══ */
       .btt{
-        position:fixed;bottom:28px;right:28px;
-        width:40px;height:40px;border-radius:50%;
-        background:var(--card);border:1px solid var(--line);
+        position:fixed;bottom:32px;right:32px;
+        width:44px;height:44px;border-radius:50%;
+        background:var(--bg-surface);border:1px solid var(--glass-border);
         color:var(--text);display:flex;align-items:center;justify-content:center;
-        cursor:pointer;opacity:0;transform:translateY(10px);
-        transition:all .3s ease;z-index:100;font-size:1.1rem;
+        cursor:pointer;opacity:0;transform:translateY(12px);
+        transition:all 0.35s var(--transition);z-index:100;font-size:1.1rem;
+        backdrop-filter:blur(12px);
       }
       .btt.show{opacity:1;transform:translateY(0)}
-      .btt:hover{background:var(--accent);border-color:var(--accent)}
+      .btt:hover{
+        background:var(--accent);border-color:var(--accent);
+        box-shadow:0 8px 24px var(--accent-glow);
+      }
 
-      /* ── Scrollbar ── */
+      /* ═══ Scrollbar ═══ */
       ::-webkit-scrollbar{width:5px}
-      ::-webkit-scrollbar-track{background:var(--bg)}
-      ::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:3px}
-      ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+      ::-webkit-scrollbar-track{background:transparent}
+      ::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
+      ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
       ::selection{background:var(--accent);color:#fff}
 
-      /* ── Responsive ── */
+      /* ═══ Mobile Nav Toggle ═══ */
+      .mobile-nav-btn{
+        display:none;position:fixed;top:16px;left:16px;z-index:200;
+        width:40px;height:40px;border-radius:10px;
+        background:var(--bg-surface);border:1px solid var(--glass-border);
+        color:var(--text);cursor:pointer;font-size:1.1rem;
+        backdrop-filter:blur(12px);align-items:center;justify-content:center;
+      }
+
+      /* ═══ Responsive ═══ */
+      @media(max-width:1024px){
+        .stats-row{grid-template-columns:repeat(2,1fr)}
+        .feature-grid{grid-template-columns:1fr}
+      }
       @media(max-width:960px){
+        .mobile-nav-btn{display:flex}
         .layout{flex-direction:column}
         .sidebar{
-          position:relative;width:100%;min-width:unset;
-          height:auto;border-right:none;
-          border-bottom:1px solid var(--line);padding:20px 24px;
+          position:fixed;top:0;left:0;bottom:0;
+          width:280px;min-width:unset;
+          transform:translateX(-100%);
+          transition:transform 0.4s var(--transition);
+          z-index:150;
+          background:var(--bg);
+          backdrop-filter:none;
         }
-        .sidebar nav,.sidebar-footer{display:none}
+        .sidebar.open{transform:translateX(0)}
+        .sidebar-overlay{
+          display:none;position:fixed;inset:0;
+          background:rgba(0,0,0,0.5);z-index:140;
+        }
+        .sidebar-overlay.show{display:block}
         .main-content{padding:28px 24px 80px}
+        .link-grid{grid-template-columns:1fr}
+        .tech-cards{grid-template-columns:1fr}
       }
       @media(max-width:640px){
-        .grid{grid-template-columns:1fr}
         .main-content{padding:20px 16px 60px}
-        h1{letter-spacing:-.8px}
+        h1{letter-spacing:-1px}
+        .stats-row{grid-template-columns:1fr 1fr}
+        .roadmap-grid{grid-template-columns:1fr}
+        .hero{padding-bottom:36px}
       }
     </style>
-  </head>
+  <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
   <body>
-    <div class="scroll-bar" id="scrollBar"></div>
+    <!-- ═══ Aurora Background ═══ -->
+    <div class="aurora">
+      <div class="aurora-orb"></div>
+      <div class="aurora-orb"></div>
+      <div class="aurora-orb"></div>
+    </div>
+    <div class="grain"></div>
+
+    <!-- ═══ Scroll Progress ═══ -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══ Mobile Nav ═══ -->
+    <button class="mobile-nav-btn" id="mobileNavBtn" aria-label="Toggle navigation">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="layout">
-      <!-- ───── Sidebar ───── -->
-      <aside class="sidebar">
-        <div class="sidebar-logo">real<span>learn</span></div>
-        <div class="sidebar-label">Documentation</div>
+      <!-- ═══════════ Sidebar ═══════════ -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon">r</div>
+          <div class="brand-text">real<span>learn</span></div>
+        </div>
+        <div class="sidebar-subtitle">Documentation</div>
         <nav>
           <ul>
-            <li><a href="#gemma-usage">Gemma 4 Usage</a></li>
-            <li><a href="#what-it-is">What reallearn is</a></li>
-            <li><a href="#problem">What problem it solves</a></li>
-            <li><a href="#how-it-works">How it works end-to-end</a></li>
-            <li><a href="#features">Feature breakdown</a></li>
-            <li><a href="#real-world">Real-world impact</a></li>
-            <li><a href="#tech-stack">Tech stack</a></li>
-            <li><a href="#architecture">Architecture &amp; Deployment</a></li>
-            <li><a href="#api">API &amp; SSE Streaming</a></li>
-            <li><a href="#structure">Project structure</a></li>
-            <li><a href="#env-vars">Environment variables</a></li>
-            <li><a href="#local-dev">Local development</a></li>
-            <li><a href="#validation">Validation commands</a></li>
-            <li><a href="#roadmap">Roadmap ideas</a></li>
-            <li><a href="#license">License</a></li>
+            <li><a href="#gemma-usage"><span class="nav-icon">⚡</span>Gemma 4 Integration</a></li>
+            <li><a href="#what-it-is"><span class="nav-icon">◉</span>What reallearn Is</a></li>
+            <li><a href="#problem"><span class="nav-icon">◆</span>The Problem We Solve</a></li>
+            <li><a href="#how-it-works"><span class="nav-icon">⟐</span>End-to-End Flow</a></li>
+            <li><a href="#features"><span class="nav-icon">⬡</span>Feature Deep Dive</a></li>
+            <li><a href="#real-world"><span class="nav-icon">◈</span>Real-World Impact</a></li>
+            <li><a href="#tech-stack"><span class="nav-icon">⎔</span>Tech Stack</a></li>
+            <li><a href="#architecture"><span class="nav-icon">⊞</span>Architecture & Deploy</a></li>
+            <li><a href="#api"><span class="nav-icon">↔</span>API & SSE Streaming</a></li>
+            <li><a href="#structure"><span class="nav-icon">⊞</span>Project Structure</a></li>
+            <li><a href="#env-vars"><span class="nav-icon">♰</span>Environment Variables</a></li>
+            <li><a href="#local-dev"><span class="nav-icon">▶</span>Local Development</a></li>
+            <li><a href="#validation"><span class="nav-icon">✓</span>Validation & Checks</a></li>
+            <li><a href="#roadmap"><span class="nav-icon">→</span>Roadmap & Vision</a></li>
+            <li><a href="#license"><span class="nav-icon">⚖</span>License</a></li>
           </ul>
         </nav>
         <div class="sidebar-footer">
           <div class="sidebar-status">
-            <span class="status-dot"></span>
-            <span>Live &amp; Operational</span>
+            <span class="status-indicator"></span>
+            <span>Live & Operational</span>
           </div>
-          <div class="sidebar-version">v1.0.0</div>
+          <div class="sidebar-version">v2.0.0</div>
         </div>
       </aside>
 
-      <!-- ───── Main Content ───── -->
+      <!-- ═══════════ Main Content ═══════════ -->
       <div class="main-content">
 
-        <!-- Hero -->
+        <!-- ═══ Hero ═══ -->
         <header class="hero" id="top">
-          <span class="hero-tag">reallearn</span>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            reallearn
+          </div>
           <h1>The World Is<br>Your <em>Textbook</em></h1>
-          <p class="lead">
-            reallearn is an AI-powered learning product that turns a single
-            question into a structured, high-retention learning journey. Instead
-            of giving one generic answer, reallearn teaches in stages, checks
-            understanding, and connects learning to real-world events happening
-            right now.
+          <p class="hero-lead">
+            reallearn transforms a single question into a structured, high-retention
+            learning journey — teaching in deliberate stages, verifying comprehension
+            at every checkpoint, and grounding knowledge in the events shaping our world
+            right now. This is not another answer engine. This is a new kind of teacher.
           </p>
-          <p class="marketing">
-            Modern learning, premium clarity, and future-ready understanding — in one seamless experience.
+          <p class="hero-cta">
+            Designed for <span class="highlight">deep understanding</span>, built for
+            <span class="highlight">real-world relevance</span>, and engineered for
+            <span class="highlight">lasting retention</span> — one seamless experience
+            from curiosity to mastery.
           </p>
-          <div class="grid">
-            <article class="card">
+
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Learning Stages</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Languages</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Depth Levels</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">∞</div>
+              <div class="stat-label">Follow-up Loops</div>
+            </div>
+          </div>
+
+          <div class="link-grid">
+            <article class="link-card">
               <h3>Live Product</h3>
               <a href="https://reallearn-taupe.vercel.app/" target="_blank" rel="noopener">
-                reallearn-taupe.vercel.app →
+                reallearn-taupe.vercel.app <span class="arrow">→</span>
               </a>
             </article>
-            <article class="card">
+            <article class="link-card">
               <h3>Demo Video</h3>
               <a href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noopener">
-                Watch on YouTube →
+                Watch on YouTube <span class="arrow">→</span>
               </a>
             </article>
-            <article class="card">
+            <article class="link-card">
               <h3>Kaggle Write-up</h3>
               <a href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161" target="_blank" rel="noopener">
-                Read the write-up →
+                Read the write-up <span class="arrow">→</span>
               </a>
             </article>
           </div>
-          <div class="preview-wrap">
+
+          <div class="preview-frame">
+            <div class="preview-chrome">
+              <span class="chrome-dot"></span>
+              <span class="chrome-dot"></span>
+              <span class="chrome-dot"></span>
+              <span class="chrome-url">reallearn-taupe.vercel.app</span>
+            </div>
             <img
               class="preview"
               src="https://github.com/user-attachments/assets/835f71a3-ce53-415e-813f-00a2e57ecc51"
-              alt="reallearn product preview"
+              alt="reallearn product preview showing the learning journey interface"
+              loading="lazy"
             />
           </div>
         </header>
 
-        <!-- Gemma 4 Usage -->
+        <!-- ═══ Gemma 4 Usage ═══ -->
         <section class="section" id="gemma-usage">
-          <h2><span class="dot"></span>Gemma 4 Usage</h2>
+          <h2><span class="section-dot"></span>Gemma 4 Integration</h2>
           <p>
             reallearn is powered by <strong>Gemma 4 26B (gemma-4-26b-a4b-it)</strong>
-            through the Gemini API. The architecture uses structured prompting and
-            robust post-processing to maintain quality and consistency.
+            through the Gemini API — a model chosen for its exceptional instruction-following
+            capability, multilingual fluency, and structured output reliability. The architecture
+            pairs precise structured prompting with a resilient post-processing pipeline to
+            deliver consistent, high-quality lessons at scale.
           </p>
-          <ul>
-            <li>Structured output with strict 3-part JSON schema and quiz pairs</li>
-            <li>Native multilingual generation in 8 supported Indian languages</li>
-            <li>Adaptive difficulty for Class 6–8, Class 9–10, and College levels</li>
-            <li>Serper-powered real-world grounding for current-event relevance</li>
-            <li>5-stage JSON repair and strict schema validation</li>
-            <li>Average generation time target: 15–25 seconds</li>
-          </ul>
-        </section>
-
-        <!-- What reallearn is -->
-        <section class="section" id="what-it-is">
-          <h2><span class="dot"></span>What reallearn is</h2>
-          <p>
-            A guided-learning platform for students who need clarity on difficult
-            topics, language comfort, active understanding checks, and better
-            theory-to-reality transfer.
-          </p>
-          <div class="callout">
-            <strong>Core idea:</strong> Don't just answer — teach. Structure the answer into a journey, verify comprehension at each step, and anchor knowledge to the real world.
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="fi-label">Output Schema</div>
+              <div class="fi-value">Strict 3-part JSON schema with paired quiz questions — no freeform drift</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Multilingual</div>
+              <div class="fi-value">Native generation across 8 Indian languages, not translation — culturally resonant</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Adaptive Depth</div>
+              <div class="fi-value">Three calibrated tiers — Class 6–8, Class 9–10, and College — each with tailored complexity</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Real-World Grounding</div>
+              <div class="fi-value">Serper-powered current-event integration for knowledge that connects to today's reality</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Resilience</div>
+              <div class="fi-value">5-stage JSON repair pipeline with strict schema validation — graceful under pressure</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Performance</div>
+              <div class="fi-value">Target generation time of 15–25 seconds for a complete 3-stage lesson</div>
+            </div>
           </div>
         </section>
 
-        <!-- What problem it solves -->
-        <section class="section" id="problem">
-          <h2><span class="dot"></span>What problem it solves</h2>
+        <!-- ═══ What reallearn is ═══ -->
+        <section class="section" id="what-it-is">
+          <h2><span class="section-dot"></span>What reallearn Is</h2>
           <p>
-            Traditional one-shot AI answers are often shallow, mismatched to
-            learner level, disconnected from current reality, and easy to forget.
-            reallearn solves this with staged teaching and mandatory comprehension
-            checkpoints.
+            reallearn is a guided-learning platform designed for students who need more than
+            answers — they need understanding. It serves learners who struggle with difficult
+            topics, feel alienated by language barriers, lack the feedback loops that confirm
+            comprehension, and find theory disconnected from the world they live in.
+          </p>
+          <div class="callout">
+            <strong>Core philosophy:</strong> Don't just answer — teach. Structure knowledge
+            into a deliberate journey, verify comprehension at every milestone, and anchor
+            understanding to the real world. A question isn't the end of learning — it's the
+            beginning.
+          </div>
+        </section>
+
+        <!-- ═══ The Problem ═══ -->
+        <section class="section" id="problem">
+          <h2><span class="section-dot"></span>The Problem We Solve</h2>
+          <p>
+            Traditional AI delivers one-shot answers: shallow, mismatched to the learner's
+            level, detached from current reality, and forgotten within minutes. When a student
+            asks "Why does the rupee depreciate?", a single paragraph about exchange rates
+            teaches nothing that lasts. reallearn fundamentally reimagines this dynamic —
+            replacing passive answers with staged teaching and mandatory comprehension
+            checkpoints that transform information into lasting knowledge.
+          </p>
+          <p>
+            The gap isn't in access to information — it's in the architecture of understanding.
+            Students don't need more content; they need guided progression, active recall, and
+            real-world relevance. That's the gap reallearn was built to close.
           </p>
         </section>
 
-        <!-- How it works -->
+        <!-- ═══ How It Works ═══ -->
         <section class="section" id="how-it-works">
-          <h2><span class="dot"></span>How reallearn works end-to-end</h2>
+          <h2><span class="section-dot"></span>End-to-End Learning Flow</h2>
+          <p>
+            Every reallearn session follows a carefully orchestrated pipeline — from raw
+            curiosity to validated understanding. Here's the complete journey a question takes:
+          </p>
           <ol>
-            <li>Learner enters a question.</li>
-            <li>Learner selects language and level.</li>
-            <li>Frontend requests <code>/api/generate-lesson</code>.</li>
-            <li>Backend fetches recent context when available.</li>
-            <li>Gemma generates strict JSON journey output.</li>
-            <li>Backend validates/repairs output if needed.</li>
-            <li>Frontend renders 3 parts + sources + quizzes.</li>
-            <li>Quiz pass unlocks next part.</li>
-            <li>Learner completes takeaways and follow-up loop.</li>
+            <li><strong>Ask.</strong> A learner enters a question — any question that sparks curiosity.</li>
+            <li><strong>Configure.</strong> The learner selects their preferred language and depth level.</li>
+            <li><strong>Request.</strong> The frontend calls <code>/api/generate-lesson</code> with the full context.</li>
+            <li><strong>Ground.</strong> The backend fetches relevant real-world context when available — current events, recent developments, live data.</li>
+            <li><strong>Generate.</strong> Gemma 4 produces a structured 3-stage JSON journey, calibrated to the learner's level and language.</li>
+            <li><strong>Validate.</strong> The backend validates and, if necessary, repairs the model output through a 5-stage resilience pipeline.</li>
+            <li><strong>Render.</strong> The frontend presents all 3 parts, sources, and paired quizzes in a beautifully staged interface.</li>
+            <li><strong>Gate.</strong> Each quiz must be passed to unlock the next learning stage — comprehension isn't optional.</li>
+            <li><strong>Continue.</strong> The learner completes takeaways and can loop into a follow-up journey, diving ever deeper.</li>
           </ol>
         </section>
 
-        <!-- Feature breakdown -->
+        <!-- ═══ Feature Deep Dive ═══ -->
         <section class="section" id="features">
-          <h2><span class="dot"></span>Detailed feature breakdown</h2>
+          <h2><span class="section-dot"></span>Feature Deep Dive</h2>
+          <p>
+            Every feature in reallearn exists for a reason — to close a specific gap in how
+            learners actually absorb, retain, and apply knowledge. Nothing is decorative;
+            everything is deliberate.
+          </p>
           <ul>
-            <li>3-part unlockable lesson journey (Foundation → Mechanism → Real World Now)</li>
-            <li>Quiz-gated progression (2 MCQs per part, 4 options each)</li>
-            <li>Multi-language support (English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada)</li>
-            <li>Adaptive depth by learner level</li>
-            <li>Real-world context integration using recent news</li>
-            <li>SSE streaming with heartbeat keep-alive ping events</li>
-            <li>Reliability layer for malformed model output</li>
-            <li>Follow-up learning loop for continued journeys</li>
-            <li>Session-persisted frontend state</li>
+            <li><strong>3-Part Unlockable Journey</strong> — Foundation → Mechanism → Real World Now. Each stage builds on the last, creating a coherent arc from basics to breathless relevance.</li>
+            <li><strong>Quiz-Gated Progression</strong> — 2 MCQs per stage, 4 options each. You don't advance until you demonstrate understanding — active recall in its purest form.</li>
+            <li><strong>8-Language Native Generation</strong> — English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada. Not translated — natively generated, culturally attuned.</li>
+            <li><strong>Adaptive Depth Calibration</strong> — Three levels (Class 6–8, Class 9–10, College) with distinct vocabulary, complexity, and conceptual scaffolding.</li>
+            <li><strong>Real-World Context Integration</strong> — Serper-powered current event anchoring turns abstract theory into living knowledge.</li>
+            <li><strong>SSE Streaming with Heartbeat</strong> — Real-time server-sent events with keep-alive pings so learners see progress, not a blank screen.</li>
+            <li><strong>Output Resilience Layer</strong> — 5-stage JSON repair and strict validation. The learner never sees a broken experience, even when the model stumbles.</li>
+            <li><strong>Follow-Up Learning Loop</strong> — Every answer opens a door. Learners can continue their journey with follow-up questions, building depth iteratively.</li>
+            <li><strong>Session-Persisted State</strong> — Progress survives refreshes. The learning journey respects the learner's time and attention.</li>
           </ul>
         </section>
 
-        <!-- Real-world -->
+        <!-- ═══ Real-World Impact ═══ -->
         <section class="section" id="real-world">
-          <h2><span class="dot"></span>How reallearn helps in the real-world</h2>
-          <ul>
-            <li><strong>"I don't know where to start."</strong> → Part 1 creates an entry point.</li>
-            <li><strong>"I read but don't understand."</strong> → Quiz gating enforces comprehension.</li>
-            <li><strong>"It feels disconnected."</strong> → Part 3 links to live current events.</li>
-            <li><strong>"Too basic or too complex."</strong> → Level-based depth calibration.</li>
-            <li><strong>"English-only blocks me."</strong> → Native multilingual generation.</li>
-          </ul>
+          <h2><span class="section-dot"></span>Real-World Impact</h2>
+          <p>
+            reallearn was designed around real student frustrations — not theoretical problems,
+            but the lived barriers that millions of learners face every day. Each feature maps
+            directly to a human need:
+          </p>
+          <div class="impact-list">
+            <div class="impact-card">
+              <div class="impact-icon">🎯</div>
+              <div class="impact-text">
+                <div class="impact-quote">"I don't know where to start."</div>
+                <div class="impact-resolution">Stage 1 (Foundation) creates a clear, approachable entry point — no assumptions, no overwhelm.</div>
+              </div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-icon">🧠</div>
+              <div class="impact-text">
+                <div class="impact-quote">"I read but I don't really understand."</div>
+                <div class="impact-resolution">Quiz gating enforces active recall — comprehension isn't assumed, it's verified before progression.</div>
+              </div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-icon">🌍</div>
+              <div class="impact-text">
+                <div class="impact-quote">"It feels disconnected from my life."</div>
+                <div class="impact-resolution">Stage 3 (Real World Now) anchors learning to live current events — knowledge that breathes.</div>
+              </div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-icon">📐</div>
+              <div class="impact-text">
+                <div class="impact-quote">"It's either too basic or way over my head."</div>
+                <div class="impact-resolution">Level-based depth calibration meets each learner precisely where they are — no more, no less.</div>
+              </div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-icon">🗣️</div>
+              <div class="impact-text">
+                <div class="impact-quote">"English-only blocks me from learning."</div>
+                <div class="impact-resolution">Native multilingual generation in 8 languages — not translation, but culturally resonant teaching from the ground up.</div>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Tech stack -->
+        <!-- ═══ Tech Stack ═══ -->
         <section class="section" id="tech-stack">
-          <h2><span class="dot"></span>Tech stack</h2>
-          <p><strong>Frontend (Vercel):</strong> Next.js 15, React 19, TypeScript, Zustand, React Markdown, Tailwind CSS.</p>
-          <p><strong>Backend (Render):</strong> Node.js, Express, SSE + JSON APIs, Gemma integration, Serper context enrichment, validation and repair layer.</p>
+          <h2><span class="section-dot"></span>Tech Stack</h2>
+          <p>
+            reallearn runs on a modern, performant, and resilient stack — chosen not for novelty,
+            but for reliability at every layer of the learning experience.
+          </p>
+          <div class="tech-cards">
+            <div class="tech-card tc-frontend">
+              <div class="tc-label"><span class="tc-dot"></span>Frontend — Vercel</div>
+              <div class="tc-stack">
+                <strong>Next.js 15</strong> with <strong>React 19</strong> and <strong>TypeScript</strong> for type-safe, performant UI. <strong>Zustand</strong> for lightweight state management. <strong>React Markdown</strong> for rich content rendering. <strong>Tailwind CSS</strong> for a precise, maintainable design system.
+              </div>
+            </div>
+            <div class="tech-card tc-backend">
+              <div class="tc-label"><span class="tc-dot"></span>Backend — Render</div>
+              <div class="tc-stack">
+                <strong>Node.js</strong> with <strong>Express</strong> for robust API routing. <strong>SSE + JSON</strong> for real-time streaming. <strong>Gemma 4 integration</strong> via Gemini API. <strong>Serper</strong> for context enrichment. Full <strong>validation and repair layer</strong> for output resilience.
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Architecture -->
+        <!-- ═══ Architecture ═══ -->
         <section class="section" id="architecture">
-          <h2><span class="dot"></span>Architecture and deployment</h2>
+          <h2><span class="section-dot"></span>Architecture & Deployment</h2>
+          <p>
+            reallearn follows a clean two-service architecture, each optimized for its domain and
+            deployed on infrastructure matched to its needs:
+          </p>
           <ul>
-            <li><code>frontend/</code> → Next.js app on Vercel</li>
-            <li><code>backend/</code> → Express API on Render</li>
-            <li>Primary endpoint: <code>POST /api/generate-lesson</code></li>
-            <li>Health endpoint: <code>GET /health</code></li>
+            <li><code>frontend/</code> → Next.js application deployed on <strong>Vercel</strong> — edge-optimized, globally distributed, instant cold starts.</li>
+            <li><code>backend/</code> → Express API deployed on <strong>Render</strong> — persistent compute for AI inference, streaming, and validation.</li>
+            <li>Primary endpoint: <code>POST /api/generate-lesson</code> — the core learning engine.</li>
+            <li>Health endpoint: <code>GET /health</code> — for uptime monitoring and readiness checks.</li>
           </ul>
         </section>
 
-        <!-- API -->
+        <!-- ═══ API & SSE ═══ -->
         <section class="section" id="api">
-          <h2><span class="dot"></span>API behavior and SSE streaming</h2>
-          <ul>
-            <li><code>event: ping</code> → keep-alive heartbeat</li>
-            <li><code>event: lesson</code> → final lesson payload</li>
-            <li><code>event: done</code> → successful stream end</li>
-            <li><code>event: error</code> → failure message</li>
-          </ul>
+          <h2><span class="section-dot"></span>API Behavior & SSE Streaming</h2>
+          <p>
+            The lesson generation endpoint uses Server-Sent Events to stream progress in
+            real-time, keeping learners informed and engaged throughout the generation process:
+          </p>
+          <table class="sse-table">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>event: ping</td>
+                <td>Keep-alive heartbeat — prevents connection timeout during generation</td>
+              </tr>
+              <tr>
+                <td>event: lesson</td>
+                <td>Final lesson payload — the complete 3-stage journey with quizzes and sources</td>
+              </tr>
+              <tr>
+                <td>event: done</td>
+                <td>Successful stream end — signals completion to the client</td>
+              </tr>
+              <tr>
+                <td>event: error</td>
+                <td>Failure message — graceful error communication with context</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
-        <!-- Project structure -->
+        <!-- ═══ Project Structure ═══ -->
         <section class="section" id="structure">
-          <h2><span class="dot"></span>Project structure</h2>
+          <h2><span class="section-dot"></span>Project Structure</h2>
+          <p>A clean, purposeful directory layout that separates concerns clearly:</p>
           <pre><code>reallearn/
 ├── frontend/         # Next.js app (UI, state, client flow)
 ├── backend/          # Express API, AI calls, validation, context fetch
 └── README.md</code></pre>
         </section>
 
-        <!-- Environment variables -->
+        <!-- ═══ Environment Variables ═══ -->
         <section class="section" id="env-vars">
-          <h2><span class="dot"></span>Environment variables</h2>
+          <h2><span class="section-dot"></span>Environment Variables</h2>
+          <p>
+            reallearn is configured through environment variables, giving operators full control
+            over AI model parameters, retry behavior, circuit breaking, and streaming behavior:
+          </p>
+          <h3>Frontend</h3>
           <ul>
-            <li><code>NEXT_PUBLIC_BACKEND_URL=https://&lt;your-render-backend&gt;.onrender.com</code></li>
-            <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS=120000</code> (optional)</li>
-            <li><code>GEMMA_API_KEY=...</code></li>
-            <li><code>GEMMA_MODEL=gemma-4-26b-a4b-it</code></li>
-            <li><code>GEMMA_MAX_RETRIES=2</code>, <code>GEMMA_RETRY_DELAY_MS=700</code>, <code>GEMMA_MAX_RETRY_DELAY_MS=5000</code> (optional retry tuning)</li>
-            <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD=5</code>, <code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS=60000</code> (optional timeout circuit)</li>
-            <li><code>SERPER_API_KEY=...</code></li>
-            <li><code>MAX_CONCURRENT_LESSON_REQUESTS=3</code> (optional)</li>
-            <li><code>LESSON_FAILURE_ALERT_THRESHOLD=5</code> (optional)</li>
-            <li><code>SSE_HEARTBEAT_INTERVAL_MS=15000</code> (optional; capped at 55000)</li>
-            <li><code>FRONTEND_ORIGIN=https://&lt;your-vercel-frontend&gt;.vercel.app</code></li>
-            <li><code>PORT=10000</code> (optional on Render)</li>
+            <li><code>NEXT_PUBLIC_BACKEND_URL</code> — URL of the Render backend (e.g. <code>https://&lt;your-app&gt;.onrender.com</code>)</li>
+            <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS</code> — Idle timeout for SSE stream (default: 120000ms, optional)</li>
+          </ul>
+          <h3>Backend — Core</h3>
+          <ul>
+            <li><code>GEMMA_API_KEY</code> — Gemini API key for Gemma 4 access</li>
+            <li><code>GEMMA_MODEL</code> — Model identifier (default: <code>gemma-4-26b-a4b-it</code>)</li>
+            <li><code>SERPER_API_KEY</code> — Serper API key for real-world context enrichment</li>
+            <li><code>FRONTEND_ORIGIN</code> — Allowed CORS origin (e.g. <code>https://&lt;your-app&gt;.vercel.app</code>)</li>
+            <li><code>PORT</code> — Server port (default: 10000 on Render, optional)</li>
+          </ul>
+          <h3>Backend — Retry & Circuit Breaking (Optional)</h3>
+          <ul>
+            <li><code>GEMMA_MAX_RETRIES</code> — Max retry attempts (default: 2)</li>
+            <li><code>GEMMA_RETRY_DELAY_MS</code> — Initial retry delay (default: 700ms)</li>
+            <li><code>GEMMA_MAX_RETRY_DELAY_MS</code> — Maximum retry delay cap (default: 5000ms)</li>
+            <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD</code> — Failures before circuit opens (default: 5)</li>
+            <li><code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS</code> — Circuit cooldown period (default: 60000ms)</li>
+          </ul>
+          <h3>Backend — Operational (Optional)</h3>
+          <ul>
+            <li><code>MAX_CONCURRENT_LESSON_REQUESTS</code> — Concurrency limit (default: 3)</li>
+            <li><code>LESSON_FAILURE_ALERT_THRESHOLD</code> — Failure count for alerting (default: 5)</li>
+            <li><code>SSE_HEARTBEAT_INTERVAL_MS</code> — Heartbeat ping interval (default: 15000ms, capped at 55000ms)</li>
           </ul>
         </section>
 
-        <!-- Local development -->
+        <!-- ═══ Local Development ═══ -->
         <section class="section" id="local-dev">
-          <h2><span class="dot"></span>Local development</h2>
-          <pre><code>cd backend
+          <h2><span class="section-dot"></span>Local Development</h2>
+          <p>
+            Getting reallearn running locally is straightforward — two terminals, two commands,
+            and you're exploring the full learning experience:
+          </p>
+          <pre><code># Terminal 1 — Start the backend
+cd backend
 npm install
 npm start
 
+# Terminal 2 — Start the frontend
 cd frontend
 npm install
 npm run dev</code></pre>
         </section>
 
-        <!-- Validation -->
+        <!-- ═══ Validation ═══ -->
         <section class="section" id="validation">
-          <h2><span class="dot"></span>Validation commands</h2>
+          <h2><span class="section-dot"></span>Validation & Quality Checks</h2>
+          <p>
+            Before every deployment, run these checks to ensure code quality and build integrity:
+          </p>
           <pre><code>cd frontend
-npm run lint
-npm run build</code></pre>
+npm run lint      # Catch lint errors and style violations
+npm run build     # Verify production build succeeds</code></pre>
         </section>
 
-        <!-- Roadmap -->
+        <!-- ═══ Roadmap ═══ -->
         <section class="section" id="roadmap">
-          <h2><span class="dot"></span>Roadmap ideas</h2>
-          <ul>
-            <li>Learning outcome analytics</li>
-            <li>Spaced repetition for takeaways</li>
-            <li>User accounts and long-term progress</li>
-            <li>Teacher/classroom mode</li>
-            <li>Voice input/output in multiple languages</li>
-          </ul>
+          <h2><span class="section-dot"></span>Roadmap & Vision</h2>
+          <p>
+            reallearn is just beginning. The vision extends far beyond individual lessons —
+            toward a world where every learner has a patient, precise, and personally calibrated
+            guide for any topic they dare to explore:
+          </p>
+          <div class="roadmap-grid">
+            <div class="roadmap-item">📊 Learning outcome analytics</div>
+            <div class="roadmap-item">🔁 Spaced repetition for takeaways</div>
+            <div class="roadmap-item">👤 User accounts & long-term progress</div>
+            <div class="roadmap-item">🏫 Teacher & classroom mode</div>
+            <div class="roadmap-item">🎙️ Voice input/output in multiple languages</div>
+          </div>
         </section>
 
-        <!-- License -->
+        <!-- ═══ License ═══ -->
         <section class="section" id="license">
-          <h2><span class="dot"></span>License</h2>
-          <p>This project is licensed under the MIT License.</p>
+          <h2><span class="section-dot"></span>License</h2>
+          <p>
+            reallearn is open source under the <strong>MIT License</strong> — because the
+            tools for better learning should belong to everyone.
+          </p>
         </section>
 
       </div>
@@ -522,43 +1040,103 @@ npm run build</code></pre>
     <button class="btt" id="btt" aria-label="Back to top">↑</button>
 
     <script>
-      /* ── Scroll progress bar ── */
-      const bar = document.getElementById('scrollBar');
-      function updateBar() {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+      /* ═══ Scroll Progress Bar ═══ */
+      const progressBar = document.getElementById('scrollProgress');
+      function updateProgress() {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = scrollHeight > 0
+          ? (window.scrollY / scrollHeight * 100) + '%'
+          : '0%';
       }
-      window.addEventListener('scroll', updateBar, { passive: true });
+      window.addEventListener('scroll', updateProgress, { passive: true });
 
-      /* ── Back-to-top button ── */
-      const btt = document.getElementById('btt');
+      /* ═══ Back-to-Top ═══ */
+      const bttBtn = document.getElementById('btt');
       function updateBtt() {
-        btt.classList.toggle('show', window.scrollY > 500);
+        bttBtn.classList.toggle('show', window.scrollY > 500);
       }
       window.addEventListener('scroll', updateBtt, { passive: true });
-      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      /* ── Fade-in sections on scroll ── */
+      /* ═══ Fade-in Sections ═══ */
       const sections = document.querySelectorAll('.section');
-      const fadeObs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-      }, { threshold: 0.08 });
-      sections.forEach(s => fadeObs.observe(s));
-
-      /* ── Active sidebar link tracking ── */
-      const sideLinks = document.querySelectorAll('.sidebar nav a');
-      const trackEls = document.querySelectorAll('[id]');
-      const linkObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            sideLinks.forEach(l => l.classList.toggle(
-              'active',
-              l.getAttribute('href') === '#' + e.target.id
-            ));
+      const fadeObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
           }
         });
-      }, { rootMargin: '-18% 0px -72% 0px' });
-      trackEls.forEach(el => { if (el.id) linkObs.observe(el); });
+      }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+      sections.forEach(s => fadeObserver.observe(s));
+
+      /* ═══ Active Sidebar Tracking ═══ */
+      const sideLinks = document.querySelectorAll('.sidebar nav a');
+      const trackedElements = document.querySelectorAll('[id]');
+      const linkObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            sideLinks.forEach(link => {
+              link.classList.toggle(
+                'active',
+                link.getAttribute('href') === '#' + entry.target.id
+              );
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      trackedElements.forEach(el => { if (el.id) linkObserver.observe(el); });
+
+      /* ═══ Mobile Sidebar Toggle ═══ */
+      const mobileBtn = document.getElementById('mobileNavBtn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+      }
+
+      mobileBtn.addEventListener('click', openSidebar);
+      overlay.addEventListener('click', closeSidebar);
+
+      // Close sidebar when clicking a nav link on mobile
+      sideLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 960) closeSidebar();
+        });
+      });
+
+      /* ═══ Animated Stat Counters ═══ */
+      const statValues = document.querySelectorAll('.stat-value');
+      const statObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.textContent.trim();
+            if (text !== '∞') {
+              const target = parseInt(text, 10);
+              if (!isNaN(target)) {
+                let current = 0;
+                const duration = 1200;
+                const start = performance.now();
+                function animate(now) {
+                  const progress = Math.min((now - start) / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  el.textContent = Math.round(eased * target);
+                  if (progress < 1) requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+              }
+            }
+            statObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      statValues.forEach(sv => statObserver.observe(sv));
     </script>
   </body>
 </html>
