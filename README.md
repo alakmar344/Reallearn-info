@@ -1,29 +1,57 @@
 # reallearn-info
 
-A modern, immersive info page for **reallearn** — where curiosity becomes clarity.
+The official documentation site for **reallearn** — *Where Every Question Becomes a Journey.*
 
-## What's Inside
+## About
 
-Open `./index.html` in any browser to explore the full documentation site. The page features an aurora-lit dark interface with glassmorphic elements, animated scroll progress, and world-class copywriting that walks readers through reallearn's mission, architecture, and impact.
+This repository hosts the single-page documentation site for reallearn, built as a self-contained HTML document with embedded CSS and JavaScript. No frameworks. No build tools. Just one file that carries its own weight.
 
-## Design System v2.0
+The current design is the **Aura v3** system — a violet-indigo-cyan-amber design language built around the idea that every word should feel like it matters. Glassmorphic surfaces, animated aurora backgrounds, particle fields, cursor-tracking glow, and gradient-text typography work together to create a reading experience that feels alive.
 
-- **Aurora Background** — Floating gradient orbs that breathe life into the page
-- **Glassmorphic Cards** — Frosted-glass surfaces with subtle borders and depth
-- **Instrument Serif + Inter** — A refined typographic pairing that commands attention
-- **Animated Stats** — Counters that spring to life as they enter the viewport
-- **Scroll-Linked Progress** — A gradient progress bar that tracks your reading journey
-- **Mobile-First Navigation** — Slide-out sidebar with overlay for seamless mobile UX
-- **Intersection Observer Animations** — Sections fade in precisely as they become visible
+## Viewing Locally
 
-## Quick Start
+Open `./index.html` in any modern browser. That's it.
+
+Or serve it:
 
 ```bash
-# Clone the repo
-gh repo clone alakmar344/Reallearn-info
-
-# Open locally
-open index.html
+python3 -m http.server 8080
+# → http://localhost:8080
 ```
 
-No build step required — just HTML, CSS, and JavaScript.
+## Design System
+
+The Aura design system is defined entirely through CSS custom properties. Key tokens:
+
+| Token | Purpose |
+|-------|---------|
+| `--accent` | Primary violet accent (`#A78BFA`) |
+| `--violet` / `--indigo` / `--cyan` / `--amber` | Aurora palette |
+| `--glass` / `--glass-border` | Glassmorphic surface tokens |
+| `--text` / `--text-secondary` / `--text-muted` | Three-tier text hierarchy |
+
+Typography pairs **Cormorant Garamond** (display serif) with **Inter** (UI sans-serif), accented by **JetBrains Mono** (code) and **Instrument Serif** (decorative italic).
+
+## Features
+
+- **5-layer animated aurora** background with procedural particle field
+- **Cursor-tracking glow** that follows the reader's attention
+- **Gradient text** on emphasis elements and brand identity
+- **Animated gradient borders** on interactive cards (mask-composite technique)
+- **Scroll-triggered animations** via Intersection Observer
+- **Animated stat counters** with eased progression
+- **Responsive sidebar** with active section tracking
+- **Mobile slide-out navigation** drawer
+- **Gradient scroll progress indicator**
+
+## Branches
+
+| Branch | Description |
+|--------|-------------|
+| `main` | Original dark-theme site |
+| `redesign/v2-modern-aesthetic` | V2 modern aesthetic redesign (warm orange palette) |
+| `aura/v3-weight-of-every-word` | V3 aura redesign (violet-indigo-cyan-amber palette) |
+
+## License
+
+© reallearn
