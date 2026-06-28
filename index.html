@@ -4,1155 +4,224 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>reallearn — Where Every Question Becomes a Journey</title>
-    <meta name="description" content="reallearn transforms a single question into a structured, high-retention learning journey. Don't just answer — teach. The world is your textbook.">
+    <meta name="description" content="reallearn transforms curiosity into structured, high-retention learning journeys. Powered by Gemma 4.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      /* ══════════════════════════════════════════════════════════════
-         LUMINA v4 — Soft Brutalist Aura
-         Light × Neo-Brutalism × Skeuomorphism × Minimalism
-         ══════════════════════════════════════════════════════════════ */
       :root {
         --bg: #F5F0EB;
-        --bg-warm: #FAF7F2;
-        --bg-cool: #F0EDE8;
         --bg-white: #FFFFFF;
-        --bg-cream: #FFFDF8;
-
         --shadow-brutal: 4px 4px 0px #1A1A1A;
-        --shadow-brutal-lg: 6px 6px 0px #1A1A1A;
-        --shadow-brutal-sm: 3px 3px 0px #1A1A1A;
-        --shadow-soft: 0 2px 8px rgba(26,26,26,0.06), 0 1px 2px rgba(26,26,26,0.04);
-        --shadow-skeuo: 0 1px 2px rgba(255,255,255,0.8) inset, 0 -1px 2px rgba(0,0,0,0.04) inset, 0 4px 16px rgba(26,26,26,0.06);
-        --shadow-skeuo-deep: 0 2px 4px rgba(255,255,255,0.9) inset, 0 -2px 4px rgba(0,0,0,0.03) inset, 0 8px 32px rgba(26,26,26,0.08);
-
+        --shadow-brutal-sm: 2px 2px 0px #1A1A1A;
         --text: #1A1A1A;
         --text-secondary: #5C5C5C;
         --text-muted: #9A9A9A;
-        --text-ghost: #C8C8C8;
-
         --border: #1A1A1A;
-        --border-light: #D4CFC8;
-        --border-soft: #E8E3DC;
-
         --accent: #7C5CFC;
-        --accent-deep: #5B3DE0;
         --accent-light: #EDE9FF;
-        --accent-glow: rgba(124,92,252,0.15);
-
-        --coral: #FF6B6B;
-        --coral-light: #FFF0F0;
-        --coral-glow: rgba(255,107,107,0.12);
-
         --mint: #34D399;
-        --mint-light: #ECFDF5;
-        --mint-glow: rgba(52,211,153,0.12);
-
-        --amber: #F59E0B;
-        --amber-light: #FFFBEB;
-        --amber-glow: rgba(245,158,11,0.12);
-
-        --sky: #38BDF8;
-        --sky-light: #F0F9FF;
-        --sky-glow: rgba(56,189,248,0.12);
-
-        --radius-sm: 8px;
         --radius-md: 12px;
         --radius-lg: 16px;
-        --radius-xl: 24px;
-
         --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
       *{box-sizing:border-box;margin:0;padding:0}
-      html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-
+      html{scroll-behavior:smooth}
       body{
-        font-family:"DM Sans",system-ui,-apple-system,sans-serif;
+        font-family:"DM Sans",sans-serif;
         background:var(--bg);
         color:var(--text);
-        line-height:1.75;
-        -webkit-font-smoothing:antialiased;
-        -moz-osx-font-smoothing:grayscale;
-        overflow-x:hidden;
+        line-height:1.7;
       }
 
-      /* ═══════ AURA — CSS-only, no JS, no blur ═══════ */
       .aura{
         position:fixed;inset:0;z-index:0;pointer-events:none;
         background:
-          radial-gradient(ellipse 60% 50% at 15% 20%, rgba(124,92,252,0.07), transparent),
-          radial-gradient(ellipse 50% 60% at 85% 70%, rgba(56,189,248,0.06), transparent),
-          radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,107,107,0.04), transparent),
-          radial-gradient(ellipse 35% 45% at 75% 25%, rgba(52,211,153,0.04), transparent);
-        animation: auraShift 40s ease-in-out infinite alternate;
-      }
-      @keyframes auraShift{
-        0%{background-position:0% 0%, 100% 100%, 50% 50%, 75% 25%}
-        33%{background-position:10% 15%, 90% 85%, 45% 55%, 70% 30%}
-        66%{background-position:5% 10%, 95% 80%, 55% 45%, 80% 20%}
-        100%{background-position:15% 5%, 85% 90%, 48% 52%, 72% 28%}
+          radial-gradient(circle at 15% 20%, rgba(124,92,252,0.05), transparent 40%),
+          radial-gradient(circle at 85% 70%, rgba(56,189,248,0.05), transparent 40%);
       }
 
-      /* ═══════ Scroll Progress ═══════ */
-      .scroll-progress{
-        position:fixed;top:0;left:0;height:3px;
-        background:var(--accent);
-        z-index:9999;width:0;
-        transition:none;
-      }
-
-      /* ═══════ Layout ═══════ */
       .layout{
         position:relative;z-index:1;
         display:flex;min-height:100vh;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
-      /* ═══════ Sidebar ═══════ */
       .sidebar{
         position:sticky;top:0;
-        width:260px;min-width:260px;height:100vh;
-        padding:32px 16px 32px 24px;
-        border-right:2px solid var(--border);
-        background:var(--bg-white);
-        overflow-y:auto;display:flex;flex-direction:column;
-        box-shadow:1px 0 0 var(--border-soft);
+        width:240px;height:100vh;
+        padding:40px 24px;
+        border-right:1px solid rgba(0,0,0,0.1);
+        display:flex;flex-direction:column;
       }
-      .sidebar-brand{
-        display:flex;align-items:center;gap:12px;
-        margin-bottom:4px;
-      }
-      .brand-icon{
-        width:36px;height:36px;border-radius:var(--radius-sm);
-        background:var(--accent);
-        border:2px solid var(--border);
-        box-shadow:var(--shadow-brutal-sm);
-        display:flex;align-items:center;justify-content:center;
+      .brand{
+        display:flex;align-items:center;gap:10px;
         font-family:"Space Grotesk",sans-serif;
-        font-size:1.1rem;color:#fff;font-weight:700;
-        transition:transform 0.2s var(--ease-spring);
+        font-size:1.5rem;font-weight:700;
+        margin-bottom:40px;
       }
-      .brand-icon:hover{transform:translate(-1px,-1px)}
-      .brand-text{
-        font-family:"Space Grotesk",sans-serif;
-        font-size:1.35rem;font-weight:700;letter-spacing:-0.5px;
+      .brand span{color:var(--accent)}
+      
+      nav ul{list-style:none}
+      nav li{margin-bottom:12px}
+      nav a{
+        text-decoration:none;color:var(--text-secondary);
+        font-size:0.9rem;font-weight:500;
+        transition: color 0.2s;
       }
-      .brand-text span{color:var(--accent)}
-      .sidebar-subtitle{
-        font-family:"Space Mono",monospace;
-        font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;
-        color:var(--text-muted);margin-bottom:28px;font-weight:400;
-        padding-left:48px;
-      }
+      nav a:hover{color:var(--accent)}
 
-      .sidebar nav ul{list-style:none}
-      .sidebar nav ul li{margin-bottom:2px}
-      .sidebar nav ul li a{
-        display:flex;align-items:center;gap:8px;
-        padding:6px 12px;font-size:0.72rem;font-weight:500;
-        color:var(--text-secondary);text-decoration:none;
-        border-radius:var(--radius-sm);
-        border-left:2px solid transparent;
-        transition:all 0.15s var(--ease);
-        line-height:1.4;
-      }
-      .sidebar nav ul li a .nav-icon{
-        font-size:0.6rem;opacity:0.5;width:16px;text-align:center;
-      }
-      .sidebar nav ul li a:hover{
-        color:var(--text);background:var(--accent-light);
-        border-left-color:var(--accent);
-      }
-      .sidebar nav ul li a:hover .nav-icon{opacity:0.8}
-      .sidebar nav ul li a.active{
-        color:var(--accent-deep);background:var(--accent-light);
-        border-left-color:var(--accent);font-weight:600;
-      }
-      .sidebar nav ul li a.active .nav-icon{opacity:1;color:var(--accent)}
-
-      .sidebar-footer{
-        margin-top:auto;padding-top:20px;
-        border-top:2px solid var(--border);
-      }
-      .sidebar-status{
-        display:flex;align-items:center;gap:8px;
-        font-size:0.65rem;color:var(--text-muted);margin-bottom:6px;
-        font-weight:500;
-      }
-      .status-indicator{
-        width:7px;height:7px;border-radius:50%;
-        background:var(--mint);flex-shrink:0;
-        border:1px solid var(--border);
-      }
-      .sidebar-version{
-        font-family:"Space Mono",monospace;
-        font-size:0.55rem;color:var(--text-muted);letter-spacing:2px;
-      }
-
-      /* ═══════ Main Content ═══════ */
       .main-content{
-        flex:1;padding:48px 56px 120px;max-width:860px;
-        background:var(--bg);
-      }
-
-      /* ═══════ Hero ═══════ */
-      .hero{
-        padding-bottom:48px;margin-bottom:0;
-        border-bottom:2px solid var(--border);
-      }
-      .hero-badge{
-        display:inline-flex;align-items:center;gap:8px;
-        border:2px solid var(--border);
-        background:var(--accent-light);border-radius:var(--radius-md);
-        padding:5px 16px;font-family:"Space Mono",monospace;
-        font-size:0.55rem;letter-spacing:3px;
-        text-transform:uppercase;font-weight:700;margin-bottom:28px;
-        color:var(--accent-deep);
-        box-shadow:var(--shadow-brutal-sm);
-        transition:transform 0.2s var(--ease-spring);
-      }
-      .hero-badge:hover{transform:translate(-2px,-2px)}
-      .hero-badge .badge-dot{
-        width:6px;height:6px;border-radius:50%;
-        background:var(--mint);border:1px solid var(--border);
+        flex:1;padding:60px 80px;
       }
 
       h1{
         font-family:"Space Grotesk",sans-serif;
-        font-size:clamp(2.6rem,6vw,4.4rem);
-        line-height:1.05;letter-spacing:-2px;
-        margin-bottom:28px;font-weight:700;
+        font-size:4rem;line-height:1.1;letter-spacing:-2px;
+        margin-bottom:24px;
       }
-      h1 em{
-        font-style:normal;
-        color:var(--accent);
-        text-decoration:underline;
-        text-decoration-thickness:3px;
-        text-underline-offset:4px;
-      }
+      h1 em{font-style:normal;color:var(--accent)}
 
       .hero-lead{
-        font-size:1.1rem;color:var(--text-secondary);
-        max-width:58ch;line-height:1.85;margin-bottom:14px;
-        font-weight:400;
-      }
-      .hero-cta{
-        font-size:0.95rem;color:var(--text);
-        font-weight:500;max-width:52ch;line-height:1.85;
-      }
-      .hero-cta .highlight{
-        background:var(--accent);
-        color:#fff;padding:1px 6px;
-        border-radius:4px;font-weight:600;
-        border:1px solid var(--border);
+        font-size:1.25rem;color:var(--text-secondary);
+        max-width:600px;margin-bottom:40px;
       }
 
-      /* ═══════ Stats Row ═══════ */
-      .stats-row{
-        display:grid;grid-template-columns:repeat(4,1fr);
-        gap:12px;margin:28px 0;
-      }
-      .stat-card{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:16px 12px;
-        text-align:center;
-        box-shadow:var(--shadow-brutal-sm);
-        transition:transform 0.2s var(--ease-spring);
-      }
-      .stat-card:hover{transform:translate(-2px,-2px)}
-      .stat-value{
-        font-family:"Space Grotesk",sans-serif;
-        font-size:2rem;color:var(--text);margin-bottom:2px;
-        letter-spacing:-1px;font-weight:700;
-      }
-      .stat-label{
-        font-family:"Space Mono",monospace;
-        font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
-        color:var(--text-muted);font-weight:400;
-      }
-
-      /* ═══════ Link Cards ═══════ */
-      .link-grid{
-        display:grid;grid-template-columns:repeat(3,1fr);
-        gap:12px;margin-top:28px;
-      }
-      .link-card{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:20px 18px;
-        box-shadow:var(--shadow-brutal-sm);
-        transition:transform 0.2s var(--ease-spring),box-shadow 0.2s var(--ease);
-        position:relative;
-      }
-      .link-card:hover{
-        transform:translate(-3px,-3px);
-        box-shadow:var(--shadow-brutal);
-      }
-      .link-card h3{
-        font-family:"Space Grotesk",sans-serif;
-        font-size:1rem;margin-bottom:8px;font-weight:700;
-      }
-      .link-card a{
-        color:var(--accent);text-decoration:none;
-        font-size:0.75rem;font-weight:600;
-        display:inline-flex;align-items:center;gap:5px;
-        transition:color 0.15s;
-      }
-      .link-card a .arrow{
-        transition:transform 0.2s var(--ease-spring);
-        font-size:0.9rem;
-      }
-      .link-card a:hover{color:var(--accent-deep)}
-      .link-card a:hover .arrow{transform:translateX(4px)}
-
-      /* ═══════ Preview Frame — Skeuomorphic ═══════ */
-      .preview-frame{
-        margin-top:36px;border-radius:var(--radius-lg);overflow:hidden;
-        border:2px solid var(--border);
-        box-shadow:var(--shadow-skeuo-deep);
-        background:var(--bg-white);
-      }
-      .preview-chrome{
-        background:var(--bg-cool);padding:10px 16px;
-        display:flex;align-items:center;gap:7px;
-        border-bottom:1px solid var(--border-light);
-      }
-      .chrome-dot{width:8px;height:8px;border-radius:50%;border:1px solid rgba(0,0,0,0.1)}
-      .chrome-dot:nth-child(1){background:#FF5F57}
-      .chrome-dot:nth-child(2){background:#FFBD2E}
-      .chrome-dot:nth-child(3){background:#28CA41}
-      .chrome-url{
-        font-family:"Space Mono",monospace;
-        font-size:0.58rem;color:var(--text-muted);
-        margin-left:8px;
-        background:var(--bg-white);padding:2px 12px;border-radius:4px;
-        border:1px solid var(--border-light);
-      }
-      .preview{width:100%;display:block}
-
-      /* ═══════ Sections ═══════ */
-      .section{
-        padding:40px 0;border-bottom:2px solid var(--border);
-        opacity:0;transform:translateY(16px);
-        transition:opacity 0.5s var(--ease),transform 0.5s var(--ease);
-      }
-      .section.visible{opacity:1;transform:translateY(0)}
-      .section:last-child{border-bottom:none}
-
+      .section{padding:60px 0;border-top:1px solid rgba(0,0,0,0.1)}
       h2{
         font-family:"Space Grotesk",sans-serif;
-        font-size:clamp(1.5rem,3vw,2rem);
-        margin-bottom:20px;font-weight:700;
-        display:flex;align-items:center;gap:12px;
-        letter-spacing:-0.5px;
-      }
-      .section-dot{
-        width:12px;height:12px;
-        background:var(--accent);border:2px solid var(--border);
-        border-radius:var(--radius-sm);flex-shrink:0;
-        box-shadow:var(--shadow-brutal-sm);
+        font-size:2rem;margin-bottom:24px;
       }
 
-      h3{
-        font-family:"Space Grotesk",sans-serif;
-        font-size:1.1rem;margin-bottom:6px;font-weight:700;
-        color:var(--text);
+      .grid{
+        display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
       }
-
-      p{
-        color:var(--text-secondary);margin-bottom:14px;
-        max-width:66ch;font-weight:400;font-size:0.92rem;
-      }
-      .section p.emphasis{
-        font-size:1.05rem;color:var(--text);
-        font-weight:500;line-height:1.8;max-width:60ch;
-      }
-      strong{color:var(--text);font-weight:700}
-      strong.accent-word{
-        background:var(--accent-light);color:var(--accent-deep);
-        padding:1px 6px;border-radius:4px;
-        border:1px solid var(--accent);
-        font-weight:700;
-      }
-
-      ul,ol{padding-left:20px;color:var(--text-secondary);margin-bottom:14px}
-      li{margin-bottom:6px;padding-left:4px;font-weight:400;font-size:0.9rem;line-height:1.7}
-      li::marker{color:var(--accent);font-weight:700}
-
-      code{
-        font-family:"Space Mono",monospace;font-size:0.78em;
-        background:var(--bg-cool);border:1px solid var(--border-light);
-        border-radius:4px;padding:1px 7px;color:var(--accent-deep);
-        font-weight:400;
-      }
-      pre{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:18px 22px;
-        overflow-x:auto;margin:14px 0;
-        box-shadow:var(--shadow-skeuo);
-      }
-      pre code{
-        background:none;border:none;padding:0;
-        color:var(--text-secondary);font-size:0.76rem;line-height:1.85;
-      }
-      a{color:var(--accent);text-decoration:none;transition:color 0.15s;font-weight:500}
-      a:hover{color:var(--accent-deep);text-decoration:underline}
-
-      /* ═══════ Callout — Skeuomorphic Card ═══════ */
-      .callout{
-        background:var(--bg-cream);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:18px 22px;margin:16px 0;
-        font-size:0.9rem;color:var(--text-secondary);
-        box-shadow:var(--shadow-skeuo);
-        position:relative;
-      }
-      .callout::before{
-        content:"";position:absolute;left:0;top:0;bottom:0;
-        width:4px;
-        background:var(--accent);
-        border-radius:4px 0 0 4px;
-      }
-      .callout strong{color:var(--accent-deep)}
-
-      /* ═══════ Feature Grid — Neo-Brutalist Cards ═══════ */
-      .feature-grid{
-        display:grid;grid-template-columns:repeat(2,1fr);
-        gap:12px;margin:18px 0;
-      }
-      .feature-item{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:16px 18px;
-        box-shadow:var(--shadow-brutal-sm);
-        transition:transform 0.2s var(--ease-spring);
-      }
-      .feature-item:hover{transform:translate(-2px,-2px)}
-      .feature-item .fi-label{
-        font-family:"Space Mono",monospace;
-        font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
-        color:var(--accent-deep);margin-bottom:6px;font-weight:700;
-      }
-      .feature-item .fi-value{
-        font-size:0.85rem;color:var(--text);font-weight:400;
-        line-height:1.55;
-      }
-
-      /* ═══════ Impact Cards — Skeuomorphic with Warmth ═══════ */
-      .impact-list{margin:16px 0}
-      .impact-card{
-        background:var(--bg-cream);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:16px 20px;
-        margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;
-        box-shadow:var(--shadow-skeuo);
-        transition:transform 0.2s var(--ease-spring);
-      }
-      .impact-card:hover{transform:translate(-1px,-1px)}
-      .impact-icon{
-        width:36px;height:36px;border-radius:var(--radius-sm);
-        background:var(--bg-white);
+      .card{
+        background:var(--bg-white);padding:24px;
         border:2px solid var(--border);
-        display:flex;align-items:center;justify-content:center;
-        font-size:1rem;flex-shrink:0;
+        border-radius:var(--radius-md);
         box-shadow:var(--shadow-brutal-sm);
       }
-      .impact-text .impact-quote{
-        font-family:"Space Grotesk",sans-serif;
-        font-size:0.95rem;color:var(--accent-deep);font-weight:700;
-        margin-bottom:3px;
-      }
-      .impact-text .impact-resolution{
-        font-size:0.85rem;color:var(--text-secondary);font-weight:400;line-height:1.6;
-      }
+      .card h3{margin-bottom:12px;font-family:"Space Grotesk",sans-serif}
 
-      /* ═══════ Tech Stack Cards ═══════ */
-      .tech-cards{
-        display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;
-      }
-      .tech-card{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-md);padding:20px 18px;
-        box-shadow:var(--shadow-brutal-sm);
-      }
-      .tech-card .tc-label{
-        font-family:"Space Mono",monospace;
-        font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
-        color:var(--text-muted);margin-bottom:12px;font-weight:700;
-        display:flex;align-items:center;gap:8px;
-      }
-      .tc-label .tc-dot{
-        width:7px;height:7px;border-radius:50%;border:1px solid var(--border);
-      }
-      .tc-frontend .tc-dot{background:var(--accent)}
-      .tc-backend .tc-dot{background:var(--sky)}
-      .tech-card .tc-stack{
-        font-size:0.84rem;color:var(--text-secondary);
-        line-height:1.75;font-weight:400;
-      }
-      .tech-card .tc-stack strong{color:var(--text);font-weight:600}
-
-      /* ═══════ SSE Table ═══════ */
-      .sse-table{
-        width:100%;border-collapse:collapse;margin:14px 0;
-        font-size:0.82rem;
-        border:2px solid var(--border);
-        border-radius:var(--radius-md);overflow:hidden;
-        box-shadow:var(--shadow-brutal-sm);
-      }
-      .sse-table th{
-        text-align:left;padding:10px 16px;
-        font-family:"Space Mono",monospace;
-        font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
-        color:var(--text);font-weight:700;
-        background:var(--bg-cool);
-        border-bottom:2px solid var(--border);
-      }
-      .sse-table td{
-        padding:10px 16px;border-bottom:1px solid var(--border-light);
-        color:var(--text-secondary);font-weight:400;
-        background:var(--bg-white);
-      }
-      .sse-table tr:last-child td{border-bottom:none}
-      .sse-table td:first-child{
-        font-family:"Space Mono",monospace;
-        font-size:0.74rem;color:var(--accent-deep);font-weight:700;
-      }
-
-      /* ═══════ Roadmap ═══════ */
-      .roadmap-grid{
-        display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-        gap:10px;margin:14px 0;
-      }
-      .roadmap-item{
-        background:var(--bg-white);border:2px solid var(--border);
-        border-radius:var(--radius-sm);padding:12px 14px;
-        font-size:0.82rem;color:var(--text-secondary);
-        box-shadow:var(--shadow-brutal-sm);
-        transition:transform 0.2s var(--ease-spring),background 0.15s;
-        font-weight:500;
-      }
-      .roadmap-item:hover{
-        background:var(--accent-light);color:var(--accent-deep);
-        transform:translate(-2px,-2px);
-      }
-
-      /* ═══════ Back to Top ═══════ */
-      .btt{
-        position:fixed;bottom:28px;right:28px;
-        width:42px;height:42px;border-radius:var(--radius-sm);
-        background:var(--bg-white);border:2px solid var(--border);
-        color:var(--text);display:flex;align-items:center;justify-content:center;
-        cursor:pointer;opacity:0;transform:translateY(12px);
-        transition:all 0.2s var(--ease-spring);z-index:100;font-size:1rem;
-        box-shadow:var(--shadow-brutal-sm);
-      }
-      .btt.show{opacity:1;transform:translateY(0)}
-      .btt:hover{
-        transform:translate(-2px,-2px);
-        box-shadow:var(--shadow-brutal);
+      .gemma-box{
         background:var(--accent);color:#fff;
+        padding:40px;border-radius:var(--radius-lg);
+        margin:40px 0;
+      }
+      .gemma-box h2{color:#fff}
+
+      .footer{
+        margin-top:80px;padding-top:40px;
+        border-top:1px solid rgba(0,0,0,0.1);
+        font-size:0.8rem;color:var(--text-muted);
+        text-align:center;
       }
 
-      /* ═══════ Scrollbar ═══════ */
-      ::-webkit-scrollbar{width:6px}
-      ::-webkit-scrollbar-track{background:var(--bg-cool)}
-      ::-webkit-scrollbar-thumb{background:var(--border-light);border-radius:3px}
-      ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-      ::selection{background:var(--accent);color:#fff}
-
-      /* ═══════ Mobile Nav ═══════ */
-      .mobile-nav-btn{
-        display:none;position:fixed;top:14px;left:14px;z-index:200;
-        width:40px;height:40px;border-radius:var(--radius-sm);
-        background:var(--bg-white);border:2px solid var(--border);
-        color:var(--text);cursor:pointer;font-size:1rem;
-        align-items:center;justify-content:center;
-        box-shadow:var(--shadow-brutal-sm);
-        font-family:"Space Grotesk",sans-serif;font-weight:700;
-      }
-
-      /* ═══════ Responsive ═══════ */
-      @media(max-width:1024px){
-        .stats-row{grid-template-columns:repeat(2,1fr)}
-        .feature-grid{grid-template-columns:1fr}
-      }
       @media(max-width:960px){
-        .mobile-nav-btn{display:flex}
         .layout{flex-direction:column}
-        .sidebar{
-          position:fixed;top:0;left:0;bottom:0;
-          width:270px;min-width:unset;
-          transform:translateX(-100%);
-          transition:transform 0.25s var(--ease);
-          z-index:150;
-          box-shadow:none;
-        }
-        .sidebar.open{transform:translateX(0)}
-        .sidebar-overlay{
-          display:none;position:fixed;inset:0;
-          background:rgba(0,0,0,0.3);z-index:140;
-        }
-        .sidebar-overlay.show{display:block}
-        .main-content{padding:24px 20px 80px}
-        .link-grid{grid-template-columns:1fr}
-        .tech-cards{grid-template-columns:1fr}
-      }
-      @media(max-width:640px){
-        .main-content{padding:16px 14px 60px}
-        h1{letter-spacing:-1px}
-        .stats-row{grid-template-columns:1fr 1fr}
-        .roadmap-grid{grid-template-columns:1fr}
-        .hero{padding-bottom:32px}
+        .sidebar{width:100%;height:auto;border-right:none;border-bottom:1px solid rgba(0,0,0,0.1)}
+        .main-content{padding:40px 24px}
+        .grid{grid-template-columns:1fr}
+        h1{font-size:3rem}
       }
     </style>
-  <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
-</head>
+  </head>
   <body>
-    <!-- ═══════ AURA ═══════ -->
     <div class="aura"></div>
-
-    <!-- ═══════ Scroll Progress ═══════ -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- ═══════ Mobile Nav ═══════ -->
-    <button class="mobile-nav-btn" id="mobileNavBtn" aria-label="Toggle navigation">☰</button>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
     <div class="layout">
-      <!-- ════════ Sidebar ════════ -->
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-brand">
-          <div class="brand-icon">r</div>
-          <div class="brand-text">real<span>learn</span></div>
-        </div>
-        <div class="sidebar-subtitle">Documentation</div>
+      <aside class="sidebar">
+        <div class="brand">real<span>learn</span></div>
         <nav>
           <ul>
-            <li><a href="#gemma-usage"><span class="nav-icon">⚡</span>Gemma 4 Integration</a></li>
-            <li><a href="#what-it-is"><span class="nav-icon">◎</span>What reallearn Is</a></li>
-            <li><a href="#problem"><span class="nav-icon">◈</span>The Problem We Solve</a></li>
-            <li><a href="#how-it-works"><span class="nav-icon">⟐</span>End-to-End Flow</a></li>
-            <li><a href="#features"><span class="nav-icon">⬡</span>Feature Deep Dive</a></li>
-            <li><a href="#real-world"><span class="nav-icon">◆</span>Real-World Impact</a></li>
-            <li><a href="#tech-stack"><span class="nav-icon">⎔</span>Tech Stack</a></li>
-            <li><a href="#architecture"><span class="nav-icon">⊞</span>Architecture & Deploy</a></li>
-            <li><a href="#api"><span class="nav-icon">↔</span>API & SSE Streaming</a></li>
-            <li><a href="#structure"><span class="nav-icon">⊞</span>Project Structure</a></li>
-            <li><a href="#env-vars"><span class="nav-icon">⚗</span>Environment Variables</a></li>
-            <li><a href="#local-dev"><span class="nav-icon">▶</span>Local Development</a></li>
-            <li><a href="#validation"><span class="nav-icon">✓</span>Validation & Checks</a></li>
-            <li><a href="#roadmap"><span class="nav-icon">→</span>Roadmap & Vision</a></li>
-            <li><a href="#license"><span class="nav-icon">⚖</span>License</a></li>
+            <li><a href="#vision">Our Vision</a></li>
+            <li><a href="#gemma">Gemma 4 Power</a></li>
+            <li><a href="#experience">The Experience</a></li>
+            <li><a href="#trust">Trust & Safety</a></li>
           </ul>
         </nav>
-        <div class="sidebar-footer">
-          <div class="sidebar-status">
-            <span class="status-indicator"></span>
-            <span>Live & Operational</span>
-          </div>
-          <div class="sidebar-version">v4.0.0</div>
-        </div>
       </aside>
 
-      <!-- ════════ Main Content ════════ -->
-      <div class="main-content">
-
-        <!-- ═══════ Hero ═══════ -->
-        <header class="hero" id="top">
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            reallearn
-          </div>
-          <h1>The World Is<br>Your <em>Textbook</em></h1>
+      <main class="main-content">
+        <header>
+          <h1>The World Is Your <em>Textbook</em></h1>
           <p class="hero-lead">
-            When a learner asks a question, most systems give them an answer.
-            reallearn gives them a journey — staged with intention, gated by
-            comprehension, and anchored to the world as it is right now.
-            This isn't another answer engine. This is a new kind of teacher.
+            reallearn transforms simple questions into immersive learning journeys. 
+            Staged with intention, gated by comprehension, and anchored to reality.
           </p>
-          <p class="hero-cta">
-            Every feature exists to close a gap. Every stage exists to build
-            <span class="highlight">understanding that endures</span>. Every
-            quiz exists because <span class="highlight">comprehension is not
-            optional</span>. From the first question to lasting mastery —
-            one seamless, luminous experience.
-          </p>
-
-          <div class="stats-row">
-            <div class="stat-card">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Learning Stages</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">8</div>
-              <div class="stat-label">Languages</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Depth Levels</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">∞</div>
-              <div class="stat-label">Follow-up Loops</div>
-            </div>
-          </div>
-
-          <div class="link-grid">
-            <article class="link-card">
-              <h3>Live Product</h3>
-              <a href="https://reallearn.esamz.site" target="_blank" rel="noopener">
-                product demo <span class="arrow">→</span>
-              </a>
-            </article>
-              </div>
-
-          <div class="preview-frame">
-            <div class="preview-chrome">
-              <span class="chrome-dot"></span>
-              <span class="chrome-dot"></span>
-              <span class="chrome-dot"></span>
-              <span class="chrome-url">reallearn-taupe.vercel.app</span>
-            </div>
-            <img
-              class="preview"
-              src="https://github.com/user-attachments/assets/835f71a3-ce53-415e-813f-00a2e57ecc51"
-              alt="reallearn product preview — a learning journey unfolding in stages"
-              loading="lazy"
-            />
-          </div>
         </header>
 
-        <!-- ═══════ Gemma 4 ═══════ -->
-        <section class="section" id="gemma-usage">
-          <h2><span class="section-dot"></span>Gemma 4 Integration</h2>
-          <p class="emphasis">
-            The intelligence behind reallearn is <strong class="accent-word">Gemma 4 26B</strong> —
-            chosen not because it's large, but because it follows instructions with precision,
-            thinks in eight languages natively, and shapes its output into the exact structure
-            learning demands.
-          </p>
+        <section class="section" id="vision">
+          <h2>Learning, Reimagined</h2>
           <p>
-            Structured prompting meets a resilient post-processing pipeline. The model doesn't
-            freestyle — it composes within a strict schema, and when it stumbles, the validation
-            layer catches what falls.
+            Most AI tools just give you answers. We give you <strong>understanding</strong>. 
+            reallearn breaks down complex topics into a 3-stage progression that respects 
+            your pace and level. Whether you're a middle-schooler or a college student, 
+            we calibrate the depth to match your capacity.
           </p>
-          <div class="feature-grid">
-            <div class="feature-item">
-              <div class="fi-label">Schema Discipline</div>
-              <div class="fi-value">Strict 3-part JSON with paired quiz questions — no drift, no freeform, no surprises</div>
+        </section>
+
+        <section class="gemma-box" id="gemma">
+          <h2>Powered by Gemma 4</h2>
+          <p>
+            At the heart of reallearn is <strong>Gemma 4 26B</strong>. It doesn't just process text; 
+            it thinks across 8 Indian languages natively. From Hindi to Malayalam, Gemma 4 
+            ensures that language is never a barrier to knowledge.
+          </p>
+          <div style="margin-top:20px; display:flex; gap:20px; flex-wrap:wrap">
+            <span>✓ 8 Native Languages</span>
+            <span>✓ Structured Reasoning</span>
+            <span>✓ Real-time Grounding</span>
+          </div>
+        </section>
+
+        <section class="section" id="experience">
+          <h2>The Journey</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>3-Part Lessons</h3>
+              <p>Every topic is explored through Introduction, Core Concepts, and Real-World Impact.</p>
             </div>
-            <div class="feature-item">
-              <div class="fi-label">Native Multilingual</div>
-              <div class="fi-value">Generation in 8 Indian languages — not translation, but thought in the learner's own tongue</div>
+            <div class="card">
+              <h3>Comprehension Gates</h3>
+              <p>Prove your understanding with interactive quizzes before unlocking the next stage.</p>
             </div>
-            <div class="feature-item">
-              <div class="fi-label">Depth Calibration</div>
-              <div class="fi-value">Three tiers — Class 6–8, Class 9–10, College — each sculpted to match the learner's capacity</div>
+            <div class="card">
+              <h3>Personalized History</h3>
+              <p>Your learning journeys are saved locally, allowing you to revisit and build upon them.</p>
             </div>
-            <div class="feature-item">
-              <div class="fi-label">Real-World Grounding</div>
-              <div class="fi-value">Serper-powered current events anchor abstraction to reality — knowledge that lives in the present</div>
-            </div>
-            <div class="feature-item">
-              <div class="fi-label">5-Stage Resilience</div>
-              <div class="fi-value">JSON repair pipeline with strict validation — the learner never sees a broken experience</div>
-            </div>
-            <div class="feature-item">
-              <div class="fi-label">Generation Speed</div>
-              <div class="fi-value">15–25 seconds for a complete 3-stage journey — fast enough to hold attention, deep enough to matter</div>
+            <div class="card">
+              <h3>Adaptive Depth</h3>
+              <p>Switch between Class 6-8, Class 9-10, or College levels at any time.</p>
             </div>
           </div>
         </section>
 
-        <!-- ═══════ What reallearn Is ═══════ -->
-        <section class="section" id="what-it-is">
-          <h2><span class="section-dot"></span>What reallearn Is</h2>
-          <p class="emphasis">
-            A guided-learning platform for students who need more than answers —
-            they need <strong class="accent-word">understanding</strong>.
-          </p>
+        <section class="section" id="trust">
+          <h2>Your Data, Your Control</h2>
           <p>
-            It serves the learner who struggles with difficult topics, the one alienated
-            by language, the one who reads but doesn't retain, the one who feels theory
-            has nothing to do with the world they inhabit. reallearn was built for all of them.
+            We believe in privacy by design. reallearn features <strong>one-click data export</strong> 
+            and <strong>complete account deletion</strong>. Your learning history belongs to you.
           </p>
-          <div class="callout">
-            <strong>Core philosophy:</strong> Don't just answer — teach. Structure knowledge
-            into a deliberate journey, verify comprehension at every milestone, and anchor
-            understanding to the real world. A question isn't where learning ends —
-            it's where <em>real</em> learning begins.
-          </div>
-        </section>
-
-        <!-- ═══════ The Problem ═══════ -->
-        <section class="section" id="problem">
-          <h2><span class="section-dot"></span>The Problem We Solve</h2>
-          <p class="emphasis">
-            The gap isn't in access to information — it's in the
-            <strong class="accent-word">architecture of understanding</strong>.
-          </p>
-          <p>
-            Traditional AI delivers one-shot answers: shallow, mismatched to the learner's
-            level, detached from current reality, and forgotten within minutes. When a student
-            asks "Why does the rupee depreciate?", a single paragraph about exchange rates
-            teaches nothing that endures. The words arrive, but the understanding doesn't.
-          </p>
-          <p>
-            Students don't need more content. They need guided progression that respects
-            their level. They need active recall that forces comprehension. They need
-            real-world relevance that makes knowledge feel alive. That's the gap
-            reallearn was built to close — not with more information, but with
-            <em>better architecture</em>.
-          </p>
-        </section>
-
-        <!-- ═══════ How It Works ═══════ -->
-        <section class="section" id="how-it-works">
-          <h2><span class="section-dot"></span>End-to-End Learning Flow</h2>
-          <p>
-            Every reallearn session follows a carefully orchestrated pipeline — from raw
-            curiosity to validated understanding. This is the journey a question takes:
-          </p>
-          <ol>
-            <li><strong>Ask.</strong> A learner enters a question — anything that sparks curiosity. There are no wrong questions.</li>
-            <li><strong>Configure.</strong> The learner selects their language and depth. reallearn meets them where they are.</li>
-            <li><strong>Request.</strong> The frontend calls <code>/api/generate-lesson</code> — the engine awakens.</li>
-            <li><strong>Ground.</strong> The backend fetches real-world context — current events, recent developments, live data. Theory meets today.</li>
-            <li><strong>Generate.</strong> Gemma 4 composes a structured 3-stage journey, calibrated precisely to level and language.</li>
-            <li><strong>Validate.</strong> The backend runs a 5-stage resilience pipeline — if the model stumbles, the repair layer catches it.</li>
-            <li><strong>Render.</strong> The frontend presents all 3 stages, sources, and quizzes — a learning experience, not a wall of text.</li>
-            <li><strong>Gate.</strong> Each quiz must be passed to unlock the next stage. Comprehension is not assumed — it's <em>verified</em>.</li>
-            <li><strong>Continue.</strong> The learner completes takeaways and loops deeper. Every answer opens a door to the next question.</li>
-          </ol>
-        </section>
-
-        <!-- ═══════ Feature Deep Dive ═══════ -->
-        <section class="section" id="features">
-          <h2><span class="section-dot"></span>Feature Deep Dive</h2>
-          <p class="emphasis">
-            Nothing is decorative. Everything is deliberate. Every feature closes a specific
-            gap in how learners actually absorb, retain, and apply knowledge.
-          </p>
-          <ul>
-            <li><strong>3-Part Unlockable Journey</strong> — Foundation → Mechanism → Real World Now. An arc from "what is it?" to "why does it matter <em>today</em>?"</li>
-            <li><strong>Quiz-Gated Progression</strong> — 2 MCQs per stage, 4 options each. You don't advance until understanding is demonstrated. Active recall, in its purest form.</li>
-            <li><strong>8-Language Native Generation</strong> — English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada. Not translated — natively conceived in the learner's own language.</li>
-            <li><strong>Adaptive Depth Calibration</strong> — Three levels with distinct vocabulary, complexity, and conceptual scaffolding. The lesson reshapes itself around the learner.</li>
-            <li><strong>Real-World Context Integration</strong> — Serper-powered current event anchoring turns abstract theory into living knowledge that breathes with the present.</li>
-            <li><strong>SSE Streaming with Heartbeat</strong> — Real-time server-sent events with keep-alive pings. The learner sees progress unfolding, not a blank screen.</li>
-            <li><strong>Output Resilience Layer</strong> — 5-stage JSON repair and strict validation. The learner never sees a broken experience — even when the model does.</li>
-            <li><strong>Follow-Up Learning Loop</strong> — Every answer opens a door. Learners continue their journey iteratively, building depth with each question.</li>
-            <li><strong>Session-Persisted State</strong> — Progress survives refreshes. The learning journey respects the learner's time, attention, and investment.</li>
-          </ul>
-        </section>
-
-        <!-- ═══════ Real-World Impact ═══════ -->
-        <section class="section" id="real-world">
-          <h2><span class="section-dot"></span>Real-World Impact</h2>
-          <p>
-            reallearn was designed around real frustrations — not theoretical problems,
-            but the lived barriers that millions of learners face every day. Each feature
-            maps directly to a human need:
-          </p>
-          <div class="impact-list">
-            <div class="impact-card">
-              <div class="impact-icon">🎯</div>
-              <div class="impact-text">
-                <div class="impact-quote">"I don't know where to start."</div>
-                <div class="impact-resolution">Stage 1 creates an entry point — clear, approachable, no assumptions, no overwhelm. Just a door, waiting to be opened.</div>
-              </div>
+          <div class="grid" style="margin-top:24px">
+            <div class="card">
+              <h3>Safety First</h3>
+              <p>Integrated content guardrails and 13+ age verification keep the experience focused and safe.</p>
             </div>
-            <div class="impact-card">
-              <div class="impact-icon">🧠</div>
-              <div class="impact-text">
-                <div class="impact-quote">"I read, but I don't really understand."</div>
-                <div class="impact-resolution">Quiz gating enforces active recall. Comprehension isn't assumed — it's verified before the learner can advance.</div>
-              </div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-icon">🌍</div>
-              <div class="impact-text">
-                <div class="impact-quote">"It feels disconnected from my life."</div>
-                <div class="impact-resolution">Stage 3 anchors learning to live current events. Knowledge stops being abstract and starts breathing.</div>
-              </div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-icon">📐</div>
-              <div class="impact-text">
-                <div class="impact-quote">"It's either too basic or way over my head."</div>
-                <div class="impact-resolution">Depth calibration meets each learner precisely where they are — neither talking down nor soaring past.</div>
-              </div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-icon">🗣️</div>
-              <div class="impact-text">
-                <div class="impact-quote">"English-only blocks me from learning."</div>
-                <div class="impact-resolution">Native generation in 8 languages — not translation layered on top, but teaching conceived in the learner's own tongue.</div>
-              </div>
+            <div class="card">
+              <h3>Custom Atmosphere</h3>
+              <p>Choose your aesthetic with multiple themes, including high-contrast and dark modes.</p>
             </div>
           </div>
         </section>
 
-        <!-- ═══════ Tech Stack ═══════ -->
-        <section class="section" id="tech-stack">
-          <h2><span class="section-dot"></span>Tech Stack</h2>
-          <p>
-            Chosen not for novelty, but for <strong class="accent-word">reliability at every layer</strong>
-            of the learning experience.
-          </p>
-          <div class="tech-cards">
-            <div class="tech-card tc-frontend">
-              <div class="tc-label"><span class="tc-dot"></span>Frontend — Vercel</div>
-              <div class="tc-stack">
-                <strong>Next.js 15</strong> with <strong>React 19</strong> and <strong>TypeScript</strong> — type-safe, performant, resilient UI. <strong>Zustand</strong> for lightweight state. <strong>React Markdown</strong> for rich rendering. <strong>Tailwind CSS</strong> for a design system that scales.
-              </div>
-            </div>
-            <div class="tech-card tc-backend">
-              <div class="tc-label"><span class="tc-dot"></span>Backend — Render</div>
-              <div class="tc-stack">
-                <strong>Node.js</strong> with <strong>Express</strong> — robust API routing. <strong>SSE + JSON</strong> for real-time streaming. <strong>Gemma 4</strong> via Gemini API. <strong>Serper</strong> for context enrichment. Full <strong>validation and repair layer</strong> for output resilience.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════ Architecture ═══════ -->
-        <section class="section" id="architecture">
-          <h2><span class="section-dot"></span>Architecture & Deployment</h2>
-          <p>
-            A clean two-service architecture — each optimized for its domain,
-            deployed on infrastructure matched to its purpose:
-          </p>
-          <ul>
-            <li><code>frontend/</code> → Next.js on <strong>Vercel</strong> — edge-optimized, globally distributed, instant cold starts.</li>
-            <li><code>backend/</code> → Express API on <strong>Render</strong> — persistent compute for AI inference, streaming, and validation.</li>
-            <li>Primary endpoint: <code>POST /api/generate-lesson</code> — the core learning engine.</li>
-            <li>Health endpoint: <code>GET /health</code> — uptime monitoring and readiness checks.</li>
-          </ul>
-        </section>
-
-        <!-- ═══════ API & SSE ═══════ -->
-        <section class="section" id="api">
-          <h2><span class="section-dot"></span>API Behavior & SSE Streaming</h2>
-          <p>
-            Server-Sent Events stream progress in real-time, keeping learners
-            informed and engaged throughout generation:
-          </p>
-          <table class="sse-table">
-            <thead>
-              <tr>
-                <th>Event</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>event: ping</td>
-                <td>Keep-alive heartbeat — prevents connection timeout during generation</td>
-              </tr>
-              <tr>
-                <td>event: lesson</td>
-                <td>Final lesson payload — the complete 3-stage journey with quizzes and sources</td>
-              </tr>
-              <tr>
-                <td>event: done</td>
-                <td>Successful stream end — signals completion to the client</td>
-              </tr>
-              <tr>
-                <td>event: error</td>
-                <td>Failure message — graceful error communication with context</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <!-- ═══════ Project Structure ═══════ -->
-        <section class="section" id="structure">
-          <h2><span class="section-dot"></span>Project Structure</h2>
-          <p>A clean, purposeful directory — concerns separated, intent clear:</p>
-          <pre><code>reallearn/
-├── frontend/         # Next.js app (UI, state, client flow)
-├── backend/          # Express API, AI calls, validation, context fetch
-└── README.md</code></pre>
-        </section>
-
-        <!-- ═══════ Environment Variables ═══════ -->
-        <section class="section" id="env-vars">
-          <h2><span class="section-dot"></span>Environment Variables</h2>
-          <p>
-            Every knob is exposed. Operators have full control over model parameters,
-            retry behavior, circuit breaking, and streaming:
-          </p>
-          <h3>Frontend</h3>
-          <ul>
-            <li><code>NEXT_PUBLIC_BACKEND_URL</code> — Render backend URL (e.g. <code>https://&lt;app&gt;.onrender.com</code>)</li>
-            <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS</code> — SSE idle timeout (default: 120000ms)</li>
-          </ul>
-          <h3>Backend — Core</h3>
-          <ul>
-            <li><code>GEMMA_API_KEY</code> — Gemini API key for Gemma 4 access</li>
-            <li><code>GEMMA_MODEL</code> — Model identifier (default: <code>gemma-4-26b-a4b-it</code>)</li>
-            <li><code>SERPER_API_KEY</code> — Serper API key for real-world context enrichment</li>
-            <li><code>FRONTEND_ORIGIN</code> — Allowed CORS origin (e.g. <code>https://&lt;app&gt;.vercel.app</code>)</li>
-            <li><code>PORT</code> — Server port (default: 10000 on Render)</li>
-          </ul>
-          <h3>Backend — Retry & Circuit Breaking</h3>
-          <ul>
-            <li><code>GEMMA_MAX_RETRIES</code> — Max retry attempts (default: 2)</li>
-            <li><code>GEMMA_RETRY_DELAY_MS</code> — Initial retry delay (default: 700ms)</li>
-            <li><code>GEMMA_MAX_RETRY_DELAY_MS</code> — Retry delay cap (default: 5000ms)</li>
-            <li><code>GEMMA_TIMEOUT_CIRCUIT_FAILURE_THRESHOLD</code> — Failures before circuit opens (default: 5)</li>
-            <li><code>GEMMA_TIMEOUT_CIRCUIT_COOLDOWN_MS</code> — Circuit cooldown period (default: 60000ms)</li>
-          </ul>
-          <h3>Backend — Operational</h3>
-          <ul>
-            <li><code>MAX_CONCURRENT_LESSON_REQUESTS</code> — Concurrency limit (default: 3)</li>
-            <li><code>LESSON_FAILURE_ALERT_THRESHOLD</code> — Failure count for alerting (default: 5)</li>
-            <li><code>SSE_HEARTBEAT_INTERVAL_MS</code> — Heartbeat interval (default: 15000ms, capped at 55000ms)</li>
-          </ul>
-        </section>
-
-        <!-- ═══════ Local Development ═══════ -->
-        <section class="section" id="local-dev">
-          <h2><span class="section-dot"></span>Local Development</h2>
-          <p>Two terminals, two commands, and the full learning experience is yours to explore:</p>
-          <pre><code># Terminal 1 — Start the backend
-cd backend
-npm install
-npm start
-
-# Terminal 2 — Start the frontend
-cd frontend
-npm install
-npm run dev</code></pre>
-        </section>
-
-        <!-- ═══════ Validation ═══════ -->
-        <section class="section" id="validation">
-          <h2><span class="section-dot"></span>Validation & Quality Checks</h2>
-          <p>Run these before every deployment — quality is not optional:</p>
-          <pre><code>cd frontend
-npm run lint      # Catch lint errors and style violations
-npm run build     # Verify production build succeeds</code></pre>
-        </section>
-
-        <!-- ═══════ Roadmap ═══════ -->
-        <section class="section" id="roadmap">
-          <h2><span class="section-dot"></span>Roadmap & Vision</h2>
-          <p class="emphasis">
-            The vision extends far beyond individual lessons — toward a world where
-            every learner has a <strong class="accent-word">patient, precise, and
-            personally calibrated guide</strong> for any topic they dare to explore.
-          </p>
-          <div class="roadmap-grid">
-            <div class="roadmap-item">📊 Learning outcome analytics</div>
-            <div class="roadmap-item">🔄 Spaced repetition for takeaways</div>
-            <div class="roadmap-item">👤 User accounts & long-term progress</div>
-            <div class="roadmap-item">🏫 Teacher & classroom mode</div>
-            <div class="roadmap-item">🎙️ Voice input/output in multiple languages</div>
-          </div>
-        </section>
-
-        <!-- ═══════ License ═══════ -->
-        <section class="section" id="license">
-          <h2><span class="section-dot"></span>License</h2>
-          <p class="emphasis">
-            Open source under the <strong class="accent-word">MIT License</strong> —
-            because the tools for better learning should belong to everyone.
-          </p>
-        </section>
-
-      </div>
+        <footer class="footer">
+          <p>&copy; 2026 reallearn. All rights reserved.</p>
+          <p>Built for the curious mind.</p>
+        </footer>
+      </main>
     </div>
-
-    <button class="btt" id="btt" aria-label="Back to top">↑</button>
-
-    <script>
-      /* ═══════ Scroll Progress ═══════ */
-      const progressBar = document.getElementById('scrollProgress');
-      function updateProgress() {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
-      }
-      window.addEventListener('scroll', updateProgress, { passive: true });
-
-      /* ═══════ Back-to-Top ═══════ */
-      const bttBtn = document.getElementById('btt');
-      function updateBtt() {
-        bttBtn.classList.toggle('show', window.scrollY > 500);
-      }
-      window.addEventListener('scroll', updateBtt, { passive: true });
-      bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      /* ═══════ Fade-in Sections ═══════ */
-      const sections = document.querySelectorAll('.section');
-      const fadeObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-      sections.forEach(s => fadeObserver.observe(s));
-
-      /* ═══════ Active Sidebar Tracking ═══════ */
-      const sideLinks = document.querySelectorAll('.sidebar nav a');
-      const tracked = document.querySelectorAll('[id]');
-      const linkObs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            sideLinks.forEach(l => {
-              l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id);
-            });
-          }
-        });
-      }, { rootMargin: '-20% 0px -70% 0px' });
-      tracked.forEach(el => { if (el.id) linkObs.observe(el); });
-
-      /* ═══════ Mobile Sidebar ═══════ */
-      const mobileBtn = document.getElementById('mobileNavBtn');
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebarOverlay');
-      mobileBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('show');
-      });
-      overlay.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('show');
-      });
-      sideLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 960) {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('show');
-          }
-        });
-      });
-
-      /* ═══════ Animated Stat Counters ═══════ */
-      const statValues = document.querySelectorAll('.stat-value');
-      const statObs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            const text = el.textContent.trim();
-            if (text !== '∞') {
-              const target = parseInt(text, 10);
-              if (!isNaN(target)) {
-                const duration = 1200;
-                const start = performance.now();
-                function animate(now) {
-                  const progress = Math.min((now - start) / duration, 1);
-                  const eased = 1 - Math.pow(1 - progress, 4);
-                  el.textContent = Math.round(eased * target);
-                  if (progress < 1) requestAnimationFrame(animate);
-                }
-                requestAnimationFrame(animate);
-              }
-            }
-            statObs.unobserve(el);
-          }
-        });
-      }, { threshold: 0.5 });
-      statValues.forEach(sv => statObs.observe(sv));
-    </script>
   </body>
 </html>
