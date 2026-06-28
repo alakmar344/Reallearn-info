@@ -273,6 +273,39 @@
         color:var(--text-muted);font-weight:400;
       }
 
+      /* ═══════ Link Cards ═══════ */
+      .link-grid{
+        display:grid;grid-template-columns:repeat(3,1fr);
+        gap:12px;margin-top:28px;
+      }
+      .link-card{
+        background:var(--bg-white);border:2px solid var(--border);
+        border-radius:var(--radius-md);padding:20px 18px;
+        box-shadow:var(--shadow-brutal-sm);
+        transition:transform 0.2s var(--ease-spring),box-shadow 0.2s var(--ease);
+        position:relative;
+      }
+      .link-card:hover{
+        transform:translate(-3px,-3px);
+        box-shadow:var(--shadow-brutal);
+      }
+      .link-card h3{
+        font-family:"Space Grotesk",sans-serif;
+        font-size:1rem;margin-bottom:8px;font-weight:700;
+      }
+      .link-card a{
+        color:var(--accent);text-decoration:none;
+        font-size:0.75rem;font-weight:600;
+        display:inline-flex;align-items:center;gap:5px;
+        transition:color 0.15s;
+      }
+      .link-card a .arrow{
+        transition:transform 0.2s var(--ease-spring);
+        font-size:0.9rem;
+      }
+      .link-card a:hover{color:var(--accent-deep)}
+      .link-card a:hover .arrow{transform:translateX(4px)}
+
       /* ═══════ Preview Frame — Skeuomorphic ═══════ */
       .preview-frame{
         margin-top:36px;border-radius:var(--radius-lg);overflow:hidden;
@@ -343,6 +376,24 @@
         font-weight:700;
       }
 
+      ul,ol{padding-left:20px;color:var(--text-secondary);margin-bottom:14px}
+      li{margin-bottom:6px;padding-left:4px;font-weight:400;font-size:0.9rem;line-height:1.7}
+      li::marker{color:var(--accent);font-weight:700}
+
+      code{
+        font-family:"Space Mono",monospace;font-size:0.78em;
+        background:var(--bg-cool);border:1px solid var(--border-light);
+        border-radius:4px;padding:1px 7px;color:var(--accent-deep);
+        font-weight:400;
+      }
+      pre{
+        background:var(--bg-white);border:2px solid var(--border);
+        border-radius:var(--radius-md);padding:18px 22px;
+        margin:16px 0;overflow-x:auto;
+        box-shadow:var(--shadow-brutal-sm);
+      }
+      pre code{background:none;border:none;padding:0;font-size:0.82rem;color:var(--text)}
+
       /* ═══════ Feature Grid — Neo-Brutalist Cards ═══════ */
       .feature-grid{
         display:grid;grid-template-columns:repeat(2,1fr);
@@ -361,6 +412,77 @@
         color:var(--accent-deep);margin-bottom:8px;font-weight:700;
       }
       .fi-value{font-size:0.85rem;color:var(--text-secondary);font-weight:500}
+
+      /* ═══════ Impact Cards ═══════ */
+      .impact-list{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+      .impact-card{
+        background:var(--bg-white);border:2px solid var(--border);
+        border-radius:var(--radius-md);padding:18px;
+        display:flex;gap:18px;box-shadow:var(--shadow-brutal-sm);
+        transition:transform 0.2s var(--ease-spring);
+      }
+      .impact-card:hover{transform:translate(-2px,-2px)}
+      .impact-icon{font-size:1.5rem;flex-shrink:0}
+      .impact-quote{font-style:italic;color:var(--text);font-weight:600;margin-bottom:4px;font-size:0.95rem}
+      .impact-resolution{font-size:0.88rem;color:var(--text-secondary)}
+
+      /* ═══════ Tech Cards ═══════ */
+      .tech-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+      .tech-card{
+        background:var(--bg-white);border:2px solid var(--border);
+        border-radius:var(--radius-md);padding:20px;
+        box-shadow:var(--shadow-brutal-sm);
+      }
+      .tc-label{
+        display:flex;align-items:center;gap:8px;
+        font-family:"Space Grotesk",sans-serif;font-weight:700;
+        font-size:0.95rem;margin-bottom:12px;
+      }
+      .tc-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);border:1px solid var(--border)}
+      .tc-stack{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
+
+      /* ═══════ SSE Table ═══════ */
+      .sse-table{
+        width:100%;border-collapse:separate;border-spacing:0;
+        border:2px solid var(--border);border-radius:var(--radius-md);
+        overflow:hidden;margin:20px 0;box-shadow:var(--shadow-brutal-sm);
+      }
+      .sse-table th{
+        text-align:left;padding:10px 16px;
+        font-family:"Space Mono",monospace;
+        font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
+        color:var(--text);font-weight:700;
+        background:var(--bg-cool);
+        border-bottom:2px solid var(--border);
+      }
+      .sse-table td{
+        padding:10px 16px;border-bottom:1px solid var(--border-light);
+        color:var(--text-secondary);font-weight:400;
+        background:var(--bg-white);
+      }
+      .sse-table tr:last-child td{border-bottom:none}
+      .sse-table td:first-child{
+        font-family:"Space Mono",monospace;
+        font-size:0.74rem;color:var(--accent-deep);font-weight:700;
+      }
+
+      /* ═══════ Roadmap ═══════ */
+      .roadmap-grid{
+        display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+        gap:10px;margin:14px 0;
+      }
+      .roadmap-item{
+        background:var(--bg-white);border:2px solid var(--border);
+        border-radius:var(--radius-sm);padding:12px 14px;
+        font-size:0.82rem;color:var(--text-secondary);
+        box-shadow:var(--shadow-brutal-sm);
+        transition:transform 0.2s var(--ease-spring),background 0.15s;
+        font-weight:500;
+      }
+      .roadmap-item:hover{
+        background:var(--accent-light);color:var(--accent-deep);
+        transform:translate(-2px,-2px);
+      }
 
       /* ═══════ Callout — Skeuomorphic Card ═══════ */
       .callout{
@@ -407,6 +529,10 @@
       }
 
       /* ═══════ Responsive ═══════ */
+      @media(max-width:1024px){
+        .stats-row{grid-template-columns:repeat(2,1fr)}
+        .feature-grid{grid-template-columns:1fr}
+      }
       @media(max-width:960px){
         .mobile-nav-btn{display:flex}
         .layout{flex-direction:column}
@@ -425,7 +551,15 @@
         }
         .sidebar-overlay.show{display:block}
         .main-content{padding:24px 20px 80px}
-        .feature-grid{grid-template-columns:1fr}
+        .link-grid{grid-template-columns:1fr}
+        .tech-cards{grid-template-columns:1fr}
+      }
+      @media(max-width:640px){
+        .main-content{padding:16px 14px 60px}
+        h1{letter-spacing:-1px}
+        .stats-row{grid-template-columns:1fr 1fr}
+        .roadmap-grid{grid-template-columns:1fr}
+        .hero{padding-bottom:32px}
       }
     </style>
   </head>
@@ -442,13 +576,25 @@
           <div class="brand-icon">r</div>
           <div class="brand-text">real<span>learn</span></div>
         </div>
-        <div class="sidebar-subtitle">Platform Overview</div>
+        <div class="sidebar-subtitle">Documentation</div>
         <nav>
           <ul>
             <li><a href="#vision"><span class="nav-icon">◎</span>Our Vision</a></li>
-            <li><a href="#gemma"><span class="nav-icon">⚡</span>Gemma 4 Power</a></li>
-            <li><a href="#experience"><span class="nav-icon">⟐</span>The Experience</a></li>
-            <li><a href="#trust"><span class="nav-icon">✓</span>Trust & Safety</a></li>
+            <li><a href="#gemma-usage"><span class="nav-icon">⚡</span>Gemma 4 Integration</a></li>
+            <li><a href="#what-it-is"><span class="nav-icon">◎</span>What reallearn Is</a></li>
+            <li><a href="#problem"><span class="nav-icon">◈</span>The Problem We Solve</a></li>
+            <li><a href="#how-it-works"><span class="nav-icon">⟐</span>End-to-End Flow</a></li>
+            <li><a href="#features"><span class="nav-icon">⬡</span>Feature Deep Dive</a></li>
+            <li><a href="#real-world"><span class="nav-icon">◆</span>Real-World Impact</a></li>
+            <li><a href="#tech-stack"><span class="nav-icon">⎔</span>Tech Stack</a></li>
+            <li><a href="#architecture"><span class="nav-icon">⊞</span>Architecture & Deploy</a></li>
+            <li><a href="#api"><span class="nav-icon">↔</span>API & SSE Streaming</a></li>
+            <li><a href="#structure"><span class="nav-icon">⊞</span>Project Structure</a></li>
+            <li><a href="#env-vars"><span class="nav-icon">⚗</span>Environment Variables</a></li>
+            <li><a href="#local-dev"><span class="nav-icon">▶</span>Local Development</a></li>
+            <li><a href="#validation"><span class="nav-icon">✓</span>Validation & Checks</a></li>
+            <li><a href="#roadmap"><span class="nav-icon">→</span>Roadmap & Vision</a></li>
+            <li><a href="#license"><span class="nav-icon">⚖</span>License</a></li>
           </ul>
         </nav>
         <div class="sidebar-footer">
@@ -496,6 +642,15 @@
             </div>
           </div>
 
+          <div class="link-grid">
+            <article class="link-card">
+              <h3>Live Product</h3>
+              <a href="https://reallearn.esamz.site" target="_blank" rel="noopener">
+                product demo <span class="arrow">→</span>
+              </a>
+            </article>
+          </div>
+
           <div class="preview-frame">
             <div class="preview-chrome">
               <span class="chrome-dot"></span>
@@ -508,7 +663,7 @@
         </header>
 
         <section class="section" id="vision">
-          <h2><span class="section-dot"></span>Learning, Reimagined</h2>
+          <h2><span class="section-dot"></span>Our Vision</h2>
           <p class="emphasis">
             Most AI tools just give you answers. We give you <strong class="accent-word">understanding</strong>.
           </p>
@@ -519,11 +674,11 @@
           </p>
         </section>
 
-        <section class="section" id="gemma">
-          <h2><span class="section-dot"></span>Powered by Gemma 4</h2>
+        <section class="section" id="gemma-usage">
+          <h2><span class="section-dot"></span>Gemma 4 Integration</h2>
           <p class="emphasis">
-            The intelligence behind reallearn is <strong class="accent-word">Gemma 4 26B</strong> — 
-            chosen for its precision and native multilingual capabilities.
+            The intelligence behind reallearn is <strong class="accent-word">Gemma 4 26B</strong> —
+            chosen for its precision, native thought in 8 Indian languages, and strict structural discipline.
           </p>
           <div class="feature-grid">
             <div class="feature-item">
@@ -539,52 +694,213 @@
               <div class="fi-value">Serper-powered context anchors abstraction to current reality.</div>
             </div>
             <div class="feature-item">
-              <div class="fi-label">Adaptive Depth</div>
-              <div class="fi-value">Three tiers: Class 6–8, Class 9–10, and College level.</div>
+              <div class="fi-label">Depth Calibration</div>
+              <div class="fi-value">Three tiers — Class 6–8, Class 9–10, College — sculpted to match capacity.</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">5-Stage Resilience</div>
+              <div class="fi-value">JSON repair pipeline with strict validation — never a broken experience.</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Generation Speed</div>
+              <div class="fi-value">15–25 seconds for a complete 3-stage journey — deep enough to matter.</div>
             </div>
           </div>
         </section>
 
-        <section class="section" id="experience">
-          <h2><span class="section-dot"></span>The Experience</h2>
+        <section class="section" id="what-it-is">
+          <h2><span class="section-dot"></span>What reallearn Is</h2>
+          <p class="emphasis">
+            A guided-learning platform for students who need more than answers —
+            they need <strong class="accent-word">understanding</strong>.
+          </p>
+          <p>
+            It serves the learner who struggles with difficult topics, the one alienated by language, 
+            and the one who reads but doesn't retain. reallearn is built for the curious mind.
+          </p>
+          <div class="callout">
+            <strong>Core philosophy:</strong> Don't just answer — teach. Structure knowledge into a deliberate journey, verify comprehension at every milestone, and anchor understanding to the real world.
+          </div>
+        </section>
+
+        <section class="section" id="problem">
+          <h2><span class="section-dot"></span>The Problem We Solve</h2>
+          <p class="emphasis">
+            The gap isn't in access to information — it's in the
+            <strong class="accent-word">architecture of understanding</strong>.
+          </p>
+          <p>
+            Traditional AI delivers one-shot answers: shallow, mismatched, and detached. 
+            Students don't need more content; they need guided progression, active recall, 
+            and real-world relevance. reallearn closes this gap with better architecture.
+          </p>
+        </section>
+
+        <section class="section" id="how-it-works">
+          <h2><span class="section-dot"></span>End-to-End Flow</h2>
+          <ol>
+            <li><strong>Ask.</strong> Enter any question that sparks curiosity.</li>
+            <li><strong>Ground.</strong> Fetch real-world context via Serper. Theory meets today.</li>
+            <li><strong>Generate.</strong> Gemma 4 composes a structured 3-stage journey.</li>
+            <li><strong>Validate.</strong> Run a 5-stage resilience pipeline for output quality.</li>
+            <li><strong>Render.</strong> Present stages, sources, and quizzes in a clean UI.</li>
+            <li><strong>Gate.</strong> Pass quizzes to unlock the next stage. Comprehension verified.</li>
+          </ol>
+        </section>
+
+        <section class="section" id="features">
+          <h2><span class="section-dot"></span>Feature Deep Dive</h2>
           <div class="feature-grid">
             <div class="feature-item">
-              <div class="fi-label">Comprehension Gates</div>
-              <div class="fi-value">Prove your understanding with interactive quizzes before unlocking the next stage.</div>
+              <div class="fi-label">3-Part Journey</div>
+              <div class="fi-value">Foundation → Mechanism → Real World Now. An arc of discovery.</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Quiz-Gated</div>
+              <div class="fi-value">Active recall forced by demonstrate understanding before advancing.</div>
             </div>
             <div class="feature-item">
               <div class="fi-label">Personalized History</div>
-              <div class="fi-value">Your journeys are saved locally, allowing you to revisit and build upon them.</div>
-            </div>
-            <div class="feature-item">
-              <div class="fi-label">Follow-up Loops</div>
-              <div class="fi-value">Deepen your understanding with contextual follow-up questions after every lesson.</div>
+              <div class="fi-value">Journeys saved locally to revisit and build upon at any time.</div>
             </div>
             <div class="feature-item">
               <div class="fi-label">Custom Atmosphere</div>
-              <div class="fi-value">Choose your aesthetic with multiple themes, including high-contrast and dark modes.</div>
+              <div class="fi-value">Multiple themes including high-contrast and dark modes.</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Data Control</div>
+              <div class="fi-value">One-click data export and complete account deletion.</div>
+            </div>
+            <div class="feature-item">
+              <div class="fi-label">Follow-up Loops</div>
+              <div class="fi-value">Contextual questions to deepen understanding iteratively.</div>
             </div>
           </div>
         </section>
 
-        <section class="section" id="trust">
-          <h2><span class="section-dot"></span>Your Data, Your Control</h2>
-          <p class="emphasis">
-            We believe in privacy by design. Your learning history belongs to you.
-          </p>
-          <div class="feature-grid">
-            <div class="feature-item">
-              <div class="fi-label">One-Click Export</div>
-              <div class="fi-value">Download all your stored data and learning history in a single click.</div>
+        <section class="section" id="real-world">
+          <h2><span class="section-dot"></span>Real-World Impact</h2>
+          <div class="impact-list">
+            <div class="impact-card">
+              <div class="impact-icon">🎯</div>
+              <div class="impact-text">
+                <div class="impact-quote">"I don't know where to start."</div>
+                <div class="impact-resolution">Stage 1 creates a clear, approachable entry point for any topic.</div>
+              </div>
             </div>
-            <div class="feature-item">
-              <div class="fi-label">Complete Deletion</div>
-              <div class="fi-value">Permanently erase your account and all associated data instantly.</div>
+            <div class="impact-card">
+              <div class="impact-icon">🧠</div>
+              <div class="impact-text">
+                <div class="impact-quote">"I read, but I don't really understand."</div>
+                <div class="impact-resolution">Quiz gating enforces active recall and verifies comprehension.</div>
+              </div>
+            </div>
+            <div class="impact-card">
+              <div class="impact-icon">🌍</div>
+              <div class="impact-text">
+                <div class="impact-quote">"It feels disconnected from my life."</div>
+                <div class="impact-resolution">Stage 3 anchors learning to live current events via real-time data.</div>
+              </div>
             </div>
           </div>
-          <div class="callout">
-            <strong>Safety First:</strong> Integrated content guardrails and 13+ age verification keep the experience focused and safe for everyone.
+        </section>
+
+        <section class="section" id="tech-stack">
+          <h2><span class="section-dot"></span>Tech Stack</h2>
+          <div class="tech-cards">
+            <div class="tech-card tc-frontend">
+              <div class="tc-label"><span class="tc-dot"></span>Frontend — Vercel</div>
+              <div class="tc-stack">
+                Next.js 15, React 19, TypeScript, Zustand, Tailwind CSS.
+              </div>
+            </div>
+            <div class="tech-card tc-backend">
+              <div class="tc-label"><span class="tc-dot"></span>Backend — Render</div>
+              <div class="tc-stack">
+                Node.js, Express, SSE, Gemma 4 (Gemini API), Serper.
+              </div>
+            </div>
           </div>
+        </section>
+
+        <section class="section" id="architecture">
+          <h2><span class="section-dot"></span>Architecture & Deploy</h2>
+          <ul>
+            <li><code>frontend/</code> → Next.js on <strong>Vercel</strong> — edge-optimized.</li>
+            <li><code>backend/</code> → Express API on <strong>Render</strong> — persistent compute.</li>
+            <li>Core endpoint: <code>POST /api/generate-lesson</code>.</li>
+            <li>Health check: <code>GET /health</code>.</li>
+          </ul>
+        </section>
+
+        <section class="section" id="api">
+          <h2><span class="section-dot"></span>API & SSE Streaming</h2>
+          <table class="sse-table">
+            <thead>
+              <tr><th>Event</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>event: ping</td><td>Keep-alive heartbeat prevents connection timeout.</td></tr>
+              <tr><td>event: lesson</td><td>Final 3-stage journey payload with quizzes.</td></tr>
+              <tr><td>event: done</td><td>Signals successful stream completion.</td></tr>
+              <tr><td>event: error</td><td>Graceful error communication with context.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section" id="structure">
+          <h2><span class="section-dot"></span>Project Structure</h2>
+          <pre><code>reallearn/
+├── frontend/         # Next.js app (UI, state, client flow)
+├── backend/          # Express API, AI calls, validation, context fetch
+└── README.md</code></pre>
+        </section>
+
+        <section class="section" id="env-vars">
+          <h2><span class="section-dot"></span>Environment Variables</h2>
+          <h3>Frontend</h3>
+          <ul>
+            <li><code>NEXT_PUBLIC_BACKEND_URL</code> — Render backend URL.</li>
+            <li><code>NEXT_PUBLIC_STREAM_IDLE_TIMEOUT_MS</code> — SSE timeout (default: 120000ms).</li>
+          </ul>
+          <h3>Backend</h3>
+          <ul>
+            <li><code>GEMMA_API_KEY</code> — Gemini API key for Gemma 4.</li>
+            <li><code>SERPER_API_KEY</code> — Context enrichment via Serper.</li>
+            <li><code>FRONTEND_ORIGIN</code> — Allowed CORS origin.</li>
+          </ul>
+        </section>
+
+        <section class="section" id="local-dev">
+          <h2><span class="section-dot"></span>Local Development</h2>
+          <pre><code># Terminal 1 — Backend
+cd backend && npm install && npm start
+
+# Terminal 2 — Frontend
+cd frontend && npm install && npm run dev</code></pre>
+        </section>
+
+        <section class="section" id="validation">
+          <h2><span class="section-dot"></span>Validation & Checks</h2>
+          <pre><code>cd frontend
+npm run lint      # Catch style violations
+npm run build     # Verify production build</code></pre>
+        </section>
+
+        <section class="section" id="roadmap">
+          <h2><span class="section-dot"></span>Roadmap & Vision</h2>
+          <div class="roadmap-grid">
+            <div class="roadmap-item">📊 Learning outcome analytics</div>
+            <div class="roadmap-item">🔄 Spaced repetition</div>
+            <div class="roadmap-item">👤 Long-term progress tracking</div>
+            <div class="roadmap-item">🏫 Teacher & classroom mode</div>
+            <div class="roadmap-item">🎙️ Voice input/output</div>
+          </div>
+        </section>
+
+        <section class="section" id="license">
+          <h2><span class="section-dot"></span>License</h2>
+          <p>Open source under the <strong>MIT License</strong>.</p>
         </section>
 
         <footer style="margin-top:80px; padding-top:40px; border-top:2px solid var(--border); text-align:center; font-size:0.8rem; color:var(--text-muted)">
