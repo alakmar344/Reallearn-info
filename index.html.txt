@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReaLearn — The World Is Your Textbook</title>
+<meta name="description" content="ReaLearn turns a single question into a complete, guided learning journey — a structured three-part lesson, quiz-gated progression, grounded in today's real world. Built by Alakmar Teenwala." />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0c0a;
+    --bg-soft:#171210;
+    --card:#1d1714;
+    --card-hover:#241c18;
+    --border:rgba(255,255,255,.08);
+    --text:#f5ece2;
+    --muted:#b3a596;
+    --primary:#d98a4a;     /* warm amber */
+    --primary-2:#e8b873;
+    --accent:#8b6f5c;
+    --grad:linear-gradient(120deg,#d98a4a 0%,#e8b873 100%);
+    --grad-soft:linear-gradient(120deg,rgba(217,138,74,.16),rgba(232,184,115,.10));
+    --ok:#6fbf8b;
+    --no:#d97a6f;
+    --radius:18px;
+    --shadow:0 22px 60px -22px rgba(217,138,74,.55);
+    --max:1180px;
+    --head:'Playfair Display',Georgia,serif;
+    --ui:'Inter',system-ui,sans-serif;
+    --read:'Lora',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--ui);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h1,h2,h3,.head{font-family:var(--head)}
+
+  /* glow */
+  .bg-orbs{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4}
+  .orb.a{width:520px;height:520px;background:#d98a4a;top:-140px;left:-120px}
+  .orb.b{width:420px;height:420px;background:#e8b873;top:40%;right:-140px;opacity:.25}
+  .orb.c{width:400px;height:400px;background:#8b6f5c;bottom:-140px;left:25%;opacity:.22}
+
+  /* nav */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(15,12,10,.7);border-bottom:1px solid var(--border)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:var(--head);font-weight:800;font-size:1.35rem;letter-spacing:-.5px}
+  .logo .mark{width:36px;height:36px;border-radius:11px;background:var(--grad);display:grid;place-items:center;font-size:18px;color:#1a1208;box-shadow:var(--shadow)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.95rem;transition:.2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:.25s;white-space:nowrap}
+  .btn-primary{background:var(--grad);color:#1a1208;box-shadow:var(--shadow)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--primary);color:#fff}
+  .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.7rem;cursor:pointer}
+
+  /* hero */
+  .hero{position:relative;z-index:1;padding:96px 0 60px;text-align:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--grad-soft);font-size:.85rem;margin-bottom:28px}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--primary-2);box-shadow:0 0 10px var(--primary-2)}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.04;letter-spacing:-1.5px;font-weight:900;margin-bottom:22px}
+  .hero p.lead{font-family:var(--read);font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--muted);max-width:720px;margin:0 auto 38px}
+  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .hero-sub{color:var(--muted);font-size:.85rem}
+
+  /* mock */
+  .mock{position:relative;z-index:1;max-width:940px;margin:60px auto 0;border-radius:22px;border:1px solid var(--border);background:linear-gradient(160deg,#1e1814,#120e0b);box-shadow:0 44px 110px -34px rgba(217,138,74,.5);overflow:hidden}
+  .mock-bar{display:flex;gap:7px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center}
+  .mock-bar i{width:12px;height:12px;border-radius:50%}
+  .mock-bar .r{background:#ff5f57}.mock-bar .y{background:#febc2e}.mock-bar .g{background:#28c840}
+  .mock-bar span{margin-left:14px;color:var(--muted);font-size:.8rem}
+  .mock-body{display:grid;grid-template-columns:210px 1fr;min-height:330px}
+  .mock-side{border-right:1px solid var(--border);padding:18px;background:rgba(0,0,0,.18)}
+  .mock-side .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px}
+  .mock-side .item{padding:10px 12px;border-radius:10px;color:var(--muted);font-size:.85rem;margin-bottom:6px;font-family:var(--read)}
+  .mock-side .item.on{background:var(--grad-soft);color:#fff}
+  .mock-main{padding:26px;text-align:left}
+  .mock-rail{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+  .mock-rail .node{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:700;border:1px solid var(--border)}
+  .mock-rail .node.done{background:var(--grad);color:#1a1208}
+  .mock-rail .node.act{border-color:var(--primary);color:var(--primary-2)}
+  .mock-rail .line{flex:1;height:2px;background:var(--border)}
+  .mock-rail .line.done{background:var(--grad)}
+  .mock-main h4{font-family:var(--head);font-size:1.25rem;margin-bottom:8px}
+  .mock-badge{display:inline-block;font-size:.7rem;padding:4px 10px;border-radius:999px;background:rgba(111,191,139,.15);color:var(--ok);margin-bottom:12px}
+  .mock-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:12px;font-size:.88rem;color:var(--muted);font-family:var(--read)}
+  .mock-card b{color:#fff;display:block;margin-bottom:4px;font-family:var(--ui)}
+  .mock-opt{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .mock-opt span{font-size:.78rem;padding:8px 12px;border-radius:10px;border:1px solid var(--border);color:var(--muted)}
+  .mock-opt span.ok{border-color:var(--ok);color:var(--ok)}
+
+  /* sections */
+  section{position:relative;z-index:1;padding:84px 0}
+  .sec-head{text-align:center;max-width:720px;margin:0 auto 56px}
+  .sec-head .eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--primary-2);font-weight:700;margin-bottom:14px;display:block}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.9rem);letter-spacing:-1px;font-weight:800;margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1.08rem;font-family:var(--read)}
+
+  .grid{display:grid;gap:22px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:.3s}
+  .card:hover{transform:translateY(-6px);border-color:rgba(217,138,74,.5);background:var(--card-hover)}
+  .card .ic{width:52px;height:52px;border-radius:14px;background:var(--grad-soft);display:grid;place-items:center;font-size:1.55rem;margin-bottom:18px}
+  .card h3{font-size:1.22rem;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:.97rem;font-family:var(--read)}
+
+  /* problem / promise band */
+  .band{background:linear-gradient(120deg,rgba(217,138,74,.10),rgba(232,184,115,.06));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+  /* journey steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden}
+  .step::after{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--grad)}
+  .step .n{font-family:var(--head);font-size:2.4rem;font-weight:900;color:var(--primary-2);opacity:.4;margin-bottom:4px}
+  .step h3{font-size:1.25rem;margin-bottom:10px}
+  .step p{color:var(--muted);font-size:.95rem;font-family:var(--read)}
+
+  /* split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .split .panel{background:var(--grad-soft);border:1px solid var(--border);border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:14px}
+  .split .panel .row{display:flex;align-items:center;gap:14px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .split .panel .row .e{font-size:1.4rem}
+  .split .panel .row b{display:block;font-size:.95rem}
+  .split .panel .row small{color:var(--muted)}
+  .split h2{font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.8px;margin-bottom:16px}
+  .split>div>p{color:var(--muted);font-family:var(--read)}
+  .split ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px}
+  .split ul li{display:flex;gap:12px;color:var(--muted)}
+  .split ul li::before{content:"✓";color:var(--primary-2);font-weight:800}
+
+  /* languages */
+  .langs{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px;margin:0 auto}
+  .langs span{padding:12px 22px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-family:var(--read);font-size:1.05rem;transition:.25s}
+  .langs span:hover{border-color:var(--primary);background:var(--grad-soft)}
+
+  /* metrics */
+  .metrics .grid{text-align:center}
+  .metrics .num{font-family:var(--head);font-size:2.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .metrics .lbl{color:var(--muted);font-family:var(--read)}
+
+  /* table */
+  .compare{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .compare th,.compare td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--border)}
+  .compare th{font-family:var(--head);font-size:1.05rem}
+  .compare td{color:var(--muted);font-family:var(--read)}
+  .compare tr:last-child td{border-bottom:none}
+  .compare .frust{color:var(--no);font-style:italic}
+
+  /* tech chips */
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chips span{padding:9px 16px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:.88rem;color:var(--muted)}
+  .chips span b{color:var(--text)}
+
+  /* faq */
+  .faq-item{border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;background:var(--card)}
+  .faq-q{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600}
+  .faq-q span.ico{transition:.3s;color:var(--primary-2);font-size:1.5rem}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);font-family:var(--read)}
+  .faq-a p{padding:0 22px 20px}
+  .faq-item.open .faq-a{max-height:300px}
+  .faq-item.open .faq-q span.ico{transform:rotate(45deg)}
+
+  /* cta */
+  .cta-box{background:var(--grad);border-radius:28px;padding:64px 40px;text-align:center;color:#1a1208;position:relative;overflow:hidden}
+  .cta-box h2{font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px;letter-spacing:-1px}
+  .cta-box p{font-size:1.1rem;max-width:560px;margin:0 auto 30px;opacity:.85;font-family:var(--read)}
+  .cta-box .btn-dark{background:#1a1208;color:#f5ece2}
+  .cta-box .btn-dark:hover{transform:translateY(-2px)}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:54px 0 30px;position:relative;z-index:1}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+  .foot-grid h4{font-family:var(--head);margin-bottom:16px;font-size:1.05rem}
+  .foot-grid a{display:block;color:var(--muted);margin-bottom:10px;font-size:.92rem;transition:.2s}
+  .foot-grid a:hover{color:var(--text)}
+  .foot-grid p{color:var(--muted);font-size:.92rem;font-family:var(--read);max-width:300px}
+  .foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:880px){
+    .nav-links{display:none}
+    .menu-toggle{display:block}
+    .mock-body{grid-template-columns:1fr}
+    .mock-side{display:none}
+    .steps,.g3,.g2{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr;gap:32px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .metrics .grid{grid-template-columns:repeat(2,1fr);gap:32px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><div class="mark">📖</div> ReaLearn</div>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#languages">Languages</a>
+        <a href="#tech">Technology</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#cta" class="btn btn-primary">Start Learning</a>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display=(this._o?'none':'flex');this._o=!this._o">☰</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="pill"><span class="dot"></span> The world is your textbook</div>
+    <h1>One question.<br><span class="grad-text">A complete lesson.</span></h1>
+    <p class="lead">ReaLearn turns a single question into a structured, guided learning journey — not a one-line answer you forget five minutes later. It starts from the ground up, deepens into the <em>how</em> and <em>why</em>, and connects what you learn to something happening in the real world right now.</p>
+    <div class="hero-cta">
+      <a href="#cta" class="btn btn-primary">Ask Your First Question →</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+    <p class="hero-sub">No setup. Speaks 8 languages. Free to start.</p>
+
+    <!-- mock -->
+    <div class="mock reveal">
+      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>reallearn — How do black holes work?</span></div>
+      <div class="mock-body">
+        <div class="mock-side">
+          <div class="lbl">Your Library</div>
+          <div class="item on">How do black holes work?</div>
+          <div class="item">Why did inflation rise?</div>
+          <div class="item">What is photosynthesis?</div>
+          <div class="item">How does encryption work?</div>
+        </div>
+        <div class="mock-main">
+          <div class="mock-rail">
+            <div class="node done">✓</div><div class="line done"></div>
+            <div class="node act">2</div><div class="line"></div>
+            <div class="node">3</div>
+          </div>
+          <span class="mock-badge">Physics · Class 9–10 · English</span>
+          <h4>Part 2 — Mechanism</h4>
+          <div class="mock-card"><b>The "how & why" layer</b>Once mass collapses past a critical density, gravity overwhelms every outward force. The escape velocity exceeds the speed of light — and that boundary becomes the event horizon…</div>
+          <div class="mock-card"><b>Checkpoint quiz</b>What happens to escape velocity at the event horizon?
+            <div class="mock-opt">
+              <span>It drops to zero</span>
+              <span class="ok">It equals light speed ✓</span>
+              <span>It reverses</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The problem</span>
+      <h2>You consumed an answer. But you didn't <span class="grad-text">learn</span> anything.</h2>
+      <p>Search gives you a wall of links. Chatbots give you one paragraph that's too shallow, too advanced, disconnected from reality — or instantly forgettable, because you never had to engage with it.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ic">📚</div><h3>Real learning is a journey</h3><p>A foundation, a mechanism, a connection to reality — not a vending machine that dispenses facts.</p></div>
+      <div class="card reveal"><div class="ic">🧠</div><h3>Understanding needs proof</h3><p>You only know you've learned something when you can answer questions about it without looking.</p></div>
+      <div class="card reveal"><div class="ic">🌍</div><h3>Theory needs the real world</h3><p>Concepts stick when they're tied to something happening today — with real names, dates and numbers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The three-part journey</span>
+      <h2>Every lesson, every time, has exactly three parts</h2>
+      <p>A deliberate progression designed by cognitive-science principles to prevent overload and build durable understanding.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3>Foundation</h3><p>An accessible, beginner-friendly framing of the core idea — a place to stand. Clean reading content, real source links, and a built-in reading timer.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3>Mechanism</h3><p>The deeper layer: the logic, the "how" and the "why," with worked examples that reveal how the concept actually operates.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3>Real World Now</h3><p>The payoff. Where the concept lives in today's world — connected to current events, with real names, dates, and figures.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ-GATED -->
+<section class="band">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--primary-2);letter-spacing:3px;font-weight:700;font-size:.78rem">Active recall</span>
+      <h2>You can't skip ahead until you understand</h2>
+      <p>This is the heart of active learning. After each part, a short quiz slides up — and the next part stays locked until you've truly grasped what came before.</p>
+      <ul>
+        <li>2 questions, 4 options each, after every part</li>
+        <li>Score 100% to unlock the next part — no skipping, no skimming</li>
+        <li>Every answer reveals an exhaustive, mini-lesson explanation</li>
+        <li>Wrong answers shake; correct answers pulse — feedback is immediate and tactile</li>
+        <li>It's not a test that judges you — it's a gate that protects your understanding</li>
+      </ul>
+    </div>
+    <div class="panel reveal">
+      <div class="row"><span class="e">🔓</span><div><b>Part 1 cleared</b><small>Unlock animation flashes — Part 2 opens</small></div></div>
+      <div class="row"><span class="e">⏱️</span><div><b>Reading timer</b><small>Gently encourages you to read before the quiz opens</small></div></div>
+      <div class="row"><span class="e">💡</span><div><b>Deep explanations</b><small>Why the right answer is right — and each wrong one is wrong</small></div></div>
+      <div class="row"><span class="e">🎉</span><div><b>Completion screen</b><small>Animated score ring, confetti, and your key takeaways</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The feature tour</span>
+      <h2>Designed to feel like a quiet, beautiful study space</h2>
+      <p>Not a noisy app — a patient, knowledgeable tutor that always knows what's happening in the world.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ic">🪜</div><h3>Adaptive difficulty</h3><p>One topic, three depths. Vocabulary, examples, and rigor adapt to Class 6–8, Class 9–10, or College / Advanced.</p></div>
+      <div class="card reveal"><div class="ic">🌐</div><h3>Learn in your language</h3><p>Full lessons generated natively in 8 languages — preserving cultural nuance, natural tone, and authenticity.</p></div>
+      <div class="card reveal"><div class="ic">📰</div><h3>Grounded in today</h3><p>Recent, relevant news is woven into your final part, so economics ties to this quarter's headlines and physics to the latest discovery.</p></div>
+      <div class="card reveal"><div class="ic">🏷️</div><h3>Auto-classified subjects</h3><p>Each lesson is tagged across 11 disciplines — Physics, Chemistry, Economics, Biology, CS and more — each color-coded in a muted academic palette.</p></div>
+      <div class="card reveal"><div class="ic">🎬</div><h3>A cinematic experience</h3><p>A glowing loading screen, a progress rail of journey nodes, unlock animations, confetti, and gentle toast notifications.</p></div>
+      <div class="card reveal"><div class="ic">📂</div><h3>Your personal library</h3><p>Every completed journey saves automatically and de-duplicates intelligently. Reopen, review, or retake any past lesson.</p></div>
+      <div class="card reveal"><div class="ic">🔁</div><h3>The follow-up loop</h3><p>Finished a journey? Ask a follow-up and a fresh three-part journey spins up instantly — learning becomes a continuous flow.</p></div>
+      <div class="card reveal"><div class="ic">♿</div><h3>Accessibility first</h3><p>WCAG 2.1 AA-minded: skip links, ARIA live regions, full keyboard nav, focus trapping, and reduced-motion support.</p></div>
+      <div class="card reveal"><div class="ic">🎨</div><h3>Two beautiful themes</h3><p>Paper — a warm cream mode that reads like an open book. Night — a deep, warm-brown mode for late-night study.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Learn in your language</span>
+      <h2>Eight languages. Natively generated.</h2>
+      <p>Lessons are written directly in your chosen language — never machine-translated afterward. This lowers the access barrier for millions of learners for whom English-only content is a wall, not a window.</p>
+    </div>
+    <div class="langs reveal">
+      <span>English</span><span>हिन्दी · Hindi</span><span>ગુજરાતી · Gujarati</span>
+      <span>தமிழ் · Tamil</span><span>বাংলা · Bengali</span><span>मराठी · Marathi</span>
+      <span>తెలుగు · Telugu</span><span>ಕನ್ನಡ · Kannada</span>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="reveal"><div class="num">3</div><div class="lbl">Progressive parts per lesson</div></div>
+      <div class="reveal"><div class="num">8</div><div class="lbl">Languages, natively generated</div></div>
+      <div class="reveal"><div class="num">11</div><div class="lbl">Auto-classified subjects</div></div>
+      <div class="reveal"><div class="num">100%</div><div class="lbl">Required to unlock the next part</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Real-world outcomes</span>
+      <h2>Built to fix everyday learning frustrations</h2>
+    </div>
+    <div class="reveal">
+      <table class="compare">
+        <tr><th>The frustration</th><th>How ReaLearn fixes it</th></tr>
+        <tr><td class="frust">"I don't know where to start."</td><td>Part 1 (Foundation) creates an accessible on-ramp for any topic.</td></tr>
+        <tr><td class="frust">"I read it, but I don't really get it."</td><td>Quiz-gated progression verifies comprehension before you move on.</td></tr>
+        <tr><td class="frust">"This feels abstract and disconnected."</td><td>Part 3 ties the concept to real, current events.</td></tr>
+        <tr><td class="frust">"It's too basic or way over my head."</td><td>Level selection tunes depth to exactly where you are.</td></tr>
+        <tr><td class="frust">"English-only content shuts me out."</td><td>Native multilingual generation in 8 languages opens the door.</td></tr>
+        <tr><td class="frust">"I forget everything I learn."</td><td>Active recall, key takeaways, and a saved library make it stick.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTION SOFTWARE -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Built like production software</span>
+      <h2>Engineered with real resilience, safety & privacy</h2>
+      <p>Not a demo held together with tape — the kind of reliability you'd expect from a real product.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ic">⚙️</div><h3>Reliability engineering</h3><p>Streaming with keep-alive heartbeats, smart retries with exponential backoff, a timeout circuit breaker, concurrency control, rate limiting, and graceful degradation.</p></div>
+      <div class="card reveal"><div class="ic">🛡️</div><h3>Safety & moderation</h3><p>Multi-layer input and output filtering, in-prompt guardrails, safety-finish handling, and moderation logging. Built for learners 13+.</p></div>
+      <div class="card reveal"><div class="ic">🔐</div><h3>Security & privacy</h3><p>Authenticated sessions, hardened HTTP headers, strict CORS, full data export & one-click account deletion, and transparent, versioned consent.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--primary-2);letter-spacing:3px;font-weight:700;font-size:.78rem">The technology</span>
+      <h2>A focused, modern stack</h2>
+      <p>Two independently deployable services, a small focused API surface, and a reliability layer engineered to deliver coherent, progressive, context-aware journeys — keeping average generation time at a brisk 15–25 seconds.</p>
+      <ul>
+        <li>Structured output enforcement with strict schema validation</li>
+        <li>A multi-stage JSON repair pipeline that never trusts model output blindly</li>
+        <li>Server-Sent Events streaming with idle-timeout detection</li>
+        <li>Live real-world news context injected before generation</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <h3 style="margin-bottom:14px;font-size:1.1rem">Frontend</h3>
+      <div class="chips" style="margin-bottom:24px">
+        <span><b>Next.js 15</b> App Router</span><span><b>React 19</b></span><span><b>TypeScript</b></span>
+        <span><b>Zustand</b> persist</span><span><b>Tailwind CSS</b></span><span>React Markdown</span>
+      </div>
+      <h3 style="margin-bottom:14px;font-size:1.1rem">Backend</h3>
+      <div class="chips">
+        <span><b>Node.js</b> ESM</span><span><b>Express</b></span><span>SSE streaming</span>
+        <span><b>MongoDB</b></span><span>JWT auth</span><span>Live news context</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item"><div class="faq-q">How is this different from a search engine or chatbot? <span class="ico">+</span></div><div class="faq-a"><p>Instead of one paragraph or a wall of links, ReaLearn builds a structured three-part journey — Foundation, Mechanism, and Real World Now — with quizzes you must pass to progress. It's teaching on demand, not a one-shot answer.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do I really have to pass a quiz to continue? <span class="ico">+</span></div><div class="faq-a"><p>Yes — and that's the point. Each part ends with a short quiz, and you need a perfect score to unlock the next part. It's a comprehension gate that protects your understanding, with deep explanations for every answer.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Which languages are supported? <span class="ico">+</span></div><div class="faq-a"><p>English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, and Kannada — and lessons are generated natively in your chosen language, never machine-translated afterward.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can I choose how difficult my lessons are? <span class="ico">+</span></div><div class="faq-a"><p>Absolutely. Pick from Class 6–8, Class 9–10, or College / Advanced, and the entire lesson — vocabulary, examples, and rigor — adapts to match.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Is my data private? <span class="ico">+</span></div><div class="faq-a"><p>Yes. Sessions are authenticated, content is moderated, and you can export all your data as JSON or permanently delete your account at any time. Consent is transparent and versioned.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>Every question deserves a real lesson</h2>
+      <p>Ask anything. In seconds, ReaLearn builds you a complete, guided learning journey — grounded in today's real world.</p>
+      <a href="#" class="btn btn-dark">Start Learning Free →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:16px"><div class="mark">📖</div> ReaLearn</div>
+        <p>Because the world is your textbook, and every question deserves a real lesson.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#languages">Languages</a>
+        <a href="#tech">Technology</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#">Roadmap</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 ReaLearn. All rights reserved.</span>
+      <span>Designed &amp; built by <strong style="color:var(--text)">Alakmar Teenwala</strong></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement;
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!open) item.classList.add('open');
+    });
+  });
+  // Scroll reveal
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
