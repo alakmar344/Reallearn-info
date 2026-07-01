@@ -8,124 +8,166 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f0c0a;
-    --bg-soft:#171210;
-    --card:#1d1714;
-    --card-hover:#241c18;
+    --bg:#0a0806;
+    --bg-soft:#12100e;
+    --card:rgba(28,22,18,.65);
+    --card-solid:#1c1612;
+    --card-hover:rgba(36,28,24,.8);
     --border:rgba(255,255,255,.08);
+    --glass:rgba(255,255,255,.04);
+    --glass-border:rgba(255,255,255,.12);
     --text:#f5ece2;
     --muted:#b3a596;
-    --primary:#d98a4a;     /* warm amber */
+    --primary:#d98a4a;
     --primary-2:#e8b873;
     --accent:#8b6f5c;
-    --grad:linear-gradient(120deg,#d98a4a 0%,#e8b873 100%);
-    --grad-soft:linear-gradient(120deg,rgba(217,138,74,.16),rgba(232,184,115,.10));
+    --grad:linear-gradient(135deg,#d98a4a 0%,#e8b873 50%,#d98a4a 100%);
+    --grad-soft:linear-gradient(135deg,rgba(217,138,74,.16),rgba(232,184,115,.08));
     --ok:#6fbf8b;
     --no:#d97a6f;
-    --radius:18px;
+    --radius:20px;
     --shadow:0 22px 60px -22px rgba(217,138,74,.55);
-    --max:1180px;
+    --shadow-3d:0 25px 50px rgba(0,0,0,.5),0 0 80px rgba(217,138,74,.15);
+    --max:1200px;
     --head:'Playfair Display',Georgia,serif;
     --ui:'Inter',system-ui,sans-serif;
     --read:'Lora',Georgia,serif;
+    --perspective:1200px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:var(--ui);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+  body{font-family:var(--ui);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;perspective:var(--perspective)}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
   .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h1,h2,h3,.head{font-family:var(--head)}
 
-  /* glow */
+  /* floating particles */
+  .particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .particle{position:absolute;width:4px;height:4px;background:var(--primary);border-radius:50%;opacity:0;animation:float-particle linear infinite}
+  @keyframes float-particle{
+    0%{transform:translateY(100vh) scale(0);opacity:0}
+    10%{opacity:.6}
+    90%{opacity:.6}
+    100%{transform:translateY(-10vh) scale(1);opacity:0}
+  }
+
+  /* glow orbs with 3D depth */
   .bg-orbs{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-  .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4}
-  .orb.a{width:520px;height:520px;background:#d98a4a;top:-140px;left:-120px}
-  .orb.b{width:420px;height:420px;background:#e8b873;top:40%;right:-140px;opacity:.25}
-  .orb.c{width:400px;height:400px;background:#8b6f5c;bottom:-140px;left:25%;opacity:.22}
+  .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:orb-drift 20s ease-in-out infinite alternate}
+  .orb.a{width:600px;height:600px;background:radial-gradient(circle,#d98a4a,transparent);top:-200px;left:-150px}
+  .orb.b{width:500px;height:500px;background:radial-gradient(circle,#e8b873,transparent);top:50%;right:-200px;opacity:.2;animation-delay:-7s}
+  .orb.c{width:450px;height:450px;background:radial-gradient(circle,#8b6f5c,transparent);bottom:-200px;left:30%;opacity:.18;animation-delay:-14s}
+  .orb.d{width:300px;height:300px;background:radial-gradient(circle,#d98a4a,transparent);top:30%;left:50%;opacity:.12;animation-delay:-10s}
+  @keyframes orb-drift{
+    0%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(30px,-20px) scale(1.05)}
+    66%{transform:translate(-20px,30px) scale(.95)}
+    100%{transform:translate(10px,-10px) scale(1.02)}
+  }
+
+  /* glass morphism base */
+  .glass{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);box-shadow:var(--shadow-3d)}
 
   /* nav */
-  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(15,12,10,.7);border-bottom:1px solid var(--border)}
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);background:rgba(10,8,6,.6);border-bottom:1px solid var(--glass-border)}
   nav{display:flex;align-items:center;justify-content:space-between;height:72px}
   .logo{display:flex;align-items:center;gap:11px;font-family:var(--head);font-weight:800;font-size:1.35rem;letter-spacing:-.5px}
-  .logo .mark{width:36px;height:36px;border-radius:11px;background:var(--grad);display:grid;place-items:center;font-size:18px;color:#1a1208;box-shadow:var(--shadow)}
+  .logo .mark{width:38px;height:38px;border-radius:12px;background:var(--grad);display:grid;place-items:center;font-size:18px;color:#1a1208;box-shadow:0 8px 24px rgba(217,138,74,.4);transform:translateZ(20px)}
   .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{color:var(--muted);font-size:.95rem;transition:.2s}
+  .nav-links a{color:var(--muted);font-size:.95rem;transition:.3s;position:relative}
+  .nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--grad);transition:.3s;border-radius:2px}
   .nav-links a:hover{color:var(--text)}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:.25s;white-space:nowrap}
-  .btn-primary{background:var(--grad);color:#1a1208;box-shadow:var(--shadow)}
-  .btn-primary:hover{transform:translateY(-2px)}
-  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
-  .btn-ghost:hover{border-color:var(--primary);color:#fff}
+  .nav-links a:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:.35s cubic-bezier(.2,.7,.2,1);white-space:nowrap;position:relative;overflow:hidden}
+  .btn::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.2),transparent);opacity:0;transition:.3s}
+  .btn:hover::before{opacity:1}
+  .btn-primary{background:var(--grad);color:#1a1208;box-shadow:0 8px 32px rgba(217,138,74,.4)}
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(217,138,74,.5)}
+  .btn-ghost{background:rgba(255,255,255,.05);border:1px solid var(--glass-border);color:var(--text);backdrop-filter:blur(10px)}
+  .btn-ghost:hover{border-color:var(--primary);background:rgba(217,138,74,.1);transform:translateY(-2px)}
+  .btn-dark{background:rgba(10,8,6,.9);color:#f5ece2;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid var(--glass-border)}
+  .btn-dark:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
   .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.7rem;cursor:pointer}
 
   /* hero */
-  .hero{position:relative;z-index:1;padding:96px 0 60px;text-align:center}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--grad-soft);font-size:.85rem;margin-bottom:28px}
-  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--primary-2);box-shadow:0 0 10px var(--primary-2)}
-  .hero h1{font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.04;letter-spacing:-1.5px;font-weight:900;margin-bottom:22px}
-  .hero p.lead{font-family:var(--read);font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--muted);max-width:720px;margin:0 auto 38px}
-  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-  .hero-sub{color:var(--muted);font-size:.85rem}
+  .hero{position:relative;z-index:1;padding:100px 0 60px;text-align:center;perspective:var(--perspective)}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:999px;border:1px solid var(--glass-border);background:var(--grad-soft);font-size:.85rem;margin-bottom:28px;backdrop-filter:blur(10px);animation:float-pill 3s ease-in-out infinite}
+  @keyframes float-pill{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--primary-2);box-shadow:0 0 12px var(--primary-2);animation:pulse-dot 2s ease-in-out infinite}
+  @keyframes pulse-dot{0%,100%{box-shadow:0 0 12px var(--primary-2)}50%{box-shadow:0 0 24px var(--primary-2)}}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,5.2rem);line-height:1.04;letter-spacing:-2px;font-weight:900;margin-bottom:22px;animation:hero-in .8s ease-out}
+  @keyframes hero-in{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+  .hero p.lead{font-family:var(--read);font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--muted);max-width:720px;margin:0 auto 38px;animation:hero-in .8s ease-out .15s both}
+  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;animation:hero-in .8s ease-out .3s both}
+  .hero-sub{color:var(--muted);font-size:.85rem;animation:hero-in .8s ease-out .45s both}
 
-  /* mock */
-  .mock{position:relative;z-index:1;max-width:940px;margin:60px auto 0;border-radius:22px;border:1px solid var(--border);background:linear-gradient(160deg,#1e1814,#120e0b);box-shadow:0 44px 110px -34px rgba(217,138,74,.5);overflow:hidden}
-  .mock-bar{display:flex;gap:7px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center}
-  .mock-bar i{width:12px;height:12px;border-radius:50%}
+  /* mock with 3D tilt */
+  .mock{position:relative;z-index:1;max-width:940px;margin:60px auto 0;border-radius:24px;border:1px solid var(--glass-border);background:linear-gradient(160deg,rgba(30,24,20,.9),rgba(18,14,11,.95));box-shadow:var(--shadow-3d);overflow:hidden;transform:perspective(1000px) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(20px)}
+  .mock:hover{transform:perspective(1000px) rotateX(0deg) translateY(-8px)}
+  .mock-bar{display:flex;gap:7px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;background:rgba(0,0,0,.3)}
+  .mock-bar i{width:12px;height:12px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.3)}
   .mock-bar .r{background:#ff5f57}.mock-bar .y{background:#febc2e}.mock-bar .g{background:#28c840}
   .mock-bar span{margin-left:14px;color:var(--muted);font-size:.8rem}
   .mock-body{display:grid;grid-template-columns:210px 1fr;min-height:330px}
   .mock-side{border-right:1px solid var(--border);padding:18px;background:rgba(0,0,0,.18)}
   .mock-side .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px}
-  .mock-side .item{padding:10px 12px;border-radius:10px;color:var(--muted);font-size:.85rem;margin-bottom:6px;font-family:var(--read)}
-  .mock-side .item.on{background:var(--grad-soft);color:#fff}
+  .mock-side .item{padding:10px 12px;border-radius:10px;color:var(--muted);font-size:.85rem;margin-bottom:6px;font-family:var(--read);transition:.3s}
+  .mock-side .item.on{background:var(--grad-soft);color:#fff;border:1px solid rgba(217,138,74,.3)}
   .mock-main{padding:26px;text-align:left}
   .mock-rail{display:flex;align-items:center;gap:8px;margin-bottom:20px}
-  .mock-rail .node{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:700;border:1px solid var(--border)}
-  .mock-rail .node.done{background:var(--grad);color:#1a1208}
-  .mock-rail .node.act{border-color:var(--primary);color:var(--primary-2)}
+  .mock-rail .node{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:700;border:1px solid var(--border);transition:.3s}
+  .mock-rail .node.done{background:var(--grad);color:#1a1208;box-shadow:0 4px 16px rgba(217,138,74,.4)}
+  .mock-rail .node.act{border-color:var(--primary);color:var(--primary-2);box-shadow:0 0 16px rgba(217,138,74,.3)}
   .mock-rail .line{flex:1;height:2px;background:var(--border)}
   .mock-rail .line.done{background:var(--grad)}
   .mock-main h4{font-family:var(--head);font-size:1.25rem;margin-bottom:8px}
   .mock-badge{display:inline-block;font-size:.7rem;padding:4px 10px;border-radius:999px;background:rgba(111,191,139,.15);color:var(--ok);margin-bottom:12px}
-  .mock-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:12px;font-size:.88rem;color:var(--muted);font-family:var(--read)}
+  .mock-card{background:rgba(28,22,18,.8);border:1px solid var(--glass-border);border-radius:14px;padding:14px;margin-top:12px;font-size:.88rem;color:var(--muted);font-family:var(--read);backdrop-filter:blur(10px)}
   .mock-card b{color:#fff;display:block;margin-bottom:4px;font-family:var(--ui)}
   .mock-opt{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .mock-opt span{font-size:.78rem;padding:8px 12px;border-radius:10px;border:1px solid var(--border);color:var(--muted)}
-  .mock-opt span.ok{border-color:var(--ok);color:var(--ok)}
+  .mock-opt span{font-size:.78rem;padding:8px 12px;border-radius:10px;border:1px solid var(--border);color:var(--muted);transition:.3s}
+  .mock-opt span.ok{border-color:var(--ok);color:var(--ok);background:rgba(111,191,139,.1)}
 
   /* sections */
-  section{position:relative;z-index:1;padding:84px 0}
+  section{position:relative;z-index:1;padding:90px 0}
   .sec-head{text-align:center;max-width:720px;margin:0 auto 56px}
   .sec-head .eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--primary-2);font-weight:700;margin-bottom:14px;display:block}
   .sec-head h2{font-size:clamp(1.9rem,4vw,2.9rem);letter-spacing:-1px;font-weight:800;margin-bottom:16px}
   .sec-head p{color:var(--muted);font-size:1.08rem;font-family:var(--read)}
 
-  .grid{display:grid;gap:22px}
+  .grid{display:grid;gap:24px}
   .g3{grid-template-columns:repeat(3,1fr)}
   .g2{grid-template-columns:repeat(2,1fr)}
 
-  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:.3s}
-  .card:hover{transform:translateY(-6px);border-color:rgba(217,138,74,.5);background:var(--card-hover)}
-  .card .ic{width:52px;height:52px;border-radius:14px;background:var(--grad-soft);display:grid;place-items:center;font-size:1.55rem;margin-bottom:18px}
+  /* 3D glass cards */
+  .card{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:30px;transition:.4s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);position:relative;overflow:hidden;transform-style:preserve-3d}
+  .card::before{content:"";position:absolute;top:0;left:-50%;width:200%;height:1px;background:linear-gradient(90deg,transparent,rgba(217,138,74,.4),transparent);opacity:0;transition:.5s}
+  .card:hover{transform:translateY(-10px) rotateX(2deg) rotateY(-1deg);border-color:rgba(217,138,74,.4);background:var(--card-hover);box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 40px rgba(217,138,74,.1)}
+  .card:hover::before{opacity:1;left:-100%}
+  .card .ic{width:56px;height:56px;border-radius:15px;background:var(--grad-soft);display:grid;place-items:center;font-size:1.6rem;margin-bottom:18px;border:1px solid rgba(217,138,74,.2);box-shadow:0 8px 24px rgba(217,138,74,.15)}
   .card h3{font-size:1.22rem;margin-bottom:10px}
   .card p{color:var(--muted);font-size:.97rem;font-family:var(--read)}
 
   /* problem / promise band */
-  .band{background:linear-gradient(120deg,rgba(217,138,74,.10),rgba(232,184,115,.06));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .band{background:linear-gradient(135deg,rgba(217,138,74,.08),rgba(232,184,115,.04));border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
 
-  /* journey steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden}
-  .step::after{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--grad)}
-  .step .n{font-family:var(--head);font-size:2.4rem;font-weight:900;color:var(--primary-2);opacity:.4;margin-bottom:4px}
+  /* journey steps with 3D */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;backdrop-filter:blur(16px);transition:.4s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+  .step::after{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--grad);box-shadow:0 4px 20px rgba(217,138,74,.4)}
+  .step::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(217,138,74,.05),transparent);opacity:0;transition:.4s}
+  .step:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 40px rgba(217,138,74,.1)}
+  .step:hover::before{opacity:1}
+  .step .n{font-family:var(--head);font-size:2.6rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.5;margin-bottom:4px}
   .step h3{font-size:1.25rem;margin-bottom:10px}
   .step p{color:var(--muted);font-size:.95rem;font-family:var(--read)}
 
   /* split */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
-  .split .panel{background:var(--grad-soft);border:1px solid var(--border);border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:14px}
-  .split .panel .row{display:flex;align-items:center;gap:14px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .split .panel{background:var(--grad-soft);border:1px solid var(--glass-border);border-radius:24px;padding:34px;display:flex;flex-direction:column;gap:14px;backdrop-filter:blur(16px);box-shadow:var(--shadow-3d)}
+  .split .panel .row{display:flex;align-items:center;gap:14px;background:rgba(0,0,0,.35);border:1px solid var(--glass-border);border-radius:16px;padding:16px;transition:.3s;backdrop-filter:blur(10px)}
+  .split .panel .row:hover{transform:translateX(6px);border-color:rgba(217,138,74,.3)}
   .split .panel .row .e{font-size:1.4rem}
   .split .panel .row b{display:block;font-size:.95rem}
   .split .panel .row small{color:var(--muted)}
@@ -137,55 +179,135 @@
 
   /* languages */
   .langs{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px;margin:0 auto}
-  .langs span{padding:12px 22px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-family:var(--read);font-size:1.05rem;transition:.25s}
-  .langs span:hover{border-color:var(--primary);background:var(--grad-soft)}
+  .langs span{padding:12px 22px;border-radius:999px;border:1px solid var(--glass-border);background:var(--card);font-family:var(--read);font-size:1.05rem;transition:.35s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(10px)}
+  .langs span:hover{border-color:var(--primary);background:var(--grad-soft);transform:translateY(-4px) scale(1.05);box-shadow:0 12px 30px rgba(217,138,74,.2)}
 
   /* metrics */
   .metrics .grid{text-align:center}
-  .metrics .num{font-family:var(--head);font-size:2.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .metrics .num{font-family:var(--head);font-size:3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
   .metrics .lbl{color:var(--muted);font-family:var(--read)}
 
   /* table */
-  .compare{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .compare{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;backdrop-filter:blur(16px)}
   .compare th,.compare td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--border)}
-  .compare th{font-family:var(--head);font-size:1.05rem}
+  .compare th{font-family:var(--head);font-size:1.05rem;background:rgba(217,138,74,.08)}
   .compare td{color:var(--muted);font-family:var(--read)}
   .compare tr:last-child td{border-bottom:none}
+  .compare tr{transition:.3s}
+  .compare tr:hover td{background:rgba(217,138,74,.04)}
   .compare .frust{color:var(--no);font-style:italic}
 
   /* tech chips */
   .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chips span{padding:9px 16px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:.88rem;color:var(--muted)}
+  .chips span{padding:10px 18px;border-radius:12px;border:1px solid var(--glass-border);background:var(--card);font-size:.88rem;color:var(--muted);transition:.3s;backdrop-filter:blur(10px)}
+  .chips span:hover{border-color:var(--primary);transform:translateY(-2px)}
   .chips span b{color:var(--text)}
 
   /* faq */
-  .faq-item{border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;background:var(--card)}
-  .faq-q{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600}
-  .faq-q span.ico{transition:.3s;color:var(--primary-2);font-size:1.5rem}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);font-family:var(--read)}
+  .faq-item{border:1px solid var(--glass-border);border-radius:16px;margin-bottom:14px;overflow:hidden;background:var(--card);backdrop-filter:blur(16px);transition:.3s}
+  .faq-item:hover{border-color:rgba(217,138,74,.3)}
+  .faq-q{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;transition:.3s}
+  .faq-q:hover{color:var(--primary-2)}
+  .faq-q span.ico{transition:.35s;color:var(--primary-2);font-size:1.5rem}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.7,.2,1);color:var(--muted);font-family:var(--read)}
   .faq-a p{padding:0 22px 20px}
   .faq-item.open .faq-a{max-height:300px}
   .faq-item.open .faq-q span.ico{transform:rotate(45deg)}
 
   /* cta */
-  .cta-box{background:var(--grad);border-radius:28px;padding:64px 40px;text-align:center;color:#1a1208;position:relative;overflow:hidden}
+  .cta-box{background:var(--grad);border-radius:32px;padding:72px 44px;text-align:center;color:#1a1208;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(217,138,74,.3)}
+  .cta-box::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);pointer-events:none}
   .cta-box h2{font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px;letter-spacing:-1px}
   .cta-box p{font-size:1.1rem;max-width:560px;margin:0 auto 30px;opacity:.85;font-family:var(--read)}
-  .cta-box .btn-dark{background:#1a1208;color:#f5ece2}
-  .cta-box .btn-dark:hover{transform:translateY(-2px)}
+
+  /* testimonials */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .testi{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:28px;backdrop-filter:blur(16px);transition:.4s;position:relative}
+  .testi::before{content:"\201C";position:absolute;top:16px;left:20px;font-size:4rem;font-family:var(--head);color:var(--primary);opacity:.2;line-height:1}
+  .testi:hover{transform:translateY(-8px);border-color:rgba(217,138,74,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .testi p{font-family:var(--read);color:var(--muted);font-size:.95rem;margin-bottom:16px;position:relative;z-index:1}
+  .testi .author{display:flex;align-items:center;gap:12px}
+  .testi .avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:700;color:#1a1208;font-size:.85rem}
+  .testi .author-info b{display:block;font-size:.9rem}
+  .testi .author-info small{color:var(--muted)}
+
+  /* stats bar */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px 0}
+  .stat-item{text-align:center;padding:24px;background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);backdrop-filter:blur(16px);transition:.4s}
+  .stat-item:hover{transform:translateY(-6px);border-color:rgba(217,138,74,.3)}
+  .stat-item .stat-num{font-family:var(--head);font-size:2.4rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat-item .stat-label{color:var(--muted);font-size:.9rem;margin-top:4px}
+
+  /* how-it-works visual */
+  .journey-visual{display:flex;align-items:center;justify-content:center;gap:0;margin:40px auto;max-width:800px}
+  .journey-node{width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card);border:2px solid var(--glass-border);backdrop-filter:blur(16px);transition:.4s;position:relative;z-index:2}
+  .journey-node:hover{transform:scale(1.1);border-color:var(--primary);box-shadow:0 0 30px rgba(217,138,74,.3)}
+  .journey-node .jn-icon{font-size:1.6rem;margin-bottom:4px}
+  .journey-node .jn-label{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  .journey-line{width:120px;height:3px;background:var(--grad);position:relative;z-index:1}
+  .journey-line::after{content:"";position:absolute;right:-6px;top:-4px;width:0;height:0;border-left:10px solid var(--primary-2);border-top:5px solid transparent;border-bottom:5px solid transparent}
+
+  /* use cases */
+  .usecase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .usecase{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:28px;backdrop-filter:blur(16px);transition:.4s;display:flex;gap:20px;align-items:flex-start}
+  .usecase:hover{transform:translateY(-6px);border-color:rgba(217,138,74,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .usecase .uc-icon{width:56px;height:56px;border-radius:15px;background:var(--grad-soft);display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;border:1px solid rgba(217,138,74,.2)}
+  .usecase h3{font-size:1.1rem;margin-bottom:6px}
+  .usecase p{color:var(--muted);font-size:.9rem;font-family:var(--read)}
+
+  /* roadmap */
+  .roadmap{max-width:700px;margin:0 auto}
+  .roadmap-item{display:flex;gap:24px;margin-bottom:32px;position:relative}
+  .roadmap-item::before{content:"";position:absolute;left:23px;top:50px;bottom:-32px;width:2px;background:var(--border)}
+  .roadmap-item:last-child::before{display:none}
+  .roadmap-dot{width:48px;height:48px;border-radius:50%;background:var(--card);border:2px solid var(--glass-border);display:grid;place-items:center;font-size:1.2rem;flex-shrink:0;z-index:1;backdrop-filter:blur(16px)}
+  .roadmap-dot.active{border-color:var(--primary);box-shadow:0 0 20px rgba(217,138,74,.3)}
+  .roadmap-content{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px 24px;flex:1;backdrop-filter:blur(16px);transition:.3s}
+  .roadmap-content:hover{border-color:rgba(217,138,74,.3)}
+  .roadmap-content h4{margin-bottom:4px}
+  .roadmap-content p{color:var(--muted);font-size:.9rem;font-family:var(--read)}
+  .roadmap-content .tag{display:inline-block;font-size:.7rem;padding:3px 10px;border-radius:999px;background:rgba(111,191,139,.15);color:var(--ok);margin-top:8px}
 
   /* footer */
-  footer{border-top:1px solid var(--border);padding:54px 0 30px;position:relative;z-index:1}
+  footer{border-top:1px solid var(--glass-border);padding:54px 0 30px;position:relative;z-index:1;background:rgba(0,0,0,.2)}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
   .foot-grid h4{font-family:var(--head);margin-bottom:16px;font-size:1.05rem}
-  .foot-grid a{display:block;color:var(--muted);margin-bottom:10px;font-size:.92rem;transition:.2s}
-  .foot-grid a:hover{color:var(--text)}
+  .foot-grid a{display:block;color:var(--muted);margin-bottom:10px;font-size:.92rem;transition:.3s}
+  .foot-grid a:hover{color:var(--text);transform:translateX(4px)}
   .foot-grid p{color:var(--muted);font-size:.92rem;font-family:var(--read);max-width:300px}
-  .foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem}
+  .foot-bottom{border-top:1px solid var(--glass-border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:.85rem}
 
-  .reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(40px);transition:.8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
+  .reveal-left{opacity:0;transform:translateX(-40px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+  .reveal-left.in{opacity:1;transform:none}
+  .reveal-right{opacity:0;transform:translateX(40px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+  .reveal-right.in{opacity:1;transform:none}
+  .reveal-scale{opacity:0;transform:scale(.9);transition:.8s cubic-bezier(.2,.7,.2,1)}
+  .reveal-scale.in{opacity:1;transform:none}
 
+  /* mobile nav overlay */
+  .mobile-menu{display:none;position:fixed;inset:0;z-index:100;background:rgba(10,8,6,.95);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:1.4rem;color:var(--text);transition:.3s}
+  .mobile-menu a:hover{color:var(--primary-2)}
+  .mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
+
+  /* floating 3D shapes */
+  .float-shape{position:fixed;z-index:0;pointer-events:none;opacity:.06}
+  .float-shape.s1{width:200px;height:200px;border:2px solid var(--primary);top:20%;left:5%;animation:rotate-slow 30s linear infinite}
+  .float-shape.s2{width:150px;height:150px;border:2px solid var(--primary-2);top:60%;right:8%;animation:rotate-slow 25s linear infinite reverse;border-radius:30%}
+  .float-shape.s3{width:100px;height:100px;border:2px solid var(--accent);bottom:15%;left:15%;animation:rotate-slow 20s linear infinite;border-radius:50%}
+  @keyframes rotate-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  /* responsive */
+  @media(max-width:1024px){
+    .g3{grid-template-columns:repeat(2,1fr)}
+    .testi-grid{grid-template-columns:repeat(2,1fr)}
+    .usecase-grid{grid-template-columns:1fr}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+  }
   @media(max-width:880px){
     .nav-links{display:none}
     .menu-toggle{display:block}
@@ -195,17 +317,52 @@
     .split{grid-template-columns:1fr;gap:32px}
     .foot-grid{grid-template-columns:1fr 1fr}
     .metrics .grid{grid-template-columns:repeat(2,1fr);gap:32px}
+    .testi-grid{grid-template-columns:1fr}
+    .journey-visual{flex-direction:column;gap:0}
+    .journey-line{width:3px;height:60px}
+    .journey-line::after{right:-4px;top:auto;bottom:-6px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:10px solid var(--primary-2);border-bottom:none}
+    .roadmap-item::before{display:none}
+    .stats-bar{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:480px){
+    .hero h1{font-size:2.2rem;letter-spacing:-1px}
+    .hero-cta{flex-direction:column;align-items:center}
+    .btn{width:100%;justify-content:center}
+    .foot-grid{grid-template-columns:1fr}
+    .cta-box{padding:48px 24px}
+    .stats-bar{grid-template-columns:1fr}
+    .mock{margin:40px 12px 0}
   }
 </style>
 </head>
 <body>
 
-<div class="bg-orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+<!-- floating 3D shapes -->
+<div class="float-shape s1"></div>
+<div class="float-shape s2"></div>
+<div class="float-shape s3"></div>
+
+<!-- particles -->
+<div class="particles" id="particles"></div>
+
+<!-- glow orbs -->
+<div class="bg-orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="orb d"></div></div>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
+  <a href="#how" onclick="document.getElementById('mobileMenu').classList.remove('open')">How it works</a>
+  <a href="#features" onclick="document.getElementById('mobileMenu').classList.remove('open')">Features</a>
+  <a href="#languages" onclick="document.getElementById('mobileMenu').classList.remove('open')">Languages</a>
+  <a href="#tech" onclick="document.getElementById('mobileMenu').classList.remove('open')">Technology</a>
+  <a href="#faq" onclick="document.getElementById('mobileMenu').classList.remove('open')">FAQ</a>
+  <a href="https://reallearn.site" class="btn btn-primary" style="margin-top:12px">Start Learning</a>
+</div>
 
 <header>
   <div class="wrap">
     <nav>
-      <div class="logo"><div class="mark">📖</div> ReaLearn</div>
+      <a href="https://reallearn.site" class="logo"><div class="mark">📖</div> ReaLearn</a>
       <div class="nav-links">
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
@@ -213,8 +370,8 @@
         <a href="#tech">Technology</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#cta" class="btn btn-primary">Start Learning</a>
-      <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display=(this._o?'none':'flex');this._o=!this._o">☰</button>
+      <a href="https://reallearn.site" class="btn btn-primary">Start Learning</a>
+      <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')">☰</button>
     </nav>
   </div>
 </header>
@@ -226,14 +383,14 @@
     <h1>One question.<br><span class="grad-text">A complete lesson.</span></h1>
     <p class="lead">ReaLearn turns a single question into a structured, guided learning journey — not a one-line answer you forget five minutes later. It starts from the ground up, deepens into the <em>how</em> and <em>why</em>, and connects what you learn to something happening in the real world right now.</p>
     <div class="hero-cta">
-      <a href="#cta" class="btn btn-primary">Ask Your First Question →</a>
+      <a href="https://reallearn.site" class="btn btn-primary">Ask Your First Question →</a>
       <a href="#how" class="btn btn-ghost">See how it works</a>
     </div>
     <p class="hero-sub">No setup. Speaks 8 languages. Free to start.</p>
 
     <!-- mock -->
-    <div class="mock reveal">
-      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>reallearn — How do black holes work?</span></div>
+    <div class="mock reveal-scale">
+      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>reallearn.site — How do black holes work?</span></div>
       <div class="mock-body">
         <div class="mock-side">
           <div class="lbl">Your Library</div>
@@ -288,6 +445,16 @@
       <h2>Every lesson, every time, has exactly three parts</h2>
       <p>A deliberate progression designed by cognitive-science principles to prevent overload and build durable understanding.</p>
     </div>
+
+    <!-- visual journey -->
+    <div class="journey-visual reveal">
+      <div class="journey-node"><span class="jn-icon">🪜</span><span class="jn-label">Foundation</span></div>
+      <div class="journey-line"></div>
+      <div class="journey-node"><span class="jn-icon">⚙️</span><span class="jn-label">Mechanism</span></div>
+      <div class="journey-line"></div>
+      <div class="journey-node"><span class="jn-icon">🌍</span><span class="jn-label">Real World</span></div>
+    </div>
+
     <div class="steps">
       <div class="step reveal"><div class="n">01</div><h3>Foundation</h3><p>An accessible, beginner-friendly framing of the core idea — a place to stand. Clean reading content, real source links, and a built-in reading timer.</p></div>
       <div class="step reveal"><div class="n">02</div><h3>Mechanism</h3><p>The deeper layer: the logic, the "how" and the "why," with worked examples that reveal how the concept actually operates.</p></div>
@@ -299,7 +466,7 @@
 <!-- QUIZ-GATED -->
 <section class="band">
   <div class="wrap split">
-    <div class="reveal">
+    <div class="reveal-left">
       <span class="eyebrow" style="color:var(--primary-2);letter-spacing:3px;font-weight:700;font-size:.78rem">Active recall</span>
       <h2>You can't skip ahead until you understand</h2>
       <p>This is the heart of active learning. After each part, a short quiz slides up — and the next part stays locked until you've truly grasped what came before.</p>
@@ -311,7 +478,7 @@
         <li>It's not a test that judges you — it's a gate that protects your understanding</li>
       </ul>
     </div>
-    <div class="panel reveal">
+    <div class="panel reveal-right">
       <div class="row"><span class="e">🔓</span><div><b>Part 1 cleared</b><small>Unlock animation flashes — Part 2 opens</small></div></div>
       <div class="row"><span class="e">⏱️</span><div><b>Reading timer</b><small>Gently encourages you to read before the quiz opens</small></div></div>
       <div class="row"><span class="e">💡</span><div><b>Deep explanations</b><small>Why the right answer is right — and each wrong one is wrong</small></div></div>
@@ -342,8 +509,25 @@
   </div>
 </section>
 
+<!-- USE CASES -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Built for every kind of learner</h2>
+      <p>Whether you're a student cramming for exams, a curious mind exploring new topics, or a professional staying current — ReaLearn adapts to you.</p>
+    </div>
+    <div class="usecase-grid">
+      <div class="usecase reveal"><div class="uc-icon">🎓</div><div><h3>Students (Class 6–12)</h3><p>Structured lessons that match your curriculum level. Build strong foundations before exams, not during them. Perfect for self-study sessions.</p></div></div>
+      <div class="usecase reveal"><div class="uc-icon">💼</div><div><h3>Professionals & Upskillers</h3><p>Stay sharp on economics, tech trends, or industry shifts. Ground abstract concepts in real market data and current events.</p></div></div>
+      <div class="usecase reveal"><div class="uc-icon">🔬</div><div><h3>Curious Minds</h3><p>Ask anything — from quantum physics to ancient history. ReaLearn meets you where you are and takes you deeper without overwhelming you.</p></div></div>
+      <div class="usecase reveal"><div class="uc-icon">👨‍👩‍👧</div><div><h3>Parents & Educators</h3><p>A safe, moderated learning environment for younger learners. Track progress, review past lessons, and explore topics together.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- LANGUAGES -->
-<section id="languages" class="band">
+<section id="languages">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Learn in your language</span>
@@ -358,14 +542,14 @@
   </div>
 </section>
 
-<!-- METRICS -->
-<section class="metrics">
+<!-- STATS -->
+<section class="band">
   <div class="wrap">
-    <div class="grid" style="grid-template-columns:repeat(4,1fr)">
-      <div class="reveal"><div class="num">3</div><div class="lbl">Progressive parts per lesson</div></div>
-      <div class="reveal"><div class="num">8</div><div class="lbl">Languages, natively generated</div></div>
-      <div class="reveal"><div class="num">11</div><div class="lbl">Auto-classified subjects</div></div>
-      <div class="reveal"><div class="num">100%</div><div class="lbl">Required to unlock the next part</div></div>
+    <div class="stats-bar">
+      <div class="stat-item reveal"><div class="stat-num">3</div><div class="stat-label">Progressive parts per lesson</div></div>
+      <div class="stat-item reveal"><div class="stat-num">8</div><div class="stat-label">Languages, natively generated</div></div>
+      <div class="stat-item reveal"><div class="stat-num">11</div><div class="stat-label">Auto-classified subjects</div></div>
+      <div class="stat-item reveal"><div class="stat-num">100%</div><div class="stat-label">Required to unlock next part</div></div>
     </div>
   </div>
 </section>
@@ -407,10 +591,26 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What learners say</span>
+      <h2>Trusted by curious minds everywhere</h2>
+      <p>Real feedback from learners who traded one-shot answers for lasting understanding.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal"><p>I asked about photosynthesis expecting a paragraph. Instead, I got a three-part journey that actually made me understand the light reactions. The quiz at the end caught me skimming — had to re-read Part 2. Worth it.</p><div class="author"><div class="avatar">AS</div><div class="author-info"><b>Ananya S.</b><small>Class 10, Bengaluru</small></div></div></div>
+      <div class="testi reveal"><p>As a working professional, I don't have time to read long articles. ReaLearn gives me exactly what I need — structured, concise, and always connected to what's happening right now. The Hindi support is a game changer.</p><div class="author"><div class="avatar">RK</div><div class="author-info"><b>Rahul K.</b><small>Product Manager, Mumbai</small></div></div></div>
+      <div class="testi reveal"><p>My daughter uses this for her science homework. I love that it's quiz-gated — she can't just skip through. And the fact that it connects physics to real NASA news? She's actually excited about studying now.</p><div class="author"><div class="avatar">PJ</div><div class="author-info"><b>Priya J.</b><small>Parent, Delhi</small></div></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- TECH -->
-<section id="tech">
+<section id="tech" class="band">
   <div class="wrap split">
-    <div class="reveal">
+    <div class="reveal-left">
       <span class="eyebrow" style="color:var(--primary-2);letter-spacing:3px;font-weight:700;font-size:.78rem">The technology</span>
       <h2>A focused, modern stack</h2>
       <p>Two independently deployable services, a small focused API surface, and a reliability layer engineered to deliver coherent, progressive, context-aware journeys — keeping average generation time at a brisk 15–25 seconds.</p>
@@ -421,7 +621,7 @@
         <li>Live real-world news context injected before generation</li>
       </ul>
     </div>
-    <div class="reveal">
+    <div class="reveal-right">
       <h3 style="margin-bottom:14px;font-size:1.1rem">Frontend</h3>
       <div class="chips" style="margin-bottom:24px">
         <span><b>Next.js 15</b> App Router</span><span><b>React 19</b></span><span><b>TypeScript</b></span>
@@ -436,8 +636,26 @@
   </div>
 </section>
 
+<!-- ROADMAP -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What's next</span>
+      <h2>The ReaLearn roadmap</h2>
+      <p>Always evolving — here's what's coming to make your learning journey even better.</p>
+    </div>
+    <div class="roadmap">
+      <div class="roadmap-item reveal"><div class="roadmap-dot active">🚀</div><div class="roadmap-content"><h4>Launch & Core Experience</h4><p>Three-part journeys, quiz-gated progression, 8 languages, adaptive difficulty, and the personal library — all live now.</p><span class="tag">Live</span></div></div>
+      <div class="roadmap-item reveal"><div class="roadmap-dot">📱</div><div class="roadmap-content"><h4>Mobile App (iOS & Android)</h4><p>Native mobile experience with offline lesson caching, push notifications for daily learning streaks, and a distraction-free reading mode.</p></div></div>
+      <div class="roadmap-item reveal"><div class="roadmap-dot">🤝</div><div class="roadmap-content"><h4>Collaborative Learning</h4><p>Share journeys with friends, compete on quiz scores, and study together in real-time shared sessions.</p></div></div>
+      <div class="roadmap-item reveal"><div class="roadmap-dot">📊</div><div class="roadmap-content"><h4>Learning Analytics Dashboard</h4><p>Track your progress across subjects, identify knowledge gaps, and get personalized topic recommendations based on your learning history.</p></div></div>
+      <div class="roadmap-item reveal"><div class="roadmap-dot">🌐</div><div class="roadmap-content"><h4>More Languages & Regions</h4><p>Expanding to 15+ languages with region-specific real-world context — so a learner in Brazil gets local news connections, not just global ones.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
-<section id="faq">
+<section id="faq" class="band">
   <div class="wrap" style="max-width:820px">
     <div class="sec-head reveal">
       <span class="eyebrow">Questions</span>
@@ -449,6 +667,9 @@
       <div class="faq-item"><div class="faq-q">Which languages are supported? <span class="ico">+</span></div><div class="faq-a"><p>English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, and Kannada — and lessons are generated natively in your chosen language, never machine-translated afterward.</p></div></div>
       <div class="faq-item"><div class="faq-q">Can I choose how difficult my lessons are? <span class="ico">+</span></div><div class="faq-a"><p>Absolutely. Pick from Class 6–8, Class 9–10, or College / Advanced, and the entire lesson — vocabulary, examples, and rigor — adapts to match.</p></div></div>
       <div class="faq-item"><div class="faq-q">Is my data private? <span class="ico">+</span></div><div class="faq-a"><p>Yes. Sessions are authenticated, content is moderated, and you can export all your data as JSON or permanently delete your account at any time. Consent is transparent and versioned.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How long does a typical lesson take? <span class="ico">+</span></div><div class="faq-a"><p>Most learners complete a full three-part journey in 10–15 minutes. The reading timer encourages you to absorb each part fully before the quiz unlocks, so you're never rushed.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can I revisit completed lessons? <span class="ico">+</span></div><div class="faq-a"><p>Yes — every completed journey is saved to your personal library. You can reopen, review, or retake any past lesson at any time. The library also de-duplicates intelligently so it stays clean.</p></div></div>
+      <div class="faq-item"><div class="faq-q">What subjects does ReaLearn cover? <span class="ico">+</span></div><div class="faq-a"><p>ReaLearn auto-classifies across 11 disciplines: Physics, Chemistry, Biology, Mathematics, Economics, History, Geography, Computer Science, Literature, Philosophy, and General Knowledge. You can ask about any topic within these domains.</p></div></div>
     </div>
   </div>
 </section>
@@ -456,10 +677,10 @@
 <!-- CTA -->
 <section id="cta">
   <div class="wrap">
-    <div class="cta-box reveal">
+    <div class="cta-box reveal-scale">
       <h2>Every question deserves a real lesson</h2>
       <p>Ask anything. In seconds, ReaLearn builds you a complete, guided learning journey — grounded in today's real world.</p>
-      <a href="#" class="btn btn-dark">Start Learning Free →</a>
+      <a href="https://reallearn.site" class="btn btn-dark">Start Learning Free →</a>
     </div>
   </div>
 </section>
@@ -469,11 +690,12 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="logo" style="margin-bottom:16px"><div class="mark">📖</div> ReaLearn</div>
+        <a href="https://reallearn.site" class="logo" style="margin-bottom:16px"><div class="mark">📖</div> ReaLearn</a>
         <p>Because the world is your textbook, and every question deserves a real lesson.</p>
       </div>
       <div>
         <h4>Product</h4>
+        <a href="https://reallearn.site">Launch App</a>
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
         <a href="#languages">Languages</a>
@@ -494,13 +716,27 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 ReaLearn. All rights reserved.</span>
+      <span>&copy; 2026 ReaLearn. All rights reserved.</span>
       <span>Designed &amp; built by <strong style="color:var(--text)">Alakmar Teenwala</strong></span>
     </div>
   </div>
 </footer>
 
 <script>
+  // particles
+  (function(){
+    const c=document.getElementById('particles');
+    for(let i=0;i<30;i++){
+      const p=document.createElement('div');
+      p.className='particle';
+      p.style.left=Math.random()*100+'%';
+      p.style.animationDuration=(8+Math.random()*12)+'s';
+      p.style.animationDelay=(Math.random()*10)+'s';
+      p.style.width=p.style.height=(2+Math.random()*4)+'px';
+      c.appendChild(p);
+    }
+  })();
+
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q=>{
     q.addEventListener('click',()=>{
@@ -510,11 +746,48 @@
       if(!open) item.classList.add('open');
     });
   });
-  // Scroll reveal
+
+  // scroll reveal with multiple animation types
   const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>io.observe(el));
+
+  // 3D tilt on cards (desktop only)
+  if(window.matchMedia('(min-width:880px)').matches){
+    document.querySelectorAll('.card,.step').forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const rect=card.getBoundingClientRect();
+        const x=(e.clientX-rect.left)/rect.width-.5;
+        const y=(e.clientY-rect.top)/rect.height-.5;
+        card.style.transform=`translateY(-10px) rotateX(${-y*8}deg) rotateY(${x*8}deg)`;
+      });
+      card.addEventListener('mouseleave',()=>{
+        card.style.transform='';
+      });
+    });
+  }
+
+  // smooth parallax on orbs
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const scroll=window.scrollY;
+        document.querySelectorAll('.orb').forEach((orb,i)=>{
+          const speed=[0.03,0.02,0.015,0.025][i]||0.02;
+          orb.style.transform=`translateY(${scroll*speed}px)`;
+        });
+        ticking=false;
+      });
+      ticking=true;
+    }
+  });
 </script>
 </body>
 </html>
