@@ -51,6 +51,25 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
 
+  .preloader{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--void);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  .preloader.is-hidden{opacity:0; visibility:hidden; pointer-events:none;}
+  .preloader-ring{
+    width:48px; height:48px;
+    border:2px solid var(--hairline-strong);
+    border-top-color:var(--violet);
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+  }
+  .preloader-text{
+    font-family:var(--display); font-size:20px; color:var(--ink-dim); letter-spacing:.02em;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
   body{
     margin:0;
     background:
@@ -170,6 +189,21 @@
     padding:150px 0 100px;
     position:relative; overflow:hidden;
   }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 50% 40%, rgba(141,124,240,0.18), transparent 60%),
+      radial-gradient(ellipse 500px 400px at 30% 60%, rgba(240,102,143,0.12), transparent 60%),
+      radial-gradient(ellipse 400px 300px at 80% 20%, rgba(242,177,92,0.10), transparent 60%);
+    animation:aurora 7s ease-in-out infinite alternate;
+    z-index:0; pointer-events:none;
+  }
+  @keyframes aurora{
+    0%{opacity:.5; transform:scale(.95) translateX(-2%);}
+    100%{opacity:1; transform:scale(1.05) translateX(2%);}
+  }
+  .hero > *{position:relative; z-index:1;}
   .hero-eyebrow{
     font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
     color:var(--ink-faint); margin-bottom:26px;
@@ -394,6 +428,13 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-ring"></div>
+    <div class="preloader-text">RealLearn</div>
+  </div>
+</div>
+
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="top-progress" id="topProgress"></div>
 <canvas id="bg-canvas"></canvas>
@@ -441,7 +482,7 @@
 
 <header class="hero">
   <div class="container">
-    <div class="hero-eyebrow">Built for the <strong>for students </strong>
+    <div class="hero-eyebrow">Built for the <strong>future of learning</strong></div>
     <h1>The world is your <em>textbook.</em></h1>
     <p class="hero-sub">RealLearn turns a single question into a structured, three-part lesson — quiz-verified at every step, calibrated to your level, and grounded in what's happening in the world today. Not a one-line answer. A journey.</p>
     <div class="hero-ctas">
@@ -797,6 +838,15 @@
 </footer>
 
 <script>
+  // hide preloader
+  const preloader = document.getElementById('preloader');
+  if(preloader){
+    window.addEventListener('load', () => {
+      preloader.classList.add('is-hidden');
+      setTimeout(() => preloader.remove(), 600);
+    });
+  }
+
   // top scroll progress
   const topProgress = document.getElementById('topProgress');
   function updateProgress(){
