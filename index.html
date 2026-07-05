@@ -110,7 +110,6 @@
     opacity:0; pointer-events:none; transition:opacity .2s ease;
   }
   .rail-node:hover .rail-tip, .rail-node:focus-visible .rail-tip{opacity:1;}
-  @media (max-width: 960px){ .rail{display:none;} }
 
   /* ---------- shared bits ---------- */
   .eyebrow{
@@ -125,7 +124,24 @@
 
   .section-head{max-width:680px; margin-bottom:52px;}
   .section-head h2{font-size:clamp(28px,3.6vw,40px); margin-bottom:14px;}
+  .section-head h2--compact{font-size:clamp(24px,3vw,32px);}
   .section-head p{color:var(--ink-dim); font-family:var(--read); font-size:17px; margin:0;}
+
+  .mb-80{margin-bottom:80px !important;}
+  .mb-70{margin-bottom:70px !important;}
+
+  .card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    background:rgba(23,18,58,0.5);
+    backdrop-filter:blur(8px);
+    transition:all .3s ease;
+  }
+  .card--lg{border-radius:16px;}
+
+  .feature-card--amber{--c:var(--amber);}
+  .feature-card--violet{--c:var(--violet);}
+  .feature-card--rose{--c:var(--rose);}
 
   .stage{padding:110px 0; position:relative;}
   .stage + .stage{border-top:1px solid var(--hairline);}
@@ -245,8 +261,6 @@
   .feature-card h4{font-family:var(--body); font-weight:600; font-size:15.5px; margin:10px 0 8px;}
   .feature-card p{margin:0; font-size:13.6px; color:var(--ink-dim);}
   .feature-card.wide{grid-column:span 2;}
-  @media (max-width:960px){ .feature-grid{grid-template-columns:repeat(2,1fr);} .feature-card.wide{grid-column:span 2;} }
-  @media (max-width:640px){ .feature-grid{grid-template-columns:1fr;} .feature-card.wide{grid-column:span 1;} }
 
   .swatch-row{display:flex; gap:8px; margin-top:12px;}
   .swatch{width:26px; height:18px; border-radius:5px; border:1px solid var(--hairline-strong);}
@@ -290,15 +304,15 @@
   .panel ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
   .panel li{font-size:12.3px; color:var(--ink-dim); padding-left:16px; position:relative;}
   .panel li::before{content:"›"; position:absolute; left:0; color:var(--violet);}
-  @media (max-width:800px){.panel-grid{grid-template-columns:1fr;}}
+  @media (max-width:800px){.panel-grid{grid-template-columns:1fr;} .stack-grid{grid-template-columns:1fr;}}
 
   /* ---------- outcomes table ---------- */
-  .outcomes{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--hairline); margin-bottom:80px;}
-  .outcome-row{display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:20px 0; border-bottom:1px solid var(--hairline); align-items:center;}
+  .outcome-row{display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:20px 0; border-bottom:1px solid var(--hairline); align-items:center; transition:background .2s ease;}
+  .outcome-row:hover{background:rgba(31,25,80,0.4);}
   .outcome-row .frust{font-family:var(--read); font-style:italic; color:var(--ink-dim); font-size:15px;}
   .outcome-row .fix{font-size:14px; color:var(--ink);}
   .outcome-row .fix b{color:var(--rose); font-weight:600;}
-  @media (max-width:700px){ .outcome-row{grid-template-columns:1fr;} }
+  @media (max-width:700px){ .outcome-row{grid-template-columns:1fr;} .appendix-grid{grid-template-columns:1fr;} }
 
   /* ---------- tech stack ---------- */
   .stack-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:70px;}
@@ -310,7 +324,6 @@
   .stack-row .l{font-family:var(--mono); color:var(--ink-faint); font-size:11.5px; text-transform:uppercase; align-self:start; padding-top:1px;}
   .stack-row .v strong{color:var(--ink); font-weight:600;}
   .stack-row .v span{display:block; color:var(--ink-faint); font-size:12px; margin-top:1px;}
-  @media (max-width:800px){.stack-grid{grid-template-columns:1fr;}}
 
   /* ---------- architecture diagram ---------- */
   .arch{border:1px solid var(--hairline); border-radius:16px; padding:36px 28px; background:rgba(23,18,58,0.6); backdrop-filter:blur(8px); margin-bottom:70px; position:relative; overflow:hidden;}
@@ -342,7 +355,6 @@
   .app-card .k{font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em;}
   .app-card .val{font-size:16px; margin-top:8px; font-weight:600;}
   .app-card p{color:var(--ink-dim); font-size:13.5px; margin:8px 0 0;}
-  @media (max-width:700px){.appendix-grid{grid-template-columns:1fr;}}
 
   footer{padding:70px 0 60px; text-align:center; border-top:1px solid var(--hairline);}
   footer .tagline{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,24px); max-width:640px; margin:0 auto 20px; color:var(--ink);}
@@ -361,12 +373,10 @@
   .mobile-nav a:hover{color:var(--ink);}
 
   @media (max-width:960px){
+    .rail{display:none;}
     .mobile-menu-btn{display:flex;}
     .mobile-nav{display:flex;}
     .hero{padding:120px 0 80px;}
-  }
-
-  @media (max-width:960px){
     .problem-grid{grid-template-columns:repeat(2,1fr);}
     .promise-grid{grid-template-columns:repeat(2,1fr);}
     .feature-grid{grid-template-columns:repeat(2,1fr);}
@@ -377,6 +387,8 @@
     .promise-grid{grid-template-columns:1fr;}
     .journey-mock{flex-wrap:wrap;}
     .jm-connector{display:none;}
+    .feature-grid{grid-template-columns:1fr;}
+    .feature-card.wide{grid-column:span 1;}
   }
 </style>
 </head>
@@ -462,19 +474,6 @@
         <div class="jm-sub">Score 100% to unlock</div>
       </div>
     </div>
-      <div class="jm-connector filled"></div>
-      <div class="jm-node-wrap">
-        <div class="jm-node active"><svg><use href="#icon-dot"></use></svg></div>
-        <div class="jm-label">Mechanism</div>
-        <div class="jm-sub">In progress</div>
-      </div>
-      <div class="jm-connector filled two"></div>
-      <div class="jm-node-wrap">
-        <div class="jm-node locked"><svg><use href="#icon-lock"></use></svg></div>
-        <div class="jm-label">Real World Now</div>
-        <div class="jm-sub">Score 100% to unlock</div>
-      </div>
-    </div>
     <p class="hero-mock-caption">This is the actual progression every RealLearn lesson follows — and, in spirit, the one this page follows too.</p>
   </div>
 </header>
@@ -509,7 +508,7 @@
 
       <div class="section-head" style="margin-bottom:36px;">
         <div class="eyebrow">The journey, step by step</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">How it actually works</h2>
+        <h2 class="section-head h2--compact">How it actually works</h2>
       </div>
 
       <div class="steps reveal">
@@ -537,7 +536,7 @@
         <div class="cap">Average end-to-end generation time, with high structural integrity held constant across every request.</div>
       </div>
 
-      <div class="gemma-grid reveal reveal-delay-1" style="margin-bottom:80px;">
+      <div class="gemma-grid reveal reveal-delay-1 mb-80">
         <div class="gemma-card"><h4>Structured Output Enforcement</h4><p>A strict JSON schema forces exactly three parts, each with precisely two multiple-choice questions and exhaustive, teaching-grade explanations.</p></div>
         <div class="gemma-card"><h4>Native Multilingual Generation</h4><p>Lessons are composed directly in the learner's language — never machine-translated. JSON keys stay in English so the app stays robust.</p></div>
         <div class="gemma-card"><h4>Adaptive Calibration</h4><p>The same prompt reshapes vocabulary, examples, and rigor for Class 6–8 through College / Advanced.</p></div>
@@ -548,15 +547,15 @@
 
       <div class="section-head">
         <div class="eyebrow">14 features, one experience</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">The feature tour</h2>
+        <h2 class="section-head h2--compact">The feature tour</h2>
       </div>
 
-      <div class="feature-grid reveal reveal-delay-1" style="margin-bottom:80px;">
-        <div class="feature-card" style="--c:var(--amber)">
+      <div class="feature-grid reveal reveal-delay-1 mb-80">
+        <div class="feature-card feature-card--amber">
           <div class="fi">01</div><h4>Three-Part Learning Journey</h4>
           <p>Foundation, Mechanism, Real World Now — every time. Each part ships with real sources and a subject badge auto-classified across 11 disciplines.</p>
         </div>
-        <div class="feature-card wide" style="--c:var(--violet)">
+        <div class="feature-card wide feature-card--violet">
           <div class="fi">02</div><h4>Quiz-Gated Progression</h4>
           <p>Two questions, four options, 100% to advance. Wrong answers shake, correct ones pulse — try it below.</p>
           <div class="quiz-demo">
@@ -571,55 +570,55 @@
             <button class="quiz-reset" id="quizReset">Reshuffle & try again</button>
           </div>
         </div>
-        <div class="feature-card" style="--c:var(--rose)">
+        <div class="feature-card feature-card--rose">
           <div class="fi">03</div><h4>Learn in Your Language</h4>
           <p>Full lessons generated natively — never machine-translated after the fact.</p>
           <div class="lang-row">
             <span class="lang-chip">English</span><span class="lang-chip">Hindi</span><span class="lang-chip">Gujarati</span><span class="lang-chip">Tamil</span><span class="lang-chip">Bengali</span><span class="lang-chip">Marathi</span><span class="lang-chip">Telugu</span><span class="lang-chip">Kannada</span>
           </div>
         </div>
-        <div class="feature-card" style="--c:var(--amber)">
+        <div class="feature-card feature-card--amber">
           <div class="fi">04</div><h4>Adaptive Difficulty</h4>
           <p>Class 6–8, Class 9–10, or College / Advanced. Vocabulary, examples, and rigor recalibrate for every level.</p>
         </div>
-        <div class="feature-card" style="--c:var(--violet)">
+        <div class="feature-card feature-card--violet">
           <div class="fi">05</div><h4>Grounded in Today's Real World</h4>
           <p>Live news is fetched before Gemma writes a word, so Part 3 connects theory to real names, dates, and numbers.</p>
         </div>
-        <div class="feature-card" style="--c:var(--rose)">
+        <div class="feature-card feature-card--rose">
           <div class="fi">06</div><h4>A Cinematic, Calm Experience</h4>
           <p>A glowing loader, an unlock animation per part, and three hand-tuned themes — this page is running Twilight.</p>
           <div class="swatch-row"><span class="swatch paper" title="Paper"></span><span class="swatch night" title="Night"></span><span class="swatch twilight" title="Twilight"></span></div>
         </div>
-        <div class="feature-card" style="--c:var(--amber)">
+        <div class="feature-card feature-card--amber">
           <div class="fi">07</div><h4>Your Personal Learning Library</h4>
           <p>Every journey is saved automatically, de-duplicated by topic, and yours to revisit, retake, or remove.</p>
         </div>
-        <div class="feature-card" style="--c:var(--violet)">
+        <div class="feature-card feature-card--violet">
           <div class="fi">08</div><h4>The Follow-Up Loop</h4>
           <p>Finish a journey and ask a new question — a fresh one spins up instantly, no trip back to the homepage.</p>
         </div>
-        <div class="feature-card" style="--c:var(--rose)">
+        <div class="feature-card feature-card--rose">
           <div class="fi">09</div><h4>Accessibility First</h4>
           <p>WCAG 2.1 AA-minded: skip links, ARIA live regions, full keyboard quiz navigation, reduced-motion support, 44px touch targets.</p>
         </div>
-        <div class="feature-card" style="--c:var(--amber)">
+        <div class="feature-card feature-card--amber">
           <div class="fi">10</div><h4>Three Beautiful Themes</h4>
           <p>Paper's warm calm, Night's teal focus, Twilight's indigo glow — one source of truth, applied instantly.</p>
         </div>
-        <div class="feature-card" style="--c:var(--violet)">
+        <div class="feature-card feature-card--violet">
           <div class="fi">11</div><h4>Voice-Powered Learning</h4>
           <p>Ask by speaking in any of 8 languages, then have every part read back in a naturally selected voice.</p>
         </div>
-        <div class="feature-card" style="--c:var(--rose)">
+        <div class="feature-card feature-card--rose">
           <div class="fi">12</div><h4>Gamification & Achievements</h4>
           <p>XP, levels from Curious to Sage, daily streaks with freezes, 17 badges, and a GitHub-style activity heatmap.</p>
         </div>
-        <div class="feature-card" style="--c:var(--amber)">
+        <div class="feature-card feature-card--amber">
           <div class="fi">13</div><h4>Shareable Result Cards</h4>
           <p>A 1080×1920 canvas-rendered card with your score, streak, and level — shared natively or copied in one tap.</p>
         </div>
-        <div class="feature-card" style="--c:var(--violet)">
+        <div class="feature-card feature-card--violet">
           <div class="fi">14</div><h4>Dual Answer Modes</h4>
           <p>Fast for an instant, direct answer. Explain for the complete three-part journey. One tap to switch.</p>
         </div>
@@ -627,7 +626,7 @@
 
       <div class="section-head">
         <div class="eyebrow">Under the hood</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">Built like production software</h2>
+        <h2 class="section-head h2--compact">Built like production software</h2>
         <p>Not a demo held together with tape — reliability, caching, safety, and security engineered in from the start.</p>
       </div>
 
@@ -697,7 +696,7 @@
 
       <div class="section-head">
         <div class="eyebrow">Stack</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">The technology</h2>
+        <h2 class="section-head h2--compact">The technology</h2>
       </div>
 
       <div class="stack-grid reveal">
@@ -737,7 +736,7 @@
 
       <div class="section-head">
         <div class="eyebrow">What's next</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">Roadmap</h2>
+        <h2 class="section-head h2--compact">Roadmap</h2>
         <p>Locked for now — the next parts of RealLearn's own journey.</p>
       </div>
 
@@ -757,7 +756,7 @@
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">Appendix</div>
-        <h2 style="font-size:clamp(24px,3vw,32px);">Credits & fine print</h2>
+        <h2 class="section-head h2--compact">Credits & fine print</h2>
       </div>
       <div class="appendix-grid reveal">
         <div class="app-card">
