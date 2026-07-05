@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RealLearn — The World Is Your Textbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#100C22;
+    --void-2:#17123A;
+    --void-3:#1F1950;
+    --void-4:#251E5E;
+    --hairline: rgba(183,173,232,0.14);
+    --hairline-strong: rgba(183,173,232,0.28);
+    --ink: #F5F1FF;
+    --ink-dim: #B7ADDD;
+    --ink-faint: #78709F;
+
+    --amber: #F2B15C;
+    --amber-soft: rgba(242,177,92,0.14);
+    --violet: #8D7CF0;
+    --violet-soft: rgba(141,124,240,0.16);
+    --rose: #F0668F;
+    --rose-soft: rgba(240,102,143,0.14);
+    --good: #6FCF97;
+    --warn: #EF6461;
+
+    --glow: linear-gradient(135deg, #F2B15C 0%, #8D7CF0 52%, #F0668F 100%);
+    --glow-vr: linear-gradient(135deg, #8D7CF0 0%, #F0668F 100%);
+
+    --display: 'Playfair Display', serif;
+    --body: 'Inter', sans-serif;
+    --read: 'Lora', serif;
+    --mono: 'JetBrains Mono', monospace;
+
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 12% -10%, rgba(141,124,240,0.20), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 100% 8%, rgba(240,102,143,0.14), transparent 55%),
+      var(--void);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  h1,h2,h3{font-family:var(--display); font-weight:600; margin:0; letter-spacing:-0.01em;}
+  em{font-style:italic; color:transparent; background:var(--glow-vr); -webkit-background-clip:text; background-clip:text;}
+  .container{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+    background:var(--void-3); color:var(--ink); padding:10px 16px; border-radius:8px;
+    font-family:var(--body); z-index:999;
+  }
+  .skip-link:focus{left:16px; top:16px;}
+
+  :focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:4px;}
+
+  /* ---------- top progress ---------- */
+  .top-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:var(--glow); z-index:60; transition:width 80ms linear;
+  }
+
+  /* ---------- journey rail (desktop) ---------- */
+  .rail{
+    position:fixed; left:26px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:0;
+    z-index:50;
+  }
+  .rail-node{
+    all:unset; cursor:pointer;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--void-2); border:1.5px solid var(--hairline-strong);
+    color:var(--ink-faint);
+    position:relative; transition:all .35s ease;
+  }
+  .rail-node svg{width:14px; height:14px;}
+  .rail-line{width:1.5px; height:34px; background:var(--hairline-strong); transition:background .4s ease;}
+  .rail-node.is-active{border-color:var(--violet); color:var(--violet); box-shadow:0 0 0 4px var(--violet-soft), 0 0 18px rgba(141,124,240,0.55);}
+  .rail-node.is-complete{background:var(--glow-vr); border-color:transparent; color:var(--void);}
+  .rail-node.is-complete + .rail-line{background:var(--glow-vr);}
+  .rail-node .rail-tip{
+    position:absolute; left:46px; top:50%; transform:translateY(-50%);
+    font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ink-dim); background:var(--void-3); border:1px solid var(--hairline);
+    padding:5px 9px; border-radius:6px; white-space:nowrap;
+    opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .rail-node:hover .rail-tip, .rail-node:focus-visible .rail-tip{opacity:1;}
+  @media (max-width: 960px){ .rail{display:none;} }
+
+  /* ---------- shared bits ---------- */
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-faint); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.6;}
+  .stage--foundation .eyebrow{color:var(--amber);}
+  .stage--mechanism .eyebrow{color:var(--violet);}
+  .stage--realworld .eyebrow{color:var(--rose);}
+  .stage--appendix .eyebrow{color:var(--ink-faint);}
+
+  .section-head{max-width:680px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,40px); margin-bottom:14px;}
+  .section-head p{color:var(--ink-dim); font-family:var(--read); font-size:17px; margin:0;}
+
+  .stage{padding:110px 0; position:relative;}
+  .stage + .stage{border-top:1px solid var(--hairline);}
+
+  .btn{
+    font-family:var(--body); font-weight:600; font-size:14.5px;
+    padding:13px 24px; border-radius:100px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--glow-vr); color:#0D0A20; box-shadow:0 8px 30px rgba(141,124,240,0.35);}
+  .btn-ghost{border:1px solid var(--hairline-strong); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--violet);}
+  .link-plain{font-family:var(--mono); font-size:13px; color:var(--ink-dim); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--hairline-strong);}
+  .link-plain:hover{color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:150px 0 100px;
+    position:relative; overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); margin-bottom:26px;
+  }
+  .hero-eyebrow strong{color:var(--rose); font-weight:600;}
+  .hero h1{font-size:clamp(42px, 7vw, 78px); line-height:1.04; max-width:820px;}
+  .hero-sub{
+    font-family:var(--read); font-size:clamp(17px,1.8vw,20px); color:var(--ink-dim);
+    max-width:600px; margin:26px 0 40px;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; align-items:center; gap:18px; margin-bottom:90px;}
+
+  /* hero unlock mockup */
+  .journey-mock{
+    display:flex; align-items:flex-start; gap:0; max-width:760px;
+  }
+  .jm-node-wrap{display:flex; flex-direction:column; align-items:center; gap:14px; width:120px;}
+  .jm-connector{flex:1; height:2px; margin-top:29px; background:var(--hairline-strong); position:relative; top:0;}
+  .jm-connector.filled{background:linear-gradient(90deg, var(--amber), var(--violet));}
+  .jm-connector.filled.two{background:linear-gradient(90deg, var(--violet), var(--rose));}
+  .jm-node{
+    width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:1.5px solid var(--hairline-strong); background:var(--void-2);
+  }
+  .jm-node svg{width:22px; height:22px;}
+  .jm-node.done{background:var(--amber); border-color:var(--amber); color:#241606;}
+  .jm-node.active{border-color:var(--violet); color:var(--violet); box-shadow:0 0 0 6px var(--violet-soft); animation:pulse 2.4s ease-in-out infinite;}
+  .jm-node.locked{color:var(--ink-faint);}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 6px var(--violet-soft);} 50%{box-shadow:0 0 0 11px rgba(141,124,240,0.28);}}
+  .jm-label{font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; text-align:center; color:var(--ink-dim);}
+  .jm-sub{font-size:10.5px; color:var(--ink-faint); text-align:center;}
+  .hero-mock-caption{font-family:var(--read); font-style:italic; color:var(--ink-faint); font-size:14.5px; margin-top:22px; max-width:500px;}
+
+  /* ---------- problem / promise ---------- */
+  .problem-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:16px; overflow:hidden; margin-bottom:70px;}
+  .problem-cell{background:var(--void-2); padding:26px 22px;}
+  .problem-cell .tag{font-family:var(--mono); font-size:11px; color:var(--amber); letter-spacing:.06em; text-transform:uppercase;}
+  .problem-cell p{font-family:var(--read); font-size:15px; color:var(--ink-dim); margin:10px 0 0;}
+  .problem-punch{font-family:var(--display); font-style:italic; font-size:clamp(20px,2.4vw,26px); color:var(--ink); max-width:640px; margin:0 0 70px; line-height:1.4;}
+  .problem-punch span{color:var(--ink-faint); font-style:normal; font-family:var(--body); font-size:14px; display:block; margin-top:10px;}
+
+  .promise-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:80px;}
+  .promise-card{border:1px solid var(--hairline); border-radius:16px; padding:26px 20px; background:var(--void-2);}
+  .promise-card .n{font-family:var(--mono); font-size:12px; color:var(--amber);}
+  .promise-card h3{font-size:17px; margin:12px 0 8px; font-family:var(--body); font-weight:600;}
+  .promise-card p{font-size:14px; color:var(--ink-dim); margin:0;}
+
+  /* ---------- how it works ---------- */
+  .steps{max-width:640px;}
+  .step{display:flex; gap:22px; position:relative; padding-bottom:38px;}
+  .step:last-child{padding-bottom:0;}
+  .step::before{content:""; position:absolute; left:19px; top:42px; bottom:0; width:1.5px; background:var(--hairline-strong);}
+  .step:last-child::before{display:none;}
+  .step-num{
+    flex:none; width:40px; height:40px; border-radius:50%; border:1.5px solid var(--amber);
+    color:var(--amber); font-family:var(--mono); font-size:14px; display:flex; align-items:center; justify-content:center;
+    background:var(--void); z-index:1;
+  }
+  .step h4{font-family:var(--body); font-weight:600; font-size:16px; margin:6px 0 6px;}
+  .step p{margin:0; color:var(--ink-dim); font-size:14.5px; font-family:var(--read);}
+
+  /* ---------- gemma highlights ---------- */
+  .gemma-stat{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:44px; flex-wrap:wrap;
+  }
+  .gemma-stat .num{font-family:var(--display); font-size:clamp(40px,5vw,58px); background:var(--glow-vr); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .gemma-stat .cap{font-family:var(--mono); font-size:12.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; max-width:260px;}
+  .gemma-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-bottom:20px;}
+  .gemma-card{border:1px solid var(--hairline); border-radius:14px; padding:22px; background:var(--void-2);}
+  .gemma-card h4{font-family:var(--body); font-weight:600; font-size:15px; margin:0 0 8px; color:var(--violet);}
+  .gemma-card p{margin:0; font-size:13.8px; color:var(--ink-dim);}
+
+  /* ---------- feature tour ---------- */
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .feature-card{
+    border:1px solid var(--hairline); border-radius:16px; padding:24px; background:var(--void-2);
+    border-top:3px solid var(--c, var(--violet));
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .feature-card:hover{transform:translateY(-3px); border-color:var(--hairline-strong);}
+  .feature-card .fi{font-family:var(--mono); font-size:11px; color:var(--ink-faint);}
+  .feature-card h4{font-family:var(--body); font-weight:600; font-size:15.5px; margin:10px 0 8px;}
+  .feature-card p{margin:0; font-size:13.6px; color:var(--ink-dim);}
+  .feature-card.wide{grid-column:span 2;}
+  @media (max-width:960px){ .feature-grid{grid-template-columns:repeat(2,1fr);} .feature-card.wide{grid-column:span 2;} }
+  @media (max-width:640px){ .feature-grid{grid-template-columns:1fr;} .feature-card.wide{grid-column:span 1;} }
+
+  .swatch-row{display:flex; gap:8px; margin-top:12px;}
+  .swatch{width:26px; height:18px; border-radius:5px; border:1px solid var(--hairline-strong);}
+  .swatch.paper{background:linear-gradient(135deg,#F4EEDD,#E8DCC0);}
+  .swatch.night{background:linear-gradient(135deg,#0F2A2E,#123B41);}
+  .swatch.twilight{background:var(--glow-vr); box-shadow:0 0 0 1.5px var(--rose);}
+
+  .lang-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+  .lang-chip{font-family:var(--mono); font-size:11px; color:var(--ink-dim); border:1px solid var(--hairline); border-radius:100px; padding:4px 9px;}
+
+  /* mini quiz demo */
+  .quiz-demo{margin-top:14px; border-top:1px dashed var(--hairline-strong); padding-top:14px;}
+  .quiz-demo .q{font-family:var(--read); font-size:13.6px; color:var(--ink); margin-bottom:10px;}
+  .quiz-opts{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .quiz-opt{
+    all:unset; cursor:pointer; text-align:center; font-family:var(--body); font-size:12.5px;
+    border:1px solid var(--hairline-strong); border-radius:9px; padding:9px 6px; color:var(--ink-dim);
+    transition:all .15s ease;
+  }
+  .quiz-opt:hover{border-color:var(--violet); color:var(--ink);}
+  .quiz-opt.correct{background:rgba(111,207,151,0.16); border-color:var(--good); color:var(--good); animation:qpulse .5s ease;}
+  .quiz-opt.wrong{background:rgba(239,100,97,0.14); border-color:var(--warn); color:var(--warn); animation:qshake .4s ease;}
+  .quiz-opt[disabled]{cursor:default;}
+  @keyframes qpulse{0%{transform:scale(1);} 50%{transform:scale(1.04);} 100%{transform:scale(1);}}
+  @keyframes qshake{0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);}}
+  .quiz-explain{font-size:12px; color:var(--ink-faint); margin-top:10px; font-family:var(--read); font-style:italic; min-height:16px;}
+  .quiz-reset{background:none; border:none; color:var(--violet); font-family:var(--mono); font-size:11px; text-decoration:underline; cursor:pointer; padding:0; margin-top:6px; display:none;}
+
+  /* ---------- production panels ---------- */
+  .panel-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  .panel{
+    border:1px solid var(--hairline-strong); border-radius:14px; background:#0D0A22;
+    padding:22px; font-family:var(--mono);
+    background-image: linear-gradient(var(--hairline) 1px, transparent 1px);
+    background-size: 100% 22px;
+  }
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .panel-head span.title{font-size:13px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink);}
+  .panel-dot{width:7px; height:7px; border-radius:50%; background:var(--good); box-shadow:0 0 8px var(--good);}
+  .panel ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .panel li{font-size:12.3px; color:var(--ink-dim); padding-left:16px; position:relative;}
+  .panel li::before{content:"›"; position:absolute; left:0; color:var(--violet);}
+  @media (max-width:800px){.panel-grid{grid-template-columns:1fr;}}
+
+  /* ---------- outcomes table ---------- */
+  .outcomes{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--hairline); margin-bottom:80px;}
+  .outcome-row{display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:20px 0; border-bottom:1px solid var(--hairline); align-items:center;}
+  .outcome-row .frust{font-family:var(--read); font-style:italic; color:var(--ink-dim); font-size:15px;}
+  .outcome-row .fix{font-size:14px; color:var(--ink);}
+  .outcome-row .fix b{color:var(--rose); font-weight:600;}
+  @media (max-width:700px){ .outcome-row{grid-template-columns:1fr;} }
+
+  /* ---------- tech stack ---------- */
+  .stack-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:70px;}
+  .stack-card{border:1px solid var(--hairline); border-radius:14px; padding:24px; background:var(--void-2);}
+  .stack-card h4{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--rose); margin:0 0 16px;}
+  .stack-row{display:grid; grid-template-columns:90px 1fr; gap:10px; padding:9px 0; border-top:1px solid var(--hairline); font-size:13px;}
+  .stack-row:first-of-type{border-top:none;}
+  .stack-row .l{font-family:var(--mono); color:var(--ink-faint); font-size:11.5px; text-transform:uppercase; align-self:start; padding-top:1px;}
+  .stack-row .v strong{color:var(--ink); font-weight:600;}
+  .stack-row .v span{display:block; color:var(--ink-faint); font-size:12px; margin-top:1px;}
+  @media (max-width:800px){.stack-grid{grid-template-columns:1fr;}}
+
+  /* ---------- architecture diagram ---------- */
+  .arch{border:1px solid var(--hairline); border-radius:16px; padding:36px 28px; background:var(--void-2); margin-bottom:70px;}
+  .arch-row{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:26px;}
+  .arch-box{border:1.5px solid var(--hairline-strong); border-radius:10px; padding:14px 18px; background:var(--void); text-align:center; min-width:150px;}
+  .arch-box .t{font-family:var(--body); font-weight:600; font-size:13.5px;}
+  .arch-box .s{font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); margin-top:3px;}
+  .arch-box.main{border-color:var(--violet); box-shadow:0 0 0 3px var(--violet-soft);}
+  .arch-arrow{font-family:var(--mono); color:var(--ink-faint); font-size:16px;}
+  .arch-services{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
+  .arch-services .arch-box{min-width:120px; padding:10px 14px;}
+  .arch-services .arch-box .t{font-size:12px;}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:10px;}
+  .road-chip{
+    display:flex; align-items:center; gap:8px; border:1px dashed var(--hairline-strong); border-radius:100px;
+    padding:9px 16px; font-size:13px; color:var(--ink-dim);
+  }
+  .road-chip svg{width:12px; height:12px; opacity:.6;}
+
+  /* ---------- appendix ---------- */
+  .appendix-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:50px;}
+  .app-card{border:1px solid var(--hairline); border-radius:14px; padding:24px; background:var(--void-2);}
+  .app-card .k{font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em;}
+  .app-card .val{font-size:16px; margin-top:8px; font-weight:600;}
+  .app-card p{color:var(--ink-dim); font-size:13.5px; margin:8px 0 0;}
+  @media (max-width:700px){.appendix-grid{grid-template-columns:1fr;}}
+
+  footer{padding:70px 0 60px; text-align:center; border-top:1px solid var(--hairline);}
+  footer .tagline{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,24px); max-width:640px; margin:0 auto 20px; color:var(--ink);}
+  footer .fine{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
+
+  @media (max-width:960px){
+    .problem-grid{grid-template-columns:repeat(2,1fr);}
+    .promise-grid{grid-template-columns:repeat(2,1fr);}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    .stage{padding:80px 0;}
+    .problem-grid{grid-template-columns:1fr;}
+    .promise-grid{grid-template-columns:1fr;}
+    .journey-mock{flex-wrap:wrap;}
+    .jm-connector{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="top-progress" id="topProgress"></div>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 6 9 17l-5-5"></path>
+  </symbol>
+  <symbol id="icon-dot" viewBox="0 0 24 24" fill="currentColor">
+    <circle cx="12" cy="12" r="5"></circle>
+  </symbol>
+</svg>
+
+<!-- journey rail -->
+<nav class="rail" aria-label="Page journey">
+  <button class="rail-node" data-target="foundation" data-index="0" aria-label="Jump to Foundation">
+    <svg><use href="#icon-dot"></use></svg>
+    <span class="rail-tip">Foundation</span>
+  </button>
+  <div class="rail-line"></div>
+  <button class="rail-node" data-target="mechanism" data-index="1" aria-label="Jump to Mechanism">
+    <svg><use href="#icon-dot"></use></svg>
+    <span class="rail-tip">Mechanism</span>
+  </button>
+  <div class="rail-line"></div>
+  <button class="rail-node" data-target="realworld" data-index="2" aria-label="Jump to Real World Now">
+    <svg><use href="#icon-dot"></use></svg>
+    <span class="rail-tip">Real World Now</span>
+  </button>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Built for the <strong>Gemma 4 Good Hackathon</strong> · Kaggle</div>
+    <h1>The world is your <em>textbook.</em></h1>
+    <p class="hero-sub">RealLearn turns a single question into a structured, three-part lesson — quiz-verified at every step, calibrated to your level, and grounded in what's happening in the world today. Not a one-line answer. A journey.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://reallearn.site/" target="_blank" rel="noopener">Try RealLearn →</a>
+      <a class="btn btn-ghost" href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noopener">Watch the demo</a>
+      <a class="link-plain" href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161" target="_blank" rel="noopener">Read the Kaggle write-up →</a>
+    </div>
+
+    <div class="journey-mock">
+      <div class="jm-node-wrap">
+        <div class="jm-node done"><svg><use href="#icon-check"></use></svg></div>
+        <div class="jm-label">Foundation</div>
+        <div class="jm-sub">Unlocked</div>
+      </div>
+      <div class="jm-connector filled"></div>
+      <div class="jm-node-wrap">
+        <div class="jm-node active"><svg><use href="#icon-dot"></use></svg></div>
+        <div class="jm-label">Mechanism</div>
+        <div class="jm-sub">In progress</div>
+      </div>
+      <div class="jm-connector filled two"></div>
+      <div class="jm-node-wrap">
+        <div class="jm-node locked"><svg><use href="#icon-lock"></use></svg></div>
+        <div class="jm-label">Real World Now</div>
+        <div class="jm-sub">Score 100% to unlock</div>
+      </div>
+    </div>
+    <p class="hero-mock-caption">This is the actual progression every RealLearn lesson follows — and, in spirit, the one this page follows too.</p>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= FOUNDATION ================= -->
+  <section class="stage stage--foundation" id="foundation" data-stage="foundation">
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">Part 01 · Foundation</div>
+        <h2>The problem, and the promise</h2>
+        <p>Search gives you a wall of links. A chatbot gives you a paragraph. Neither one teaches you anything.</p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-cell"><div class="tag">Too shallow</div><p>Skims the surface — you never actually understand it.</p></div>
+        <div class="problem-cell"><div class="tag">Too advanced</div><p>Pitched over your head, for where you actually are.</p></div>
+        <div class="problem-cell"><div class="tag">Disconnected</div><p>Theory with no bridge to anything happening today.</p></div>
+        <div class="problem-cell"><div class="tag">Forgettable</div><p>You never had to engage, so nothing sticks.</p></div>
+      </div>
+
+      <p class="problem-punch">You consumed an answer. You didn't learn anything.<span>Real learning is a journey — a foundation, a mechanism, a connection to reality — checkpointed by moments where you prove it stuck. RealLearn rebuilds that journey, automatically, for any question, in seconds.</span></p>
+
+      <div class="promise-grid">
+        <div class="promise-card"><div class="n">01</div><h3>AI lesson generation</h3><p>Every lesson is generated fresh, for your exact question, by Google's Gemma 4.</p></div>
+        <div class="promise-card"><div class="n">02</div><h3>Learning design</h3><p>A deliberate three-stage progression — Foundation → Mechanism → Real World.</p></div>
+        <div class="promise-card"><div class="n">03</div><h3>Active recall</h3><p>Quiz gates after every part. You can't skip ahead until you've understood.</p></div>
+        <div class="promise-card"><div class="n">04</div><h3>Real-world grounding</h3><p>Live news is woven into Part 3, so theory meets what's happening today.</p></div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:36px;">
+        <div class="eyebrow">The journey, step by step</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">How it actually works</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><h4>Ask</h4><p>Type any question — or tap the microphone and ask with your voice.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div><h4>Personalize</h4><p>Choose your language (8 options), your level, and Fast or Explain mode.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div><h4>Watch it build</h4><p>A cinematic loader plays while the backend fetches live news and prompts Gemma 4 — streamed live so it never silently times out.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div><h4>Learn Part 1 — Foundation</h4><p>A beginner-friendly framing arrives in clean Markdown, with real sources and a reading timer.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div><h4>Prove it, then unlock</h4><p>Score 100% on a two-question quiz to unlock Mechanism, then Real World Now.</p></div></div>
+        <div class="step"><div class="step-num">6</div><div><h4>Complete, and keep going</h4><p>A score ring, confetti, and key takeaways appear. Ask a follow-up and a fresh journey spins up instantly.</p></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MECHANISM ================= -->
+  <section class="stage stage--mechanism" id="mechanism" data-stage="mechanism">
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">Part 02 · Mechanism</div>
+        <h2>Powered by Gemma 4</h2>
+        <p>RealLearn runs on Gemma 4 (<code>gemma-4-26b-a4b-it</code>) via Cloudflare Workers AI — wrapped in a prompting and reliability layer engineered to guarantee structure on every request.</p>
+      </div>
+
+      <div class="gemma-stat">
+        <div class="num">15–25s</div>
+        <div class="cap">Average end-to-end generation time, with high structural integrity held constant across every request.</div>
+      </div>
+
+      <div class="gemma-grid" style="margin-bottom:80px;">
+        <div class="gemma-card"><h4>Structured Output Enforcement</h4><p>A strict JSON schema forces exactly three parts, each with precisely two multiple-choice questions and exhaustive, teaching-grade explanations.</p></div>
+        <div class="gemma-card"><h4>Native Multilingual Generation</h4><p>Lessons are composed directly in the learner's language — never machine-translated. JSON keys stay in English so the app stays robust.</p></div>
+        <div class="gemma-card"><h4>Adaptive Calibration</h4><p>The same prompt reshapes vocabulary, examples, and rigor for Class 6–8 through College / Advanced.</p></div>
+        <div class="gemma-card"><h4>Real-World Grounding via Serper</h4><p>Recent, India-relevant news is fetched and injected before Gemma writes a word of Part 3.</p></div>
+        <div class="gemma-card"><h4>Dual Prompt Architecture</h4><p>Separate system prompts power the full Explain journey and the lightning-fast single-part Fast mode.</p></div>
+        <div class="gemma-card"><h4>Robustness Engineering</h4><p>A multi-stage JSON repair pipeline and lenient schema validation mean rough output still degrades into a coherent lesson.</p></div>
+      </div>
+
+      <div class="section-head">
+        <div class="eyebrow">14 features, one experience</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">The feature tour</h2>
+      </div>
+
+      <div class="feature-grid" style="margin-bottom:80px;">
+        <div class="feature-card" style="--c:var(--amber)">
+          <div class="fi">01</div><h4>Three-Part Learning Journey</h4>
+          <p>Foundation, Mechanism, Real World Now — every time. Each part ships with real sources and a subject badge auto-classified across 11 disciplines.</p>
+        </div>
+        <div class="feature-card wide" style="--c:var(--violet)">
+          <div class="fi">02</div><h4>Quiz-Gated Progression</h4>
+          <p>Two questions, four options, 100% to advance. Wrong answers shake, correct ones pulse — try it below.</p>
+          <div class="quiz-demo">
+            <div class="q">Which gas do plants absorb during photosynthesis?</div>
+            <div class="quiz-opts" id="quizOpts">
+              <button class="quiz-opt" data-correct="false">Oxygen</button>
+              <button class="quiz-opt" data-correct="true">Carbon dioxide</button>
+              <button class="quiz-opt" data-correct="false">Nitrogen</button>
+              <button class="quiz-opt" data-correct="false">Hydrogen</button>
+            </div>
+            <div class="quiz-explain" id="quizExplain"></div>
+            <button class="quiz-reset" id="quizReset">Reshuffle & try again</button>
+          </div>
+        </div>
+        <div class="feature-card" style="--c:var(--rose)">
+          <div class="fi">03</div><h4>Learn in Your Language</h4>
+          <p>Full lessons generated natively — never machine-translated after the fact.</p>
+          <div class="lang-row">
+            <span class="lang-chip">English</span><span class="lang-chip">Hindi</span><span class="lang-chip">Gujarati</span><span class="lang-chip">Tamil</span><span class="lang-chip">Bengali</span><span class="lang-chip">Marathi</span><span class="lang-chip">Telugu</span><span class="lang-chip">Kannada</span>
+          </div>
+        </div>
+        <div class="feature-card" style="--c:var(--amber)">
+          <div class="fi">04</div><h4>Adaptive Difficulty</h4>
+          <p>Class 6–8, Class 9–10, or College / Advanced. Vocabulary, examples, and rigor recalibrate for every level.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--violet)">
+          <div class="fi">05</div><h4>Grounded in Today's Real World</h4>
+          <p>Live news is fetched before Gemma writes a word, so Part 3 connects theory to real names, dates, and numbers.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--rose)">
+          <div class="fi">06</div><h4>A Cinematic, Calm Experience</h4>
+          <p>A glowing loader, an unlock animation per part, and three hand-tuned themes — this page is running Twilight.</p>
+          <div class="swatch-row"><span class="swatch paper" title="Paper"></span><span class="swatch night" title="Night"></span><span class="swatch twilight" title="Twilight"></span></div>
+        </div>
+        <div class="feature-card" style="--c:var(--amber)">
+          <div class="fi">07</div><h4>Your Personal Learning Library</h4>
+          <p>Every journey is saved automatically, de-duplicated by topic, and yours to revisit, retake, or remove.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--violet)">
+          <div class="fi">08</div><h4>The Follow-Up Loop</h4>
+          <p>Finish a journey and ask a new question — a fresh one spins up instantly, no trip back to the homepage.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--rose)">
+          <div class="fi">09</div><h4>Accessibility First</h4>
+          <p>WCAG 2.1 AA-minded: skip links, ARIA live regions, full keyboard quiz navigation, reduced-motion support, 44px touch targets.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--amber)">
+          <div class="fi">10</div><h4>Three Beautiful Themes</h4>
+          <p>Paper's warm calm, Night's teal focus, Twilight's indigo glow — one source of truth, applied instantly.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--violet)">
+          <div class="fi">11</div><h4>Voice-Powered Learning</h4>
+          <p>Ask by speaking in any of 8 languages, then have every part read back in a naturally selected voice.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--rose)">
+          <div class="fi">12</div><h4>Gamification & Achievements</h4>
+          <p>XP, levels from Curious to Sage, daily streaks with freezes, 17 badges, and a GitHub-style activity heatmap.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--amber)">
+          <div class="fi">13</div><h4>Shareable Result Cards</h4>
+          <p>A 1080×1920 canvas-rendered card with your score, streak, and level — shared natively or copied in one tap.</p>
+        </div>
+        <div class="feature-card" style="--c:var(--violet)">
+          <div class="fi">14</div><h4>Dual Answer Modes</h4>
+          <p>Fast for an instant, direct answer. Explain for the complete three-part journey. One tap to switch.</p>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div class="eyebrow">Under the hood</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">Built like production software</h2>
+        <p>Not a demo held together with tape — reliability, caching, safety, and security engineered in from the start.</p>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel">
+          <div class="panel-head"><span class="title">Reliability</span><span class="panel-dot"></span></div>
+          <ul>
+            <li>SSE streaming with keep-alive heartbeats</li>
+            <li>Smart retries with exponential backoff</li>
+            <li>Timeout circuit breaker + cooldown recovery</li>
+            <li>Concurrency caps & sliding-window rate limits</li>
+            <li>Fails open, degrades gracefully, never blocks</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="title">Two-Tier Caching</span><span class="panel-dot"></span></div>
+          <ul>
+            <li>Tier 1 — in-memory LRU, 6-hour TTL</li>
+            <li>Tier 2 — MongoDB with TTL index, fleet-wide</li>
+            <li>Deterministic SHA-256 cache keys</li>
+            <li>A hit skips Serper, Gemma, and both moderation passes</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="title">Safety & Moderation</span><span class="panel-dot"></span></div>
+          <ul>
+            <li>Regex input guard before anything reaches the model</li>
+            <li>LLM moderation layer, fail-open on timeout</li>
+            <li>Output re-screened on the way back</li>
+            <li>In-prompt refusal instructions, built for ages 13+</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="title">Security & Privacy</span><span class="panel-dot"></span></div>
+          <ul>
+            <li>Clerk JWT verification, JWKS + offline PEM fallback</li>
+            <li>IDOR-safe: writes keyed to verified identity only</li>
+            <li>Hardened headers — CSP, HSTS, COOP, CORP</li>
+            <li>Full data export & one-click account deletion</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= REAL WORLD ================= -->
+  <section class="stage stage--realworld" id="realworld" data-stage="realworld">
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">Part 03 · Real World Now</div>
+        <h2>Where it lands</h2>
+        <p>Designed to fix concrete, everyday learning frustrations.</p>
+      </div>
+
+      <div class="outcomes">
+        <div class="outcome-row"><div class="frust">"I don't know where to start."</div><div class="fix"><b>Foundation</b> creates an accessible on-ramp for any topic.</div></div>
+        <div class="outcome-row"><div class="frust">"I read it, but I don't really get it."</div><div class="fix"><b>Quiz-gated progression</b> verifies comprehension before you move on.</div></div>
+        <div class="outcome-row"><div class="frust">"This feels abstract and disconnected."</div><div class="fix"><b>Real World Now</b> ties the concept to real, current events.</div></div>
+        <div class="outcome-row"><div class="frust">"It's either too basic or way over my head."</div><div class="fix"><b>Level selection</b> tunes depth to exactly where you are.</div></div>
+        <div class="outcome-row"><div class="frust">"English-only content shuts me out."</div><div class="fix"><b>Native multilingual generation</b> in 8 languages opens the door.</div></div>
+        <div class="outcome-row"><div class="frust">"I forget everything I learn."</div><div class="fix"><b>Active recall</b> plus a saved library make it stick.</div></div>
+        <div class="outcome-row"><div class="frust">"I don't have time for a long lesson."</div><div class="fix"><b>Fast mode</b> gives you a direct answer in seconds.</div></div>
+        <div class="outcome-row"><div class="frust">"I want to track my progress."</div><div class="fix"><b>XP, streaks, and badges</b> keep you motivated.</div></div>
+      </div>
+
+      <div class="section-head">
+        <div class="eyebrow">Stack</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">The technology</h2>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-card">
+          <h4>Frontend · Vercel</h4>
+          <div class="stack-row"><div class="l">Framework</div><div class="v"><strong>Next.js 15</strong><span>App Router, SSR, middleware</span></div></div>
+          <div class="stack-row"><div class="l">UI</div><div class="v"><strong>React 19</strong><span>Hooks, concurrent features</span></div></div>
+          <div class="stack-row"><div class="l">Auth</div><div class="v"><strong>Clerk</strong><span>User management, route protection</span></div></div>
+          <div class="stack-row"><div class="l">State</div><div class="v"><strong>Zustand</strong><span>5 persisted stores</span></div></div>
+          <div class="stack-row"><div class="l">Styling</div><div class="v"><strong>Tailwind CSS</strong><span>Token-based design system</span></div></div>
+          <div class="stack-row"><div class="l">Speech</div><div class="v"><strong>Web Speech API</strong><span>Voice input & read-aloud</span></div></div>
+        </div>
+        <div class="stack-card">
+          <h4>Backend · Render</h4>
+          <div class="stack-row"><div class="l">Runtime</div><div class="v"><strong>Node.js</strong><span>ES Modules</span></div></div>
+          <div class="stack-row"><div class="l">Framework</div><div class="v"><strong>Express</strong><span>HTTP server & routing</span></div></div>
+          <div class="stack-row"><div class="l">Transport</div><div class="v"><strong>SSE</strong><span>Keep-alive lesson delivery</span></div></div>
+          <div class="stack-row"><div class="l">AI</div><div class="v"><strong>Gemma 4</strong><span>via Cloudflare Workers AI</span></div></div>
+          <div class="stack-row"><div class="l">News</div><div class="v"><strong>Serper API</strong><span>Real-world grounding</span></div></div>
+          <div class="stack-row"><div class="l">Storage</div><div class="v"><strong>MongoDB</strong><span>Consent, moderation logs, cache</span></div></div>
+        </div>
+      </div>
+
+      <div class="arch">
+        <div class="arch-row">
+          <div class="arch-box main"><div class="t">Frontend</div><div class="s">Next.js · Vercel</div></div>
+          <div class="arch-arrow">⇄</div>
+          <div class="arch-box main"><div class="t">Backend</div><div class="s">Express · Render</div></div>
+        </div>
+        <div class="arch-services">
+          <div class="arch-box"><div class="t">Cloudflare Workers AI</div><div class="s">Gemma 4</div></div>
+          <div class="arch-box"><div class="t">Serper API</div><div class="s">News grounding</div></div>
+          <div class="arch-box"><div class="t">MongoDB</div><div class="s">Cache · consent</div></div>
+          <div class="arch-box"><div class="t">Clerk</div><div class="s">Auth</div></div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div class="eyebrow">What's next</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">Roadmap</h2>
+        <p>Locked for now — the next parts of RealLearn's own journey.</p>
+      </div>
+
+      <div class="roadmap">
+        <div class="road-chip"><svg><use href="#icon-lock"></use></svg>Richer learning-outcome analytics</div>
+        <div class="road-chip"><svg><use href="#icon-lock"></use></svg>Spaced repetition on key takeaways</div>
+        <div class="road-chip"><svg><use href="#icon-lock"></use></svg>Long-term progress tracking</div>
+        <div class="road-chip"><svg><use href="#icon-lock"></use></svg>Classroom / teacher mode</div>
+        <div class="road-chip"><svg><use href="#icon-lock"></use></svg>Multilingual voice input & output</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= APPENDIX ================= -->
+  <section class="stage stage--appendix" id="appendix" data-stage="appendix">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Appendix</div>
+        <h2 style="font-size:clamp(24px,3vw,32px);">Credits & fine print</h2>
+      </div>
+      <div class="appendix-grid">
+        <div class="app-card">
+          <div class="k">Built by</div>
+          <div class="val"><a href="https://github.com/alakmar344" target="_blank" rel="noopener">alakmar344</a></div>
+          <p>For the Gemma 4 Good Hackathon on Kaggle.</p>
+        </div>
+        <div class="app-card">
+          <div class="k">License</div>
+          <div class="val">MIT License</div>
+          <p>Copyright © 2026 alakmar344.</p>
+        </div>
+        <div class="app-card">
+          <div class="k">Contributing</div>
+          <div class="val">Open to contributions</div>
+          <p>Guidelines and a Code of Conduct live in the repository.</p>
+        </div>
+        <div class="app-card">
+          <div class="k">Security</div>
+          <div class="val">Responsible disclosure</div>
+          <p>Report vulnerabilities privately — please don't open public issues.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://reallearn.site/" target="_blank" rel="noopener">Try RealLearn →</a>
+        <a class="btn btn-ghost" href="https://reallearn-info.vercel.app" target="_blank" rel="noopener">Official info page</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p class="tagline">"RealLearn — because the world is your textbook, and every question deserves a real lesson."</p>
+    <p class="fine">GEMMA 4 GOOD HACKATHON · KAGGLE · 2026</p>
+  </div>
+</footer>
+
+<script>
+  // top scroll progress
+  const topProgress = document.getElementById('topProgress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    const pct = height > 0 ? (scrolled / height) * 100 : 0;
+    topProgress.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // journey rail scrollspy
+  const railNodes = Array.from(document.querySelectorAll('.rail-node'));
+  const stageOrder = ['foundation','mechanism','realworld','appendix'];
+  function setStage(stageId){
+    const idx = stageOrder.indexOf(stageId);
+    railNodes.forEach(node => {
+      const nodeIdx = parseInt(node.dataset.index, 10);
+      node.classList.remove('is-active','is-complete');
+      if(idx > nodeIdx){ node.classList.add('is-complete'); }
+      else if(idx === nodeIdx){ node.classList.add('is-active'); }
+    });
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ setStage(entry.target.id); }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  document.querySelectorAll('.stage').forEach(s => observer.observe(s));
+
+  railNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const target = document.getElementById(node.dataset.target);
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  // mini quiz demo
+  const quizOpts = document.querySelectorAll('#quizOpts .quiz-opt');
+  const quizExplain = document.getElementById('quizExplain');
+  const quizReset = document.getElementById('quizReset');
+  let quizAnswered = false;
+
+  function lockQuiz(){
+    quizOpts.forEach(o => o.disabled = true);
+  }
+  function resetQuiz(){
+    quizAnswered = false;
+    quizOpts.forEach(o => { o.disabled = false; o.classList.remove('correct','wrong'); });
+    quizExplain.textContent = '';
+    quizReset.style.display = 'none';
+  }
+  quizOpts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if(quizAnswered) return;
+      const isCorrect = opt.dataset.correct === 'true';
+      if(isCorrect){
+        opt.classList.add('correct');
+        quizExplain.textContent = 'Correct — plants pull CO₂ from the air and, using light energy, convert it into glucose and oxygen. This is the exact depth of explanation every RealLearn quiz answer gets.';
+        quizAnswered = true;
+        lockQuiz();
+        quizReset.style.display = 'inline-block';
+      } else {
+        opt.classList.add('wrong');
+        quizExplain.textContent = 'Not quite — in the real app, options would now reshuffle so you have to genuinely re-find the answer.';
+        setTimeout(() => opt.classList.remove('wrong'), 500);
+      }
+    });
+  });
+  quizReset.addEventListener('click', resetQuiz);
+</script>
+
+</body>
+</html>
