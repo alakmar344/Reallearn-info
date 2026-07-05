@@ -51,30 +51,12 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
 
-  .preloader{
-    position:fixed; inset:0; z-index:9999;
-    background:var(--void);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
-    transition:opacity .5s ease, visibility .5s ease;
-  }
-  .preloader.is-hidden{opacity:0; visibility:hidden; pointer-events:none;}
-  .preloader-ring{
-    width:48px; height:48px;
-    border:2px solid var(--hairline-strong);
-    border-top-color:var(--violet);
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-  }
-  .preloader-text{
-    font-family:var(--display); font-size:20px; color:var(--ink-dim); letter-spacing:.02em;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
-
   body{
     margin:0;
     background:
-      radial-gradient(ellipse 900px 500px at 12% -10%, rgba(141,124,240,0.20), transparent 60%),
-      radial-gradient(ellipse 800px 600px at 100% 8%, rgba(240,102,143,0.14), transparent 55%),
+      radial-gradient(ellipse 900px 500px at 12% -10%, rgba(141,124,240,0.25), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 100% 8%, rgba(240,102,143,0.18), transparent 55%),
+      radial-gradient(ellipse 600px 400px at 50% 100%, rgba(242,177,92,0.10), transparent 50%),
       var(--void);
     color:var(--ink);
     font-family:var(--body);
@@ -428,13 +410,6 @@
 </head>
 <body>
 
-<div class="preloader" id="preloader">
-  <div class="preloader-inner">
-    <div class="preloader-ring"></div>
-    <div class="preloader-text">RealLearn</div>
-  </div>
-</div>
-
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="top-progress" id="topProgress"></div>
 <canvas id="bg-canvas"></canvas>
@@ -490,13 +465,13 @@
       <a class="btn btn-ghost" href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noopener">Watch the demo</a>
       <a class="link-plain" href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161" target="_blank" rel="noopener">Read the Kaggle write-up →</a>
     </div>
-    <div class="hero-meta reveal reveal-delay-3">
+    <div class="hero-meta">
       <span>⚡ <b>15–25s</b> avg generation</span>
       <span>🌍 <b>8 languages</b>, native generation</span>
       <span>🎯 <b>100%</b> quiz-gated progression</span>
     </div>
 
-    <div class="journey-mock reveal reveal-delay-4">
+    <div class="journey-mock">
       <div class="jm-node-wrap">
         <div class="jm-node done"><svg><use href="#icon-check"></use></svg></div>
         <div class="jm-label">Foundation</div>
@@ -838,15 +813,6 @@
 </footer>
 
 <script>
-  // hide preloader
-  const preloader = document.getElementById('preloader');
-  if(preloader){
-    window.addEventListener('load', () => {
-      preloader.classList.add('is-hidden');
-      setTimeout(() => preloader.remove(), 600);
-    });
-  }
-
   // top scroll progress
   const topProgress = document.getElementById('topProgress');
   function updateProgress(){
@@ -953,6 +919,11 @@
     entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('is-visible'); } });
   }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
   reveals.forEach(el => revealObserver.observe(el));
+
+  // fallback: ensure reveal elements become visible after 1.5s if observer missed them
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+  }, 1500);
 
   // counter animation
   function animateCounters(){
