@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RealLearn — The World Is Your Textbook</title>
+<meta name="description" content="RealLearn turns any question into a structured, quiz-verified, three-part lesson — grounded in today's real world. Live on Product Hunt today.">
+<meta property="og:title" content="RealLearn — The World Is Your Textbook">
+<meta property="og:description" content="Turn any question into a real lesson, not a one-line answer. We're live on Product Hunt today.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -76,6 +81,50 @@
   .top-progress{
     position:fixed; top:0; left:0; height:3px; width:0%;
     background:var(--glow); z-index:60; transition:width 80ms linear;
+  }
+
+  /* ---------- launch day banner ---------- */
+  .launch-banner{
+    background:var(--glow);
+    background-size:220% 220%;
+    animation:launchShift 8s ease infinite;
+    position:relative; z-index:56;
+  }
+  @keyframes launchShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  .launch-banner-inner{
+    display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
+    padding:11px 28px; text-align:center;
+  }
+  .launch-live{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:#0D0A20; white-space:nowrap;
+  }
+  .live-dot{
+    width:7px; height:7px; border-radius:50%; background:#0D0A20; flex:none;
+    animation:liveDotPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes liveDotPulse{
+    0%{box-shadow:0 0 0 0 rgba(13,10,32,0.45);}
+    70%{box-shadow:0 0 0 7px rgba(13,10,32,0);}
+    100%{box-shadow:0 0 0 0 rgba(13,10,32,0);}
+  }
+  .launch-copy{
+    font-family:var(--body); font-weight:600; font-size:13.5px; color:#0D0A20;
+  }
+  .launch-badge-link{
+    display:flex; line-height:0; transition:transform .2s ease, filter .2s ease;
+    filter:drop-shadow(0 3px 10px rgba(13,10,32,0.25));
+  }
+  .launch-badge-link:hover{transform:translateY(-2px);}
+  .launch-badge-link img{display:block; height:38px; width:auto; border-radius:6px;}
+  @media (max-width:700px){
+    .launch-banner-inner{padding:12px 20px;}
+    .launch-badge-link img{height:32px;}
   }
 
   /* ---------- journey rail (desktop) ---------- */
@@ -342,6 +391,17 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="top-progress" id="topProgress"></div>
 
+<!-- launch day banner -->
+<div class="launch-banner">
+  <div class="container launch-banner-inner">
+    <span class="launch-live"><span class="live-dot" aria-hidden="true"></span>Live today</span>
+    <span class="launch-copy">RealLearn just launched on Product Hunt — come say hi and drop an upvote 🚀</span>
+    <a class="launch-badge-link" href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-reallearn-the-world-is-your-textbook" target="_blank" rel="noopener noreferrer">
+      <img alt="RealLearn — The World Is Your Textbook - Turn any question into a real lesson, not a one-line answer | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1188221&amp;theme=light&amp;t=1783332677290">
+    </a>
+  </div>
+</div>
+
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute">
   <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -375,12 +435,13 @@
 
 <header class="hero">
   <div class="container">
-    <div class="hero-eyebrow">Built for the <strong>for students </strong>
+    <div class="hero-eyebrow">🚀 Launching today · Built for <strong>students everywhere</strong></div>
     <h1>The world is your <em>textbook.</em></h1>
     <p class="hero-sub">RealLearn turns a single question into a structured, three-part lesson — quiz-verified at every step, calibrated to your level, and grounded in what's happening in the world today. Not a one-line answer. A journey.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="https://reallearn.site/" target="_blank" rel="noopener">Try RealLearn →</a>
       <a class="btn btn-ghost" href="https://youtu.be/zehBGs-xBC0" target="_blank" rel="noopener">Watch the demo</a>
+      <a class="link-plain" href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook" target="_blank" rel="noopener">We're live on Product Hunt →</a>
       <a class="link-plain" href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161" target="_blank" rel="noopener">Read the Kaggle write-up →</a>
     </div>
 
@@ -723,6 +784,9 @@
 <footer>
   <div class="container">
     <p class="tagline">"RealLearn — because the world is your textbook, and every question deserves a real lesson."</p>
+    <a class="launch-badge-link" style="display:inline-flex; margin:0 auto 22px; filter:none;" href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-reallearn-the-world-is-your-textbook" target="_blank" rel="noopener noreferrer">
+      <img alt="RealLearn — The World Is Your Textbook - Turn any question into a real lesson, not a one-line answer | Product Hunt" width="250" height="54" style="height:44px; width:auto;" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1188221&amp;theme=light&amp;t=1783332677290">
+    </a>
     <p class="fine">GEMMA 4 GOOD HACKATHON · KAGGLE · 2026</p>
   </div>
 </footer>
