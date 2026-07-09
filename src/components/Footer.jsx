@@ -8,13 +8,26 @@ export default function Footer() {
           “The world is your textbook. RealLearn just helps you read it.”
         </Reveal>
 
-        <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4" style={{ marginBottom: 40 }}>
+        <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4" style={{ marginBottom: 24 }}>
           <a className="btn" href="#try">
             Try a lesson
             <span aria-hidden="true">→</span>
           </a>
           <a className="btn btn-ghost" href="#top">
             Back to top
+          </a>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <a
+            className="font-mono text-[12px] tracking-[0.08em] uppercase inline-flex items-center gap-2"
+            style={{ color: 'var(--accent)', textDecoration: 'none', border: '1.5px solid var(--accent)', borderRadius: 100, padding: '9px 16px', transition: 'transform .16s ease, box-shadow .16s ease' }}
+            href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span aria-hidden="true">🔥</span> Now on Product Hunt
+            <span aria-hidden="true">→</span>
           </a>
         </Reveal>
 
@@ -27,7 +40,7 @@ export default function Footer() {
           <span>Paper · Night · Twilight</span>
         </div>
         <p className="font-mono text-[11px]" style={{ color: 'var(--ink-faint)', marginTop: 14 }}>
-          © {new Date().getFullYear()} RealLearn. A demo landing page.
+          © {new Date().getFullYear()} RealLearn. Originally built for the Gemma 4 Good Hackathon.
         </p>
       </div>
     </footer>
