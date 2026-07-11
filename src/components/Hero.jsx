@@ -23,9 +23,12 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={0.2} className="flex flex-wrap items-center gap-4">
-              <a className="btn" href="#try">
-                Try a lesson
+              <a className="btn" href="https://reallearn.site" target="_blank" rel="noopener noreferrer">
+                Open RealLearn
                 <span aria-hidden="true">→</span>
+              </a>
+              <a className="btn btn-ghost" href="#try">
+                Try a lesson here
               </a>
               <a className="btn btn-ghost" href="#method">
                 See the method
