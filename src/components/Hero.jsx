@@ -12,11 +12,8 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="font-display" style={{ fontSize: 'clamp(40px, 7vw, 76px)', color: 'var(--ink)' }}>
-                You consumed an
-                <br />
-                answer. You didn&rsquo;t
-                <br />
+              <h1 className="font-display" style={{ fontSize: 'clamp(38px, 8.4vw, 76px)', color: 'var(--ink)', maxWidth: '13ch' }}>
+                You consumed an answer. You didn&rsquo;t{' '}
                 <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>learn anything.</span>
               </h1>
             </Reveal>
