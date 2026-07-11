@@ -76,16 +76,17 @@ export default function Demo() {
           lead="Generate a part, answer its quiz, and feel the gate. Right answers pulse. Wrong answers shake. Nothing unlocks until you’ve earned it."
         />
 
-        <Reveal className="mx-auto" style={{ maxWidth: 560 }}>
-          <article className="card card-accent" style={{ minHeight: 320 }}>
+        <Reveal className="mx-auto quiz-wrap" style={{ maxWidth: 560 }}>
+          <div className="quiz-glow" aria-hidden="true" />
+          <article className="card card-accent quiz-card">
             <span className="fold-line" />
 
             {phase === 'idle' && (
-              <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: 268, gap: 18 }}>
+              <div className="flex flex-col items-center justify-center text-center quiz-phase" style={{ gap: 18 }}>
                 <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)' }}>
                   Part 01 · Foundation
                 </span>
-                <h3 className="font-display" style={{ fontSize: 24, color: 'var(--ink)', maxWidth: '18ch' }}>
+                <h3 className="font-display" style={{ fontSize: 'clamp(20px,5vw,24px)', color: 'var(--ink)', maxWidth: '18ch' }}>
                   Ready when you are.
                 </h3>
                 <p className="font-display italic" style={{ color: 'var(--ink-dim)', fontSize: 15, maxWidth: '34ch' }}>
@@ -99,7 +100,7 @@ export default function Demo() {
             )}
 
             {phase === 'loading' && (
-              <div className="flex items-center justify-center" style={{ minHeight: 268 }}>
+              <div className="flex items-center justify-center quiz-phase">
                 <GlowLoader label="Composing your lesson…" />
               </div>
             )}
@@ -115,7 +116,7 @@ export default function Demo() {
                   </span>
                 </div>
 
-                <p className="font-display" style={{ fontSize: 18.5, color: 'var(--ink)', lineHeight: 1.45, marginBottom: 18 }}>
+                <p className="font-display" style={{ fontSize: 'clamp(16.5px,4.4vw,18.5px)', color: 'var(--ink)', lineHeight: 1.45, marginBottom: 18 }}>
                   {q.q}
                 </p>
 
@@ -154,7 +155,7 @@ export default function Demo() {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between" style={{ marginTop: 6 }}>
+                <div className="quiz-footer" style={{ marginTop: 6 }}>
                   {solved ? (
                     <button className="btn btn-ghost" type="button" onClick={next}>
                       Next question
@@ -166,7 +167,7 @@ export default function Demo() {
                     </span>
                   )}
                   <button
-                    className="font-mono text-[11px] underline tracking-[0.06em]"
+                    className="font-mono text-[11px] underline tracking-[0.06em] quiz-regenerate"
                     style={{ color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                     type="button"
                     onClick={generate}
