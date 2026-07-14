@@ -12,6 +12,7 @@ const LINKS = [
   { href: '#method', label: 'Method' },
   { href: '#how', label: 'How it works' },
   { href: '#try', label: 'Try it' },
+  { href: '#rewards', label: 'Rewards' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
@@ -50,31 +51,30 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 86%, transparent)', backdropFilter: 'blur(8px)' }}>
-      <div className="container flex items-center justify-between" style={{ height: 64 }}>
+      <div className="container flex items-center justify-between" style={{ height: 66 }}>
         <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)}>
           <span
             aria-hidden="true"
             className="grid place-items-center flex-none"
             style={{
-              width: 34,
-              height: 34,
-              border: '1.5px solid var(--accent)',
-              borderRadius: 4,
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: 'var(--accent)',
-              background: 'var(--bg-2)',
-              boxShadow: '3px 3px 0 0 var(--shadow-a)',
+              width: 38,
+              height: 38,
+              border: '2px solid var(--shadow-c)',
+              borderRadius: 12,
+              fontSize: 19,
+              background: 'var(--glow)',
+              boxShadow: '3px 3px 0 0 var(--shadow-c)',
+              transform: 'rotate(-4deg)',
             }}
           >
-            R
+            📖
           </span>
           <span className="leading-tight">
             <span className="block font-display text-[19px]" style={{ color: 'var(--ink)' }}>
               RealLearn
             </span>
-            <span className="hidden sm:block font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-              A Textbook for the World
+            <span className="hidden sm:block font-hand text-[15px]" style={{ color: 'var(--accent)', lineHeight: 1 }}>
+              the world is your textbook ✨
             </span>
           </span>
         </a>

@@ -1,43 +1,60 @@
 import Reveal from './Reveal'
-import LessonStack from './LessonStack'
+import Book3D from './Book3D'
+
+const STATS = [
+  { e: '🌍', t: '12 languages' },
+  { e: '🎯', t: '3 levels' },
+  { e: '🏆', t: '17 badges' },
+  { e: '📰', t: 'Live news inside' },
+  { e: '🎨', t: '3 themes' },
+]
 
 export default function Hero() {
   return (
-    <section id="top" className="relative" style={{ padding: 'clamp(64px, 9vw, 116px) 0 clamp(56px,7vw,96px)' }}>
+    <section id="top" className="relative" style={{ padding: 'clamp(56px, 8vw, 104px) 0 clamp(64px,8vw,110px)' }}>
       <div className="container">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <Reveal as="p" className="marker" style={{ marginBottom: 26 }}>
-              RealLearn · Vol. 01
+            <Reveal style={{ marginBottom: 26 }}>
+              <span className="sticker">✨ RealLearn · Vol. 01</span>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h1 className="font-display" style={{ fontSize: 'clamp(38px, 8.4vw, 76px)', color: 'var(--ink)', maxWidth: '13ch' }}>
-                You consumed an answer. You didn&rsquo;t{' '}
-                <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>learn anything.</span>
+              <h1 className="font-display" style={{ fontSize: 'clamp(38px, 8vw, 72px)', color: 'var(--ink)', maxWidth: '14ch' }}>
+                Don&rsquo;t just get answers.{' '}
+                <span className="hl-marker" style={{ fontStyle: 'italic', color: 'var(--accent)' }}>
+                  Actually learn.
+                </span>
               </h1>
             </Reveal>
 
-            <Reveal delay={0.14} as="p" className="font-display" style={{ fontSize: 'clamp(18px,2vw,22px)', color: 'var(--ink-dim)', maxWidth: '34ch', margin: '26px 0 34px', lineHeight: 1.45 }}>
-              RealLearn turns any question into a structured, three-part lesson &mdash; and proves it stuck before it lets you move on.
+            <Reveal delay={0.14} as="p" className="font-display" style={{ fontSize: 'clamp(18px,2vw,22px)', color: 'var(--ink-dim)', maxWidth: '36ch', margin: '24px 0 30px', lineHeight: 1.45 }}>
+              RealLearn turns any question into a cute, structured, three-part
+              adventure — Foundation → Mechanism → Real World — with quizzes,
+              XP, and streaks that prove it stuck. 🧠✨
             </Reveal>
 
-            <Reveal delay={0.2} className="flex flex-wrap items-center gap-4">
+            <Reveal delay={0.2} className="flex flex-wrap items-center gap-4" style={{ marginBottom: 30 }}>
               <a className="btn" href="https://reallearn.site" target="_blank" rel="noopener noreferrer">
-                Open RealLearn
-                <span aria-hidden="true">→</span>
+                Start learning — it&rsquo;s fun 🚀
               </a>
               <a className="btn btn-ghost" href="#try">
-                Try a lesson here
+                Try a mini lesson 🎯
               </a>
-              <a className="btn btn-ghost" href="#method">
-                See the method
-              </a>
+            </Reveal>
+
+            <Reveal delay={0.26} className="flex flex-wrap items-center gap-3">
+              {STATS.map((s) => (
+                <span key={s.t} className="chip">
+                  <span aria-hidden="true">{s.e}</span>
+                  {s.t}
+                </span>
+              ))}
             </Reveal>
           </div>
 
-          <Reveal delay={0.12} className="flex justify-center lg:justify-end">
-            <LessonStack />
+          <Reveal delay={0.12}>
+            <Book3D />
           </Reveal>
         </div>
       </div>
