@@ -4,7 +4,7 @@ import SectionHeader from './SectionHeader'
 const FEATURES = [
   { n: '01', e: '📚', t: 'Three-part spine', d: 'Foundation, Mechanism, Real World — every single time.' },
   { n: '02', e: '🔐', t: 'Quiz-gated progression', d: 'Two questions, 100% to advance. No skipping ahead.' },
-  { n: '03', e: '🌏', t: 'Learn in your language', d: 'Eight languages, generated natively — never translated.' },
+  { n: '03', e: '🌏', t: 'Learn in your language', d: 'Twelve Indian languages, generated natively — never translated.' },
   { n: '04', e: '🎚️', t: 'Adaptive difficulty', d: 'Class 6–8 through College / Advanced, recalibrated.' },
   { n: '05', e: '📰', t: 'Grounded in today', d: 'Live news woven into Part 3 before a word is written.' },
   { n: '06', e: '🌟', t: 'Calm, glowing loaders', d: 'No spinners, no dead air while it composes.' },

@@ -2,7 +2,7 @@ import Reveal from './Reveal'
 import Book3D from './Book3D'
 
 const STATS = [
-  { e: '🌍', t: '8 languages' },
+  { e: '🌍', t: '12 languages' },
   { e: '🎯', t: '3 levels' },
   { e: '🏆', t: '17 badges' },
   { e: '📰', t: 'Live news inside' },

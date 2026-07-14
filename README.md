@@ -28,7 +28,7 @@ zero extra dependencies.
 - **Micro-interactions**: correct answers pulse **and burst confetti**, wrong
   answers shake, gated unlock, flickering streak flame, animated XP bar, and a
   calm breathing glowing loader (no spinner) during the "generate" wait.
-- **Marquee ticker** of the 11 subjects and 8 languages RealLearn covers.
+- **Marquee ticker** of the 11 subjects and 12 Indian languages RealLearn covers.
 - **Mobile friendly**: fluid clamp() type, wrap-friendly chips/CTAs, hamburger
   slide-down menu, a scaled-down 3D book, and ≥44px touch targets.
 - **Accessible**: skip link, visible focus states, semantic landmarks,

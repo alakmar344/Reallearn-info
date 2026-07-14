@@ -12,7 +12,7 @@ const CAPS = [
     n: '02',
     e: '🎚️',
     title: 'Calibrated to exactly you',
-    body: 'Pick a level (Class 6–8, 9–10, or College) and one of 8 languages. Vocabulary, examples, and rigor reshape themselves so the lesson lands where you are.',
+    body: 'Pick a level (Class 6–8, 9–10, or College) and one of 12 Indian languages. Vocabulary, examples, and rigor reshape themselves so the lesson lands where you are.',
   },
   {
     n: '03',

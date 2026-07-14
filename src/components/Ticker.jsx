@@ -11,6 +11,7 @@ const ITEMS = [
   { e: '🌱', t: 'Environmental Science' },
   { e: '🌍', t: 'English · हिन्दी · ગુજરાતી · தமிழ்' },
   { e: '🗣️', t: 'বাংলা · मराठी · తెలుగు · ಕನ್ನಡ' },
+  { e: '🪷', t: 'മലയാളം · ਪੰਜਾਬੀ · ଓଡ଼ିଆ · অসমীয়া' },
 ]
 
 export default function Ticker() {
