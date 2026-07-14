@@ -17,24 +17,46 @@ function GlowLoader({ label }) {
   )
 }
 
+const CONFETTI = Array.from({ length: 14 }, (_, i) => {
+  const angle = (i / 14) * Math.PI * 2
+  const dist = 70 + (i % 3) * 26
+  return {
+    tx: `${Math.round(Math.cos(angle) * dist)}px`,
+    ty: `${Math.round(Math.sin(angle) * dist - 40)}px`,
+    rot: `${120 + i * 40}deg`,
+    c: `var(--pop-${(i % 4) + 1})`,
+    cd: `${(i % 5) * 0.03}s`,
+  }
+})
+
+function ConfettiBurst() {
+  return (
+    <span className="confetti-pop" aria-hidden="true">
+      {CONFETTI.map((p, i) => (
+        <i key={i} style={{ '--tx': p.tx, '--ty': p.ty, '--rot': p.rot, '--c': p.c, '--cd': p.cd }} />
+      ))}
+    </span>
+  )
+}
+
 const QUESTIONS = [
   {
     q: 'In photosynthesis, which gas do plants absorb from the air?',
     opts: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'],
     correct: 1,
-    explain: 'Plants take in carbon dioxide and, with light, turn it into sugar and oxygen. Get the input and output the right way round and the whole idea clicks.',
+    explain: 'Plants take in carbon dioxide and, with light, turn it into sugar and oxygen. Get the input and output the right way round and the whole idea clicks. 🌿',
   },
   {
     q: 'A “control group” in an experiment exists mainly to…',
     opts: ['Prove the hypothesis true', 'Give a baseline to compare against', 'Make the study longer', 'Replace the need for math'],
     correct: 1,
-    explain: 'The control is the unchanged baseline. Everything interesting is measured as a difference from it — without it, you can’t tell cause from coincidence.',
+    explain: 'The control is the unchanged baseline. Everything interesting is measured as a difference from it — without it, you can’t tell cause from coincidence. 🧪',
   },
   {
     q: 'Why does compounding matter more than the interest rate alone?',
     opts: ['It lowers risk to zero', 'Gains build on prior gains over time', 'It removes taxes', 'It guarantees returns'],
     correct: 1,
-    explain: 'Compounding is returns earning returns. Given enough time, the curve bends up on its own — which is why starting early beats starting big.',
+    explain: 'Compounding is returns earning returns. Given enough time, the curve bends up on its own — which is why starting early beats starting big. 📈',
   },
 ]
 
@@ -72,19 +94,19 @@ export default function Demo() {
         <SectionHeader
           num="04"
           kicker="Try It"
-          title="A lesson, in miniature"
-          lead="Generate a part, answer its quiz, and feel the gate. Right answers pulse. Wrong answers shake. Nothing unlocks until you’ve earned it."
+          title="A lesson, in miniature 🎯"
+          lead="Generate a part, answer its quiz, and feel the gate. Right answers pulse (and rain confetti). Wrong answers shake. Nothing unlocks until you’ve earned it."
         />
 
         <Reveal className="mx-auto quiz-wrap" style={{ maxWidth: 560 }}>
           <div className="quiz-glow" aria-hidden="true" />
           <article className="card card-accent quiz-card">
-            <span className="fold-line" />
+            {phase === 'quiz' && solved && <ConfettiBurst key={`${qi}-${picked}`} />}
 
             {phase === 'idle' && (
               <div className="flex flex-col items-center justify-center text-center quiz-phase" style={{ gap: 18 }}>
-                <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-                  Part 01 · Foundation
+                <span className="sticker sticker-4" style={{ fontSize: 12 }}>
+                  Part 01 · Foundation 🌱
                 </span>
                 <h3 className="font-display" style={{ fontSize: 'clamp(20px,5vw,24px)', color: 'var(--ink)', maxWidth: '18ch' }}>
                   Ready when you are.
@@ -93,8 +115,7 @@ export default function Demo() {
                   Hit generate and watch a lesson part compose itself.
                 </p>
                 <button className="btn" type="button" onClick={generate}>
-                  Generate a lesson
-                  <span aria-hidden="true">→</span>
+                  Generate a lesson ✨
                 </button>
               </div>
             )}
@@ -150,7 +171,7 @@ export default function Demo() {
                         lineHeight: 1.5,
                       }}
                     >
-                      {solved ? q.explain : 'Not quite — read the part again and try once more.'}
+                      {solved ? q.explain : 'Not quite — read the part again and try once more. You’ve got this! 💪'}
                     </p>
                   )}
                 </div>
@@ -158,12 +179,11 @@ export default function Demo() {
                 <div className="quiz-footer" style={{ marginTop: 6 }}>
                   {solved ? (
                     <button className="btn btn-ghost" type="button" onClick={next}>
-                      Next question
-                      <span aria-hidden="true">→</span>
+                      Next question →
                     </button>
                   ) : (
                     <span className="font-mono text-[11px] tracking-[0.1em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-                      {tries > 0 ? 'Locked until 100%' : 'Score 100% to unlock'}
+                      {tries > 0 ? '🔒 Locked until 100%' : 'Score 100% to unlock'}
                     </span>
                   )}
                   <button

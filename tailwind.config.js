@@ -9,6 +9,7 @@ export default {
         display: ['Fraunces', 'Georgia', 'serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        hand: ['Caveat', '"Comic Sans MS"', 'cursive'],
       },
     },
   },
