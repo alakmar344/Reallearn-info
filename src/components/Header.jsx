@@ -50,8 +50,8 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 86%, transparent)', backdropFilter: 'blur(8px)' }}>
-      <div className="container flex items-center justify-between" style={{ height: 66 }}>
+    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-glass)', backdropFilter: 'saturate(1.8) blur(24px)', WebkitBackdropFilter: 'saturate(1.8) blur(24px)' }}>
+      <div className="container flex items-center justify-between" style={{ height: 64 }}>
         <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)}>
           <span
             aria-hidden="true"
@@ -59,12 +59,10 @@ export default function Header() {
             style={{
               width: 38,
               height: 38,
-              border: '2px solid var(--shadow-c)',
               borderRadius: 12,
               fontSize: 19,
-              background: 'var(--glow)',
-              boxShadow: '3px 3px 0 0 var(--shadow-c)',
-              transform: 'rotate(-4deg)',
+              background: 'var(--accent)',
+              boxShadow: 'var(--elev-1)',
             }}
           >
             📖
@@ -73,8 +71,8 @@ export default function Header() {
             <span className="block font-display text-[19px]" style={{ color: 'var(--ink)' }}>
               RealLearn
             </span>
-            <span className="hidden sm:block font-hand text-[15px]" style={{ color: 'var(--accent)', lineHeight: 1 }}>
-              the world is your textbook ✨
+            <span className="hidden sm:block text-[15px]" style={{ color: 'var(--ink-faint)', lineHeight: 1.2, fontFamily: 'var(--font-body)', fontWeight: 500, letterSpacing: '-0.01em' }}>
+              the world is your textbook
             </span>
           </span>
         </a>

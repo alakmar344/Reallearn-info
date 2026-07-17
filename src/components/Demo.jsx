@@ -94,7 +94,7 @@ export default function Demo() {
         <SectionHeader
           num="04"
           kicker="Try It"
-          title="A lesson, in miniature 🎯"
+          title="A lesson, in miniature"
           lead="Generate a part, answer its quiz, and feel the gate. Right answers pulse (and rain confetti). Wrong answers shake. Nothing unlocks until you’ve earned it."
         />
 
@@ -105,10 +105,10 @@ export default function Demo() {
 
             {phase === 'idle' && (
               <div className="flex flex-col items-center justify-center text-center quiz-phase" style={{ gap: 18 }}>
-                <span className="sticker sticker-4" style={{ fontSize: 12 }}>
-                  Part 01 · Foundation 🌱
+                <span className="sticker sticker-4" style={{ fontSize: 12, color: 'var(--ink-faint)', background: 'var(--surface-glass)', borderColor: 'var(--line-strong)' }}>
+                  Part 01 · Foundation
                 </span>
-                <h3 className="font-display" style={{ fontSize: 'clamp(20px,5vw,24px)', color: 'var(--ink)', maxWidth: '18ch' }}>
+                <h3 className="font-display" style={{ fontSize: 'clamp(20px,5vw,24px)', color: 'var(--ink)', maxWidth: '18ch', letterSpacing: '-0.02em' }}>
                   Ready when you are.
                 </h3>
                 <p className="font-display italic" style={{ color: 'var(--ink-dim)', fontSize: 15, maxWidth: '34ch' }}>
@@ -129,7 +129,7 @@ export default function Demo() {
             {phase === 'quiz' && (
               <div>
                 <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--accent)' }}>
+                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)' }}>
                     Part 01 · Foundation
                   </span>
                   <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)' }}>
@@ -137,7 +137,7 @@ export default function Demo() {
                   </span>
                 </div>
 
-                <p className="font-display" style={{ fontSize: 'clamp(16.5px,4.4vw,18.5px)', color: 'var(--ink)', lineHeight: 1.45, marginBottom: 18 }}>
+                <p className="font-display" style={{ fontSize: 'clamp(16.5px,4.4vw,18.5px)', color: 'var(--ink)', lineHeight: 1.45, marginBottom: 18, letterSpacing: '-0.02em' }}>
                   {q.q}
                 </p>
 

@@ -11,8 +11,8 @@ export default function Footer() {
   return (
     <footer className="relative" style={{ padding: 'clamp(56px,7vw,90px) 0 56px', borderTop: '1px solid var(--line)' }}>
       <div className="container text-center">
-        <Reveal as="p" className="font-hand" style={{ fontSize: 'clamp(28px,4vw,40px)', color: 'var(--ink)', maxWidth: '22ch', margin: '0 auto 8px', lineHeight: 1.25, transform: 'rotate(-1deg)' }}>
-          “The world is your textbook. RealLearn just helps you read it.” 📖✨
+        <Reveal as="p" style={{ fontSize: 'clamp(28px,4vw,40px)', color: 'var(--ink)', maxWidth: '22ch', margin: '0 auto 8px', lineHeight: 1.25 }}>
+          "The world is your textbook. RealLearn just helps you read it."
         </Reveal>
 
         <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4" style={{ margin: '26px 0 26px' }}>

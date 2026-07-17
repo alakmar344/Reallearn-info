@@ -15,7 +15,7 @@ export default function ProblemSection() {
         <SectionHeader
           num="01"
           kicker="The Problem"
-          title="Why answers don’t teach 🤔"
+          title="Why answers don’t teach"
           lead="A search bar gives you ten links. A chatbot gives you a paragraph. Neither one leaves you able to do anything."
         />
 
@@ -24,10 +24,10 @@ export default function ProblemSection() {
             <Reveal key={p.tag} delay={i * 0.07}>
               <article className="card card-hover" style={{ height: '100%' }}>
                 <span className="emoji-bubble" aria-hidden="true" style={{ marginBottom: 14 }}>{p.e}</span>
-                <span className="font-mono text-[11px] tracking-[0.08em] uppercase block" style={{ color: 'var(--accent)' }}>
+                <span className="font-mono text-[11px] tracking-[0.08em] uppercase block" style={{ color: 'var(--ink-faint)' }}>
                   {p.tag}
                 </span>
-                <p className="font-display" style={{ fontSize: 15.5, color: 'var(--ink-dim)', marginTop: 10, lineHeight: 1.5 }}>
+                <p style={{ fontSize: 15.5, color: 'var(--ink-dim)', marginTop: 10, lineHeight: 1.6, letterSpacing: '-0.01em' }}>
                   {p.body}
                 </p>
               </article>
@@ -36,7 +36,7 @@ export default function ProblemSection() {
         </div>
 
         <Reveal delay={0.1} as="p" className="font-hand" style={{ fontSize: 'clamp(26px,3.4vw,36px)', color: 'var(--ink)', maxWidth: '24ch', lineHeight: 1.25, marginTop: 52, transform: 'rotate(-1deg)' }}>
-          “You consumed an answer. You didn&rsquo;t learn anything.” 😵‍💫
+          &ldquo;You consumed an answer. You didn&rsquo;t learn anything.&rdquo;
         </Reveal>
       </div>
     </section>

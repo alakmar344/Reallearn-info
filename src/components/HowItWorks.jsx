@@ -17,7 +17,7 @@ export default function HowItWorks() {
         <SectionHeader
           num="03"
           kicker="How It Works"
-          title="From question to understanding 🗺️"
+          title="From question to understanding"
           lead="Six moves, the same every time. The structure is the point — it’s what makes the result a lesson instead of a lookup."
         />
 
@@ -26,7 +26,7 @@ export default function HowItWorks() {
             <Reveal key={s.n} delay={i * 0.05}>
               <div className="flex gap-5" style={{ paddingBottom: i === STEPS.length - 1 ? 0 : 34, position: 'relative' }}>
                 {i !== STEPS.length - 1 && (
-                  <span aria-hidden="true" style={{ position: 'absolute', left: 24, top: 52, bottom: -4, width: 2, borderRadius: 2, background: 'var(--line-strong)' }} />
+                  <span aria-hidden="true" style={{ position: 'absolute', left: 24, top: 52, bottom: -4, width: 1.5, borderRadius: 1, background: 'var(--line-strong)' }} />
                 )}
                 <span
                   aria-hidden="true"
@@ -34,22 +34,21 @@ export default function HowItWorks() {
                   style={{
                     width: 50,
                     height: 50,
-                    borderRadius: 16,
-                    border: '2px solid var(--line-strong)',
+                    borderRadius: 14,
+                    border: '1px solid var(--line)',
                     fontSize: 22,
                     background: 'var(--bg-2)',
-                    boxShadow: '3px 3px 0 0 var(--shadow-a)',
-                    transform: `rotate(${i % 2 ? 3 : -3}deg)`,
+                    boxShadow: 'var(--elev-1)',
                   }}
                 >
                   {s.e}
                 </span>
                 <div className="pt-1">
-                  <h4 className="font-display" style={{ fontSize: 19, color: 'var(--ink)', marginBottom: 6 }}>
-                    <span className="font-mono text-[11px] tracking-[0.14em]" style={{ color: 'var(--accent)', marginRight: 10 }}>{s.n}</span>
+                  <h4 className="font-display" style={{ fontSize: 19, color: 'var(--ink)', marginBottom: 6, letterSpacing: '-0.02em' }}>
+                    <span className="font-mono text-[11px] tracking-[0.14em]" style={{ color: 'var(--ink-faint)', marginRight: 10 }}>{s.n}</span>
                     {s.title}
                   </h4>
-                  <p className="font-display" style={{ fontSize: 15.5, color: 'var(--ink-dim)', lineHeight: 1.55, maxWidth: '52ch' }}>
+                  <p style={{ fontSize: 15.5, color: 'var(--ink-dim)', lineHeight: 1.6, maxWidth: '52ch', letterSpacing: '-0.01em' }}>
                     {s.body}
                   </p>
                 </div>
