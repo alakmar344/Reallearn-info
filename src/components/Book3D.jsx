@@ -48,21 +48,6 @@ export default function Book3D() {
         </span>
       ))}
 
-      <span
-        className="sticker sticker-3 xp-toast"
-        style={{ top: '16%', left: '2%', '--dd': '0.9s' }}
-        aria-hidden="true"
-      >
-        +25 XP 🎉
-      </span>
-      <span
-        className="sticker sticker-2 xp-toast"
-        style={{ bottom: '10%', right: '-2%', transform: 'rotate(4deg)', '--dd': '2s' }}
-        aria-hidden="true"
-      >
-        Quiz passed! 💯
-      </span>
-
       <div className="book-tilt" ref={tiltRef}>
         <div className="book" role="img" aria-label="A floating 3D textbook with the RealLearn cover">
           <div className="book-face spine" aria-hidden="true">
@@ -77,7 +62,7 @@ export default function Book3D() {
               <span className="cover-emoji">📖</span>
               <span className="cover-title">RealLearn</span>
               <span className="cover-sub">The World Is Your Textbook</span>
-              <span className="cover-band">any question → a real lesson ✏️</span>
+              <span className="cover-band">any question → a real lesson</span>
             </div>
           </div>
         </div>

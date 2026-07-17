@@ -22,7 +22,7 @@ export default function Rewards() {
         <SectionHeader
           num="05"
           kicker="Make It a Habit"
-          title="Learning that feels like a game 🎮"
+          title="Learning that feels like a game"
           lead="XP, levels, streaks, badges — every quiz you pass builds a learner you can literally watch grow."
         />
 
@@ -32,9 +32,9 @@ export default function Rewards() {
             <article className="card card-hover" style={{ height: '100%' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
                 <span className="emoji-bubble" aria-hidden="true">⚡</span>
-                <span className="sticker sticker-3" style={{ fontSize: 12 }}>Level 4 · Thinker</span>
+                <span className="sticker" style={{ fontSize: 12, color: 'var(--ink-faint)', background: 'var(--surface-glass)', borderColor: 'var(--line-strong)' }}>Level 4 · Thinker</span>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
+              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 XP &amp; levels
               </h3>
               <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 16 }}>
@@ -44,8 +44,8 @@ export default function Rewards() {
               <div className="xp-track" role="img" aria-label="Example XP bar at 68 percent">
                 <div className="xp-fill" />
               </div>
-              <p className="font-hand" style={{ fontSize: 19, color: 'var(--accent)', marginTop: 8, textAlign: 'right' }}>
-                212 / 325 XP — almost there! ✏️
+              <p className="font-hand" style={{ fontSize: 19, color: 'var(--ink-dim)', marginTop: 8, textAlign: 'right' }}>
+                212 / 325 XP — almost there!
               </p>
               <div className="flex flex-wrap gap-2" style={{ marginTop: 6 }}>
                 {LEVELS.map((l, i) => (
@@ -60,14 +60,14 @@ export default function Rewards() {
             <article className="card card-hover" style={{ height: '100%' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
                 <span className="emoji-bubble" aria-hidden="true"><span className="flame">🔥</span></span>
-                <span className="sticker" style={{ fontSize: 12 }}>12-day streak!</span>
+                <span className="sticker" style={{ fontSize: 12, color: 'var(--ink-faint)', background: 'var(--surface-glass)', borderColor: 'var(--line-strong)' }}>12-day streak!</span>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
+              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 Streaks &amp; daily goals
               </h3>
               <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 18 }}>
                 Pick a daily goal (1, 3, 5, or 8 parts), watch the ring fill, and keep the flame
-                alive. Two streak freezes 🧊 protect you when life happens.
+                alive. Two streak freezes protect you when life happens.
               </p>
               <div className="flex items-center gap-5 flex-wrap">
                 <svg width="86" height="86" viewBox="0 0 86 86" role="img" aria-label="Daily goal ring, 2 of 3 parts done">
@@ -78,14 +78,14 @@ export default function Rewards() {
                     strokeDasharray="226" strokeDashoffset="75"
                     transform="rotate(-90 43 43)"
                   />
-                  <text x="43" y="48" textAnchor="middle" fontFamily="var(--font-display)" fontSize="17" fontWeight="700" fill="var(--ink)">2/3</text>
+                  <text x="43" y="48" textAnchor="middle" fontFamily="var(--font-display)" fontSize="17" fontWeight="600" fill="var(--ink)">2/3</text>
                 </svg>
                 <div>
                   <p className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)', marginBottom: 6 }}>
                     Today&rsquo;s goal
                   </p>
-                  <p className="font-display" style={{ fontSize: 16, color: 'var(--ink)' }}>
-                    One more part and the flame ignites 🔥
+                  <p className="font-display" style={{ fontSize: 16, color: 'var(--ink)', letterSpacing: '-0.01em' }}>
+                    One more part and the flame ignites
                   </p>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function Rewards() {
                   6 of 17 shown
                 </span>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
+              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 17 collectible badges
               </h3>
               <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 16 }}>
@@ -112,7 +112,7 @@ export default function Rewards() {
                   <div key={b.t} className="badge-tile" style={{ '--tier': b.tier }}>
                     <span className="badge-emoji" aria-hidden="true">{b.e}</span>
                     <span>
-                      <span className="block font-display" style={{ fontSize: 14.5, color: 'var(--ink)' }}>{b.t}</span>
+                      <span className="block font-display" style={{ fontSize: 14.5, color: 'var(--ink)', letterSpacing: '-0.01em' }}>{b.t}</span>
                       <span className="block" style={{ fontSize: 12, color: 'var(--ink-faint)' }}>{b.d}</span>
                     </span>
                   </div>
@@ -126,9 +126,9 @@ export default function Rewards() {
             <article className="card card-hover" style={{ height: '100%' }}>
               <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
                 <span className="emoji-bubble" aria-hidden="true">🗓️</span>
-                <span className="sticker sticker-4" style={{ fontSize: 12 }}>You, growing 🌱</span>
+                <span className="sticker" style={{ fontSize: 12, color: 'var(--ink-faint)', background: 'var(--surface-glass)', borderColor: 'var(--line-strong)' }}>You, growing</span>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
+              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8, letterSpacing: '-0.02em' }}>
                 Your learning heatmap
               </h3>
               <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 18 }}>

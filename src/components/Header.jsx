@@ -50,7 +50,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-glass)', backdropFilter: 'saturate(1.6) blur(20px)', WebkitBackdropFilter: 'saturate(1.6) blur(20px)' }}>
+    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-glass)', backdropFilter: 'saturate(1.8) blur(24px)', WebkitBackdropFilter: 'saturate(1.8) blur(24px)' }}>
       <div className="container flex items-center justify-between" style={{ height: 64 }}>
         <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)}>
           <span
@@ -61,7 +61,7 @@ export default function Header() {
               height: 38,
               borderRadius: 12,
               fontSize: 19,
-              background: 'var(--glow)',
+              background: 'var(--accent)',
               boxShadow: 'var(--elev-1)',
             }}
           >
@@ -71,8 +71,8 @@ export default function Header() {
             <span className="block font-display text-[19px]" style={{ color: 'var(--ink)' }}>
               RealLearn
             </span>
-            <span className="hidden sm:block font-hand text-[15px]" style={{ color: 'var(--accent)', lineHeight: 1 }}>
-              the world is your textbook ✨
+            <span className="hidden sm:block text-[15px]" style={{ color: 'var(--ink-faint)', lineHeight: 1.2, fontFamily: 'var(--font-body)', fontWeight: 500, letterSpacing: '-0.01em' }}>
+              the world is your textbook
             </span>
           </span>
         </a>

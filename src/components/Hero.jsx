@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal style={{ marginBottom: 26 }}>
-              <span className="sticker">✨ RealLearn · Vol. 01</span>
+              <span className="sticker" style={{ fontSize: 11 }}>RealLearn · Vol. 01</span>
             </Reveal>
 
             <Reveal delay={0.05}>

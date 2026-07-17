@@ -29,7 +29,7 @@ export default function FeatureTour() {
         <SectionHeader
           num="06"
           kicker="Feature Tour"
-          title="Eighteen things, one experience 🎒"
+          title="Eighteen things, one experience"
           lead="None of it is decoration. Each piece exists to keep the lesson honest, calibrated, and impossible to forget."
         />
 
@@ -43,7 +43,7 @@ export default function FeatureTour() {
                     {f.n}
                   </span>
                 </div>
-                <h4 className="font-display" style={{ fontSize: 17, color: 'var(--ink)', marginBottom: 6 }}>
+                <h4 className="font-display" style={{ fontSize: 17, color: 'var(--ink)', marginBottom: 6, letterSpacing: '-0.01em' }}>
                   {f.t}
                 </h4>
                 <p style={{ fontSize: 14, color: 'var(--ink-dim)', lineHeight: 1.55, letterSpacing: '-0.01em' }}>

@@ -35,7 +35,7 @@ export default function Features() {
         <SectionHeader
           num="02"
           kicker="The Method"
-          title="Four superpowers, one spine 🦸"
+          title="Four superpowers, one spine"
           lead="The product is a small set of ideas executed relentlessly. Each one is what separates a lesson from an answer."
         />
 
@@ -47,13 +47,13 @@ export default function Features() {
                 style={{ padding: '30px 0', borderTop: '1px solid var(--line)' }}
               >
                 <div className="flex items-start gap-4 md:block">
-                  <div className="font-display" style={{ fontSize: 'clamp(40px,5vw,58px)', color: 'var(--accent)', lineHeight: 1 }}>
+                  <div className="font-display" style={{ fontSize: 'clamp(40px,5vw,58px)', color: 'var(--ink)', lineHeight: 1, fontWeight: 600 }}>
                     {c.n}
                   </div>
-                  <span aria-hidden="true" style={{ fontSize: 30, display: 'inline-block', marginTop: 6 }}>{c.e}</span>
+                  <span aria-hidden="true" style={{ fontSize: 24, display: 'inline-block', marginTop: 6, opacity: 0.8 }}>{c.e}</span>
                 </div>
                 <div className="md:pt-2">
-                  <h3 className="font-display" style={{ fontSize: 'clamp(20px,2.4vw,26px)', color: 'var(--ink)', marginBottom: 10 }}>
+                  <h3 className="font-display" style={{ fontSize: 'clamp(20px,2.4vw,26px)', color: 'var(--ink)', marginBottom: 10, letterSpacing: '-0.02em' }}>
                     {c.title}
                   </h3>
                   <p style={{ fontSize: 16.5, color: 'var(--ink-dim)', lineHeight: 1.6, maxWidth: '60ch', letterSpacing: '-0.01em' }}>
