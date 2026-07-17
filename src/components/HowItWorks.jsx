@@ -35,11 +35,10 @@ export default function HowItWorks() {
                     width: 50,
                     height: 50,
                     borderRadius: 16,
-                    border: '2px solid var(--line-strong)',
+                    border: '1px solid var(--line)',
                     fontSize: 22,
                     background: 'var(--bg-2)',
-                    boxShadow: '3px 3px 0 0 var(--shadow-a)',
-                    transform: `rotate(${i % 2 ? 3 : -3}deg)`,
+                    boxShadow: 'var(--elev-1)',
                   }}
                 >
                   {s.e}
@@ -49,7 +48,7 @@ export default function HowItWorks() {
                     <span className="font-mono text-[11px] tracking-[0.14em]" style={{ color: 'var(--accent)', marginRight: 10 }}>{s.n}</span>
                     {s.title}
                   </h4>
-                  <p className="font-display" style={{ fontSize: 15.5, color: 'var(--ink-dim)', lineHeight: 1.55, maxWidth: '52ch' }}>
+                  <p style={{ fontSize: 15.5, color: 'var(--ink-dim)', lineHeight: 1.6, maxWidth: '52ch', letterSpacing: '-0.01em' }}>
                     {s.body}
                   </p>
                 </div>

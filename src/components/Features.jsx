@@ -56,7 +56,7 @@ export default function Features() {
                   <h3 className="font-display" style={{ fontSize: 'clamp(20px,2.4vw,26px)', color: 'var(--ink)', marginBottom: 10 }}>
                     {c.title}
                   </h3>
-                  <p className="font-display" style={{ fontSize: 16.5, color: 'var(--ink-dim)', lineHeight: 1.55, maxWidth: '60ch' }}>
+                  <p style={{ fontSize: 16.5, color: 'var(--ink-dim)', lineHeight: 1.6, maxWidth: '60ch', letterSpacing: '-0.01em' }}>
                     {c.body}
                   </p>
                 </div>

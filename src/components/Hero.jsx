@@ -28,10 +28,10 @@ export default function Hero() {
               </h1>
             </Reveal>
 
-            <Reveal delay={0.14} as="p" className="font-display" style={{ fontSize: 'clamp(18px,2vw,22px)', color: 'var(--ink-dim)', maxWidth: '36ch', margin: '24px 0 30px', lineHeight: 1.45 }}>
-              RealLearn turns any question into a cute, structured, three-part
-              adventure — Foundation → Mechanism → Real World — with quizzes,
-              XP, and streaks that prove it stuck. 🧠✨
+            <Reveal delay={0.14} as="p" style={{ fontSize: 'clamp(18px,2vw,22px)', color: 'var(--ink-dim)', maxWidth: '40ch', margin: '26px 0 32px', lineHeight: 1.5, letterSpacing: '-0.01em' }}>
+              RealLearn turns any question into a structured, three-part
+              journey — Foundation → Mechanism → Real World — with quizzes,
+              XP, and streaks that prove it stuck. 🧠
             </Reveal>
 
             <Reveal delay={0.2} className="flex flex-wrap items-center gap-4" style={{ marginBottom: 30 }}>

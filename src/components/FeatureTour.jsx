@@ -46,7 +46,7 @@ export default function FeatureTour() {
                 <h4 className="font-display" style={{ fontSize: 17, color: 'var(--ink)', marginBottom: 6 }}>
                   {f.t}
                 </h4>
-                <p className="font-display" style={{ fontSize: 14, color: 'var(--ink-dim)', lineHeight: 1.5 }}>
+                <p style={{ fontSize: 14, color: 'var(--ink-dim)', lineHeight: 1.55, letterSpacing: '-0.01em' }}>
                   {f.d}
                 </p>
               </article>

@@ -27,7 +27,7 @@ export default function ProblemSection() {
                 <span className="font-mono text-[11px] tracking-[0.08em] uppercase block" style={{ color: 'var(--accent)' }}>
                   {p.tag}
                 </span>
-                <p className="font-display" style={{ fontSize: 15.5, color: 'var(--ink-dim)', marginTop: 10, lineHeight: 1.5 }}>
+                <p style={{ fontSize: 15.5, color: 'var(--ink-dim)', marginTop: 10, lineHeight: 1.6, letterSpacing: '-0.01em' }}>
                   {p.body}
                 </p>
               </article>
