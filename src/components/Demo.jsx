@@ -89,8 +89,8 @@ export default function Demo() {
   }
 
   return (
-    <section id="try" className="relative" style={{ padding: 'clamp(64px,8vw,110px) 0', borderTop: '1px solid var(--line)' }}>
-      <div className="container">
+    <section id="try" className="relative section">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <SectionHeader
           num="04"
           kicker="Try It"

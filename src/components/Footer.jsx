@@ -9,8 +9,9 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="relative" style={{ padding: 'clamp(56px,7vw,90px) 0 56px', borderTop: '1px solid var(--line)' }}>
-      <div className="container text-center">
+    <footer className="relative section" style={{ paddingBottom: 56, backgroundColor: 'var(--bg-2)' }}>
+      <div className="asanoha" aria-hidden="true" style={{ opacity: 0.25 }} />
+      <div className="container text-center" style={{ position: 'relative', zIndex: 2 }}>
         <Reveal as="p" className="font-hand" style={{ fontSize: 'clamp(28px,4vw,40px)', color: 'var(--ink)', maxWidth: '22ch', margin: '0 auto 8px', lineHeight: 1.25, transform: 'rotate(-1deg)' }}>
           “The world is your textbook. RealLearn just helps you read it.” 📖✨
         </Reveal>
@@ -47,6 +48,11 @@ export default function Footer() {
         <p className="font-mono text-[11px]" style={{ color: 'var(--ink-faint)', marginTop: 14 }}>
           © {new Date().getFullYear()} RealLearn. Originally built for the Gemma 4 Good Hackathon. Made with 💛 for students everywhere.
         </p>
+
+        <div className="flex items-center justify-center gap-4" style={{ marginTop: 22 }}>
+          <span className="hanko" aria-hidden="true">学<br />習</span>
+          <span className="brush-rule" aria-hidden="true" style={{ width: 96 }} />
+        </div>
       </div>
     </footer>
   )

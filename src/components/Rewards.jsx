@@ -17,8 +17,8 @@ const CELLS = Array.from({ length: 84 }, (_, i) => ((i * 13 + 5) % 17) % 5)
 
 export default function Rewards() {
   return (
-    <section id="rewards" className="relative" style={{ padding: 'clamp(64px,8vw,110px) 0', borderTop: '1px solid var(--line)' }}>
-      <div className="container">
+    <section id="rewards" className="relative section">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <SectionHeader
           num="05"
           kicker="Make It a Habit"
