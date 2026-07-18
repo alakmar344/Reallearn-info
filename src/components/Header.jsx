@@ -52,7 +52,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 86%, transparent)', backdropFilter: 'blur(8px)' }}>
       <div className="container flex items-center justify-between" style={{ height: 66 }}>
-        <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)}>
+        <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)} style={{ gap: 12 }}>
           <span
             aria-hidden="true"
             className="grid place-items-center flex-none"
@@ -76,6 +76,9 @@ export default function Header() {
             <span className="hidden sm:block font-hand text-[15px]" style={{ color: 'var(--accent)', lineHeight: 1 }}>
               the world is your textbook ✨
             </span>
+          </span>
+          <span className="hanko hidden lg:grid" aria-hidden="true">
+            R<br />L
           </span>
         </a>
 

@@ -85,6 +85,10 @@ export default function Book3D() {
 
       <div className="book-shadow" aria-hidden="true" />
 
+      <span className="vertical-rule" aria-hidden="true" style={{ position: 'absolute', right: -6, top: '30%', opacity: 0.55 }}>
+        RealLearn
+      </span>
+
       <p
         className="font-hand book-note"
         style={{

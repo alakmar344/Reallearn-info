@@ -13,9 +13,20 @@
   --font-hand: 'Caveat', 'Comic Sans MS', cursive;
 
   --maxw: 1140px;
+  --measure: 62ch;    /* comfortable reading measure */
   --offset: 5px;      /* hard sticker shadow offset */
   --radius: 18px;
   --radius-lg: 24px;
+
+  /* Japanese design language — expressed in the visuals, not the copy.
+     "Ma" (間) = the meaningful pause / negative space. We lean on it hard. */
+  --ma: clamp(40px, 7vw, 96px);        /* generous sectional breathing room */
+  --ma-sm: clamp(20px, 3vw, 34px);     /* inner breathing room */
+  --ink-soft: color-mix(in srgb, var(--ink) 82%, var(--bg));
+  --sumi: var(--shadow-c);             /* sumi ink (墨) — the brush black */
+  --washi: color-mix(in srgb, var(--bg-2) 92%, var(--accent) 4%);
+  --enso: var(--accent);               /* ensō brush ring color */
+  --line-faint: color-mix(in srgb, var(--line) 55%, transparent);
 }
 
 /* ---------- PAPER (sunny notebook) ---------- */
@@ -119,13 +130,15 @@ body {
   background-size: 34px 34px;
   color: var(--ink);
   font-family: var(--font-body);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+p { max-width: var(--measure); }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
@@ -196,10 +209,8 @@ h1, h2, h3, h4 {
 .container {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 clamp(20px, 4vw, 32px);
 }
-@media (max-width: 640px) { .container { padding: 0 20px; } }
-@media (max-width: 420px) { .container { padding: 0 16px; } }
 
 /* ---------- skip link ---------- */
 .skip-link {
@@ -215,6 +226,131 @@ h1, h2, h3, h4 {
   z-index: 999;
 }
 .skip-link:focus { left: 16px; }
+
+/* ============================================================
+   Japanese design primitives (visual only — no copy)
+   enso · seigaiha · asanoha · washi · hanko · tate-chu-yoko
+   ============================================================ */
+
+/* enso — a hand-brushed circle (円相). The "seal of presence". */
+.enso {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid var(--enso);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  opacity: 0.16;
+  filter: blur(0.3px);
+  transform: rotate(-18deg);
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(circle at 40% 38%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 40% 38%, #000 70%, transparent 100%);
+}
+
+/* seigaiha — overlapping wave scales (青海波), the classic calm-water motif */
+.seigaiha {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 26%, var(--line-faint) 27%, var(--line-faint) 30%, transparent 31%),
+    radial-gradient(circle at 50% 100%, transparent 46%, var(--line-faint) 47%, var(--line-faint) 50%, transparent 51%);
+  background-size: 44px 22px;
+  background-position: 0 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%);
+  mask-image: linear-gradient(to bottom, transparent, #000 30%);
+}
+
+/* asanoha — hemp-leaf lattice (麻の葉), quiet geometry, drawn in ink */
+.asanoha {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  background-image:
+    linear-gradient(60deg, var(--line-faint) 1px, transparent 1px),
+    linear-gradient(-60deg, var(--line-faint) 1px, transparent 1px),
+    linear-gradient(0deg, var(--line-faint) 1px, transparent 1px);
+  background-size: 46px 26px;
+}
+
+/* washi — soft paper texture layered over the graph grid */
+.washi {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(120% 80% at 80% -10%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 60%),
+    radial-gradient(100% 70% at -10% 110%, color-mix(in srgb, var(--pop-3) 8%, transparent), transparent 55%);
+  opacity: 0.9;
+}
+
+/* hanko — a carved red "stamp" (印章). Mark of authenticity, all in code. */
+.hanko {
+  display: inline-grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 2.5px solid var(--accent);
+  border-radius: 10px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.05;
+  text-align: center;
+  letter-spacing: 0.02em;
+  box-shadow: 2px 2px 0 0 var(--shadow-a);
+  transform: rotate(-3deg);
+  opacity: 0.92;
+}
+
+/* tate-chu-yoko — small vertical caption (縦中横 feel); decorative, aria-hidden */
+.vertical-rule {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0.7;
+  user-select: none;
+}
+
+/* a single hairline that splits a section like a tatami seam */
+.seam {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--line-strong) 18%, var(--line-strong) 82%, transparent);
+  border: none;
+  margin: 0;
+}
+
+/* soft section wrapper that gives every block its "ma" */
+.section {
+  position: relative;
+  padding: var(--ma) 0;
+}
+.section + .section { border-top: 1px solid var(--line); }
+
+/* a brush stroke underline, the shuji (書) flourish */
+.brush-rule {
+  display: block;
+  width: 64px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--glow);
+  box-shadow: 2px 3px 0 0 var(--shadow-a);
+  transform: rotate(-1deg);
+  opacity: 0.92;
+}
 
 /* ============================================================
    Eyebrow markers

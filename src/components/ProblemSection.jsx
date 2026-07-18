@@ -10,8 +10,8 @@ const PROBLEMS = [
 
 export default function ProblemSection() {
   return (
-    <section id="problem" className="relative" style={{ padding: 'clamp(64px,8vw,110px) 0' }}>
-      <div className="container">
+    <section id="problem" className="relative section">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <SectionHeader
           num="01"
           kicker="The Problem"

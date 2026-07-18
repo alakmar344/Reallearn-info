@@ -19,6 +19,9 @@ export default function App() {
       <ProgressBar />
 
       <div className="ambient" aria-hidden="true" />
+      <div className="washi" aria-hidden="true" />
+      <div className="enso" aria-hidden="true" style={{ width: 'min(46vw, 520px)', height: 'min(46vw, 520px)', top: '-8vw', right: '-10vw' }} />
+      <div className="enso" aria-hidden="true" style={{ width: 'min(34vw, 380px)', height: 'min(34vw, 380px)', bottom: '6vh', left: '-9vw', transform: 'rotate(140deg)' }} />
       <div className="grain" aria-hidden="true" />
 
       <Header />

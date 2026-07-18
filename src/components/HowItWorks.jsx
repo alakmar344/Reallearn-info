@@ -12,8 +12,8 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="relative" style={{ padding: 'clamp(64px,8vw,110px) 0', borderTop: '1px solid var(--line)' }}>
-      <div className="container">
+    <section id="how" className="relative section">
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <SectionHeader
           num="03"
           kicker="How It Works"
