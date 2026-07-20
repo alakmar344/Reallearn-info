@@ -1,15 +1,13 @@
+/** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      maxWidth: {
-        prose: '68ch',
+      colors: {
+        primary: '#DEDBC8',
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        hand: ['Caveat', '"Comic Sans MS"', 'cursive'],
+        serif: ['"Instrument Serif"', 'serif'],
       },
     },
   },
