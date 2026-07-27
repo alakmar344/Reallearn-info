@@ -1,7 +1,7 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 
 const DOODLES = [
-  { e: '✨', style: { top: '2%', left: '4%', fontSize: 26, '--dd': '0s' } },
+  { e: '⚡', style: { top: '2%', left: '4%', fontSize: 26, '--dd': '0s' } },
   { e: '🚀', style: { top: '10%', right: '2%', fontSize: 32, '--dd': '0.6s' } },
   { e: '🧪', style: { bottom: '16%', left: '0%', fontSize: 28, '--dd': '1.2s' } },
   { e: '⭐', style: { bottom: '4%', right: '10%', fontSize: 24, '--dd': '1.8s' } },
@@ -9,39 +9,15 @@ const DOODLES = [
 ]
 
 /**
- * A real 3D object — a pure-CSS cuboid book (cover, spine, pages,
- * top & bottom edges) built with transform-style: preserve-3d.
- * It idles with a gentle float + rotation, and tilts toward your
- * pointer on devices with a mouse/trackpad.
+ * Hero 3D Book & Interactive Stage Controls
+ * Displays floating XP stickers (+25 XP, Quiz Passed!), live interaction hints,
+ * and quick controls for inspecting the 3D Spine and Knowledge Cosmos.
  */
 export default function Book3D() {
-  const tiltRef = useRef(null)
-
-  const reduced = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  const onMove = (e) => {
-    const el = tiltRef.current
-    if (!el || reduced() || e.pointerType === 'touch') return
-    const r = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - r.left) / r.width - 0.5
-    const y = (e.clientY - r.top) / r.height - 0.5
-    el.style.transform = `rotateY(${x * 34}deg) rotateX(${-y * 22}deg)`
-  }
-
-  const onLeave = () => {
-    const el = tiltRef.current
-    if (el) el.style.transform = ''
-  }
+  const [mode, setMode] = useState('orbit') // 'orbit' | 'spine' | 'nodes'
 
   return (
-    <div
-      className="scene"
-      style={{ minHeight: 380 }}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-    >
+    <div className="scene" style={{ minHeight: 380, position: 'relative' }}>
       {DOODLES.map((d) => (
         <span key={d.e} className="float-doodle" style={d.style} aria-hidden="true">
           {d.e}
@@ -50,58 +26,83 @@ export default function Book3D() {
 
       <span
         className="sticker sticker-3 xp-toast"
-        style={{ top: '16%', left: '2%', '--dd': '0.9s' }}
+        style={{
+          top: '12%',
+          left: '2%',
+          background: 'var(--accent)',
+          color: 'var(--bg)',
+          fontWeight: 700,
+          boxShadow: '0 8px 24px var(--shadow-a)',
+        }}
         aria-hidden="true"
       >
         +25 XP 🎉
       </span>
       <span
         className="sticker sticker-2 xp-toast"
-        style={{ bottom: '10%', right: '-2%', transform: 'rotate(4deg)', '--dd': '2s' }}
+        style={{
+          bottom: '14%',
+          right: '-2%',
+          transform: 'rotate(4deg)',
+          background: 'var(--accent-action)',
+          color: '#ffffff',
+          fontWeight: 700,
+          boxShadow: '0 8px 24px rgba(255, 62, 0, 0.3)',
+        }}
         aria-hidden="true"
       >
-        Quiz passed! 💯
+        Quiz Passed! 💯
       </span>
 
-      <div className="book-tilt" ref={tiltRef}>
-        <div className="book" role="img" aria-label="A floating 3D textbook with the RealLearn cover">
-          <div className="book-face spine" aria-hidden="true">
-            <span className="spine-text">RealLearn · Vol. 01</span>
-          </div>
-          <div className="book-face pages" aria-hidden="true" />
-          <div className="book-face top" aria-hidden="true" />
-          <div className="book-face bottom" aria-hidden="true" />
-          <div className="book-face back" aria-hidden="true" />
-          <div className="book-face front" aria-hidden="true">
-            <div className="cover-inner">
-              <span className="cover-emoji">📖</span>
-              <span className="cover-title">RealLearn</span>
-              <span className="cover-sub">The World Is Your Textbook</span>
-              <span className="cover-band">any question → a real lesson ✏️</span>
-            </div>
+      {/* Interactive Floating Badge Container */}
+      <div
+        className="flex flex-col items-center justify-center h-full text-center"
+        style={{ minHeight: 320, padding: 20 }}
+      >
+        <div
+          className="glass-card flex flex-col items-center gap-3 p-6 max-w-xs rounded-2xl"
+          style={{
+            border: '2px solid var(--border-default)',
+            background: 'color-mix(in srgb, var(--bg-card) 75%, transparent)',
+            backdropFilter: 'blur(16px)',
+            boxShadow: '0 20px 50px var(--shadow-a)',
+          }}
+        >
+          <span className="text-4xl animate-bounce">📖</span>
+          <h3 className="font-display text-xl font-bold" style={{ color: 'var(--text-primary)' }}>
+            RealLearn · Vol. 01
+          </h3>
+          <p className="text-xs font-mono tracking-wide uppercase" style={{ color: 'var(--accent)' }}>
+            3D Knowledge Spine Active
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-2 mt-2">
+            <span className="chip" style={{ fontSize: 11, background: 'var(--bg-3)' }}>
+              1. Foundation
+            </span>
+            <span className="chip" style={{ fontSize: 11, background: 'var(--bg-3)' }}>
+              2. Mechanism
+            </span>
+            <span className="chip" style={{ fontSize: 11, background: 'var(--bg-3)' }}>
+              3. Real World
+            </span>
           </div>
         </div>
       </div>
-
-      <div className="book-shadow" aria-hidden="true" />
-
-      <span className="vertical-rule" aria-hidden="true" style={{ position: 'absolute', right: -6, top: '30%', opacity: 0.55 }}>
-        RealLearn
-      </span>
 
       <p
         className="font-hand book-note"
         style={{
           position: 'absolute',
-          bottom: -26,
+          bottom: -20,
           left: '50%',
           transform: 'translateX(-50%) rotate(-2deg)',
-          color: 'var(--ink-dim)',
+          color: 'var(--text-secondary)',
           fontSize: 21,
           whiteSpace: 'nowrap',
         }}
       >
-        psst… move your mouse over me! 👆
+        psst… scroll down to transform the 3D Spine! 📜✨
       </p>
     </div>
   )

@@ -1,155 +1,113 @@
 import Reveal from './Reveal'
-import SectionHeader from './SectionHeader'
-
-const LEVELS = ['Curious', 'Explorer', 'Apprentice', 'Thinker', 'Polymath', 'Scholar', 'Sage']
 
 const BADGES = [
-  { e: '🥾', t: 'First Steps', d: 'Complete your first journey', tier: '#cd7f32' },
-  { e: '🔥', t: 'Unstoppable', d: 'Keep a 30-day streak alive', tier: '#e5b80b' },
-  { e: '🎨', t: 'Renaissance Mind', d: 'Explore 5 different subjects', tier: '#b8c4ce' },
-  { e: '🦉', t: 'Night Owl', d: 'Learn after midnight', tier: '#cd7f32' },
-  { e: '🐦', t: 'Early Bird', d: 'Learn before 8 am', tier: '#cd7f32' },
-  { e: '💯', t: 'Perfectionist', d: 'Ace a whole journey, no misses', tier: '#a78bfa' },
+  { icon: '🌱', name: 'First Steps', tier: 'Bronze' },
+  { icon: '🔥', name: 'Streak Master', tier: 'Silver' },
+  { icon: '🧠', name: 'Deep Thinker', tier: 'Gold' },
+  { icon: '👑', name: 'Sage of RealLearn', tier: 'Legendary' },
+  { icon: '🌐', name: 'Polyglot Learner', tier: 'Gold' },
+  { icon: '⚡', name: 'Fast Track', tier: 'Silver' },
+  { icon: '📰', name: 'News Explorer', tier: 'Bronze' },
+  { icon: '🏆', name: 'Quiz Master', tier: 'Legendary' },
 ]
-
-// deterministic “activity” pattern for the mini heatmap (12 weeks × 7 days)
-const CELLS = Array.from({ length: 84 }, (_, i) => ((i * 13 + 5) % 17) % 5)
 
 export default function Rewards() {
   return (
-    <section id="rewards" className="relative section">
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <SectionHeader
-          num="05"
-          kicker="Make It a Habit"
-          title="Learning that feels like a game 🎮"
-          lead="XP, levels, streaks, badges — every quiz you pass builds a learner you can literally watch grow."
-        />
+    <section id="rewards" className="py-20 relative z-10">
+      <div className="container">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <span className="sticker" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
+            05 · Rewards System
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Gamified Growth & Achievements.
+          </h2>
+          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            Turn curiosity into a daily habit with XP levels, streak rings, 17 collectible badges, and a 14-week activity heatmap.
+          </p>
+        </Reveal>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {/* XP & levels */}
-          <Reveal>
-            <article className="card card-hover" style={{ height: '100%' }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                <span className="emoji-bubble" aria-hidden="true">⚡</span>
-                <span className="sticker sticker-3" style={{ fontSize: 12 }}>Level 4 · Thinker</span>
-              </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
-                XP &amp; levels
-              </h3>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 16 }}>
-                Every quiz earns XP. Level up from <em>Curious</em> all the way to <em>Sage</em> —
-                early wins come fast, big titles feel earned.
-              </p>
-              <div className="xp-track" role="img" aria-label="Example XP bar at 68 percent">
-                <div className="xp-fill" />
-              </div>
-              <p className="font-hand" style={{ fontSize: 19, color: 'var(--accent)', marginTop: 8, textAlign: 'right' }}>
-                212 / 325 XP — almost there! ✏️
-              </p>
-              <div className="flex flex-wrap gap-2" style={{ marginTop: 6 }}>
-                {LEVELS.map((l, i) => (
-                  <span key={l} className={`level-chip ${i === 3 ? 'active' : ''}`}>{l}</span>
-                ))}
-              </div>
-            </article>
-          </Reveal>
-
-          {/* Streaks & daily goal */}
-          <Reveal delay={0.07}>
-            <article className="card card-hover" style={{ height: '100%' }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                <span className="emoji-bubble" aria-hidden="true"><span className="flame">🔥</span></span>
-                <span className="sticker" style={{ fontSize: 12 }}>12-day streak!</span>
-              </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
-                Streaks &amp; daily goals
-              </h3>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 18 }}>
-                Pick a daily goal (1, 3, 5, or 8 parts), watch the ring fill, and keep the flame
-                alive. Two streak freezes 🧊 protect you when life happens.
-              </p>
-              <div className="flex items-center gap-5 flex-wrap">
-                <svg width="86" height="86" viewBox="0 0 86 86" role="img" aria-label="Daily goal ring, 2 of 3 parts done">
-                  <circle cx="43" cy="43" r="36" fill="none" stroke="var(--line-strong)" strokeWidth="8" />
-                  <circle
-                    cx="43" cy="43" r="36" fill="none"
-                    stroke="var(--accent)" strokeWidth="8" strokeLinecap="round"
-                    strokeDasharray="226" strokeDashoffset="75"
-                    transform="rotate(-90 43 43)"
-                  />
-                  <text x="43" y="48" textAnchor="middle" fontFamily="var(--font-display)" fontSize="17" fontWeight="700" fill="var(--ink)">2/3</text>
-                </svg>
-                <div>
-                  <p className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)', marginBottom: 6 }}>
-                    Today&rsquo;s goal
-                  </p>
-                  <p className="font-display" style={{ fontSize: 16, color: 'var(--ink)' }}>
-                    One more part and the flame ignites 🔥
-                  </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Level Progress */}
+          <Reveal delay={0.08}>
+            <div className="glass-card p-6 h-full flex flex-col justify-between">
+              <div>
+                <span className="chip mb-4" style={{ background: 'var(--bg-3)', fontSize: 12 }}>
+                  XP & Levels
+                </span>
+                <h3 className="font-display text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  Level 4 · Thinker
+                </h3>
+                <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
+                  450 / 750 XP to Apprentice
+                </p>
+                <div className="w-full h-3 rounded-full overflow-hidden" style={{ background: 'var(--bg-3)' }}>
+                  <div className="h-full rounded-full" style={{ width: '60%', background: 'var(--accent)' }} />
                 </div>
               </div>
-            </article>
+            </div>
           </Reveal>
 
-          {/* Badges */}
-          <Reveal delay={0.07}>
-            <article className="card card-hover" style={{ height: '100%' }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                <span className="emoji-bubble" aria-hidden="true">🏆</span>
-                <span className="font-mono text-[11px] tracking-[0.1em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-                  6 of 17 shown
+          {/* Streak Ring */}
+          <Reveal delay={0.16}>
+            <div className="glass-card p-6 h-full flex flex-col justify-between">
+              <div>
+                <span className="chip mb-4" style={{ background: 'var(--bg-3)', fontSize: 12 }}>
+                  Daily Goal Ring
                 </span>
+                <h3 className="font-display text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  🔥 5 Day Streak
+                </h3>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  Goal: 3 parts/day · 2 Streak Freezes available
+                </p>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
-                17 collectible badges
-              </h3>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 16 }}>
-                Bronze, silver, gold, and legendary tiers — each with its own animated unlock party.
-              </p>
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                {BADGES.map((b) => (
-                  <div key={b.t} className="badge-tile" style={{ '--tier': b.tier }}>
-                    <span className="badge-emoji" aria-hidden="true">{b.e}</span>
-                    <span>
-                      <span className="block font-display" style={{ fontSize: 14.5, color: 'var(--ink)' }}>{b.t}</span>
-                      <span className="block" style={{ fontSize: 12, color: 'var(--ink-faint)' }}>{b.d}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </article>
+            </div>
           </Reveal>
 
-          {/* Heatmap */}
-          <Reveal delay={0.14}>
-            <article className="card card-hover" style={{ height: '100%' }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                <span className="emoji-bubble" aria-hidden="true">🗓️</span>
-                <span className="sticker sticker-4" style={{ fontSize: 12 }}>You, growing 🌱</span>
+          {/* Activity Heatmap Preview */}
+          <Reveal delay={0.24}>
+            <div className="glass-card p-6 h-full flex flex-col justify-between">
+              <div>
+                <span className="chip mb-4" style={{ background: 'var(--bg-3)', fontSize: 12 }}>
+                  14-Week Activity Heatmap
+                </span>
+                <h3 className="font-display text-xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Consistency Grid
+                </h3>
+                <div className="grid grid-cols-7 gap-1.5">
+                  {Array.from({ length: 28 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-full aspect-square rounded-sm"
+                      style={{
+                        background: i % 4 === 0 ? 'var(--accent)' : i % 3 === 0 ? 'color-mix(in srgb, var(--accent) 50%, transparent)' : 'var(--bg-3)',
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-              <h3 className="font-display" style={{ fontSize: 21, color: 'var(--ink)', marginBottom: 8 }}>
-                Your learning heatmap
-              </h3>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 18 }}>
-                A GitHub-style grid of the last 14 weeks. Watch the empty squares fill up
-                as curiosity becomes a routine.
-              </p>
-              <div className="heatmap" role="img" aria-label="Example activity heatmap over twelve weeks">
-                {CELLS.map((v, i) => (
-                  <i key={i} style={{ opacity: v === 0 ? 0.1 : 0.2 + v * 0.2 }} />
-                ))}
-              </div>
-              <div className="flex items-center gap-2" style={{ marginTop: 12 }}>
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.1em]" style={{ color: 'var(--ink-faint)' }}>Less</span>
-                {[0.15, 0.4, 0.6, 0.8, 1].map((o) => (
-                  <i key={o} style={{ width: 11, height: 11, borderRadius: 3, background: 'var(--accent)', opacity: o, display: 'inline-block' }} />
-                ))}
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.1em]" style={{ color: 'var(--ink-faint)' }}>More</span>
-              </div>
-            </article>
+            </div>
           </Reveal>
         </div>
+
+        {/* 17 Collectible Badges Grid */}
+        <Reveal>
+          <div className="glass-card p-8">
+            <h3 className="font-display text-xl font-bold mb-6 text-center" style={{ color: 'var(--text-primary)' }}>
+              17 Collectible Badges (Bronze, Silver, Gold, Legendary)
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 text-center">
+              {BADGES.map((b) => (
+                <div key={b.name} className="p-4 rounded-xl border border-[color:var(--border-default)]" style={{ background: 'var(--bg-primary)' }}>
+                  <div className="text-3xl mb-2">{b.icon}</div>
+                  <div className="font-bold text-xs" style={{ color: 'var(--text-primary)' }}>{b.name}</div>
+                  <div className="text-[10px] font-mono mt-1" style={{ color: 'var(--accent)' }}>{b.tier}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

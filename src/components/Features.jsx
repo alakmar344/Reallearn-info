@@ -1,63 +1,71 @@
 import Reveal from './Reveal'
-import SectionHeader from './SectionHeader'
 
-const CAPS = [
+const SUPERPOWERS = [
   {
-    n: '01',
-    e: '🧱',
-    title: 'Structured, every single time',
-    body: 'No matter the question, the lesson is built on the same three-part spine — Foundation, Mechanism, Real World. You always know what you’re building toward.',
+    num: '01',
+    title: 'Structured, Every Single Time',
+    desc: 'No matter the question, every lesson follows the exact same 3-part spine — Foundation → Mechanism → Real World. You always know what you are building toward.',
+    badge: '3-Part Spine',
   },
   {
-    n: '02',
-    e: '🎚️',
-    title: 'Calibrated to exactly you',
-    body: 'Pick a level (Class 6–8, 9–10, or College) and one of 12 Indian languages. Vocabulary, examples, and rigor reshape themselves so the lesson lands where you are.',
+    num: '02',
+    title: 'Calibrated to Exactly You',
+    desc: 'Pick your difficulty level (Class 6–8, Class 9–10, or College) and one of 12 Indian languages natively generated with Gemma 4.',
+    badge: 'Adaptive & Multilingual',
   },
   {
-    n: '03',
-    e: '🧠',
-    title: 'Active recall, not passive reading',
-    body: 'A short quiz gates every part. You can’t drift ahead until you’ve actually shown the idea stuck. Forgetting gets harder when you have to reach for it.',
+    num: '03',
+    title: 'Active Recall, Not Passive Reading',
+    desc: 'A short quiz gates every part. You cannot drift ahead until you have shown the idea stuck. Forgetting gets harder when you reach for it.',
+    badge: 'Quiz-Gated Progression',
   },
   {
-    n: '04',
-    e: '📰',
-    title: 'Grounded in what’s real',
-    body: 'Live, current events are woven into the final part, so theory meets names, dates, and numbers from the world today — not a textbook frozen in 2014.',
+    num: '04',
+    title: 'Grounded in What Is Real',
+    desc: 'Live news context is woven into Part 3 via Serper API before a word is written, so theory meets current names, dates, and numbers.',
+    badge: 'Live News Grounding',
   },
 ]
 
 export default function Features() {
   return (
-    <section id="method" className="relative section">
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <SectionHeader
-          num="02"
-          kicker="The Method"
-          title="Four superpowers, one spine 🦸"
-          lead="The product is a small set of ideas executed relentlessly. Each one is what separates a lesson from an answer."
-        />
+    <section id="method" className="py-20 relative z-10">
+      <div className="container">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <span className="sticker" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
+            02 · The Method
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Four Superpowers of RealLearn.
+          </h2>
+          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            Built from cognitive science & active recall principles to guarantee comprehension.
+          </p>
+        </Reveal>
 
-        <div className="flex flex-col">
-          {CAPS.map((c, i) => (
-            <Reveal key={c.n} delay={i * 0.06}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {SUPERPOWERS.map((s, i) => (
+            <Reveal key={s.num} delay={i * 0.1}>
               <div
-                className="grid gap-4 md:grid-cols-[120px_1fr]"
-                style={{ padding: '30px 0', borderTop: '1px solid var(--line)' }}
+                className="glass-card p-8 h-full flex flex-col justify-between"
+                style={{
+                  border: '1px solid var(--border-default)',
+                }}
               >
-                <div className="flex items-start gap-4 md:block">
-                  <div className="font-display" style={{ fontSize: 'clamp(40px,5vw,58px)', color: 'var(--accent)', lineHeight: 1 }}>
-                    {c.n}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-3xl font-extrabold" style={{ color: 'var(--accent)' }}>
+                      {s.num}
+                    </span>
+                    <span className="chip" style={{ background: 'var(--bg-3)', fontSize: 12 }}>
+                      {s.badge}
+                    </span>
                   </div>
-                  <span aria-hidden="true" style={{ fontSize: 30, display: 'inline-block', marginTop: 6 }}>{c.e}</span>
-                </div>
-                <div className="md:pt-2">
-                  <h3 className="font-display" style={{ fontSize: 'clamp(20px,2.4vw,26px)', color: 'var(--ink)', marginBottom: 10 }}>
-                    {c.title}
+                  <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                    {s.title}
                   </h3>
-                  <p className="font-display" style={{ fontSize: 16.5, color: 'var(--ink-dim)', lineHeight: 1.55, maxWidth: '60ch' }}>
-                    {c.body}
+                  <p className="leading-relaxed text-base" style={{ color: 'var(--text-secondary)' }}>
+                    {s.desc}
                   </p>
                 </div>
               </div>

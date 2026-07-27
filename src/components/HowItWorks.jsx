@@ -1,56 +1,79 @@
 import Reveal from './Reveal'
-import SectionHeader from './SectionHeader'
 
 const STEPS = [
-  { n: '01', e: '💬', title: 'Ask', body: 'Type any question, or tap the mic and speak it. The journey begins from wherever your curiosity actually is.' },
-  { n: '02', e: '🎛️', title: 'Personalize', body: 'Choose your level and language. The lesson is composed natively in that language — never translated after the fact.' },
-  { n: '03', e: '🪄', title: 'Watch it build', body: 'A calm, glowing loader holds the space while the lesson is composed. No silent timeouts, no cliffhanger.' },
-  { n: '04', e: '🌱', title: 'Learn Part 1 — Foundation', body: 'A beginner-friendly framing arrives, with real sources and a reading pace that respects your time.' },
-  { n: '05', e: '🔓', title: 'Prove it, then unlock', body: 'Score the part’s quiz to unlock the next. Wrong answers shake; right answers pulse. Then Mechanism opens.' },
-  { n: '06', e: '🎉', title: 'Complete, and keep going', body: 'Confetti, your score, key takeaways, and a shareable result card. Ask a follow-up and a fresh journey spins up.' },
+  {
+    step: '1',
+    emoji: '💬',
+    title: 'Ask Anything',
+    desc: 'Type any question or tap the mic button to speak your curiosity natively.',
+  },
+  {
+    step: '2',
+    emoji: '⚙️',
+    title: 'Personalize Level & Language',
+    desc: 'Select Class 6–8, 9–10, or College and pick from 12 Indian languages natively generated.',
+  },
+  {
+    step: '3',
+    emoji: '🎬',
+    title: 'Watch It Build',
+    desc: 'A calm, glowing loading cinematic holds space while Gemma 4 and Serper news compose your lesson.',
+  },
+  {
+    step: '4',
+    emoji: '📖',
+    title: 'Part 1: Foundation',
+    desc: 'Beginner-friendly framing arrives with real verifiable source links and a reading timer.',
+  },
+  {
+    step: '5',
+    emoji: '🎯',
+    title: 'Prove It, Then Unlock',
+    desc: 'Score 100% on Part 1 quiz to unlock Part 2 (Mechanism) and Part 3 (Real World).',
+  },
+  {
+    step: '6',
+    emoji: '🏆',
+    title: 'Complete & Earn XP',
+    desc: 'Celebratory confetti screen, score ring, key takeaways, share card, and XP level progress!',
+  },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="relative section">
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <SectionHeader
-          num="03"
-          kicker="How It Works"
-          title="From question to understanding 🗺️"
-          lead="Six moves, the same every time. The structure is the point — it’s what makes the result a lesson instead of a lookup."
-        />
+    <section id="how" className="py-20 relative z-10">
+      <div className="container">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <span className="sticker" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
+            03 · How It Works
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Your 6-Step Learning Journey.
+          </h2>
+          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            From curiosity to verified mastery in under 5 minutes.
+          </p>
+        </Reveal>
 
-        <div className="relative" style={{ maxWidth: 720 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.05}>
-              <div className="flex gap-5" style={{ paddingBottom: i === STEPS.length - 1 ? 0 : 34, position: 'relative' }}>
-                {i !== STEPS.length - 1 && (
-                  <span aria-hidden="true" style={{ position: 'absolute', left: 24, top: 52, bottom: -4, width: 2, borderRadius: 2, background: 'var(--line-strong)' }} />
-                )}
-                <span
-                  aria-hidden="true"
-                  className="grid place-items-center flex-none"
-                  style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 16,
-                    border: '2px solid var(--line-strong)',
-                    fontSize: 22,
-                    background: 'var(--bg-2)',
-                    boxShadow: '3px 3px 0 0 var(--shadow-a)',
-                    transform: `rotate(${i % 2 ? 3 : -3}deg)`,
-                  }}
-                >
-                  {s.e}
-                </span>
-                <div className="pt-1">
-                  <h4 className="font-display" style={{ fontSize: 19, color: 'var(--ink)', marginBottom: 6 }}>
-                    <span className="font-mono text-[11px] tracking-[0.14em]" style={{ color: 'var(--accent)', marginRight: 10 }}>{s.n}</span>
+            <Reveal key={s.step} delay={i * 0.08}>
+              <div className="glass-card p-6 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl">{s.emoji}</span>
+                    <span
+                      className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs"
+                      style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
+                    >
+                      {s.step}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                     {s.title}
-                  </h4>
-                  <p className="font-display" style={{ fontSize: 15.5, color: 'var(--ink-dim)', lineHeight: 1.55, maxWidth: '52ch' }}>
-                    {s.body}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    {s.desc}
                   </p>
                 </div>
               </div>
