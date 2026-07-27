@@ -1,43 +1,5 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
-import SectionHeader from './SectionHeader'
-
-function GlowLoader({ label }) {
-  return (
-    <div className="flex flex-col items-center gap-5" role="status" aria-live="polite">
-      <div className="glow-loader" aria-hidden="true">
-        <span className="ring r1" />
-        <span className="ring r2" />
-        <span className="ring r3" />
-      </div>
-      <p className="font-mono text-[12px] tracking-[0.14em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-        {label}
-      </p>
-    </div>
-  )
-}
-
-const CONFETTI = Array.from({ length: 14 }, (_, i) => {
-  const angle = (i / 14) * Math.PI * 2
-  const dist = 70 + (i % 3) * 26
-  return {
-    tx: `${Math.round(Math.cos(angle) * dist)}px`,
-    ty: `${Math.round(Math.sin(angle) * dist - 40)}px`,
-    rot: `${120 + i * 40}deg`,
-    c: `var(--pop-${(i % 4) + 1})`,
-    cd: `${(i % 5) * 0.03}s`,
-  }
-})
-
-function ConfettiBurst() {
-  return (
-    <span className="confetti-pop" aria-hidden="true">
-      {CONFETTI.map((p, i) => (
-        <i key={i} style={{ '--tx': p.tx, '--ty': p.ty, '--rot': p.rot, '--c': p.c, '--cd': p.cd }} />
-      ))}
-    </span>
-  )
-}
 
 const QUESTIONS = [
   {
@@ -64,7 +26,7 @@ export default function Demo() {
   const [phase, setPhase] = useState('idle') // idle | loading | quiz
   const [qi, setQi] = useState(0)
   const [picked, setPicked] = useState(null)
-  const [tries, setTries] = useState(0)
+  const [streak, setStreak] = useState(3)
 
   const q = QUESTIONS[qi]
   const solved = picked === q.correct
@@ -72,88 +34,115 @@ export default function Demo() {
   const generate = () => {
     setPhase('loading')
     setPicked(null)
-    setTries(0)
-    window.setTimeout(() => setPhase('quiz'), 1800)
+    window.setTimeout(() => setPhase('quiz'), 1400)
   }
 
   const choose = (i) => {
     if (picked !== null) return
     setPicked(i)
-    setTries((t) => t + 1)
+    if (i === q.correct) {
+      setStreak((s) => s + 1)
+    }
   }
 
   const next = () => {
     setQi((i) => (i + 1) % QUESTIONS.length)
     setPicked(null)
-    setTries(0)
   }
 
   return (
-    <section id="try" className="relative section">
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <SectionHeader
-          num="04"
-          kicker="Try It"
-          title="A lesson, in miniature 🎯"
-          lead="Generate a part, answer its quiz, and feel the gate. Right answers pulse (and rain confetti). Wrong answers shake. Nothing unlocks until you’ve earned it."
-        />
+    <section id="try" className="py-20 relative z-10">
+      <div className="container">
+        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+          <span className="sticker" style={{ background: 'var(--accent-action)', color: '#ffffff' }}>
+            04 · Interactive Demo
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Try a quiz-gated mini lesson. 🎯
+          </h2>
+          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            Feel the active recall gate. Correct answers pulse and earn XP; wrong answers prompt re-reading.
+          </p>
+        </Reveal>
 
-        <Reveal className="mx-auto quiz-wrap" style={{ maxWidth: 560 }}>
-          <div className="quiz-glow" aria-hidden="true" />
-          <article className="card card-accent quiz-card">
-            {phase === 'quiz' && solved && <ConfettiBurst key={`${qi}-${picked}`} />}
+        <Reveal className="max-w-xl mx-auto">
+          <div
+            className="glass-card p-8 relative rounded-3xl"
+            style={{
+              border: '2px solid var(--border-default)',
+              boxShadow: '0 20px 50px var(--shadow-a)',
+            }}
+          >
+            {/* Top Bar Stats */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[color:var(--border-default)]">
+              <span className="chip" style={{ background: 'var(--bg-3)', fontSize: 12 }}>
+                🌱 Part 01 · Foundation
+              </span>
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-bold flex items-center gap-1" style={{ color: 'var(--accent-action)' }}>
+                  🔥 {streak} Day Streak
+                </span>
+              </div>
+            </div>
 
             {phase === 'idle' && (
-              <div className="flex flex-col items-center justify-center text-center quiz-phase" style={{ gap: 18 }}>
-                <span className="sticker sticker-4" style={{ fontSize: 12 }}>
-                  Part 01 · Foundation 🌱
-                </span>
-                <h3 className="font-display" style={{ fontSize: 'clamp(20px,5vw,24px)', color: 'var(--ink)', maxWidth: '18ch' }}>
+              <div className="text-center py-8">
+                <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
                   Ready when you are.
                 </h3>
-                <p className="font-display italic" style={{ color: 'var(--ink-dim)', fontSize: 15, maxWidth: '34ch' }}>
-                  Hit generate and watch a lesson part compose itself.
+                <p className="mb-6 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  Click below to simulate Gemma 4 generating a structured 3-part lesson with active recall quizzes.
                 </p>
-                <button className="btn" type="button" onClick={generate}>
-                  Generate a lesson ✨
+                <button type="button" className="btn" onClick={generate}>
+                  Generate Lesson Part ✨
                 </button>
               </div>
             )}
 
             {phase === 'loading' && (
-              <div className="flex items-center justify-center quiz-phase">
-                <GlowLoader label="Composing your lesson…" />
+              <div className="text-center py-12">
+                <div className="w-12 h-12 rounded-full border-4 border-t-transparent animate-spin mx-auto mb-4" style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }} />
+                <p className="font-mono text-sm uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                  Composing lesson via Gemma 4 & Serper News…
+                </p>
               </div>
             )}
 
             {phase === 'quiz' && (
               <div>
-                <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--accent)' }}>
-                    Part 01 · Foundation
-                  </span>
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-                    {qi + 1} / {QUESTIONS.length}
-                  </span>
-                </div>
-
-                <p className="font-display" style={{ fontSize: 'clamp(16.5px,4.4vw,18.5px)', color: 'var(--ink)', lineHeight: 1.45, marginBottom: 18 }}>
+                <p className="font-display text-xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
                   {q.q}
                 </p>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                   {q.opts.map((opt, i) => {
                     const isCorrect = i === q.correct
                     const isPicked = picked === i
-                    const cls = picked !== null && isCorrect ? 'correct' : picked !== null && isPicked ? 'wrong' : ''
+                    let bg = 'var(--bg-3)'
+                    let color = 'var(--text-primary)'
+
+                    if (picked !== null) {
+                      if (isCorrect) {
+                        bg = 'var(--accent)'
+                        color = 'var(--accent-ink)'
+                      } else if (isPicked) {
+                        bg = 'var(--accent-action)'
+                        color = '#ffffff'
+                      }
+                    }
+
                     return (
                       <button
                         key={opt}
                         type="button"
-                        className={`quiz-opt ${cls}`}
-                        disabled={picked !== null}
-                        aria-pressed={isPicked}
                         onClick={() => choose(i)}
+                        disabled={picked !== null}
+                        className="p-4 rounded-xl font-semibold text-left transition-all"
+                        style={{
+                          background: bg,
+                          color: color,
+                          border: '1px solid var(--border-default)',
+                        }}
                       >
                         {opt}
                       </button>
@@ -161,35 +150,37 @@ export default function Demo() {
                   })}
                 </div>
 
-                <div aria-live="polite" style={{ minHeight: 44, marginTop: 14 }}>
-                  {picked !== null && (
-                    <p
-                      className="font-display italic"
-                      style={{
-                        fontSize: 14,
-                        color: solved ? 'var(--good)' : 'var(--ink-faint)',
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {solved ? q.explain : 'Not quite — read the part again and try once more. You’ve got this! 💪'}
-                    </p>
-                  )}
-                </div>
+                {picked !== null && (
+                  <div
+                    className="p-4 rounded-xl mb-6 text-sm leading-relaxed"
+                    style={{
+                      background: solved ? 'color-mix(in srgb, var(--accent) 15%, transparent)' : 'color-mix(in srgb, var(--accent-action) 15%, transparent)',
+                      border: `1px solid ${solved ? 'var(--accent)' : 'var(--accent-action)'}`,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    {solved ? (
+                      <p><strong>🎉 Correct! (+25 XP)</strong> {q.explain}</p>
+                    ) : (
+                      <p><strong>❌ Not quite.</strong> Re-read the foundation summary and try again. You got this!</p>
+                    )}
+                  </div>
+                )}
 
-                <div className="quiz-footer" style={{ marginTop: 6 }}>
+                <div className="flex items-center justify-between pt-4 border-t border-[color:var(--border-default)]">
                   {solved ? (
-                    <button className="btn btn-ghost" type="button" onClick={next}>
-                      Next question →
+                    <button type="button" className="btn" onClick={next}>
+                      Next Question →
                     </button>
                   ) : (
-                    <span className="font-mono text-[11px] tracking-[0.1em] uppercase" style={{ color: 'var(--ink-faint)' }}>
-                      {tries > 0 ? '🔒 Locked until 100%' : 'Score 100% to unlock'}
+                    <span className="text-xs font-mono uppercase" style={{ color: 'var(--text-secondary)' }}>
+                      🔒 Score 100% to unlock Mechanism
                     </span>
                   )}
                   <button
-                    className="font-mono text-[11px] underline tracking-[0.06em] quiz-regenerate"
-                    style={{ color: 'var(--accent)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                     type="button"
+                    className="text-xs font-mono underline"
+                    style={{ color: 'var(--accent)' }}
                     onClick={generate}
                   >
                     Regenerate
@@ -197,7 +188,7 @@ export default function Demo() {
                 </div>
               </div>
             )}
-          </article>
+          </div>
         </Reveal>
       </div>
     </section>

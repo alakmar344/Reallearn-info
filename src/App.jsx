@@ -1,4 +1,5 @@
 import { ThemeProvider } from './theme'
+import StickyScene3D from './components/StickyScene3D'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Ticker from './components/Ticker'
@@ -18,26 +19,26 @@ export default function App() {
 
       <ProgressBar />
 
-      <div className="ambient" aria-hidden="true" />
-      <div className="washi" aria-hidden="true" />
-      <div className="enso" aria-hidden="true" style={{ width: 'min(46vw, 520px)', height: 'min(46vw, 520px)', top: '-8vw', right: '-10vw' }} />
-      <div className="enso" aria-hidden="true" style={{ width: 'min(34vw, 380px)', height: 'min(34vw, 380px)', bottom: '6vh', left: '-9vw', transform: 'rotate(140deg)' }} />
-      <div className="grain" aria-hidden="true" />
+      {/* Fixed 3D WebGL Canvas Layer */}
+      <StickyScene3D />
 
-      <Header />
+      {/* Relative Content Layer */}
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <Header />
 
-      <main id="main">
-        <Hero />
-        <Ticker />
-        <ProblemSection />
-        <Features />
-        <HowItWorks />
-        <Demo />
-        <Rewards />
-        <FeatureTour />
-      </main>
+        <main id="main">
+          <Hero />
+          <Ticker />
+          <ProblemSection />
+          <Features />
+          <HowItWorks />
+          <Demo />
+          <Rewards />
+          <FeatureTour />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </ThemeProvider>
   )
 }

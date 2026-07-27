@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTheme } from '../theme'
 
 const THEME_LABELS = {
-  paper: { label: 'Paper', cls: 'dot-paper' },
-  night: { label: 'Night', cls: 'dot-night' },
-  twilight: { label: 'Twilight', cls: 'dot-twilight' },
+  paper: { label: 'Paper (Day)', cls: 'dot-paper', bg: '#f8faf9' },
+  ink: { label: 'Ink (Night)', cls: 'dot-night', bg: '#0b0e14' },
 }
 
 const LINKS = [
@@ -17,17 +16,32 @@ const LINKS = [
 
 function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
   return (
-    <div className="theme-switch" role="group" aria-label="Color theme">
+    <div
+      className="theme-switch flex items-center p-1 rounded-full border"
+      style={{
+        borderColor: 'var(--border-default)',
+        background: 'color-mix(in srgb, var(--bg-card) 80%, transparent)',
+      }}
+      role="group"
+      aria-label="Color room theme"
+    >
       {themes.map((t) => (
         <button
           key={t}
           type="button"
           aria-pressed={theme === t}
-          aria-label={`${THEME_LABELS[t].label} theme`}
+          aria-label={`${THEME_LABELS[t]?.label || t} theme`}
+          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+            theme === t ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+          }`}
+          style={{
+            background: theme === t ? 'var(--accent)' : 'transparent',
+            color: theme === t ? 'var(--accent-ink)' : 'var(--text-primary)',
+            minHeight: 36,
+          }}
           onClick={() => setTheme(t)}
         >
-          <span className={`dot ${THEME_LABELS[t].cls}`} aria-hidden="true" />
-          {!compact && THEME_LABELS[t].label}
+          {!compact ? THEME_LABELS[t]?.label || t : t.toUpperCase()}
         </button>
       ))}
     </div>
@@ -40,7 +54,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [open])
 
   useEffect(() => {
@@ -50,41 +66,67 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--bg) 86%, transparent)', backdropFilter: 'blur(8px)' }}>
-      <div className="container flex items-center justify-between" style={{ height: 66 }}>
-        <a href="#top" className="flex items-center gap-3 group" aria-label="RealLearn home" onClick={() => setOpen(false)} style={{ gap: 12 }}>
+    <header
+      className="sticky top-0 z-50 transition-colors"
+      style={{
+        borderColor: 'var(--border-default)',
+        background: 'color-mix(in srgb, var(--bg-primary) 80%, transparent)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid var(--border-default)',
+      }}
+    >
+      <div className="container flex items-center justify-between" style={{ height: 68 }}>
+        <a
+          href="#top"
+          className="flex items-center gap-3 group"
+          aria-label="RealLearn home"
+          onClick={() => setOpen(false)}
+        >
           <span
             aria-hidden="true"
             className="grid place-items-center flex-none"
             style={{
-              width: 38,
-              height: 38,
-              border: '2px solid var(--shadow-c)',
-              borderRadius: 12,
-              fontSize: 19,
-              background: 'var(--glow)',
-              boxShadow: '3px 3px 0 0 var(--shadow-c)',
+              width: 42,
+              height: 42,
+              border: '2px solid var(--border-default)',
+              borderRadius: 14,
+              fontSize: 20,
+              background: 'var(--accent)',
+              boxShadow: '0 4px 14px rgba(0,255,102,0.3)',
               transform: 'rotate(-4deg)',
             }}
           >
             📖
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-[19px]" style={{ color: 'var(--ink)' }}>
+            <span
+              className="block font-display text-[20px] font-bold tracking-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
               RealLearn
             </span>
-            <span className="hidden sm:block font-hand text-[15px]" style={{ color: 'var(--accent)', lineHeight: 1 }}>
+            <span
+              className="hidden sm:block font-hand text-[15px]"
+              style={{ color: 'var(--accent)', lineHeight: 1 }}
+            >
               the world is your textbook ✨
             </span>
           </span>
-          <span className="hanko hidden lg:grid" aria-hidden="true">
-            R<br />L
-          </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-7 font-mono text-[12px] uppercase tracking-[0.12em]" style={{ color: 'var(--ink-dim)' }}>
+        <nav
+          className="hidden md:flex items-center gap-8 font-mono text-[13px] uppercase tracking-wider"
+          style={{ color: 'var(--text-secondary)' }}
+        >
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-[color:var(--ink)] transition-colors">{l.label}</a>
+            <a
+              key={l.href}
+              href={l.href}
+              className="hover:text-[color:var(--accent)] transition-colors py-2"
+            >
+              {l.label}
+            </a>
           ))}
         </nav>
 
@@ -95,41 +137,48 @@ export default function Header() {
 
           <button
             type="button"
-            className="menu-toggle md:hidden"
+            className="md:hidden p-2 rounded-lg"
+            style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
           >
-            <span className={`burger ${open ? 'is-open' : ''}`} aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
+            {open ? '✕' : '☰'}
           </button>
         </div>
       </div>
 
-      <div id="mobile-nav" className={`mobile-nav md:hidden ${open ? 'is-open' : ''}`}>
-        <nav className="flex flex-col font-display" style={{ fontSize: 22 }}>
-          {LINKS.map((l, i) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              style={{ color: 'var(--ink)', padding: '16px 0', borderBottom: i < LINKS.length - 1 ? '1px solid var(--line)' : 'none' }}
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <div style={{ marginTop: 26 }}>
-          <span className="font-mono text-[11px] tracking-[0.12em] uppercase" style={{ color: 'var(--ink-faint)', display: 'block', marginBottom: 12 }}>
-            Color theme
-          </span>
-          <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
+      {open && (
+        <div
+          id="mobile-nav"
+          className="md:hidden p-6 border-b flex flex-col gap-4"
+          style={{
+            background: 'var(--bg-primary)',
+            borderColor: 'var(--border-default)',
+          }}
+        >
+          <nav className="flex flex-col font-display text-xl gap-3">
+            {LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-2 border-b border-[color:var(--border-default)]"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <div className="pt-2">
+            <span className="text-xs uppercase font-mono tracking-wider block mb-2" style={{ color: 'var(--text-secondary)' }}>
+              Room Theme
+            </span>
+            <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
+          </div>
         </div>
-      </div>
+      )}
     </header>
   )
 }
