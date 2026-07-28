@@ -49,7 +49,7 @@ English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada, Malayalam, P
 ## Rewards
 
 7 XP levels: Curious → Explorer → Apprentice → Thinker → Polymath → Scholar → Sage  
-17 collectible badges across bronze, silver, gold, and legendary tiers  
+56 collectible badges across bronze, silver, gold, and legendary tiers  
 Activity heatmap (GitHub-style grid), streaks, and daily goal rings
 
 ## Links

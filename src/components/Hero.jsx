@@ -5,7 +5,7 @@ import Book3D from './Book3D'
 const STATS = [
   { e: '🌍', t: '12 Indian languages' },
   { e: '🎯', t: '3 adaptive levels' },
-  { e: '🏆', t: '17 badges' },
+  { e: '🏆', t: '56 badges' },
   { e: '📰', t: 'Live news inside' },
   { e: '⚡', t: 'Powered by Gemma 4' },
 ]

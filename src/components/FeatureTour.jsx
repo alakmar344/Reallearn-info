@@ -17,7 +17,7 @@ const FEATURES = [
   { icon: '📚', title: 'Personal Library', desc: 'Auto-saved journeys in browser storage.' },
   { icon: '🔄', title: 'Follow-up Loop', desc: 'Ask deeper questions without returning to home.' },
   { icon: '🖼️', title: 'Share Result Cards', desc: 'Canvas-generated score cards to share.' },
-  { icon: '🏆', title: 'XP, Streaks & Badges', desc: '17 collectible achievements and level progression.' },
+  { icon: '🏆', title: 'XP, Streaks & Badges', desc: '56 collectible achievements and level progression.' },
   { icon: '🎨', title: 'Paper & Ink Rooms', desc: 'Daylight paper and midnight cyber night rooms.' },
 ]
 
