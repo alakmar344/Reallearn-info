@@ -3,11 +3,10 @@ import Reveal from './Reveal'
 import Book3D from './Book3D'
 
 const STATS = [
-  { e: '🌍', t: '12 Indian languages' },
-  { e: '🎯', t: '3 adaptive levels' },
-  { e: '🏆', t: '56 badges' },
-  { e: '📰', t: 'Live news inside' },
-  { e: '⚡', t: 'Powered by Gemma 4' },
+  { label: '12 Native Indian Languages' },
+  { label: '3 Adaptive Tiers' },
+  { label: 'Live Serper News Grounding' },
+  { label: 'Gemma 4 Architecture' },
 ]
 
 export default function Hero() {
@@ -25,8 +24,8 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Reveal style={{ marginBottom: 16 }}>
-              <span className="sticker" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
-                ✨ RealLearn AI · Vol. 01
+              <span className="chip" style={{ background: 'var(--accent)', color: 'var(--accent-ink)', border: 'none' }}>
+                RealLearn AI · 3-Part Pedagogy
               </span>
             </Reveal>
 
@@ -48,8 +47,8 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={0.14} as="p" style={{ fontSize: 'clamp(17px, 2vw, 20px)', color: 'var(--text-secondary)', margin: '20px 0 28px', maxWidth: '38ch', lineHeight: 1.6 }}>
-              RealLearn turns any question into a structured, 3-part adventure —{' '}
-              <strong style={{ color: 'var(--text-primary)' }}>Foundation → Mechanism → Real World</strong> — checkpointed by quizzes that prove it stuck. 🧠✨
+              RealLearn turns any question into a structured, 3-part learning experience —{' '}
+              <strong style={{ color: 'var(--text-primary)' }}>Foundation → Mechanism → Real World</strong> — checkpointed by active recall quizzes.
             </Reveal>
 
             {/* Interactive Quick Ask Box */}
@@ -67,16 +66,15 @@ export default function Hero() {
                   }}
                 />
                 <button type="submit" className="btn btn-action" style={{ whiteSpace: 'nowrap' }}>
-                  Start Journey 🚀
+                  Start Journey
                 </button>
               </form>
             </Reveal>
 
             <Reveal delay={0.24} className="flex flex-wrap items-center gap-3">
               {STATS.map((s) => (
-                <span key={s.t} className="chip">
-                  <span aria-hidden="true">{s.e}</span>
-                  {s.t}
+                <span key={s.label} className="chip text-xs">
+                  {s.label}
                 </span>
               ))}
             </Reveal>
