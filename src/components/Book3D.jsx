@@ -1,182 +1,159 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
-const ASSETS = [
+const STAGES = [
   {
-    id: 'book',
-    name: '3D Knowledge Spine',
-    badge: 'Vol. 01 · Structured Journey',
-    img: '/assets/hero_3d_spine_book.jpg',
-    tags: ['Foundation', 'Mechanism', 'Real World'],
+    id: 'part1',
+    badge: 'Part 01 · Foundation',
+    title: 'Photosynthesis & Solar Conversion',
+    subtitle: 'Essential Biological Principles',
+    status: 'Unlocked',
+    statusColor: 'var(--accent)',
+    readingTime: '2 min read',
+    content: [
+      { label: 'Core Concept', val: 'Chloroplasts absorb solar energy to split water into hydrogen and oxygen.' },
+      { label: 'Key Equation', val: '6CO₂ + 6H₂O + Light → C₆H₁₂O₆ + 6O₂' },
+      { label: 'Active Checkpoint', val: 'Identify primary atmospheric input (CO₂).' },
+    ],
+    sources: ['Nature Education (2024)', 'NCERT Bio Ch. 13'],
   },
   {
-    id: 'orb',
-    name: 'Knowledge Cosmos Orb',
-    badge: 'Procedural Glass & Circuits',
-    img: '/assets/knowledge_3d_orb.jpg',
-    tags: ['WebGL 3D', 'Refraction', 'Live Serper'],
+    id: 'part2',
+    badge: 'Part 02 · Mechanism',
+    title: 'Light-Dependent Reactions & ATP Synthase',
+    subtitle: 'Step-by-Step Molecular Machinery',
+    status: 'Quiz Gated 🔒',
+    statusColor: 'var(--accent-action)',
+    readingTime: '3 min read',
+    content: [
+      { label: 'Photosystem II', val: 'P680 reaction center excites electrons transferred down the cytochrome chain.' },
+      { label: 'Proton Gradient', val: 'Protons accumulate in the thylakoid lumen driving ATP synthesis.' },
+      { label: 'Calvin Cycle', val: 'RuBisCO fixes atmospheric carbon into 3-PGA molecules.' },
+    ],
+    sources: ['Cell Molecular Biology 8th Ed.', 'Biochem Quarterly'],
   },
   {
-    id: 'trophy',
-    name: '56 Achievements Trophy',
-    badge: 'Legendary Chrome & Gold',
-    img: '/assets/trophy_3d_legendary.jpg',
-    tags: ['56 Badges', 'XP Levels', 'Streaks'],
+    id: 'part3',
+    badge: 'Part 03 · Real World',
+    title: 'Artificial Photosynthesis & Clean Energy',
+    subtitle: 'Live Grounding & Current Industry News',
+    status: 'Live Grounded ⚡',
+    statusColor: 'var(--accent)',
+    readingTime: '2 min read',
+    content: [
+      { label: 'Commercial Scale', val: 'Bionic Leaf 3.0 achieves 10% solar-to-biomass conversion efficiency.' },
+      { label: 'Live Grounding', val: 'MIT Energy Initiative report published July 2026.' },
+      { label: 'Global Impact', val: 'Synthetic fuel generation without fossil fuel carbon footprints.' },
+    ],
+    sources: ['MIT Tech Review 2026', 'Serper Live Grounding API'],
   },
-]
-
-const DOODLES = [
-  { e: '⚡', style: { top: '2%', left: '4%', fontSize: 26, '--dd': '0s' } },
-  { e: '🚀', style: { top: '10%', right: '2%', fontSize: 32, '--dd': '0.6s' } },
-  { e: '🧪', style: { bottom: '16%', left: '0%', fontSize: 28, '--dd': '1.2s' } },
-  { e: '⭐', style: { bottom: '4%', right: '10%', fontSize: 24, '--dd': '1.8s' } },
-  { e: '💡', style: { top: '42%', left: '-4%', fontSize: 26, '--dd': '2.4s' } },
 ]
 
 export default function Book3D() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const cardRef = useRef(null)
-  const [transform, setTransform] = useState('rotateX(0deg) rotateY(0deg)')
-
-  const currentAsset = ASSETS[activeIndex]
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left - rect.width / 2
-    const y = e.clientY - rect.top - rect.height / 2
-    const rotX = (-y / (rect.height / 2)) * 12
-    const rotY = (x / (rect.width / 2)) * 12
-    setTransform(`rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`)
-  }
-
-  const handleMouseLeave = () => {
-    setTransform('rotateX(0deg) rotateY(0deg) scale(1)')
-  }
+  const [activeTab, setActiveTab] = useState(0)
+  const currentStage = STAGES[activeTab]
 
   return (
-    <div className="scene" style={{ minHeight: 420, position: 'relative' }}>
-      {DOODLES.map((d) => (
-        <span key={d.e} className="float-doodle" style={d.style} aria-hidden="true">
-          {d.e}
-        </span>
-      ))}
-
-      <span
-        className="sticker sticker-3 xp-toast"
-        style={{
-          top: '8%',
-          left: '-2%',
-          background: 'var(--accent)',
-          color: 'var(--bg)',
-          fontWeight: 700,
-          boxShadow: '0 8px 24px var(--shadow-a)',
-          zIndex: 20,
-        }}
-        aria-hidden="true"
-      >
-        +25 XP 🎉
-      </span>
-      <span
-        className="sticker sticker-2 xp-toast"
-        style={{
-          bottom: '12%',
-          right: '-4%',
-          transform: 'rotate(4deg)',
-          background: 'var(--accent-action)',
-          color: '#ffffff',
-          fontWeight: 700,
-          boxShadow: '0 8px 24px rgba(255, 62, 0, 0.3)',
-          zIndex: 20,
-        }}
-        aria-hidden="true"
-      >
-        Quiz Passed! 💯
-      </span>
-
-      {/* Interactive 3D Card Stage with Realistic Tilt */}
+    <div className="w-full max-w-lg mx-auto">
+      {/* Container Frame */}
       <div
-        className="flex flex-col items-center justify-center h-full text-center"
-        style={{ minHeight: 380, padding: 10, perspective: 1000 }}
+        className="glass-card p-6 sm:p-7 rounded-3xl relative overflow-hidden"
+        style={{
+          border: '1.5px solid var(--border-default)',
+          background: 'color-mix(in srgb, var(--bg-card) 90%, transparent)',
+          backdropFilter: 'blur(20px)',
+          boxShadow: '0 20px 50px var(--shadow-a)',
+        }}
       >
-        <div
-          ref={cardRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          className="glass-card flex flex-col items-center gap-4 p-5 max-w-sm rounded-3xl transition-transform duration-200 ease-out cursor-pointer"
-          style={{
-            border: '2px solid var(--border-default)',
-            background: 'color-mix(in srgb, var(--bg-card) 85%, transparent)',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 25px 60px var(--shadow-a)',
-            transform,
-            transformStyle: 'preserve-3d',
-          }}
-        >
-          {/* Realistic 3D Asset Render Frame */}
-          <div
-            className="w-full aspect-square rounded-2xl overflow-hidden relative border border-[color:var(--border-default)] shadow-xl"
-            style={{ background: '#0a0f18' }}
-          >
-            <img
-              src={currentAsset.img}
-              alt={currentAsset.name}
-              className="w-full h-full object-cover transition-opacity duration-300"
-            />
-            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
-              <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">
-                Realistic 3D Asset
-              </span>
-            </div>
+        {/* Header Bar */}
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-[color:var(--border-default)]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] animate-pulse" />
+            <span className="font-mono text-xs uppercase font-bold tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+              Interactive 3-Part Spine
+            </span>
           </div>
+          <span
+            className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-full uppercase"
+            style={{
+              background: 'color-mix(in srgb, var(--bg-3) 80%, transparent)',
+              color: currentStage.statusColor,
+              border: '1px solid var(--border-default)',
+            }}
+          >
+            {currentStage.status}
+          </span>
+        </div>
 
+        {/* Tab Navigation */}
+        <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl mb-6 bg-[color:var(--bg-3)]">
+          {STAGES.map((s, idx) => (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => setActiveTab(idx)}
+              className="py-2 px-3 rounded-xl text-xs font-bold transition-all text-center"
+              style={{
+                background: activeTab === idx ? 'var(--bg-card)' : 'transparent',
+                color: activeTab === idx ? 'var(--text-primary)' : 'var(--text-secondary)',
+                boxShadow: activeTab === idx ? '0 2px 8px var(--shadow-a)' : 'none',
+                border: activeTab === idx ? '1px solid var(--border-default)' : '1px solid transparent',
+              }}
+            >
+              Part 0{idx + 1}
+            </button>
+          ))}
+        </div>
+
+        {/* Stage Content Card */}
+        <div className="flex flex-col gap-4">
           <div>
-            <h3 className="font-display text-xl font-extrabold" style={{ color: 'var(--text-primary)' }}>
-              {currentAsset.name}
+            <span className="text-xs font-mono font-semibold uppercase tracking-wide" style={{ color: 'var(--accent)' }}>
+              {currentStage.badge} · {currentStage.readingTime}
+            </span>
+            <h3 className="font-display text-xl font-extrabold mt-1" style={{ color: 'var(--text-primary)' }}>
+              {currentStage.title}
             </h3>
-            <p className="text-xs font-mono tracking-wide uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
-              {currentAsset.badge}
+            <p className="text-xs font-medium mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+              {currentStage.subtitle}
             </p>
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap justify-center gap-1.5">
-            {currentAsset.tags.map((tag) => (
-              <span key={tag} className="chip text-[10px]" style={{ background: 'var(--bg-3)' }}>
-                {tag}
-              </span>
+          <div className="flex flex-col gap-2.5 my-1">
+            {currentStage.content.map((item) => (
+              <div
+                key={item.label}
+                className="p-3.5 rounded-xl border border-[color:var(--border-default)] flex flex-col gap-1"
+                style={{ background: 'var(--bg-primary)' }}
+              >
+                <span className="text-[11px] font-mono uppercase font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
+                  {item.label}
+                </span>
+                <span className="text-xs font-medium leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+                  {item.val}
+                </span>
+              </div>
             ))}
           </div>
 
-          {/* Asset Selector Tabs */}
-          <div className="flex items-center justify-center gap-2 mt-1">
-            {ASSETS.map((asset, idx) => (
-              <button
-                key={asset.id}
-                onClick={() => setActiveIndex(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  activeIndex === idx ? 'w-7 bg-[color:var(--accent)]' : 'bg-[color:var(--bg-3)] hover:opacity-80'
-                }`}
-                title={asset.name}
-              />
-            ))}
+          {/* Verifiable Sources */}
+          <div className="flex items-center justify-between pt-3 border-t border-[color:var(--border-default)] text-[11px]">
+            <span className="font-mono text-muted" style={{ color: 'var(--text-secondary)' }}>
+              Verifiable Sources:
+            </span>
+            <div className="flex gap-2">
+              {currentStage.sources.map((src) => (
+                <span
+                  key={src}
+                  className="font-mono px-2 py-0.5 rounded border border-[color:var(--border-default)] text-[10px]"
+                  style={{ color: 'var(--text-secondary)', background: 'var(--bg-3)' }}
+                >
+                  {src}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
-      <p
-        className="font-hand book-note"
-        style={{
-          position: 'absolute',
-          bottom: -22,
-          left: '50%',
-          transform: 'translateX(-50%) rotate(-2deg)',
-          color: 'var(--text-secondary)',
-          fontSize: 20,
-          whiteSpace: 'nowrap',
-        }}
-      >
-        psst… hover card to tilt 3D assets & scroll for WebGL scene! 📜✨
-      </p>
     </div>
   )
 }

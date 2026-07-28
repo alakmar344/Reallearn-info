@@ -13,10 +13,9 @@
    ============================================================ */
 
 :root {
-  --font-display: 'Space Grotesk', 'Fraunces', Georgia, serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
 
   --maxw: 1140px;
   --measure: 62ch;

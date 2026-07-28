@@ -10,8 +10,8 @@ const LINKS = [
   { href: '#problem', label: 'Problem' },
   { href: '#method', label: 'Method' },
   { href: '#how', label: 'How it works' },
-  { href: '#try', label: 'Try it' },
-  { href: '#rewards', label: 'Rewards' },
+  { href: '#try', label: 'Interactive Demo' },
+  { href: '#rewards', label: 'Framework' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
@@ -70,7 +70,7 @@ export default function Header() {
       className="sticky top-0 z-50 transition-colors"
       style={{
         borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-primary) 80%, transparent)',
+        background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--border-default)',
@@ -85,32 +85,31 @@ export default function Header() {
         >
           <span
             aria-hidden="true"
-            className="grid place-items-center flex-none"
+            className="grid place-items-center flex-none font-bold text-sm"
             style={{
-              width: 42,
-              height: 42,
-              border: '2px solid var(--border-default)',
-              borderRadius: 14,
-              fontSize: 20,
+              width: 38,
+              height: 38,
+              border: '1.5px solid var(--border-default)',
+              borderRadius: 12,
               background: 'var(--accent)',
-              boxShadow: '0 4px 14px rgba(0,255,102,0.3)',
-              transform: 'rotate(-4deg)',
+              color: 'var(--accent-ink)',
+              boxShadow: '0 4px 14px rgba(0,255,102,0.25)',
             }}
           >
-            📖
+            RL
           </span>
           <span className="leading-tight">
             <span
-              className="block font-display text-[20px] font-bold tracking-tight"
+              className="block font-display text-[19px] font-extrabold tracking-tight"
               style={{ color: 'var(--text-primary)' }}
             >
               RealLearn
             </span>
             <span
-              className="hidden sm:block font-hand text-[15px]"
+              className="hidden sm:block font-mono text-[11px] uppercase tracking-wider"
               style={{ color: 'var(--accent)', lineHeight: 1 }}
             >
-              the world is your textbook ✨
+              Interactive Pedagogy
             </span>
           </span>
         </a>
@@ -123,7 +122,7 @@ export default function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="hover:text-[color:var(--accent)] transition-colors py-2"
+              className="hover:text-[color:var(--accent)] transition-colors py-2 font-semibold"
             >
               {l.label}
             </a>
@@ -173,7 +172,7 @@ export default function Header() {
           </nav>
           <div className="pt-2">
             <span className="text-xs uppercase font-mono tracking-wider block mb-2" style={{ color: 'var(--text-secondary)' }}>
-              Room Theme
+              Theme Mode
             </span>
             <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
           </div>

@@ -8,7 +8,7 @@ const LANGUAGES = [
   'తెలుగు (Telugu)',
   'ಕನ್ನಡ (Kannada)',
   'മലയാളം (Malayalam)',
-  'ਪੰਜਾਬੀ (Punjabi)',
+  '<ctrl42>ਪੰਜਾਬੀ (Punjabi)',
   'اردو (Urdu)',
   'ଓଡ଼ିଆ (Odia)',
 ]
@@ -24,13 +24,12 @@ const SUBJECTS = [
   'Geography',
   'Political Science',
   'Environmental Science',
-  'English',
 ]
 
 export default function Ticker() {
   return (
     <div
-      className="py-6 border-y relative z-10 overflow-hidden"
+      className="py-5 border-y relative z-10 overflow-hidden"
       style={{
         borderColor: 'var(--border-default)',
         background: 'color-mix(in srgb, var(--bg-card) 60%, transparent)',
@@ -41,10 +40,10 @@ export default function Ticker() {
         {[...LANGUAGES, ...SUBJECTS, ...LANGUAGES].map((item, idx) => (
           <span
             key={`${item}-${idx}`}
-            className="inline-flex items-center gap-3 font-mono text-sm font-semibold uppercase tracking-wider"
+            className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-wider"
             style={{ color: 'var(--text-secondary)' }}
           >
-            <span style={{ color: 'var(--accent)' }}>✨</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]" />
             {item}
           </span>
         ))}

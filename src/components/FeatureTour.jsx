@@ -2,23 +2,23 @@ import Reveal from './Reveal'
 
 const FEATURES = [
   { icon: '📐', title: 'Three-Part Spine', desc: 'Foundation, Mechanism, Real World — every single time.' },
-  { icon: '🔒', title: 'Quiz-Gated Progression', desc: '100% score to advance. No passive skipping.' },
-  { icon: '🌐', title: '12 Indian Languages', desc: 'Natively generated with Gemma 4 — never machine translated.' },
-  { icon: '🎓', title: 'Adaptive Difficulty', desc: 'Class 6–8 through College/Advanced.' },
-  { icon: '📰', title: 'Grounded in Today', desc: 'Live Serper news woven into Part 3 before generating.' },
-  { icon: '✨', title: 'Glowing Loaders', desc: 'Calm loading cinematic with progress updates.' },
-  { icon: '🎉', title: 'Unlock Animations', desc: 'Celebratory confetti bursts for correct quiz answers.' },
-  { icon: '🔗', title: 'Real Verifiable Sources', desc: 'Every claim links to verifiable external sources.' },
-  { icon: '⏱️', title: 'Reading Pace Timer', desc: 'A gentle timer that respects reading speed.' },
-  { icon: '🏷️', title: 'Subject Badges', desc: 'Auto-classified across 11 disciplines.' },
-  { icon: '🎙️', title: 'Voice Ask Mic', desc: 'Speak questions natively with Web Speech API.' },
-  { icon: '🔊', title: 'Read Aloud TTS', desc: 'Listen to every part in natural warm voice.' },
-  { icon: '⚡', title: 'Fast & Explain Modes', desc: 'Instant 1-part answer or deep 3-part journey.' },
-  { icon: '📚', title: 'Personal Library', desc: 'Auto-saved journeys in browser storage.' },
-  { icon: '🔄', title: 'Follow-up Loop', desc: 'Ask deeper questions without returning to home.' },
-  { icon: '🖼️', title: 'Share Result Cards', desc: 'Canvas-generated score cards to share.' },
-  { icon: '🏆', title: 'XP, Streaks & Badges', desc: '56 collectible achievements and level progression.' },
-  { icon: '🎨', title: 'Paper & Ink Rooms', desc: 'Daylight paper and midnight cyber night rooms.' },
+  { icon: '🔒', title: 'Quiz-Gated Progression', desc: '100% score required to advance. Active recall enforced.' },
+  { icon: '🌐', title: '12 Indian Languages', desc: 'Natively generated with Gemma 4 — accurate context.' },
+  { icon: '🎓', title: 'Adaptive Difficulty', desc: 'Class 6–8 through College level calibration.' },
+  { icon: '📰', title: 'Grounded in Today', desc: 'Live Serper news context woven into Part 3 real-world analysis.' },
+  { icon: '⚡', title: 'Streamlined Loaders', desc: 'Calm, transparent loading progress updates.' },
+  { icon: '🎯', title: 'Checkpoint System', desc: 'Instant feedback on quiz comprehension.' },
+  { icon: '🔗', title: 'Verifiable Sources', desc: 'Every claim links to verifiable external publications.' },
+  { icon: '⏱️', title: 'Reading Pace Timer', desc: 'A gentle timer respecting individual reading speed.' },
+  { icon: '🏷️', title: 'Subject Classification', desc: 'Auto-classified across 11 core academic disciplines.' },
+  { icon: '🎙️', title: 'Voice Input Support', desc: 'Speak questions natively with browser speech recognition.' },
+  { icon: '🔊', title: 'Audio Text-to-Speech', desc: 'Listen to every lesson part in natural voice synthesis.' },
+  { icon: '⚡', title: 'Fast & Deep Modes', desc: 'Instant summary answer or full structured 3-part journey.' },
+  { icon: '📚', title: 'Personal Library', desc: 'Auto-saved journeys stored securely in browser storage.' },
+  { icon: '🔄', title: 'Follow-up Explorations', desc: 'Ask deeper questions directly within current context.' },
+  { icon: '🖼️', title: 'Export & Share', desc: 'Clean summary export for study notes and reference.' },
+  { icon: '📊', title: 'Mastery Tracking', desc: 'Structured progress tracking across all learned disciplines.' },
+  { icon: '🎨', title: 'Day & Night Modes', desc: 'Paper Daylight and Midnight Ink visual themes.' },
 ]
 
 export default function FeatureTour() {
@@ -26,14 +26,14 @@ export default function FeatureTour() {
     <section id="tour" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="sticker" style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}>
-            06 · Feature Tour
+          <span className="chip" style={{ background: 'var(--accent)', color: 'var(--accent-ink)', border: 'none' }}>
+            06 · Capability Overview
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            18 Features, One Seamless Platform.
+            18 Capabilities, One Unified System.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Every tool designed to make learning engaging, structured, and unforgettable.
+            Every tool designed to make learning engaging, structured, and verifiable.
           </p>
         </Reveal>
 
