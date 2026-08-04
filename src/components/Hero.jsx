@@ -21,8 +21,8 @@ export default function Hero() {
       style={{ paddingTop: 'clamp(48px, 7vw, 92px)', paddingBottom: 'clamp(40px, 6vw, 80px)' }}
     >
       <div className="container relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="min-w-0">
             <Reveal style={{ marginBottom: 16 }}>
               <span className="sticker">
                 <Icon name="zap" size={13} strokeWidth={2} />
@@ -96,7 +96,7 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.12} style={{ position: 'relative' }}>
+          <Reveal delay={0.12} style={{ position: 'relative' }} className="min-w-0">
             <Book3D />
           </Reveal>
         </div>
