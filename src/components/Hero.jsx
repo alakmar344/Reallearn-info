@@ -10,8 +10,7 @@ export default function Hero() {
 
   const handleQuickAsk = (e) => {
     e.preventDefault()
-    if (!prompt.trim()) return
-    window.location.href = '#try'
+    window.location.href = 'https://reallearn.site'
   }
 
   return (
