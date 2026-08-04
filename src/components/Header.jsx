@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
+import Icon from './Icon'
 import { useTheme } from '../theme'
 
 const THEME_LABELS = {
-  paper: { label: 'Paper (Day)', cls: 'dot-paper', bg: '#f8faf9' },
-  ink: { label: 'Ink (Night)', cls: 'dot-night', bg: '#0b0e14' },
+  paper: { label: 'Day', icon: 'sun' },
+  ink: { label: 'Night', icon: 'moon' },
 }
 
 const LINKS = [
-  { href: '#problem', label: 'Problem' },
-  { href: '#method', label: 'Method' },
+  { href: '#problem', label: 'The problem' },
+  { href: '#method', label: 'The method' },
   { href: '#how', label: 'How it works' },
-  { href: '#try', label: 'Interactive Demo' },
-  { href: '#rewards', label: 'Framework' },
+  { href: '#try', label: 'Try a lesson' },
+  { href: '#capabilities', label: 'Capabilities' },
 ]
 
-function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
+function ThemeSwitch({ theme, setTheme, themes }) {
   return (
     <div
       className="theme-switch flex items-center p-1 rounded-full border"
@@ -23,7 +24,7 @@ function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
         background: 'color-mix(in srgb, var(--bg-card) 80%, transparent)',
       }}
       role="group"
-      aria-label="Color room theme"
+      aria-label="Theme"
     >
       {themes.map((t) => (
         <button
@@ -31,17 +32,17 @@ function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
           type="button"
           aria-pressed={theme === t}
           aria-label={`${THEME_LABELS[t]?.label || t} theme`}
-          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-            theme === t ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
-          }`}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all"
           style={{
             background: theme === t ? 'var(--accent)' : 'transparent',
             color: theme === t ? 'var(--accent-ink)' : 'var(--text-primary)',
-            minHeight: 36,
+            minHeight: 34,
+            border: 'none',
           }}
           onClick={() => setTheme(t)}
         >
-          {!compact ? THEME_LABELS[t]?.label || t : t.toUpperCase()}
+          <Icon name={THEME_LABELS[t]?.icon || 'sun'} size={13} />
+          <span>{THEME_LABELS[t]?.label || t}</span>
         </button>
       ))}
     </div>
@@ -67,10 +68,9 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 transition-colors"
+      className="sticky top-0 z-50"
       style={{
-        borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
+        background: 'color-mix(in srgb, var(--bg-primary) 80%, transparent)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--border-default)',
@@ -89,40 +89,39 @@ export default function Header() {
             style={{
               width: 38,
               height: 38,
-              border: '1.5px solid var(--border-default)',
+              border: '1px solid var(--border-default)',
               borderRadius: 12,
               background: 'var(--accent)',
               color: 'var(--accent-ink)',
-              boxShadow: '0 4px 14px rgba(0,255,102,0.25)',
             }}
           >
             RL
           </span>
           <span className="leading-tight">
             <span
-              className="block font-display text-[19px] font-extrabold tracking-tight"
+              className="block font-display text-[19px] font-bold tracking-tight"
               style={{ color: 'var(--text-primary)' }}
             >
               RealLearn
             </span>
             <span
-              className="hidden sm:block font-mono text-[11px] uppercase tracking-wider"
-              style={{ color: 'var(--accent)', lineHeight: 1 }}
+              className="hidden sm:block text-xs"
+              style={{ color: 'var(--text-secondary)', lineHeight: 1 }}
             >
-              Interactive Pedagogy
+              Turn questions into lessons
             </span>
           </span>
         </a>
 
         <nav
-          className="hidden md:flex items-center gap-8 font-mono text-[13px] uppercase tracking-wider"
+          className="hidden md:flex items-center gap-8 text-[15px] font-medium"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="hover:text-[color:var(--accent)] transition-colors py-2 font-semibold"
+              className="hover:text-[color:var(--accent)] transition-colors py-2"
             >
               {l.label}
             </a>
@@ -136,14 +135,14 @@ export default function Header() {
 
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg"
+            className="md:hidden grid place-items-center w-10 h-10 rounded-lg"
             style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? '✕' : '☰'}
+            <Icon name={open ? 'x' : 'menu'} size={20} />
           </button>
         </div>
       </div>
@@ -151,28 +150,33 @@ export default function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden p-6 border-b flex flex-col gap-4"
+          className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-2"
           style={{
-            background: 'var(--bg-primary)',
-            borderColor: 'var(--border-default)',
+            top: 68,
+            bottom: 0,
+            background: 'color-mix(in srgb, var(--bg-primary) 92%, transparent)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            boxShadow: 'var(--shadow-lift)',
+            overflowY: 'auto',
           }}
         >
-          <nav className="flex flex-col font-display text-xl gap-3">
+          <nav className="flex flex-col text-lg gap-1">
             {LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-2 border-b border-[color:var(--border-default)]"
+                className="px-3 py-4 rounded-xl font-semibold"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <div className="pt-2">
-            <span className="text-xs uppercase font-mono tracking-wider block mb-2" style={{ color: 'var(--text-secondary)' }}>
-              Theme Mode
+          <div className="mt-6 border-t pt-6" style={{ borderColor: 'var(--border-default)' }}>
+            <span className="block mb-3 text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+              Theme
             </span>
             <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
           </div>

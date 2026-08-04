@@ -1,50 +1,65 @@
 import Reveal from './Reveal'
+import Icon from './Icon'
 
-const LINKS = [
-  { t: 'Live product', href: 'https://reallearn.site/' },
-  { t: 'Demo video', href: 'https://youtu.be/zehBGs-xBC0' },
-  { t: 'Kaggle write-up', href: 'https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778215573161' },
-  { t: 'Product Hunt', href: 'https://www.producthunt.com/products/reallearn-the-world-is-your-textbook' },
+const EXTERNAL_LINKS = [
+  { t: 'Live product', href: 'https://reallearn.site/', icon: 'globe' },
+  { t: 'Demo video', href: 'https://youtu.be/zehBGs-xBC0', icon: 'film' },
+  { t: 'Product Hunt', href: 'https://www.producthunt.com/products/reallearn-the-world-is-your-textbook', icon: 'rocket' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="relative section" style={{ paddingBottom: 56, backgroundColor: 'var(--bg-2)', borderTop: '1px solid var(--border-default)' }}>
+    <footer
+      className="relative z-10"
+      style={{ paddingBottom: 56, paddingTop: 'clamp(48px, 6vw, 72px)', backgroundColor: 'var(--bg-2)', borderTop: '1px solid var(--border-default)' }}
+    >
       <div className="container text-center relative z-10">
-        <Reveal as="h2" className="font-display font-bold text-2xl sm:text-3xl max-w-xl mx-auto mb-6" style={{ color: 'var(--text-primary)', lineHeight: 1.3 }}>
+        <Reveal as="h2" className="headline-lg max-w-xl mx-auto mb-8" style={{ color: 'var(--text-primary)' }}>
           &ldquo;The world is your textbook. RealLearn helps you master it.&rdquo;
         </Reveal>
 
-        <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4 mb-8">
-          <a className="btn btn-action" href="https://reallearn.site" target="_blank" rel="noopener noreferrer">
-            Start Learning
+        <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <a className="btn" href="https://reallearn.site" target="_blank" rel="noopener noreferrer">
+            Start learning
+            <Icon name="arrow-up" size={15} strokeWidth={2.2} style={{ transform: 'rotate(45deg)' }} />
           </a>
           <a className="btn btn-ghost" href="#try">
-            Try Mini Lesson
-          </a>
-          <a className="btn btn-ghost" href="#top">
-            Back to Top ↑
+            Try a mini lesson
           </a>
         </Reveal>
 
-        <Reveal delay={0.12} className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {LINKS.map((l) => (
-            <a key={l.t} className="chip text-xs" href={l.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+        <Reveal delay={0.12} className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 mb-10">
+          {EXTERNAL_LINKS.map((l) => (
+            <a
+              key={l.t}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium hover:text-[color:var(--accent)] transition-colors"
+              style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
+            >
+              <Icon name={l.icon} size={15} />
               {l.t}
             </a>
           ))}
         </Reveal>
 
         <div
-          className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.1em] uppercase"
-          style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border-default)', paddingTop: 28, maxWidth: 760 }}
+          className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-8 text-sm"
+          style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border-default)', maxWidth: 640 }}
         >
-          <span>RealLearn AI</span>
-          <span>Structured 3-Part Pedagogy</span>
-          <span>Gemma 4 Powered</span>
+          <span>RealLearn — turn any question into a lesson.</span>
+          <a
+            href="#top"
+            className="inline-flex items-center gap-1.5 font-medium hover:text-[color:var(--accent)] transition-colors"
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}
+          >
+            Back to top
+            <Icon name="arrow-up" size={14} strokeWidth={2.2} />
+          </a>
         </div>
-        <p className="font-mono text-[11px]" style={{ color: 'var(--text-secondary)', marginTop: 14 }}>
-          © {new Date().getFullYear()} RealLearn. Built for global learners everywhere.
+        <p className="text-sm mt-4" style={{ color: 'var(--text-tertiary)' }}>
+          © {new Date().getFullYear()} RealLearn. Built for learners everywhere.
         </p>
       </div>
     </footer>

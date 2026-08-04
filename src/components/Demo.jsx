@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
+import Icon from './Icon'
 
 const QUESTIONS = [
   {
@@ -47,64 +48,58 @@ export default function Demo() {
   }
 
   return (
-    <section id="try" className="py-20 relative z-10">
+    <section id="try" className="relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-12">
-          <span className="chip" style={{ background: 'var(--accent-action)', color: '#ffffff', border: 'none' }}>
-            04 · Interactive Demo
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Try a Quiz-Gated Mini Lesson.
+          <span className="sticker">04 · Interactive Demo</span>
+          <h2 className="headline-lg mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Try a quiz-gated mini lesson.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Experience active recall gating. Correct answers unlock progress; incorrect answers prompt re-reading.
+            Experience active recall in action. Correct answers unlock progress; incorrect answers prompt re-reading.
           </p>
         </Reveal>
 
         <Reveal className="max-w-xl mx-auto">
-          <div
-            className="glass-card p-8 relative rounded-3xl"
-            style={{
-              border: '1.5px solid var(--border-default)',
-              boxShadow: '0 20px 50px var(--shadow-a)',
-            }}
-          >
+          <div className="glass-card p-6 sm:p-8 relative rounded-3xl" style={{ boxShadow: 'var(--shadow-lift)' }}>
             {/* Top Bar Status */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[color:var(--border-default)]">
-              <span className="chip text-xs">
-                Part 01 · Foundation Checkpoint
-              </span>
-              <span className="text-xs font-mono font-bold uppercase" style={{ color: 'var(--accent)' }}>
-                Active Recall Gate
+            <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
+              <span className="chip text-xs">Part 01 · Foundation checkpoint</span>
+              <span className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>
+                <Icon name="check" size={13} strokeWidth={2.4} />
+                Active recall gate
               </span>
             </div>
 
             {phase === 'idle' && (
               <div className="text-center py-8">
-                <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Interactive Checkpoint Demo
+                <h3 className="headline-md mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Interactive checkpoint demo
                 </h3>
                 <p className="mb-6 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  Click below to simulate Gemma 4 generating a structured lesson checkpoint.
+                  Click below to see a short recall checkpoint in action.
                 </p>
-                <button type="button" className="btn btn-action" onClick={generate}>
-                  Generate Lesson Part
+                <button type="button" className="btn" onClick={generate}>
+                  Generate a checkpoint
                 </button>
               </div>
             )}
 
             {phase === 'loading' && (
               <div className="text-center py-12">
-                <div className="w-10 h-10 rounded-full border-3 border-t-transparent animate-spin mx-auto mb-4" style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }} />
-                <p className="font-mono text-xs uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-                  Composing lesson via Gemma 4 & Serper API…
+                <div
+                  className="w-10 h-10 rounded-full border-2 border-t-transparent animate-spin mx-auto mb-4"
+                  style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }}
+                />
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  Composing your lesson…
                 </p>
               </div>
             )}
 
             {phase === 'quiz' && (
               <div>
-                <p className="font-display text-xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+                <p className="font-display text-xl font-semibold mb-6" style={{ color: 'var(--text-primary)' }}>
                   {q.q}
                 </p>
 
@@ -114,14 +109,17 @@ export default function Demo() {
                     const isPicked = picked === i
                     let bg = 'var(--bg-3)'
                     let color = 'var(--text-primary)'
+                    let border = 'var(--border-default)'
 
                     if (picked !== null) {
                       if (isCorrect) {
-                        bg = 'var(--accent)'
-                        color = 'var(--accent-ink)'
+                        bg = 'color-mix(in srgb, var(--accent) 16%, transparent)'
+                        color = 'var(--text-primary)'
+                        border = 'var(--accent)'
                       } else if (isPicked) {
-                        bg = 'var(--accent-action)'
-                        color = '#ffffff'
+                        bg = 'color-mix(in srgb, var(--wrong) 16%, transparent)'
+                        color = 'var(--text-primary)'
+                        border = 'var(--wrong)'
                       }
                     }
 
@@ -135,7 +133,7 @@ export default function Demo() {
                         style={{
                           background: bg,
                           color: color,
-                          border: '1px solid var(--border-default)',
+                          border: `1px solid ${border}`,
                         }}
                       >
                         {opt}
@@ -148,36 +146,40 @@ export default function Demo() {
                   <div
                     className="p-4 rounded-xl mb-6 text-sm leading-relaxed"
                     style={{
-                      background: solved ? 'color-mix(in srgb, var(--accent) 15%, transparent)' : 'color-mix(in srgb, var(--accent-action) 15%, transparent)',
-                      border: `1px solid ${solved ? 'var(--accent)' : 'var(--accent-action)'}`,
+                      background: solved
+                        ? 'color-mix(in srgb, var(--accent) 12%, transparent)'
+                        : 'color-mix(in srgb, var(--wrong) 12%, transparent)',
+                      border: `1px solid ${solved ? 'var(--accent)' : 'var(--wrong)'}`,
                       color: 'var(--text-primary)',
                     }}
                   >
                     {solved ? (
-                      <p><strong>Correct!</strong> {q.explain}</p>
+                      <p><strong>Correct.</strong> {q.explain}</p>
                     ) : (
-                      <p><strong>Incorrect.</strong> Re-read the foundation summary and try again.</p>
+                      <p><strong>Not quite.</strong> Re-read the foundation summary and try again.</p>
                     )}
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t border-[color:var(--border-default)]">
+                <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: 'var(--border-default)' }}>
                   {solved ? (
                     <button type="button" className="btn" onClick={next}>
-                      Next Question →
+                      Next question
+                      <Icon name="chevron-right" size={15} strokeWidth={2.2} />
                     </button>
                   ) : (
-                    <span className="text-xs font-mono uppercase" style={{ color: 'var(--text-secondary)' }}>
-                      🔒 Pass to unlock Mechanism
+                    <span className="flex items-center gap-2 text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
+                      <Icon name="lock" size={14} />
+                      Pass to unlock the next part
                     </span>
                   )}
                   <button
                     type="button"
-                    className="text-xs font-mono underline cursor-pointer"
-                    style={{ color: 'var(--accent)' }}
+                    className="text-sm font-medium underline cursor-pointer"
+                    style={{ color: 'var(--text-secondary)' }}
                     onClick={generate}
                   >
-                    Reset Checkpoint
+                    Reset checkpoint
                   </button>
                 </div>
               </div>
