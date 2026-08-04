@@ -1,59 +1,118 @@
+import { useState } from 'react'
 import Reveal from './Reveal'
+import Icon from './Icon'
 
-const FEATURES = [
-  { icon: '📐', title: 'Three-Part Spine', desc: 'Foundation, Mechanism, Real World — every single time.' },
-  { icon: '🔒', title: 'Quiz-Gated Progression', desc: '100% score required to advance. Active recall enforced.' },
-  { icon: '🌐', title: '12 Indian Languages', desc: 'Natively generated with Gemma 4 — accurate context.' },
-  { icon: '🎓', title: 'Adaptive Difficulty', desc: 'Class 6–8 through College level calibration.' },
-  { icon: '📰', title: 'Grounded in Today', desc: 'Live Serper news context woven into Part 3 real-world analysis.' },
-  { icon: '⚡', title: 'Streamlined Loaders', desc: 'Calm, transparent loading progress updates.' },
-  { icon: '🎯', title: 'Checkpoint System', desc: 'Instant feedback on quiz comprehension.' },
-  { icon: '🔗', title: 'Verifiable Sources', desc: 'Every claim links to verifiable external publications.' },
-  { icon: '⏱️', title: 'Reading Pace Timer', desc: 'A gentle timer respecting individual reading speed.' },
-  { icon: '🏷️', title: 'Subject Classification', desc: 'Auto-classified across 11 core academic disciplines.' },
-  { icon: '🎙️', title: 'Voice Input Support', desc: 'Speak questions natively with browser speech recognition.' },
-  { icon: '🔊', title: 'Audio Text-to-Speech', desc: 'Listen to every lesson part in natural voice synthesis.' },
-  { icon: '⚡', title: 'Fast & Deep Modes', desc: 'Instant summary answer or full structured 3-part journey.' },
-  { icon: '📚', title: 'Personal Library', desc: 'Auto-saved journeys stored securely in browser storage.' },
-  { icon: '🔄', title: 'Follow-up Explorations', desc: 'Ask deeper questions directly within current context.' },
-  { icon: '🖼️', title: 'Export & Share', desc: 'Clean summary export for study notes and reference.' },
-  { icon: '📊', title: 'Mastery Tracking', desc: 'Structured progress tracking across all learned disciplines.' },
-  { icon: '🎨', title: 'Day & Night Modes', desc: 'Paper Daylight and Midnight Ink visual themes.' },
+const GROUPS = [
+  {
+    id: 'learn',
+    label: 'Learn',
+    items: [
+      { icon: 'clock', title: 'Reading pace timer', desc: 'A gentle timer that adapts to how fast you read.' },
+      { icon: 'tag', title: 'Subject labels', desc: 'Lessons automatically labeled across core subjects.' },
+      { icon: 'link', title: 'Verifiable sources', desc: 'Every claim links to a source you can check.' },
+      { icon: 'zap', title: 'Fast & deep modes', desc: 'A quick summary or a full three-part journey.' },
+    ],
+  },
+  {
+    id: 'engage',
+    label: 'Engage',
+    items: [
+      { icon: 'mic', title: 'Voice input', desc: 'Ask questions by speaking, in your own language.' },
+      { icon: 'volume', title: 'Audio narration', desc: 'Listen to each part with natural text-to-speech.' },
+      { icon: 'message', title: 'Follow-up questions', desc: 'Dive deeper on any point without restarting.' },
+      { icon: 'book', title: 'Personal library', desc: 'Every journey saved, ready to revisit anytime.' },
+    ],
+  },
+  {
+    id: 'track',
+    label: 'Track',
+    items: [
+      { icon: 'share', title: 'Export & share', desc: 'Turn any lesson into clean study notes.' },
+      { icon: 'bar-chart', title: 'Mastery tracking', desc: 'See what you have truly mastered over time.' },
+      { icon: 'moon', title: 'Day & night modes', desc: 'Switch between light and dark themes.' },
+      { icon: 'refresh', title: 'Calm loading', desc: 'Clear, honest progress updates without noise.' },
+    ],
+  },
 ]
 
-export default function FeatureTour() {
+export default function Capabilities() {
+  const [active, setActive] = useState('learn')
+  const group = GROUPS.find((g) => g.id === active) || GROUPS[0]
+
   return (
-    <section id="tour" className="py-20 relative z-10">
+    <section id="capabilities" className="relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="chip" style={{ background: 'var(--accent)', color: 'var(--accent-ink)', border: 'none' }}>
-            06 · Capability Overview
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            18 Capabilities, One Unified System.
+        <Reveal className="text-center max-w-2xl mx-auto mb-10">
+          <span className="sticker">05 · Capabilities</span>
+          <h2 className="headline-lg mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Everything you need to learn well.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Every tool designed to make learning engaging, structured, and verifiable.
+            Interactions and tools designed around one goal: making learning stick.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.04}>
-              <div className="glass-card p-6 h-full flex flex-col justify-between">
-                <div>
-                  <div className="text-3xl mb-3">{f.icon}</div>
-                  <h3 className="font-display text-lg font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                    {f.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {f.desc}
-                  </p>
-                </div>
+        {/* Tab Row */}
+        <Reveal delay={0.05} className="mb-8">
+          <div
+            role="tablist"
+            aria-label="Capability groups"
+            className="flex justify-center gap-2 flex-wrap"
+          >
+            {GROUPS.map((g) => {
+              const isActive = active === g.id
+              return (
+                <button
+                  key={g.id}
+                  type="button"
+                  role="tab"
+                  id={`tab-${g.id}`}
+                  aria-selected={isActive}
+                  aria-controls={`panel-${g.id}`}
+                  className="px-5 py-2.5 rounded-full font-semibold text-sm transition-all"
+                  style={{
+                    background: isActive ? 'var(--accent)' : 'transparent',
+                    color: isActive ? 'var(--accent-ink)' : 'var(--text-secondary)',
+                    border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
+                  }}
+                  onClick={() => setActive(g.id)}
+                >
+                  {g.label}
+                </button>
+              )
+            })}
+          </div>
+        </Reveal>
+
+        {/* Active Group Grid */}
+        <Reveal key={group.id} delay={0.08}>
+          <div
+            id={`panel-${group.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${group.id}`}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+          >
+            {group.items.map((f) => (
+              <div key={f.title} className="glass-card p-5 flex flex-col">
+                <span
+                  className="grid place-items-center w-10 h-10 rounded-xl mb-4"
+                  style={{
+                    background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
+                    color: 'var(--accent)',
+                  }}
+                >
+                  <Icon name={f.icon} size={20} />
+                </span>
+                <h3 className="text-base font-semibold mb-1.5" style={{ color: 'var(--text-primary)' }}>
+                  {f.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  {f.desc}
+                </p>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

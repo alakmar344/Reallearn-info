@@ -39,7 +39,7 @@ export default function StickyScene3D() {
           height: '60vw',
           maxWidth: '700px',
           maxHeight: '700px',
-          background: 'radial-gradient(circle, color-mix(in srgb, var(--accent-action) 8%, transparent) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, color-mix(in srgb, var(--text-tertiary) 10%, transparent) 0%, transparent 70%)',
           filter: 'blur(100px)',
           borderRadius: '50%',
         }}
