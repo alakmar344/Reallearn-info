@@ -1,7 +1,8 @@
 /**
- * StickyScene3D / AmbientBackground Component
- * Provides a sleek, high-performance ambient mesh gradient & subtle glowing background layer.
- * Replaces heavy 3D floating canvas objects for a clean, professional aesthetic.
+ * AmbientBackground — a fixed, GPU-friendly aurora field.
+ * Three drifting aurora blobs, a masked technical grid, a soft top
+ * vignette, and a fine film-grain overlay give the page luminous depth
+ * without any heavy canvas/3D work.
  */
 export default function StickyScene3D() {
   return (
@@ -15,48 +16,79 @@ export default function StickyScene3D() {
         overflow: 'hidden',
       }}
     >
-      {/* Radial Gradient Ambient Orbs */}
+      {/* Aurora blob — emerald */}
       <div
         style={{
           position: 'absolute',
-          top: '-15%',
-          left: '10%',
-          width: '50vw',
-          height: '50vw',
-          maxWidth: '600px',
-          maxHeight: '600px',
-          background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 70%)',
-          filter: 'blur(80px)',
+          top: '-18%',
+          left: '-8%',
+          width: '58vw',
+          height: '58vw',
+          maxWidth: 780,
+          maxHeight: 780,
+          background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 68%)',
+          filter: 'blur(70px)',
           borderRadius: '50%',
+          animation: 'aurora-drift 26s ease-in-out infinite',
         }}
       />
+      {/* Aurora blob — teal */}
       <div
         style={{
           position: 'absolute',
-          bottom: '-10%',
-          right: '5%',
-          width: '60vw',
-          height: '60vw',
-          maxWidth: '700px',
-          maxHeight: '700px',
-          background: 'radial-gradient(circle, color-mix(in srgb, var(--text-tertiary) 10%, transparent) 0%, transparent 70%)',
+          bottom: '-22%',
+          right: '-6%',
+          width: '64vw',
+          height: '64vw',
+          maxWidth: 860,
+          maxHeight: 860,
+          background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 68%)',
+          filter: 'blur(90px)',
+          borderRadius: '50%',
+          animation: 'aurora-drift 32s ease-in-out infinite reverse',
+        }}
+      />
+      {/* Aurora blob — periwinkle, center accent */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '30%',
+          left: '42%',
+          width: '46vw',
+          height: '46vw',
+          maxWidth: 620,
+          maxHeight: 620,
+          background: 'radial-gradient(circle, var(--aurora-3) 0%, transparent 70%)',
           filter: 'blur(100px)',
           borderRadius: '50%',
+          animation: 'aurora-drift 40s ease-in-out infinite',
         }}
       />
-      {/* Subtle Technical Grid overlay */}
+
+      {/* Masked technical grid */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(to right, color-mix(in srgb, var(--border-default) 15%, transparent) 1px, transparent 1px),
-            linear-gradient(to bottom, color-mix(in srgb, var(--border-default) 15%, transparent) 1px, transparent 1px)
+            linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)
           `,
-          backgroundSize: '48px 48px',
-          maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 75%)',
-          opacity: 0.4,
+          backgroundSize: '54px 54px',
+          maskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, rgba(0,0,0,0.9) 0%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, rgba(0,0,0,0.9) 0%, transparent 80%)',
+        }}
+      />
+
+      {/* Fine film grain */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 'var(--grain-opacity)',
+          mixBlendMode: 'overlay',
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
         }}
       />
     </div>

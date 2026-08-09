@@ -31,21 +31,25 @@ const ITEMS = [...LANGUAGES, ...SUBJECTS]
 export default function Ticker() {
   return (
     <div
-      className="py-4 border-y relative z-10 overflow-hidden"
+      className="py-5 border-y relative z-10 overflow-hidden marquee-mask"
       style={{
         borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-card) 55%, transparent)',
-        backdropFilter: 'blur(8px)',
+        background: 'color-mix(in srgb, var(--bg-2) 50%, transparent)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
       }}
     >
       <div className="flex whitespace-nowrap gap-10 animate-marquee" style={{ width: 'max-content' }}>
         {[...ITEMS, ...ITEMS].map((item, idx) => (
           <span
             key={`${item}-${idx}`}
-            className="inline-flex items-center gap-3 text-sm font-medium"
+            className="inline-flex items-center gap-3 text-sm font-medium tracking-tight"
             style={{ color: 'var(--text-secondary)' }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]" />
+            <span
+              className="w-1.5 h-1.5 rounded-full flex-none"
+              style={{ background: 'var(--glow)' }}
+            />
             {item}
           </span>
         ))}

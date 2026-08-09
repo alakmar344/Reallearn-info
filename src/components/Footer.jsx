@@ -10,12 +10,30 @@ const EXTERNAL_LINKS = [
 export default function Footer() {
   return (
     <footer
-      className="relative z-10"
-      style={{ paddingBottom: 56, paddingTop: 'clamp(48px, 6vw, 72px)', backgroundColor: 'var(--bg-2)', borderTop: '1px solid var(--border-default)' }}
+      className="relative z-10 overflow-hidden"
+      style={{ paddingBottom: 56, paddingTop: 'clamp(56px, 7vw, 88px)', backgroundColor: 'color-mix(in srgb, var(--bg-2) 70%, transparent)', borderTop: '1px solid var(--border-default)' }}
     >
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '-40%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '70vw',
+          height: '60%',
+          maxWidth: 900,
+          background: 'var(--glow-accent)',
+          filter: 'blur(40px)',
+          pointerEvents: 'none',
+        }}
+      />
       <div className="container text-center relative z-10">
-        <Reveal as="h2" className="headline-lg max-w-xl mx-auto mb-8" style={{ color: 'var(--text-primary)' }}>
-          &ldquo;The world is your textbook. RealLearn helps you master it.&rdquo;
+        <Reveal style={{ marginBottom: 22 }}>
+          <span className="sticker">The world is your textbook</span>
+        </Reveal>
+        <Reveal as="h2" className="headline-lg max-w-2xl mx-auto mb-9" style={{ color: 'var(--text-primary)' }}>
+          Master it, one <span className="text-gradient">real lesson</span> at a time.
         </Reveal>
 
         <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4 mb-10">

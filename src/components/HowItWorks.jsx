@@ -52,21 +52,15 @@ export default function HowItWorks() {
           {STEPS.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.07}>
               <div className="glass-card p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <span
-                    className="grid place-items-center w-11 h-11 rounded-xl"
-                    style={{
-                      background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
-                      color: 'var(--accent)',
-                    }}
-                  >
+                <div className="flex items-center justify-between mb-5">
+                  <span className="icon-tile w-12 h-12">
                     <Icon name={s.icon} size={22} />
                   </span>
                   <span
-                    className="font-display text-sm font-semibold"
-                    style={{ color: 'var(--text-tertiary)' }}
+                    className="font-mono text-3xl font-bold leading-none"
+                    style={{ color: 'color-mix(in srgb, var(--accent) 34%, transparent)' }}
                   >
-                    Step {i + 1}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
                 <h3 className="headline-md mb-2" style={{ color: 'var(--text-primary)' }}>

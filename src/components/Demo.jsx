@@ -61,7 +61,10 @@ export default function Demo() {
         </Reveal>
 
         <Reveal className="max-w-xl mx-auto">
-          <div className="glass-card p-6 sm:p-8 relative rounded-3xl" style={{ boxShadow: 'var(--shadow-lift)' }}>
+          <div
+            className="glass-card glow-border p-6 sm:p-8 relative"
+            style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
+          >
             {/* Top Bar Status */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
               <span className="chip text-xs">Part 01 · Foundation checkpoint</span>
