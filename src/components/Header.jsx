@@ -85,14 +85,14 @@ export default function Header() {
         >
           <span
             aria-hidden="true"
-            className="grid place-items-center flex-none font-bold text-sm"
+            className="grid place-items-center flex-none font-display font-bold text-sm transition-transform group-hover:scale-105"
             style={{
-              width: 38,
-              height: 38,
-              border: '1px solid var(--border-default)',
-              borderRadius: 12,
-              background: 'var(--accent)',
+              width: 40,
+              height: 40,
+              borderRadius: 13,
+              background: 'var(--glow)',
               color: 'var(--accent-ink)',
+              boxShadow: '0 6px 18px -6px color-mix(in srgb, var(--accent) 65%, transparent), inset 0 1px 0 rgba(255,255,255,0.35)',
             }}
           >
             RL
@@ -118,11 +118,7 @@ export default function Header() {
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="hover:text-[color:var(--accent)] transition-colors py-2"
-            >
+            <a key={l.href} href={l.href} className="nav-link py-2">
               {l.label}
             </a>
           ))}

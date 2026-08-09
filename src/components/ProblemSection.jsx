@@ -42,13 +42,7 @@ export default function ProblemSection() {
           {PROBLEMS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <div className="glass-card p-6 h-full flex flex-col">
-                <span
-                  className="grid place-items-center w-11 h-11 rounded-xl mb-4"
-                  style={{
-                    background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
-                    color: 'var(--accent)',
-                  }}
-                >
+                <span className="icon-tile w-12 h-12 mb-5">
                   <Icon name={p.icon} size={22} />
                 </span>
                 <h3 className="headline-md mb-2" style={{ color: 'var(--text-primary)' }}>

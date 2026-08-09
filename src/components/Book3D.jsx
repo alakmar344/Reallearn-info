@@ -53,17 +53,17 @@ export default function Book3D() {
   return (
     <div className="w-full max-w-lg mx-auto">
       <div
-        className="glass-card p-6 sm:p-7 rounded-3xl relative overflow-hidden"
+        className="glass-card glow-border p-6 sm:p-7 relative overflow-hidden"
         style={{
-          border: '1px solid var(--border-default)',
+          borderRadius: 'var(--radius-2xl)',
           boxShadow: 'var(--shadow-lift)',
         }}
       >
         {/* Header Bar */}
         <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
           <div className="flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] animate-pulse" />
-            <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+            <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] pulse-dot" />
+            <span className="text-sm font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }}>
               Three-part spine
             </span>
           </div>
@@ -122,20 +122,39 @@ export default function Book3D() {
           </div>
 
           <div className="flex flex-col gap-2.5 my-1">
-            {currentStage.content.map((item) => (
-              <div
-                key={item.label}
-                className="p-3.5 rounded-xl border flex flex-col gap-1"
-                style={{ borderColor: 'var(--border-default)', background: 'var(--bg-primary)' }}
-              >
-                <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>
-                  {item.label}
-                </span>
-                <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                  {item.val}
-                </span>
-              </div>
-            ))}
+            {currentStage.content.map((item) => {
+              const isEquation = /equation|→|²|₂/.test(item.val)
+              return (
+                <div
+                  key={item.label}
+                  className="p-3.5 rounded-xl flex flex-col gap-1.5"
+                  style={{
+                    borderLeft: '2px solid color-mix(in srgb, var(--accent) 55%, transparent)',
+                    border: '1px solid var(--border-default)',
+                    borderLeftWidth: 2,
+                    borderLeftColor: 'color-mix(in srgb, var(--accent) 55%, transparent)',
+                    background: 'color-mix(in srgb, var(--bg-3) 55%, transparent)',
+                  }}
+                >
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-wider"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-sm leading-relaxed"
+                    style={{
+                      color: 'var(--text-primary)',
+                      fontFamily: isEquation ? 'var(--font-mono)' : 'inherit',
+                      fontSize: isEquation ? 13 : undefined,
+                    }}
+                  >
+                    {item.val}
+                  </span>
+                </div>
+              )
+            })}
           </div>
 
           {/* Verifiable Sources */}

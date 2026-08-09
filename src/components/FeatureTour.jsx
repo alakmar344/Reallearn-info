@@ -94,13 +94,7 @@ export default function Capabilities() {
           >
             {group.items.map((f) => (
               <div key={f.title} className="glass-card p-5 flex flex-col">
-                <span
-                  className="grid place-items-center w-10 h-10 rounded-xl mb-4"
-                  style={{
-                    background: 'color-mix(in srgb, var(--accent) 12%, transparent)',
-                    color: 'var(--accent)',
-                  }}
-                >
+                <span className="icon-tile w-11 h-11 mb-4">
                   <Icon name={f.icon} size={20} />
                 </span>
                 <h3 className="text-base font-semibold mb-1.5" style={{ color: 'var(--text-primary)' }}>

@@ -117,8 +117,8 @@ export default function Method() {
 
             {/* Selected Pillar Detail */}
             <div
-              className="glass-card p-7 sm:p-8 rounded-3xl flex flex-col justify-between"
-              style={{ boxShadow: 'var(--shadow-lift)' }}
+              className="glass-card glow-border p-7 sm:p-9 flex flex-col justify-between"
+              style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -157,9 +157,12 @@ export default function Method() {
                   <div
                     key={m.label}
                     className="p-4 rounded-xl border"
-                    style={{ borderColor: 'var(--border-default)', background: 'var(--bg-primary)' }}
+                    style={{
+                      borderColor: 'var(--border-default)',
+                      background: 'color-mix(in srgb, var(--bg-3) 45%, transparent)',
+                    }}
                   >
-                    <div className="font-display text-2xl font-bold" style={{ color: 'var(--accent)' }}>
+                    <div className="font-display text-2xl font-bold text-gradient">
                       {m.val}
                     </div>
                     <div className="text-xs font-medium mt-1" style={{ color: 'var(--text-secondary)' }}>
