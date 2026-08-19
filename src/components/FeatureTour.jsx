@@ -1,24 +1,24 @@
 import Reveal from './Reveal'
 
 const FEATURES = [
-  { icon: '📐', title: 'Three-Part Spine', desc: 'Foundation, Mechanism, Real World — every single time.' },
-  { icon: '🔒', title: 'Quiz-Gated Progression', desc: '100% score required to advance. Active recall enforced.' },
-  { icon: '🌐', title: '12 Indian Languages', desc: 'Natively generated with Gemma 4 — accurate context.' },
-  { icon: '🎓', title: 'Adaptive Difficulty', desc: 'Class 6–8 through College level calibration.' },
-  { icon: '📰', title: 'Grounded in Today', desc: 'Live Serper news context woven into Part 3 real-world analysis.' },
-  { icon: '⚡', title: 'Streamlined Loaders', desc: 'Calm, transparent loading progress updates.' },
-  { icon: '🎯', title: 'Checkpoint System', desc: 'Instant feedback on quiz comprehension.' },
-  { icon: '🔗', title: 'Verifiable Sources', desc: 'Every claim links to verifiable external publications.' },
-  { icon: '⏱️', title: 'Reading Pace Timer', desc: 'A gentle timer respecting individual reading speed.' },
-  { icon: '🏷️', title: 'Subject Classification', desc: 'Auto-classified across 11 core academic disciplines.' },
-  { icon: '🎙️', title: 'Voice Input Support', desc: 'Speak questions natively with browser speech recognition.' },
-  { icon: '🔊', title: 'Audio Text-to-Speech', desc: 'Listen to every lesson part in natural voice synthesis.' },
-  { icon: '⚡', title: 'Fast & Deep Modes', desc: 'Instant summary answer or full structured 3-part journey.' },
-  { icon: '📚', title: 'Personal Library', desc: 'Auto-saved journeys stored securely in browser storage.' },
-  { icon: '🔄', title: 'Follow-up Explorations', desc: 'Ask deeper questions directly within current context.' },
-  { icon: '🖼️', title: 'Export & Share', desc: 'Clean summary export for study notes and reference.' },
-  { icon: '📊', title: 'Mastery Tracking', desc: 'Structured progress tracking across all learned disciplines.' },
-  { icon: '🎨', title: 'Day & Night Modes', desc: 'Paper Daylight and Midnight Ink visual themes.' },
+  { icon: '📐', title: 'Three-Part Spine', desc: 'Foundation, Mechanism, Real World — structured every single time.' },
+  { icon: '🔒', title: 'Banked Quiz Gating', desc: '100% score required to advance; incorrect tries re-queue only missed questions.' },
+  { icon: '⚡', title: 'Groq LPU Acceleration', desc: 'Sub-second TTFT streaming with Qwen 3.6 27B and GPT-OSS 120B.' },
+  { icon: '🛡️', title: 'Multi-Provider Failover', desc: 'Hedged racing with Mistral AI JSON mode, NVIDIA NIM 70B-150B & Cloudflare.' },
+  { icon: '🌐', title: '12 Indian Languages', desc: 'Direct native LLM generation preserving cultural and linguistic nuances.' },
+  { icon: '🎓', title: '3 Adaptive Tiers', desc: 'Calibrated complexity across Class 6–8, Class 9–10, and College levels.' },
+  { icon: '📰', title: 'Live News Grounding', desc: 'Real-time web news and research woven into Part 3 via Serper API.' },
+  { icon: '⚡', title: 'Explain & Fast Modes', desc: 'Choose between a deep 3-part pedagogical journey or a concise 1-part summary.' },
+  { icon: '🎯', title: 'On-Device Personalization', desc: 'Learner goals and quiz evidence adapt lessons with zero private server storage.' },
+  { icon: '🏆', title: '56 Achievement Badges', desc: 'Recognizes milestones across speed, mastery, streak consistency, and depth.' },
+  { icon: '❄️', title: 'Earnable Streak Freezes', desc: 'Earn protective freezes every 7 days of hitting learning goals (max 2 banked).' },
+  { icon: '🎙️', title: 'Voice Input Support', desc: 'Speak complex questions natively using browser speech recognition.' },
+  { icon: '🔊', title: 'Natural Audio TTS', desc: 'Listen to every lesson part with natural voice synthesis playback.' },
+  { icon: '🔗', title: 'Verifiable Citations', desc: 'Every factual claim links out to verifiable primary sources and publications.' },
+  { icon: '💾', title: 'Two-Tier Caching', desc: 'Instant cache peek with memory LRU and MongoDB persistent TTL caching.' },
+  { icon: '📚', title: 'Offline Journey Library', desc: 'Automatically archives completed lessons on-device for instant review.' },
+  { icon: '♿', title: 'WCAG 2.1 AA Accessible', desc: 'Full keyboard navigation (1-4 / A-D), skip links, ARIA live feedback, and reduced motion.' },
+  { icon: '🎨', title: 'Olive Frenzy Minimal', desc: 'Calm, tactile design in Paper daylight and Ink dark mode with zero purple/violet.' },
 ]
 
 export default function FeatureTour() {
@@ -26,20 +26,20 @@ export default function FeatureTour() {
     <section id="tour" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="chip" style={{ background: 'var(--accent)', color: 'var(--accent-ink)', border: 'none' }}>
+          <span className="sticker">
             06 · Capability Overview
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             18 Capabilities, One Unified System.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Every tool designed to make learning engaging, structured, and verifiable.
+            Every tool crafted to make learning fast, structured, verifiable, and deeply engaging.
           </p>
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.04}>
+            <Reveal key={f.title} delay={i * 0.03}>
               <div className="glass-card p-6 h-full flex flex-col justify-between">
                 <div>
                   <div className="text-3xl mb-3">{f.icon}</div>

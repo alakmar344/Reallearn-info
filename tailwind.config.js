@@ -6,10 +6,9 @@ export default {
         prose: '68ch',
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        hand: ['Caveat', '"Comic Sans MS"', 'cursive'],
       },
     },
   },

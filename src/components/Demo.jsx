@@ -3,22 +3,22 @@ import Reveal from './Reveal'
 
 const QUESTIONS = [
   {
-    q: 'In photosynthesis, which gas do plants absorb from the air?',
-    opts: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'],
+    q: 'In photosynthesis, which gas do plants absorb from the air to synthesize glucose?',
+    opts: ['Oxygen (O₂)', 'Carbon dioxide (CO₂)', 'Nitrogen (N₂)', 'Hydrogen (H₂)'],
     correct: 1,
-    explain: 'Plants take in carbon dioxide and, with light energy, convert it into glucose and oxygen.',
+    explain: 'Plants take in carbon dioxide through leaf stomata and, with light energy, convert it into glucose and oxygen.',
   },
   {
-    q: 'A “control group” in an experiment exists mainly to…',
-    opts: ['Prove the hypothesis true', 'Give a baseline to compare against', 'Make the study longer', 'Replace the need for math'],
+    q: 'In scientific experiments, a “control group” exists mainly to…',
+    opts: ['Prove the initial hypothesis right', 'Provide an unchanged baseline to compare against', 'Eliminate the need for statistics', 'Shorten the study duration'],
     correct: 1,
-    explain: 'The control group provides an unchanged baseline to isolate the effect of the tested variable.',
+    explain: 'The control group serves as an untouched benchmark to isolate and measure the true impact of the experimental variable.',
   },
   {
-    q: 'Why does compounding matter more than the interest rate alone?',
-    opts: ['It lowers risk to zero', 'Gains build on prior accumulated gains over time', 'It removes taxes', 'It guarantees returns'],
+    q: 'Why does compounding lead to exponential rather than linear growth over time?',
+    opts: ['It lowers risk to zero', 'Gains earn additional gains on top of prior accumulated returns', 'It completely removes transaction fees', 'It guarantees fixed market returns'],
     correct: 1,
-    explain: 'Compounding generates earnings on previous earnings, causing exponential growth over time.',
+    explain: 'Compounding continuously reinvests prior yields, creating an accelerating upward growth curve over time.',
   },
 ]
 
@@ -26,6 +26,7 @@ export default function Demo() {
   const [phase, setPhase] = useState('idle') // idle | loading | quiz
   const [qi, setQi] = useState(0)
   const [picked, setPicked] = useState(null)
+  const [demoMode, setDemoMode] = useState('explain') // 'explain' | 'fast'
 
   const q = QUESTIONS[qi]
   const solved = picked === q.correct
@@ -33,7 +34,7 @@ export default function Demo() {
   const generate = () => {
     setPhase('loading')
     setPicked(null)
-    window.setTimeout(() => setPhase('quiz'), 1200)
+    window.setTimeout(() => setPhase('quiz'), 800)
   }
 
   const choose = (i) => {
@@ -50,78 +51,119 @@ export default function Demo() {
     <section id="try" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-12">
-          <span className="chip" style={{ background: 'var(--accent-action)', color: '#ffffff', border: 'none' }}>
+          <span className="sticker">
             04 · Interactive Demo
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Try a Quiz-Gated Mini Lesson.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Experience active recall gating. Correct answers unlock progress; incorrect answers prompt re-reading.
+            Experience active recall gating. Correct answers unlock progress; incorrect answers re-queue missed questions.
           </p>
         </Reveal>
 
         <Reveal className="max-w-xl mx-auto">
           <div
-            className="glass-card p-8 relative rounded-3xl"
+            className="glass-card p-6 sm:p-8 relative rounded-3xl"
             style={{
-              border: '1.5px solid var(--border-default)',
-              boxShadow: '0 20px 50px var(--shadow-a)',
+              boxShadow: '0 24px 60px var(--shadow-a)',
             }}
           >
             {/* Top Bar Status */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[color:var(--border-default)]">
-              <span className="chip text-xs">
-                Part 01 · Foundation Checkpoint
-              </span>
-              <span className="text-xs font-mono font-bold uppercase" style={{ color: 'var(--accent)' }}>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[color:var(--accent)] animate-pulse" />
+                <span className="chip text-xs font-mono font-bold">
+                  {demoMode === 'explain' ? 'Part 01 · Foundation Checkpoint' : 'Fast Mode · Summary Checkpoint'}
+                </span>
+              </div>
+              <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
                 Active Recall Gate
               </span>
             </div>
 
             {phase === 'idle' && (
-              <div className="text-center py-8">
+              <div className="text-center py-6">
+                {/* Mode Glider */}
+                <div className="flex items-center gap-1.5 p-1 rounded-2xl mb-6 bg-[color:var(--bg-3)] max-w-xs mx-auto">
+                  <button
+                    type="button"
+                    onClick={() => setDemoMode('explain')}
+                    className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      demoMode === 'explain' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                    }`}
+                    style={{
+                      background: demoMode === 'explain' ? 'var(--accent)' : 'transparent',
+                      color: demoMode === 'explain' ? 'var(--on-accent)' : 'var(--text-primary)',
+                    }}
+                  >
+                    Explain Mode
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDemoMode('fast')}
+                    className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      demoMode === 'fast' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                    }`}
+                    style={{
+                      background: demoMode === 'fast' ? 'var(--accent)' : 'transparent',
+                      color: demoMode === 'fast' ? 'var(--on-accent)' : 'var(--text-primary)',
+                    }}
+                  >
+                    Fast Mode
+                  </button>
+                </div>
+
                 <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Interactive Checkpoint Demo
+                  Interactive Checkpoint Simulator
                 </h3>
-                <p className="mb-6 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  Click below to simulate Gemma 4 generating a structured lesson checkpoint.
+                <p className="mb-6 text-sm max-w-md mx-auto" style={{ color: 'var(--text-secondary)' }}>
+                  Click below to simulate Groq LPU generating a structured pedagogical checkpoint.
                 </p>
                 <button type="button" className="btn btn-action" onClick={generate}>
-                  Generate Lesson Part
+                  Generate Lesson Checkpoint →
                 </button>
               </div>
             )}
 
             {phase === 'loading' && (
-              <div className="text-center py-12">
-                <div className="w-10 h-10 rounded-full border-3 border-t-transparent animate-spin mx-auto mb-4" style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }} />
-                <p className="font-mono text-xs uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-                  Composing lesson via Gemma 4 & Serper API…
+              <div className="text-center py-10">
+                <div
+                  className="w-10 h-10 rounded-full border-3 animate-spin mx-auto mb-4"
+                  style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }}
+                />
+                <p className="font-mono text-xs font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
+                  Streaming from Groq LPU (Qwen 3.6 27B)…
+                </p>
+                <p className="font-mono text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                  Grounded with live Serper News context
                 </p>
               </div>
             )}
 
             {phase === 'quiz' && (
               <div>
-                <p className="font-display text-xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+                <p className="font-display text-lg sm:text-xl font-bold mb-5" style={{ color: 'var(--text-primary)' }}>
                   {q.q}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
                   {q.opts.map((opt, i) => {
                     const isCorrect = i === q.correct
                     const isPicked = picked === i
                     let bg = 'var(--bg-3)'
                     let color = 'var(--text-primary)'
+                    let borderColor = 'var(--border-default)'
 
                     if (picked !== null) {
                       if (isCorrect) {
-                        bg = 'var(--accent)'
-                        color = 'var(--accent-ink)'
+                        bg = 'var(--success-bg)'
+                        color = 'var(--success)'
+                        borderColor = 'var(--success)'
                       } else if (isPicked) {
-                        bg = 'var(--accent-action)'
-                        color = '#ffffff'
+                        bg = 'var(--danger-bg)'
+                        color = 'var(--danger)'
+                        borderColor = 'var(--danger)'
                       }
                     }
 
@@ -131,13 +173,16 @@ export default function Demo() {
                         type="button"
                         onClick={() => choose(i)}
                         disabled={picked !== null}
-                        className="p-4 rounded-xl font-semibold text-left transition-all cursor-pointer"
+                        className="p-3.5 rounded-xl font-medium text-xs sm:text-sm text-left transition-all cursor-pointer"
                         style={{
                           background: bg,
                           color: color,
-                          border: '1px solid var(--border-default)',
+                          border: `1px solid ${borderColor}`,
                         }}
                       >
+                        <span className="font-mono font-bold mr-2 text-[11px] opacity-70">
+                          {String.fromCharCode(65 + i)}.
+                        </span>
                         {opt}
                       </button>
                     )
@@ -146,34 +191,38 @@ export default function Demo() {
 
                 {picked !== null && (
                   <div
-                    className="p-4 rounded-xl mb-6 text-sm leading-relaxed"
+                    className="p-4 rounded-xl mb-6 text-xs sm:text-sm leading-relaxed"
                     style={{
-                      background: solved ? 'color-mix(in srgb, var(--accent) 15%, transparent)' : 'color-mix(in srgb, var(--accent-action) 15%, transparent)',
-                      border: `1px solid ${solved ? 'var(--accent)' : 'var(--accent-action)'}`,
+                      background: solved ? 'var(--success-bg)' : 'var(--danger-bg)',
+                      border: `1px solid ${solved ? 'var(--success)' : 'var(--danger)'}`,
                       color: 'var(--text-primary)',
                     }}
                   >
                     {solved ? (
-                      <p><strong>Correct!</strong> {q.explain}</p>
+                      <p>
+                        <strong style={{ color: 'var(--success)' }}>✓ Correct!</strong> {q.explain}
+                      </p>
                     ) : (
-                      <p><strong>Incorrect.</strong> Re-read the foundation summary and try again.</p>
+                      <p>
+                        <strong style={{ color: 'var(--danger)' }}>✕ Incorrect.</strong> Re-read the foundation takeaway and re-try to unlock.
+                      </p>
                     )}
                   </div>
                 )}
 
                 <div className="flex items-center justify-between pt-4 border-t border-[color:var(--border-default)]">
                   {solved ? (
-                    <button type="button" className="btn" onClick={next}>
+                    <button type="button" className="btn btn-action" onClick={next}>
                       Next Question →
                     </button>
                   ) : (
-                    <span className="text-xs font-mono uppercase" style={{ color: 'var(--text-secondary)' }}>
-                      🔒 Pass to unlock Mechanism
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                      🔒 100% Score to Unlock Next Part
                     </span>
                   )}
                   <button
                     type="button"
-                    className="text-xs font-mono underline cursor-pointer"
+                    className="text-xs font-mono font-bold underline cursor-pointer"
                     style={{ color: 'var(--accent)' }}
                     onClick={generate}
                   >
