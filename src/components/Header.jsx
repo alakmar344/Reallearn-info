@@ -3,16 +3,16 @@ import Icon from './Icon'
 import { useTheme } from '../theme'
 
 const THEME_LABELS = {
-  paper: { label: 'Day', icon: 'sun' },
-  ink: { label: 'Night', icon: 'moon' },
+  paper: { label: 'Paper', icon: 'sun' },
+  ink: { label: 'Ink', icon: 'moon' },
 }
 
 const LINKS = [
   { href: '#problem', label: 'The problem' },
   { href: '#method', label: 'The method' },
   { href: '#how', label: 'How it works' },
-  { href: '#try', label: 'Try a lesson' },
-  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#try', label: 'Interactive demo' },
+  { href: '#tour', label: 'Capabilities' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes }) {
@@ -21,30 +21,33 @@ function ThemeSwitch({ theme, setTheme, themes }) {
       className="theme-switch flex items-center p-1 rounded-full border"
       style={{
         borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-card) 80%, transparent)',
+        background: 'color-mix(in srgb, var(--bg-card) 85%, transparent)',
       }}
       role="group"
-      aria-label="Theme"
+      aria-label="Color theme switcher"
     >
-      {themes.map((t) => (
-        <button
-          key={t}
-          type="button"
-          aria-pressed={theme === t}
-          aria-label={`${THEME_LABELS[t]?.label || t} theme`}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all"
-          style={{
-            background: theme === t ? 'var(--accent)' : 'transparent',
-            color: theme === t ? 'var(--accent-ink)' : 'var(--text-primary)',
-            minHeight: 34,
-            border: 'none',
-          }}
-          onClick={() => setTheme(t)}
-        >
-          <Icon name={THEME_LABELS[t]?.icon || 'sun'} size={13} />
-          <span>{THEME_LABELS[t]?.label || t}</span>
-        </button>
-      ))}
+      {themes.map((t) => {
+        const isActive = theme === t
+        return (
+          <button
+            key={t}
+            type="button"
+            aria-pressed={isActive}
+            aria-label={`${THEME_LABELS[t]?.label || t} theme`}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer"
+            style={{
+              background: isActive ? 'var(--accent)' : 'transparent',
+              color: isActive ? 'var(--on-accent)' : 'var(--text-primary)',
+              minHeight: 34,
+              border: 'none',
+            }}
+            onClick={() => setTheme(t)}
+          >
+            <Icon name={THEME_LABELS[t]?.icon || 'sun'} size={13} />
+            <span>{THEME_LABELS[t]?.label || t}</span>
+          </button>
+        )
+      })}
     </div>
   )
 }
@@ -70,69 +73,83 @@ export default function Header() {
     <header
       className="sticky top-0 z-50"
       style={{
-        background: 'color-mix(in srgb, var(--bg-primary) 80%, transparent)',
+        background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: '1px solid var(--border-default)',
       }}
     >
-      <div className="container flex items-center justify-between" style={{ height: 68 }}>
+      <div className="container flex items-center justify-between" style={{ height: 72 }}>
         <a
           href="#top"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 group text-decoration-none"
           aria-label="RealLearn home"
           onClick={() => setOpen(false)}
         >
           <span
             aria-hidden="true"
-            className="grid place-items-center flex-none font-display font-bold text-sm transition-transform group-hover:scale-105"
+            className="grid place-items-center flex-none font-display font-bold text-sm"
             style={{
               width: 40,
               height: 40,
-              borderRadius: 13,
-              background: 'var(--glow)',
-              color: 'var(--accent-ink)',
-              boxShadow: '0 6px 18px -6px color-mix(in srgb, var(--accent) 65%, transparent), inset 0 1px 0 rgba(255,255,255,0.35)',
+              borderRadius: 12,
+              background: 'var(--accent)',
+              color: 'var(--on-accent)',
+              boxShadow: '0 4px 14px var(--shadow-glow-accent)',
             }}
           >
             RL
           </span>
           <span className="leading-tight">
             <span
-              className="block font-display text-[19px] font-bold tracking-tight"
+              className="block font-display text-[20px] font-extrabold tracking-tight"
               style={{ color: 'var(--text-primary)' }}
             >
-              RealLearn
+              RealLearn <span style={{ color: 'var(--accent)' }}>AI</span>
             </span>
             <span
-              className="hidden sm:block text-xs"
+              className="hidden sm:block font-mono text-[11px] uppercase font-bold tracking-wider"
               style={{ color: 'var(--text-secondary)', lineHeight: 1 }}
             >
-              Turn questions into lessons
+              3-Part Interactive Pedagogy
             </span>
           </span>
         </a>
 
         <nav
-          className="hidden md:flex items-center gap-8 text-[15px] font-medium"
+          className="hidden md:flex items-center gap-8 text-[14px] font-semibold"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link py-2">
+            <a
+              key={l.href}
+              href={l.href}
+              className="hover:text-[color:var(--accent)] transition-colors py-2"
+            >
               {l.label}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:block">
+          <div className="hidden sm:block">
             <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
           </div>
 
+          <a
+            href="https://reallearn.site"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex btn btn-action"
+            style={{ minHeight: 40, padding: '0 18px', fontSize: 13 }}
+          >
+            Open App ↗
+          </a>
+
           <button
             type="button"
-            className="md:hidden grid place-items-center w-10 h-10 rounded-lg"
-            style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)' }}
+            className="md:hidden grid place-items-center w-10 h-10 rounded-xl cursor-pointer"
+            style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)', background: 'var(--bg-card)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -146,35 +163,45 @@ export default function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-2"
+          className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-4 flex flex-col gap-4"
           style={{
-            top: 68,
+            top: 72,
             bottom: 0,
-            background: 'color-mix(in srgb, var(--bg-primary) 92%, transparent)',
+            background: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            boxShadow: 'var(--shadow-lift)',
+            borderBottom: '1px solid var(--border-default)',
             overflowY: 'auto',
           }}
         >
-          <nav className="flex flex-col text-lg gap-1">
+          <nav className="flex flex-col text-lg font-display font-bold gap-2">
             {LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="px-3 py-4 rounded-xl font-semibold"
+                className="py-3 border-b border-[color:var(--border-default)]"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <div className="mt-6 border-t pt-6" style={{ borderColor: 'var(--border-default)' }}>
-            <span className="block mb-3 text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-              Theme
-            </span>
-            <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
+          <div className="pt-2 flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs uppercase font-mono tracking-wider font-bold" style={{ color: 'var(--text-secondary)' }}>
+                Theme Mode
+              </span>
+              <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
+            </div>
+            <a
+              href="https://reallearn.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-action w-full text-center mt-2"
+            >
+              Open Live App ↗
+            </a>
           </div>
         </div>
       )}

@@ -4,51 +4,61 @@ import Icon from './Icon'
 
 const GROUPS = [
   {
+    id: 'engine',
+    label: 'AI & Inference',
+    items: [
+      { icon: 'zap', title: 'Groq LPU acceleration', desc: 'Sub-second TTFT streaming with Qwen 3.6 27B and GPT-OSS 120B.' },
+      { icon: 'layers', title: 'Multi-provider failover', desc: 'Hedged racing with Mistral AI JSON mode, NVIDIA NIM & Cloudflare.' },
+      { icon: 'newspaper', title: 'Live news grounding', desc: 'Real-time web news and research woven into Part 3 via Serper API.' },
+      { icon: 'refresh', title: 'Two-tier caching', desc: 'Instant cache peek with memory LRU and persistent MongoDB cache.' },
+    ],
+  },
+  {
     id: 'learn',
-    label: 'Learn',
+    label: 'Pedagogy',
     items: [
-      { icon: 'clock', title: 'Reading pace timer', desc: 'A gentle timer that adapts to how fast you read.' },
-      { icon: 'tag', title: 'Subject labels', desc: 'Lessons automatically labeled across core subjects.' },
-      { icon: 'link', title: 'Verifiable sources', desc: 'Every claim links to a source you can check.' },
-      { icon: 'zap', title: 'Fast & deep modes', desc: 'A quick summary or a full three-part journey.' },
+      { icon: 'book-open', title: 'Three-part spine', desc: 'Foundation, Mechanism, Real World — structured every single time.' },
+      { icon: 'lock', title: 'Banked quiz gating', desc: '100% score to advance; incorrect tries re-queue only missed questions.' },
+      { icon: 'globe', title: '12 Indian languages', desc: 'Direct native LLM generation preserving linguistic nuance.' },
+      { icon: 'graduation-cap', title: '3 adaptive tiers', desc: 'Calibrated complexity across Class 6–8, Class 9–10, and College.' },
     ],
   },
   {
-    id: 'engage',
-    label: 'Engage',
+    id: 'personal',
+    label: 'Personalization & Audio',
     items: [
-      { icon: 'mic', title: 'Voice input', desc: 'Ask questions by speaking, in your own language.' },
-      { icon: 'volume', title: 'Audio narration', desc: 'Listen to each part with natural text-to-speech.' },
-      { icon: 'message', title: 'Follow-up questions', desc: 'Dive deeper on any point without restarting.' },
-      { icon: 'book', title: 'Personal library', desc: 'Every journey saved, ready to revisit anytime.' },
+      { icon: 'target', title: 'On-device personalization', desc: 'Learner goals and quiz evidence adapt lessons with zero server storage.' },
+      { icon: 'mic', title: 'Voice input support', desc: 'Speak complex questions natively with browser speech recognition.' },
+      { icon: 'volume', title: 'Natural audio TTS', desc: 'Listen to every lesson part with natural voice synthesis playback.' },
+      { icon: 'link', title: 'Verifiable citations', desc: 'Every factual claim links out to verifiable primary sources.' },
     ],
   },
   {
-    id: 'track',
-    label: 'Track',
+    id: 'mastery',
+    label: 'Progress & Design',
     items: [
-      { icon: 'share', title: 'Export & share', desc: 'Turn any lesson into clean study notes.' },
-      { icon: 'bar-chart', title: 'Mastery tracking', desc: 'See what you have truly mastered over time.' },
-      { icon: 'moon', title: 'Day & night modes', desc: 'Switch between light and dark themes.' },
-      { icon: 'refresh', title: 'Calm loading', desc: 'Clear, honest progress updates without noise.' },
+      { icon: 'trophy', title: '56 achievement badges', desc: 'Milestones across speed, mastery, streak consistency, and depth.' },
+      { icon: 'archive', title: 'Earnable streak freezes', desc: 'Earn protective freezes every 7 days of hitting goals (max 2 banked).' },
+      { icon: 'book', title: 'Offline journey library', desc: 'Automatically archives completed lessons on-device for instant review.' },
+      { icon: 'palette', title: 'Olive Frenzy Minimal', desc: 'Tactile design in Paper daylight and Ink dark mode with zero purple.' },
     ],
   },
 ]
 
-export default function Capabilities() {
-  const [active, setActive] = useState('learn')
+export default function FeatureTour() {
+  const [active, setActive] = useState('engine')
   const group = GROUPS.find((g) => g.id === active) || GROUPS[0]
 
   return (
-    <section id="capabilities" className="relative z-10">
+    <section id="tour" className="py-20 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-10">
+        <Reveal className="text-center max-w-2xl mx-auto mb-12">
           <span className="sticker">05 · Capabilities</span>
-          <h2 className="headline-lg mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Everything you need to learn well.
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+            16 Capabilities, One Unified System.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Interactions and tools designed around one goal: making learning stick.
+            Every tool crafted to make learning fast, structured, verifiable, and deeply engaging.
           </p>
         </Reveal>
 
@@ -56,7 +66,7 @@ export default function Capabilities() {
         <Reveal delay={0.05} className="mb-8">
           <div
             role="tablist"
-            aria-label="Capability groups"
+            aria-label="Capability categories"
             className="flex justify-center gap-2 flex-wrap"
           >
             {GROUPS.map((g) => {
@@ -69,11 +79,12 @@ export default function Capabilities() {
                   id={`tab-${g.id}`}
                   aria-selected={isActive}
                   aria-controls={`panel-${g.id}`}
-                  className="px-5 py-2.5 rounded-full font-semibold text-sm transition-all"
+                  className="px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all cursor-pointer"
                   style={{
-                    background: isActive ? 'var(--accent)' : 'transparent',
-                    color: isActive ? 'var(--accent-ink)' : 'var(--text-secondary)',
+                    background: isActive ? 'var(--accent)' : 'var(--bg-card)',
+                    color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
                     border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
+                    boxShadow: isActive ? 'var(--shadow-lift)' : 'none',
                   }}
                   onClick={() => setActive(g.id)}
                 >
@@ -90,19 +101,24 @@ export default function Capabilities() {
             id={`panel-${group.id}`}
             role="tabpanel"
             aria-labelledby={`tab-${group.id}`}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {group.items.map((f) => (
-              <div key={f.title} className="glass-card p-5 flex flex-col">
-                <span className="icon-tile w-11 h-11 mb-4">
-                  <Icon name={f.icon} size={20} />
-                </span>
-                <h3 className="text-base font-semibold mb-1.5" style={{ color: 'var(--text-primary)' }}>
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  {f.desc}
-                </p>
+              <div key={f.title} className="glass-card p-6 flex flex-col justify-between">
+                <div>
+                  <span
+                    className="grid place-items-center w-10 h-10 rounded-xl mb-4"
+                    style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                  >
+                    <Icon name={f.icon} size={20} />
+                  </span>
+                  <h3 className="font-display text-base font-bold mb-1.5" style={{ color: 'var(--text-primary)' }}>
+                    {f.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    {f.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

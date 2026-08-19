@@ -4,71 +4,76 @@ import Icon from './Icon'
 const STEPS = [
   {
     icon: 'message',
-    title: 'Ask anything',
-    desc: 'Type any question — or speak it — and name your curiosity.',
+    title: 'Ask or Speak',
+    desc: 'Type any complex topic or tap the microphone button for native browser speech-to-text input.',
   },
   {
     icon: 'sliders',
-    title: 'Pick your level & language',
-    desc: 'Choose the difficulty that fits you and learn in your own language.',
+    title: 'Select Mode & Language',
+    desc: 'Pick Explain (3-part journey) or Fast (1-part summary), 3 grade tiers, and 12 native Indian languages.',
   },
   {
-    icon: 'film',
-    title: 'Watch it build',
-    desc: 'A calm progress state holds space while your lesson is composed.',
+    icon: 'zap',
+    title: 'Sub-Second Streaming',
+    desc: 'Groq LPU primary inference generates structured lesson streams with sub-second TTFT and live status tracking.',
   },
   {
     icon: 'book-open',
-    title: 'Read part one: Foundation',
-    desc: 'A friendly, beginner-first framing arrives with source links and a reading timer.',
+    title: 'Part 1: Foundation',
+    desc: 'Beginner-friendly intuitive mental models arrive with verifiable source links and reading timers.',
   },
   {
     icon: 'lock',
-    title: 'Prove it, then unlock',
-    desc: 'Score 100% on the quiz to unlock the Mechanism and Real World parts.',
+    title: 'Banked Quiz Gating',
+    desc: 'Score 100% on the 2-question quiz to unlock Part 2 (Mechanism). Failed tries re-queue only missed questions.',
   },
   {
     icon: 'trophy',
-    title: 'Complete & earn XP',
-    desc: 'Celebrate with a score ring, key takeaways, and your progress level.',
+    title: 'Master, Level Up & Earn XP',
+    desc: 'Earn XP, unlock 56 achievements, earn streak freezes, review key takeaways, and export study summaries.',
   },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="relative z-10">
+    <section id="how" className="py-20 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-14">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="sticker">03 · How It Works</span>
-          <h2 className="headline-lg mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             A six-step learning journey.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            From curiosity to verified mastery in under five minutes.
+            From initial curiosity to verified conceptual mastery in minutes.
           </p>
         </Reveal>
 
-        <div className="h-scroll-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {STEPS.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.07}>
-              <div className="glass-card p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-5">
-                  <span className="icon-tile w-12 h-12">
-                    <Icon name={s.icon} size={22} />
-                  </span>
-                  <span
-                    className="font-mono text-3xl font-bold leading-none"
-                    style={{ color: 'color-mix(in srgb, var(--accent) 34%, transparent)' }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+              <div className="glass-card p-6 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span
+                      className="grid place-items-center w-10 h-10 rounded-xl"
+                      style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                    >
+                      <Icon name={s.icon} size={20} />
+                    </span>
+                    <span
+                      className="font-mono text-2xl font-extrabold"
+                      style={{ color: 'color-mix(in srgb, var(--accent) 45%, transparent)' }}
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+                    {s.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    {s.desc}
+                  </p>
                 </div>
-                <h3 className="headline-md mb-2" style={{ color: 'var(--text-primary)' }}>
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  {s.desc}
-                </p>
               </div>
             </Reveal>
           ))}

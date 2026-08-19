@@ -21,9 +21,8 @@ const SUBJECTS = [
   'Economics',
   'Computer Science',
   'History',
-  'Geography',
-  'Political Science',
   'Environmental Science',
+  'Political Science',
 ]
 
 const ITEMS = [...LANGUAGES, ...SUBJECTS]
@@ -31,25 +30,21 @@ const ITEMS = [...LANGUAGES, ...SUBJECTS]
 export default function Ticker() {
   return (
     <div
-      className="py-5 border-y relative z-10 overflow-hidden marquee-mask"
+      className="py-4 border-y relative z-10 overflow-hidden"
       style={{
         borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-2) 50%, transparent)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        background: 'color-mix(in srgb, var(--bg-card) 60%, transparent)',
+        backdropFilter: 'blur(8px)',
       }}
     >
-      <div className="flex whitespace-nowrap gap-10 animate-marquee" style={{ width: 'max-content' }}>
+      <div className="animate-marquee gap-8">
         {[...ITEMS, ...ITEMS].map((item, idx) => (
           <span
             key={`${item}-${idx}`}
-            className="inline-flex items-center gap-3 text-sm font-medium tracking-tight"
+            className="inline-flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-wider whitespace-nowrap"
             style={{ color: 'var(--text-secondary)' }}
           >
-            <span
-              className="w-1.5 h-1.5 rounded-full flex-none"
-              style={{ background: 'var(--glow)' }}
-            />
+            <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]" />
             {item}
           </span>
         ))}

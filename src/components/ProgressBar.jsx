@@ -27,7 +27,7 @@ export default function ProgressBar() {
         left: 0,
         height: 3,
         width: '100%',
-        background: 'var(--glow)',
+        background: 'var(--accent-gradient)',
         transform: `scaleX(${p / 100})`,
         transformOrigin: '0 50%',
         zIndex: 60,

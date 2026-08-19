@@ -1,53 +1,40 @@
-# RealLearn — landing page
+# RealLearn Info & Landing Page
 
-A clean, professional landing page for **RealLearn**, an AI learning platform
-that turns any question into a structured, quiz-verified, three-part lesson
-(**Foundation → Mechanism → Real World**).
+Official informational landing page for **RealLearn AI**, the AI-native learning platform that transforms any query into a structured, 3-part interactive learning journey (**Foundation → Mechanism → Real World**) grounded in live news and checkpointed by active recall quizzes.
 
-Built as a **React + Tailwind** single-page site (Vite). No backend — the quiz,
-lesson loader, and interactive spine are self-contained client-side interactions
-with zero extra dependencies.
+---
 
-## Design language — "modern learning, one accent"
+## 🌟 Modern Architecture & Core Features
 
-- **Single cohesive sans-serif type system**: Space Grotesk for display
-  headings, Inter for UI/body copy. No serif/mono identity clash.
-- **One primary accent**: an electric green is used consistently for CTAs,
-  active states, icons, and badges. No competing neon orange.
-- **WCAG AA contrast tokens** for body, secondary, and tertiary text on every
-  surface, in both the Paper (light) and Ink (dark) themes.
-- **Unified vector icon set**: inline SVG stroke icons replace OS emojis
-  everywhere (no system-emoji variance across devices).
-- **Three header tiers** — page, section, and card — plus a clear hierarchy
-  between section labels and step numbering.
-- **Tabbed overviews** keep long content compact: "The Method" is a four-pillar
-  tabbed deep-dive and "Capabilities" groups tools into Learn / Engage / Track
-  tabs, so mobile users never scroll through dozens of stacked cards.
-- **Mobile-friendly**: integrated ask-bar, horizontal scroll-snap rows for the
-  problem and step cards, a blurred full-screen mobile menu, and ≥44px targets.
-- **Two themes**, persisted to `localStorage`: `paper` (light daylight) and
-  `ink` (dark cyber night).
-- **Accessible**: skip link, visible focus states, semantic landmarks,
-  `aria-live`-friendly feedback, and full `prefers-reduced-motion` support.
+- **Multi-Provider AI Inference**: Powered by **Groq LPUs** (`qwen/qwen3.6-27b` & `openai/gpt-oss-120b`) for sub-second Time-To-First-Token (TTFT), hedged with **Mistral AI** (streaming JSON mode), **NVIDIA NIM** (70B–150B high-capacity fallback), and **Cloudflare Workers AI** (70B Fast FP8 failover with circuit breakers).
+- **Two Learning Modes**:
+  - **Explain Mode**: Structured 3-part deep dive (Part 1: Foundation → Part 2: Mechanism → Part 3: Real World).
+  - **Fast Mode**: Direct, concise single-part mental model.
+- **Banked Mastery Quiz Gating**: 100% pass score required to advance; incorrect tries re-queue only missed questions rather than restarting.
+- **Live News Grounding**: Real-time web news and research woven into Part 3 via **Serper API** with verifiable primary citations.
+- **12 Native Indian Languages**: Direct native LLM generation in English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada, Malayalam, Punjabi, Urdu, and Odia.
+- **On-Device Personalization**: Goals, notes, and quiz evidence adapt lessons with zero private server storage.
+- **Gamification**: 56 achievements, earnable streak freezes (+1 per 7 goal-met days), XP tracks, and daily goal rings.
 
-## Structure
+---
 
-1. Hero — headline, integrated "ask anything" bar, and the interactive 3-part spine demo
-2. Ticker — scrolling marquee of subjects & languages
-3. `01` The Problem — four framing cards (too shallow / too advanced / disconnected / forgettable)
-4. `02` The Method — four-pillar tabbed deep-dive (active recall, languages, adaptive levels, real-world grounding)
-5. `03` How it works — six steps from question to mastery
-6. `04` Try it — inline quiz demo with loading state + feedback
-7. `05` Capabilities — tabbed tool overview (Learn / Engage / Track)
+## 🎨 Design System — "Olive Frenzy Minimal"
 
-## Develop
+- **Primary Olive Color Family**:
+  - **Ink Room (Dark Mode - Default)**: Deep olive-black canvas (`#121510`), glowing lime-olive accent (`#A4C639`), ivory text (`#F5F3E8`), high-contrast ink on-accent text (`#121510`).
+  - **Paper Room (Light Mode)**: Warm cream canvas (`#FAF9F3`), rich olive accent (`#556B2F`), olive-ink text (`#1F2318`), white on-accent text (`#FFFFFF`).
+- **Strict Brand Rules**: Strictly **ZERO purple/violet** and **ZERO gold**.
+- **Typography**: Space Grotesk 700 bold headings, Inter 400 body, JetBrains Mono for technical labels and micro-stats.
+- **Unified Vector Icons**: Inline SVG stroke icons via `Icon.jsx` replace OS emojis.
+- **Tactile Key System**: Physical bevels, solid key edges (`--edge-accent`), and `:active` press compression.
+
+---
+
+## 🛠️ Development & Build
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # production build → dist/
-npm run preview    # preview the production build
+npm run dev        # Development server (http://localhost:5173)
+npm run build      # Production build → dist/
+npm run preview    # Preview production build
 ```
-
-Open `http://localhost:5173` and use the theme switch in the header to move between
-Paper and Ink.
