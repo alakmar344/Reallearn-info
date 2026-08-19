@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Icon from './Icon'
 
 const STAGES = [
   {
@@ -6,25 +7,21 @@ const STAGES = [
     badge: 'Part 01 · Foundation',
     title: 'Photosynthesis & Solar Conversion',
     subtitle: 'Intuitive Mental Model & Core Intuition',
-    status: 'Unlocked',
-    statusBg: 'var(--accent-dim)',
-    statusColor: 'var(--accent)',
+    status: { label: 'Unlocked', icon: 'check', locked: false },
     readingTime: '2 min read',
     content: [
       { label: 'Core Concept', val: 'Chloroplasts absorb solar photons to split water molecules into hydrogen ions and oxygen.' },
       { label: 'Key Equation', val: '6CO₂ + 6H₂O + Light Energy → C₆H₁₂O₆ + 6O₂' },
       { label: 'Active Checkpoint', val: 'Identifies atmospheric inputs and photosynthetic conversion pathways.' },
     ],
-    sources: ['Nature Education (2026)', 'NCERT Bio Ch. 13'],
+    sources: ['Nature Education (2026)', 'NCERT Biology Ch. 13'],
   },
   {
     id: 'part2',
     badge: 'Part 02 · Mechanism',
     title: 'Light-Dependent Reactions & ATP Synthase',
     subtitle: 'Step-by-Step Molecular Machinery',
-    status: 'Banked Quiz Gate 🔒',
-    statusBg: 'rgba(251, 113, 133, 0.15)',
-    statusColor: 'var(--danger)',
+    status: { label: 'Banked Quiz Gate', icon: 'lock', locked: true },
     readingTime: '3 min read',
     content: [
       { label: 'Photosystem II', val: 'P680 reaction center excites electrons transferred down the cytochrome b6f complex.' },
@@ -38,9 +35,7 @@ const STAGES = [
     badge: 'Part 03 · Real World',
     title: 'Artificial Photosynthesis & Clean Energy',
     subtitle: 'Live Grounding & Current Industry Updates',
-    status: 'Live Grounded ⚡',
-    statusBg: 'rgba(16, 185, 129, 0.15)',
-    statusColor: 'var(--success)',
+    status: { label: 'Live Grounded', icon: 'zap', locked: false },
     readingTime: '2 min read',
     content: [
       { label: 'Commercial Breakthrough', val: 'Bionic Leaf 3.0 reaches 10% solar-to-biomass conversion efficiency.' },
@@ -57,10 +52,10 @@ export default function Book3D() {
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      {/* Container Frame */}
       <div
         className="glass-card p-6 sm:p-7 relative overflow-hidden"
         style={{
+          borderRadius: 'var(--radius-2xl)',
           boxShadow: '0 24px 60px var(--shadow-a)',
         }}
       >
@@ -73,14 +68,15 @@ export default function Book3D() {
             </span>
           </div>
           <span
-            className="text-[11px] font-mono font-bold px-3 py-1 rounded-full uppercase"
+            className="flex items-center gap-1.5 text-xs font-mono font-bold px-3 py-1 rounded-full uppercase"
             style={{
-              background: currentStage.statusBg,
-              color: currentStage.statusColor,
-              border: `1px solid ${currentStage.statusColor}`,
+              background: currentStage.status.locked ? 'var(--danger-bg)' : 'var(--accent-dim)',
+              color: currentStage.status.locked ? 'var(--danger)' : 'var(--accent)',
+              border: `1px solid ${currentStage.status.locked ? 'var(--danger)' : 'var(--accent)'}`,
             }}
           >
-            {currentStage.status}
+            <Icon name={currentStage.status.icon} size={12} strokeWidth={2.2} />
+            {currentStage.status.label}
           </span>
         </div>
 
@@ -93,7 +89,7 @@ export default function Book3D() {
                 key={s.id}
                 type="button"
                 onClick={() => setActiveTab(idx)}
-                className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
+                className={`flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
                   isSelected ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
                 }`}
                 style={{
@@ -102,13 +98,14 @@ export default function Book3D() {
                   border: isSelected ? '1px solid var(--border-default)' : '1px solid transparent',
                 }}
               >
+                {s.status.locked && <Icon name="lock" size={11} strokeWidth={2} />}
                 Part 0{idx + 1}
               </button>
             )
           })}
         </div>
 
-        {/* Stage Content Card */}
+        {/* Stage Content */}
         <div className="flex flex-col gap-4">
           <div>
             <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
@@ -123,20 +120,33 @@ export default function Book3D() {
           </div>
 
           <div className="flex flex-col gap-2.5 my-1">
-            {currentStage.content.map((item) => (
-              <div
-                key={item.label}
-                className="p-3.5 rounded-xl border border-[color:var(--border-default)] flex flex-col gap-1"
-                style={{ background: 'var(--bg-primary)' }}
-              >
-                <span className="text-[11px] font-mono uppercase font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
-                  {item.label}
-                </span>
-                <span className="text-xs font-medium leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                  {item.val}
-                </span>
-              </div>
-            ))}
+            {currentStage.content.map((item) => {
+              const isEquation = /equation|→|²|₂/i.test(item.label + item.val)
+              return (
+                <div
+                  key={item.label}
+                  className="p-3.5 rounded-xl border border-[color:var(--border-default)] flex flex-col gap-1"
+                  style={{
+                    background: 'var(--bg-primary)',
+                    borderLeftWidth: 3,
+                    borderLeftColor: 'var(--accent)',
+                  }}
+                >
+                  <span className="text-[11px] font-mono uppercase font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-xs font-medium leading-relaxed"
+                    style={{
+                      color: 'var(--text-primary)',
+                      fontFamily: isEquation ? 'var(--font-mono)' : 'inherit',
+                    }}
+                  >
+                    {item.val}
+                  </span>
+                </div>
+              )
+            })}
           </div>
 
           {/* Verifiable Sources */}

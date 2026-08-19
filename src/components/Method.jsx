@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
+import Icon from './Icon'
 
-const FRAMEWORK_PILLARS = [
+const PILLARS = [
   {
     id: 'multi-provider',
     num: '01',
+    icon: 'zap',
     title: 'Multi-Provider Resilient AI Circuit',
     tagline: 'Groq LPUs + Mistral AI + NVIDIA NIM + Cloudflare Edge',
-    desc: 'Eliminates single-provider bottlenecks with sub-second Groq LPU inference, streamed SSE deltas, streaming JSON mode on Mistral, and automated circuit-breaking fallbacks.',
+    desc: 'Eliminates single-provider bottlenecks with sub-second Groq LPU inference (Qwen 3.6 27B & GPT-OSS 120B), streamed SSE deltas, streaming JSON mode on Mistral, and automated circuit-breaking fallbacks.',
     metrics: [
       { label: 'Time-To-First-Token', val: '< 400ms' },
       { label: 'Uptime Reliability', val: '99.99%' },
     ],
     features: [
-      'Groq LPUs: Qwen 3.6 27B & GPT-OSS 120B with sliding 60s TPM tracker',
+      'Groq LPUs: Sub-second TTFT streaming with sliding 60s TPM tracker',
       'Mistral AI: Streaming JSON mode for low-latency cold-start rescue',
       'NVIDIA NIM & Cloudflare Workers AI: 70B–150B parameter resilient failover',
     ],
@@ -21,6 +23,7 @@ const FRAMEWORK_PILLARS = [
   {
     id: 'personalization',
     num: '02',
+    icon: 'target',
     title: 'On-Device Learning Personalization',
     tagline: 'Adaptive Context Snippets with Zero Server Storage',
     desc: 'Builds an on-device learning profile from verified quiz performance (strengths and weaknesses) and custom learner goals, injecting compact context snippets into prompts without storing private data on servers.',
@@ -37,6 +40,7 @@ const FRAMEWORK_PILLARS = [
   {
     id: 'multilingual',
     num: '03',
+    icon: 'globe',
     title: 'Native Multilingual & Adaptive Tiers',
     tagline: '12 Indian Languages & 3 Calibrated Difficulty Tiers',
     desc: 'Linguistic nuance is preserved through direct native multilingual generation rather than lossy post-generation machine translation, supporting English, Hindi, Gujarati, Tamil, Bengali, and 7 more.',
@@ -53,6 +57,7 @@ const FRAMEWORK_PILLARS = [
   {
     id: 'grounding-gamification',
     num: '04',
+    icon: 'newspaper',
     title: 'Live News Grounding & Gamification',
     tagline: 'Serper API Integration, 56 Badges & Streak Freezes',
     desc: 'Connects abstract theory directly to real-world live events in Part 3, supported by an honest gamification system with XP, level progression, 56 achievements, and earnable streak freezes.',
@@ -68,59 +73,56 @@ const FRAMEWORK_PILLARS = [
   },
 ]
 
-export default function Rewards() {
-  const [activePillar, setActivePillar] = useState('multi-provider')
-
-  const current = FRAMEWORK_PILLARS.find((p) => p.id === activePillar) || FRAMEWORK_PILLARS[0]
+export default function Method() {
+  const [active, setActive] = useState('multi-provider')
+  const current = PILLARS.find((p) => p.id === active) || PILLARS[0]
 
   return (
-    <section id="framework" className="py-20 relative z-10">
+    <section id="method" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="sticker">
-            05 · Mastery Framework
-          </span>
+          <span className="sticker">02 · The Method</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Engineered for Deep Learning.
+            Four pillars of the RealLearn method.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Four scientific pillars powering RealLearn&apos;s active recall, resilient AI circuit, and structured comprehension system.
+            Every lesson is engineered from cognitive science, retrieval practice, and low-latency inference.
           </p>
         </Reveal>
 
-        {/* Pillar Showcase Card */}
-        <Reveal delay={0.05} className="mb-12">
+        <Reveal delay={0.05}>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-8 items-stretch">
-            {/* Pillar Selector List */}
+            {/* Pillar Selector */}
             <div className="flex flex-col gap-3">
-              {FRAMEWORK_PILLARS.map((p) => {
-                const isActive = activePillar === p.id
+              {PILLARS.map((p) => {
+                const isActive = active === p.id
                 return (
                   <button
                     key={p.id}
                     type="button"
-                    onClick={() => setActivePillar(p.id)}
-                    className="p-5 rounded-2xl border text-left transition-all flex items-start gap-4 cursor-pointer"
+                    onClick={() => setActive(p.id)}
+                    aria-pressed={isActive}
+                    className="p-5 rounded-2xl text-left transition-all flex items-start gap-4 cursor-pointer"
                     style={{
-                      background: isActive ? 'color-mix(in srgb, var(--bg-card) 95%, var(--accent) 5%)' : 'var(--bg-card)',
-                      borderColor: isActive ? 'var(--accent)' : 'var(--border-default)',
-                      boxShadow: isActive ? '0 8px 24px var(--shadow-a)' : 'none',
+                      background: isActive ? 'var(--bg-card)' : 'transparent',
+                      border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
+                      boxShadow: isActive ? 'var(--shadow-lift)' : 'none',
                     }}
                   >
                     <span
-                      className="font-mono text-lg font-bold px-2.5 py-1 rounded-lg"
+                      className="grid place-items-center w-10 h-10 rounded-xl flex-none font-mono font-bold"
                       style={{
                         background: isActive ? 'var(--accent)' : 'var(--bg-3)',
                         color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
                       }}
                     >
-                      {p.num}
+                      <Icon name={p.icon} size={18} />
                     </span>
                     <div>
                       <h3 className="font-display text-base sm:text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
                         {p.title}
                       </h3>
-                      <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                      <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
                         {p.tagline}
                       </p>
                     </div>
@@ -129,19 +131,19 @@ export default function Rewards() {
               })}
             </div>
 
-            {/* Selected Pillar Detail Card */}
+            {/* Selected Pillar Detail */}
             <div
-              className="glass-card p-6 sm:p-8 rounded-3xl flex flex-col justify-between"
-              style={{
-                boxShadow: '0 20px 50px var(--shadow-a)',
-              }}
+              className="glass-card p-6 sm:p-8 flex flex-col justify-between"
+              style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-mono text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
-                    Pillar {current.num} · {current.title}
+                    Pillar {current.num} of 4
                   </span>
-                  <span className="chip text-[11px] font-mono">{current.tagline}</span>
+                  <span className="chip text-[11px] font-mono">
+                    {current.tagline}
+                  </span>
                 </div>
 
                 <h3 className="font-display text-2xl sm:text-3xl font-extrabold mb-3" style={{ color: 'var(--text-primary)' }}>
@@ -151,21 +153,30 @@ export default function Rewards() {
                   {current.desc}
                 </p>
 
-                {/* Key Features Bullet List */}
                 <div className="flex flex-col gap-2.5 mb-8">
                   {current.features.map((feat) => (
                     <div key={feat} className="flex items-center gap-3 text-xs sm:text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-                      <span className="w-2 h-2 rounded-full bg-[color:var(--accent)] flex-none" />
+                      <span
+                        className="grid place-items-center w-5 h-5 rounded-full flex-none"
+                        style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                      >
+                        <Icon name="check" size={12} strokeWidth={2.5} />
+                      </span>
                       <span>{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t border-[color:var(--border-default)]">
+              <div className="grid grid-cols-2 gap-4 pt-6 border-t" style={{ borderColor: 'var(--border-default)' }}>
                 {current.metrics.map((m) => (
-                  <div key={m.label} className="p-4 rounded-xl border border-[color:var(--border-default)]" style={{ background: 'var(--bg-primary)' }}>
+                  <div
+                    key={m.label}
+                    className="p-4 rounded-xl border border-[color:var(--border-default)]"
+                    style={{
+                      background: 'var(--bg-primary)',
+                    }}
+                  >
                     <div className="font-mono text-2xl font-extrabold" style={{ color: 'var(--accent)' }}>
                       {m.val}
                     </div>

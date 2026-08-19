@@ -14,16 +14,18 @@ const LANGUAGES = [
 ]
 
 const SUBJECTS = [
-  { name: 'Physics', color: 'var(--subject-physics)' },
-  { name: 'Chemistry', color: 'var(--subject-chemistry)' },
-  { name: 'Biology', color: 'var(--subject-biology)' },
-  { name: 'Mathematics', color: 'var(--accent)' },
-  { name: 'Economics', color: 'var(--subject-economics)' },
-  { name: 'Computer Science', color: 'var(--subject-cs)' },
-  { name: 'History', color: 'var(--subject-history)' },
-  { name: 'Environmental Science', color: 'var(--subject-chemistry)' },
-  { name: 'Political Science', color: 'var(--subject-economics)' },
+  'Physics',
+  'Chemistry',
+  'Biology',
+  'Mathematics',
+  'Economics',
+  'Computer Science',
+  'History',
+  'Environmental Science',
+  'Political Science',
 ]
+
+const ITEMS = [...LANGUAGES, ...SUBJECTS]
 
 export default function Ticker() {
   return (
@@ -36,7 +38,7 @@ export default function Ticker() {
       }}
     >
       <div className="animate-marquee gap-8">
-        {[...LANGUAGES, ...SUBJECTS.map((s) => s.name), ...LANGUAGES, ...SUBJECTS.map((s) => s.name)].map((item, idx) => (
+        {[...ITEMS, ...ITEMS].map((item, idx) => (
           <span
             key={`${item}-${idx}`}
             className="inline-flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-wider whitespace-nowrap"

@@ -1,26 +1,27 @@
 import Reveal from './Reveal'
+import Icon from './Icon'
 
 const PROBLEMS = [
   {
-    icon: '🕳️',
+    icon: 'trending-down',
     title: 'Too Shallow',
     desc: 'One-line chatbot snippets deliver surface definitions without constructing intuitive mental models or deep comprehension.',
     badge: 'Superficial Q&A',
   },
   {
-    icon: '🤯',
+    icon: 'file-text',
     title: 'Too Advanced',
     desc: 'Generic search results dump dense academic jargon that is completely disconnected from the learner’s actual grade tier.',
     badge: 'Cognitive Overload',
   },
   {
-    icon: '🔌',
+    icon: 'archive',
     title: 'Disconnected',
     desc: 'Textbook examples frozen in past decades fail to connect theory with active real-world events, live news, and industry data.',
     badge: 'Outdated Context',
   },
   {
-    icon: '💨',
+    icon: 'eye-off',
     title: 'Forgettable',
     desc: 'Passive reading leaves zero active recall — research shows over 80% of un-tested information vanishes from memory within 24 hours.',
     badge: 'Passive Decay',
@@ -49,11 +50,19 @@ export default function ProblemSection() {
               <div className="glass-card p-6 h-full flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl">{p.icon}</span>
+                    <span
+                      className="grid place-items-center w-10 h-10 rounded-xl"
+                      style={{
+                        background: 'var(--danger-bg)',
+                        color: 'var(--danger)',
+                      }}
+                    >
+                      <Icon name={p.icon} size={20} />
+                    </span>
                     <span
                       className="font-mono text-[11px] font-bold px-2.5 py-1 rounded-full uppercase"
                       style={{
-                        background: 'rgba(251, 113, 133, 0.12)',
+                        background: 'var(--danger-bg)',
                         color: 'var(--danger)',
                         border: '1px solid var(--danger)',
                       }}
@@ -61,7 +70,7 @@ export default function ProblemSection() {
                       {p.badge}
                     </span>
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-2.5" style={{ color: 'var(--text-primary)' }}>
+                  <h3 className="font-display text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                     {p.title}
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>

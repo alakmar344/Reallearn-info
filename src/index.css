@@ -72,6 +72,7 @@
 
   --shadow-c: #000000;
   --shadow-a: rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 12px 36px rgba(0, 0, 0, 0.6);
   --shadow-glow-accent: 0 4px 18px rgba(164, 198, 57, 0.3);
 
   /* Semantic State Layer */
@@ -151,6 +152,7 @@
 
   --shadow-c: #1F2318;
   --shadow-a: rgba(31, 35, 24, 0.08);
+  --shadow-lift: 0 12px 36px rgba(31, 35, 24, 0.12);
   --shadow-glow-accent: 0 4px 12px rgba(85, 107, 47, 0.22);
 
   /* Semantic State Layer */
@@ -202,10 +204,25 @@ body {
 }
 
 /* Headings enforce Space Grotesk 700 */
-h1, h2, h3, h4, h5, h6, .font-display {
+h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.015em;
+}
+
+.headline-lg {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+}
+
+.headline-md {
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.25;
+}
+
+.headline-sm {
+  font-size: 16px;
+  line-height: 1.35;
 }
 
 /* Layout Container */
@@ -236,6 +253,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .glass-card:hover {
   border-color: color-mix(in srgb, var(--accent) 50%, var(--border-default));
   box-shadow: 0 12px 32px var(--shadow-a);
+}
+
+.glow-border {
+  position: relative;
 }
 
 /* Tactile Buttons System */

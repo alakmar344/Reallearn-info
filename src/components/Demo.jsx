@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
+import Icon from './Icon'
 
 const QUESTIONS = [
   {
@@ -51,34 +52,31 @@ export default function Demo() {
     <section id="try" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-12">
-          <span className="sticker">
-            04 · Interactive Demo
-          </span>
+          <span className="sticker">04 · Interactive Demo</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Try a Quiz-Gated Mini Lesson.
+            Try a quiz-gated mini lesson.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Experience active recall gating. Correct answers unlock progress; incorrect answers re-queue missed questions.
+            Experience active recall in action. Correct answers unlock progress; incorrect answers re-queue missed questions.
           </p>
         </Reveal>
 
         <Reveal className="max-w-xl mx-auto">
           <div
-            className="glass-card p-6 sm:p-8 relative rounded-3xl"
-            style={{
-              boxShadow: '0 24px 60px var(--shadow-a)',
-            }}
+            className="glass-card p-6 sm:p-8 relative"
+            style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
           >
             {/* Top Bar Status */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[color:var(--border-default)]">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[color:var(--accent)] animate-pulse" />
                 <span className="chip text-xs font-mono font-bold">
                   {demoMode === 'explain' ? 'Part 01 · Foundation Checkpoint' : 'Fast Mode · Summary Checkpoint'}
                 </span>
               </div>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
-                Active Recall Gate
+              <span className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+                <Icon name="check" size={13} strokeWidth={2.4} />
+                Active recall gate
               </span>
             </div>
 
@@ -115,13 +113,13 @@ export default function Demo() {
                 </div>
 
                 <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Interactive Checkpoint Simulator
+                  Interactive checkpoint demo
                 </h3>
                 <p className="mb-6 text-sm max-w-md mx-auto" style={{ color: 'var(--text-secondary)' }}>
                   Click below to simulate Groq LPU generating a structured pedagogical checkpoint.
                 </p>
                 <button type="button" className="btn btn-action" onClick={generate}>
-                  Generate Lesson Checkpoint →
+                  Generate a checkpoint →
                 </button>
               </div>
             )}
@@ -204,20 +202,22 @@ export default function Demo() {
                       </p>
                     ) : (
                       <p>
-                        <strong style={{ color: 'var(--danger)' }}>✕ Incorrect.</strong> Re-read the foundation takeaway and re-try to unlock.
+                        <strong style={{ color: 'var(--danger)' }}>✕ Incorrect.</strong> Re-read the foundation takeaway and try again.
                       </p>
                     )}
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t border-[color:var(--border-default)]">
+                <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: 'var(--border-default)' }}>
                   {solved ? (
                     <button type="button" className="btn btn-action" onClick={next}>
-                      Next Question →
+                      Next question
+                      <Icon name="chevron-right" size={15} strokeWidth={2.2} />
                     </button>
                   ) : (
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-                      🔒 100% Score to Unlock Next Part
+                    <span className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                      <Icon name="lock" size={14} />
+                      100% score to unlock next part
                     </span>
                   )}
                   <button
@@ -226,7 +226,7 @@ export default function Demo() {
                     style={{ color: 'var(--accent)' }}
                     onClick={generate}
                   >
-                    Reset Checkpoint
+                    Reset checkpoint
                   </button>
                 </div>
               </div>

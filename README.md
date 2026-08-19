@@ -25,6 +25,7 @@ Official informational landing page for **RealLearn AI**, the AI-native learning
   - **Paper Room (Light Mode)**: Warm cream canvas (`#FAF9F3`), rich olive accent (`#556B2F`), olive-ink text (`#1F2318`), white on-accent text (`#FFFFFF`).
 - **Strict Brand Rules**: Strictly **ZERO purple/violet** and **ZERO gold**.
 - **Typography**: Space Grotesk 700 bold headings, Inter 400 body, JetBrains Mono for technical labels and micro-stats.
+- **Unified Vector Icons**: Inline SVG stroke icons via `Icon.jsx` replace OS emojis.
 - **Tactile Key System**: Physical bevels, solid key edges (`--edge-accent`), and `:active` press compression.
 
 ---

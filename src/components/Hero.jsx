@@ -1,33 +1,38 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 import Book3D from './Book3D'
+import Icon from './Icon'
 
 const STATS = [
-  { label: '⚡ Groq LPU Sub-Second Inference' },
-  { label: '📐 3-Part Structured Pedagogy' },
-  { label: '📰 Live Serper News Grounding' },
-  { label: '🌐 12 Native Indian Languages' },
-  { label: '🔒 Banked Mastery Quiz Gating' },
+  { val: 'Groq LPU', label: 'sub-second inference' },
+  { val: '3-Part', label: 'pedagogical spine' },
+  { val: '12', label: 'Indian languages' },
+  { val: '100%', label: 'quiz-verified' },
 ]
 
 export default function Hero() {
   const [prompt, setPrompt] = useState('')
   const [mode, setMode] = useState('explain') // 'explain' | 'fast'
+  const [focused, setFocused] = useState(false)
 
   const handleQuickAsk = (e) => {
     e.preventDefault()
-    if (!prompt.trim()) return
-    window.location.href = '#try'
+    window.location.href = 'https://reallearn.site'
   }
 
   return (
-    <section id="top" className="relative section" style={{ paddingTop: 'clamp(48px, 6vw, 84px)', paddingBottom: 'clamp(40px, 5vw, 76px)' }}>
+    <section
+      id="top"
+      className="relative section"
+      style={{ paddingTop: 'clamp(52px, 8vw, 96px)', paddingBottom: 'clamp(44px, 6vw, 84px)' }}
+    >
       <div className="container relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-          <div>
-            <Reveal style={{ marginBottom: 18 }}>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="min-w-0">
+            <Reveal style={{ marginBottom: 20 }}>
               <span className="sticker">
-                RealLearn AI · Production-Scale Pedagogy
+                <Icon name="zap" size={12} strokeWidth={2.2} />
+                RealLearn AI · 3-Part Structured Pedagogy
               </span>
             </Reveal>
 
@@ -48,14 +53,35 @@ export default function Hero() {
               </h1>
             </Reveal>
 
-            <Reveal delay={0.12} as="p" style={{ fontSize: 'clamp(16px, 1.8vw, 19px)', color: 'var(--text-secondary)', margin: '20px 0 28px', maxWidth: '44ch', lineHeight: 1.6 }}>
+            <Reveal
+              delay={0.12}
+              as="p"
+              style={{
+                fontSize: 'clamp(16px, 1.8vw, 19px)',
+                color: 'var(--text-secondary)',
+                margin: '20px 0 28px',
+                maxWidth: '44ch',
+                lineHeight: 1.6,
+              }}
+            >
               RealLearn transforms any query into a structured 3-part learning journey —{' '}
-              <strong style={{ color: 'var(--text-primary)' }}>Foundation → Mechanism → Real World</strong> — checkpointed by active recall quizzes and live news.
+              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
+                Foundation → Mechanism → Real World
+              </strong>{' '}
+              — checkpointed by active recall quizzes and live news grounding.
             </Reveal>
 
-            {/* Interactive Quick Ask Box with Mode Glider */}
+            {/* Quick Ask Box with Mode Switcher */}
             <Reveal delay={0.16} style={{ marginBottom: 28 }}>
-              <form onSubmit={handleQuickAsk} className="p-2 rounded-3xl border bg-[color:var(--bg-card)] max-w-xl" style={{ borderColor: 'var(--border-default)', boxShadow: '0 12px 36px var(--shadow-a)' }}>
+              <div
+                className="p-2 rounded-3xl border max-w-xl"
+                style={{
+                  background: 'var(--bg-card)',
+                  borderColor: focused ? 'var(--accent)' : 'var(--border-default)',
+                  boxShadow: focused ? 'var(--shadow-lift), 0 0 0 3px var(--accent-dim)' : '0 10px 30px var(--shadow-a)',
+                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                }}
+              >
                 {/* Mode Selector */}
                 <div className="flex items-center gap-1.5 p-1 rounded-2xl mb-2 bg-[color:var(--bg-3)]">
                   <button
@@ -69,7 +95,7 @@ export default function Hero() {
                       color: mode === 'explain' ? 'var(--on-accent)' : 'var(--text-primary)',
                     }}
                   >
-                    ✦ Explain Mode (3-Step Journey)
+                    ✦ Explain Mode (3-Part Journey)
                   </button>
                   <button
                     type="button"
@@ -86,26 +112,59 @@ export default function Hero() {
                   </button>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2">
+                <form
+                  onSubmit={handleQuickAsk}
+                  onFocus={() => setFocused(true)}
+                  onBlur={() => setFocused(false)}
+                  className="flex items-center gap-2"
+                >
+                  <Icon
+                    name="search"
+                    size={18}
+                    style={{ marginLeft: 12, flex: 'none', color: 'var(--text-tertiary)' }}
+                  />
                   <input
                     type="text"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Ask any concept (e.g. How does photosynthesis work?)..."
-                    className="flex-1 px-4 py-3 rounded-2xl bg-transparent text-[color:var(--text-primary)] placeholder-[color:var(--text-tertiary)] focus:outline-none text-sm font-medium"
+                    aria-label="Ask any concept"
+                    className="flex-1 min-w-0 bg-transparent px-2 py-2.5 text-sm font-medium focus:outline-none"
+                    style={{ color: 'var(--text-primary)' }}
                   />
-                  <button type="submit" className="btn btn-action whitespace-nowrap">
-                    Start Learning →
+                  <button
+                    type="submit"
+                    className="btn btn-action flex-none"
+                    style={{ minHeight: 42, padding: '0 20px', fontSize: 13 }}
+                  >
+                    Start Journey →
                   </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </Reveal>
 
-            <Reveal delay={0.22} className="flex flex-wrap items-center gap-2.5">
-              {STATS.map((s) => (
-                <span key={s.label} className="chip text-xs font-medium">
-                  {s.label}
-                </span>
+            {/* Stat row */}
+            <Reveal delay={0.22} className="flex flex-wrap items-center gap-x-7 gap-y-3">
+              {STATS.map((s, i) => (
+                <div key={s.label} className="flex items-center gap-7">
+                  {i > 0 && (
+                    <span
+                      aria-hidden="true"
+                      style={{ width: 1, height: 28, background: 'var(--border-default)' }}
+                    />
+                  )}
+                  <div>
+                    <div
+                      className="font-display font-bold leading-none text-xl sm:text-2xl"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      {s.val}
+                    </div>
+                    <div className="text-xs font-medium mt-1 font-mono uppercase" style={{ color: 'var(--text-tertiary)' }}>
+                      {s.label}
+                    </div>
+                  </div>
+                </div>
               ))}
             </Reveal>
           </div>

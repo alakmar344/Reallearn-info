@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react'
+import Icon from './Icon'
 import { useTheme } from '../theme'
 
 const THEME_LABELS = {
-  paper: { label: 'Paper', icon: '☀️', bg: '#FAF9F3' },
-  ink: { label: 'Ink', icon: '🌙', bg: '#121510' },
+  paper: { label: 'Paper', icon: 'sun' },
+  ink: { label: 'Ink', icon: 'moon' },
 }
 
 const LINKS = [
-  { href: '#problem', label: 'Problem' },
-  { href: '#method', label: 'Method' },
+  { href: '#problem', label: 'The problem' },
+  { href: '#method', label: 'The method' },
   { href: '#how', label: 'How it works' },
-  { href: '#try', label: 'Interactive Demo' },
-  { href: '#framework', label: 'Architecture' },
+  { href: '#try', label: 'Interactive demo' },
   { href: '#tour', label: 'Capabilities' },
 ]
 
-function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
+function ThemeSwitch({ theme, setTheme, themes }) {
   return (
     <div
       className="theme-switch flex items-center p-1 rounded-full border"
@@ -34,18 +34,17 @@ function ThemeSwitch({ theme, setTheme, themes, compact = false }) {
             type="button"
             aria-pressed={isActive}
             aria-label={`${THEME_LABELS[t]?.label || t} theme`}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
-              isActive ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
-            }`}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer"
             style={{
               background: isActive ? 'var(--accent)' : 'transparent',
               color: isActive ? 'var(--on-accent)' : 'var(--text-primary)',
               minHeight: 34,
+              border: 'none',
             }}
             onClick={() => setTheme(t)}
           >
-            <span>{THEME_LABELS[t]?.icon}</span>
-            <span>{!compact ? THEME_LABELS[t]?.label || t : t.toUpperCase()}</span>
+            <Icon name={THEME_LABELS[t]?.icon || 'sun'} size={13} />
+            <span>{THEME_LABELS[t]?.label || t}</span>
           </button>
         )
       })}
@@ -72,9 +71,8 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 transition-colors"
+      className="sticky top-0 z-50"
       style={{
-        borderColor: 'var(--border-default)',
         background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
@@ -90,11 +88,10 @@ export default function Header() {
         >
           <span
             aria-hidden="true"
-            className="grid place-items-center flex-none font-bold text-sm"
+            className="grid place-items-center flex-none font-display font-bold text-sm"
             style={{
               width: 40,
               height: 40,
-              border: '1.5px solid var(--border-default)',
               borderRadius: 12,
               background: 'var(--accent)',
               color: 'var(--on-accent)',
@@ -120,7 +117,7 @@ export default function Header() {
         </a>
 
         <nav
-          className="hidden lg:flex items-center gap-7 font-mono text-[12px] uppercase font-semibold tracking-wider"
+          className="hidden md:flex items-center gap-8 text-[14px] font-semibold"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
@@ -151,14 +148,14 @@ export default function Header() {
 
           <button
             type="button"
-            className="lg:hidden p-2.5 rounded-xl cursor-pointer"
+            className="md:hidden grid place-items-center w-10 h-10 rounded-xl cursor-pointer"
             style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)', background: 'var(--bg-card)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? '✕' : '☰'}
+            <Icon name={open ? 'x' : 'menu'} size={20} />
           </button>
         </div>
       </div>
@@ -166,19 +163,24 @@ export default function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="lg:hidden p-6 border-b flex flex-col gap-5"
+          className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-4 flex flex-col gap-4"
           style={{
-            background: 'var(--bg-primary)',
-            borderColor: 'var(--border-default)',
+            top: 72,
+            bottom: 0,
+            background: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: '1px solid var(--border-default)',
+            overflowY: 'auto',
           }}
         >
-          <nav className="flex flex-col font-display text-lg gap-3">
+          <nav className="flex flex-col text-lg font-display font-bold gap-2">
             {LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-2.5 border-b border-[color:var(--border-default)]"
+                className="py-3 border-b border-[color:var(--border-default)]"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {l.label}
