@@ -21,7 +21,7 @@ RealLearn AI is not a chatbot that returns one-line answers. It is an education 
 1. Structured lessons — Foundation, Mechanism, Real World every single time
 2. Calibrated difficulty — Class 6–8, 9–10, and College / Advanced
 3. Active recall quizzes — 100% score gates progression; no skipping ahead
-4. Native multilingual content — 12 Indian languages, never translated after the fact
+4. Native multilingual content — 63 global languages, never translated after the fact
 5. Live, grounded content — current events woven into every Part 3
 6. Voice input and read-aloud — speak questions, listen to lessons
 7. Gamified retention — XP, streaks, daily goals, 17 badges, 7 levels
@@ -35,7 +35,7 @@ Physics, Chemistry, Biology, Mathematics, Economics, Computer Science, History, 
 
 ## Languages
 
-English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada, Malayalam, Punjabi, Urdu, Odia.
+63 global languages — natively generated, never translated.
 
 ## How it works
 

@@ -10,7 +10,7 @@ const STEPS = [
   {
     icon: 'sliders',
     title: 'Choose Level & Language',
-    desc: 'Pick your preferred language (12 native languages) and your difficulty tier (Class 6-8, 9-10, or College/Pro).',
+    desc: 'Pick your preferred language (63 global languages) and your difficulty tier (Class 6-8, 9-10, or College/Pro).',
   },
   {
     icon: 'book-open',

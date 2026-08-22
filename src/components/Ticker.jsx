@@ -1,16 +1,16 @@
 const LANGUAGES = [
+  '63 Global Languages',
   'English',
-  'हिन्दी (Hindi)',
-  'ગુજરાતી (Gujarati)',
-  'தமிழ் (Tamil)',
-  'বাংলা (Bengali)',
-  'मराठी (Marathi)',
-  'తెలుగు (Telugu)',
-  'ಕನ್ನಡ (Kannada)',
-  'മലയാളം (Malayalam)',
-  'ਪੰਜਾਬੀ (Punjabi)',
-  'اردو (Urdu)',
-  'ଓଡ଼ିଆ (Odia)',
+  'Hindi',
+  'Chinese',
+  'Spanish',
+  'French',
+  'Arabic',
+  'Portuguese',
+  'Russian',
+  'Japanese',
+  'German',
+  'Korean',
 ]
 
 const SUBJECTS = [

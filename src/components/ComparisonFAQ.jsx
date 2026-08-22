@@ -24,8 +24,8 @@ const AUDIENCES = [
   {
     icon: 'globe',
     title: 'Multilingual Learners',
-    desc: 'Learn high-level concepts naturally in Hindi, Tamil, Gujarati, Bengali, Marathi, and 7 more native languages.',
-    tag: '12 Native Languages',
+    desc: 'Learn high-level concepts naturally in any of 63 global languages with culturally aware, native-quality lessons.',
+    tag: '63 Global Languages',
   },
 ]
 
@@ -44,7 +44,7 @@ const COMPARISONS = [
   },
   {
     feature: 'Native Multilingual',
-    reallearn: '12 Native Indian Languages with cultural tone',
+    reallearn: '63 Global Languages with cultural tone',
     chatbot: 'Often English-biased or awkward literal translation',
     search: 'Hit-or-miss language availability',
   },
@@ -83,7 +83,7 @@ const FAQS = [
   },
   {
     q: 'Which languages are supported?',
-    a: 'RealLearn supports 12 native Indian languages: English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada, Malayalam, Punjabi, Urdu, and Odia. Lessons are crafted directly in your chosen language with natural phrasing.',
+    a: 'RealLearn supports 63 global languages. Lessons are crafted directly in your chosen language with natural phrasing — never translated after the fact.',
   },
   {
     q: 'Can I listen to lessons or speak my questions?',
