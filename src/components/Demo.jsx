@@ -113,13 +113,13 @@ export default function Demo() {
                 </div>
 
                 <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  Interactive checkpoint demo
+                  Interactive Checkpoint Demo
                 </h3>
                 <p className="mb-6 text-sm max-w-md mx-auto" style={{ color: 'var(--text-secondary)' }}>
-                  Click below to simulate Groq LPU generating a structured pedagogical checkpoint.
+                  See how active recall works. Test your intuition on a sample question and unlock the next stage.
                 </p>
                 <button type="button" className="btn btn-action" onClick={generate}>
-                  Generate a checkpoint →
+                  Start Sample Checkpoint →
                 </button>
               </div>
             )}
@@ -131,10 +131,10 @@ export default function Demo() {
                   style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }}
                 />
                 <p className="font-mono text-xs font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
-                  Streaming from Groq LPU (Qwen 3.6 27B)…
+                  Preparing your active recall quiz…
                 </p>
                 <p className="font-mono text-[11px]" style={{ color: 'var(--text-secondary)' }}>
-                  Grounded with live Serper News context
+                  Formulating questions grounded in live real-world context
                 </p>
               </div>
             )}

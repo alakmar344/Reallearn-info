@@ -4,10 +4,17 @@ import Book3D from './Book3D'
 import Icon from './Icon'
 
 const STATS = [
-  { val: 'Groq LPU', label: 'sub-second inference' },
-  { val: '3-Part', label: 'pedagogical spine' },
-  { val: '12', label: 'Indian languages' },
-  { val: '100%', label: 'quiz-verified' },
+  { val: '3-Step', label: 'Mastery Journey' },
+  { val: '12', label: 'Native Languages' },
+  { val: '100%', label: 'Active Retention' },
+  { val: '100%', label: 'Free & Ad-Free' },
+]
+
+const SUGGESTIONS = [
+  'How does photosynthesis work?',
+  'Why do airplanes fly?',
+  'What causes inflation in an economy?',
+  'How does GPS find your location?',
 ]
 
 export default function Hero() {
@@ -17,7 +24,16 @@ export default function Hero() {
 
   const handleQuickAsk = (e) => {
     e.preventDefault()
-    window.location.href = 'https://reallearn.site'
+    const query = prompt.trim()
+    if (query) {
+      window.location.href = `https://reallearn.site?q=${encodeURIComponent(query)}&mode=${mode}`
+    } else {
+      window.location.href = 'https://reallearn.site'
+    }
+  }
+
+  const handleSuggestion = (s) => {
+    setPrompt(s)
   }
 
   return (
@@ -31,8 +47,8 @@ export default function Hero() {
           <div className="min-w-0">
             <Reveal style={{ marginBottom: 20 }}>
               <span className="sticker">
-                <Icon name="zap" size={12} strokeWidth={2.2} />
-                RealLearn AI · 3-Part Structured Pedagogy
+                <Icon name="sparkles" size={13} strokeWidth={2.2} />
+                AI Learning Coach · No More Boring Answers
               </span>
             </Reveal>
 
@@ -40,15 +56,15 @@ export default function Hero() {
               <h1
                 className="font-display font-extrabold tracking-tight"
                 style={{
-                  fontSize: 'clamp(36px, 6.5vw, 64px)',
+                  fontSize: 'clamp(36px, 6.5vw, 62px)',
                   color: 'var(--text-primary)',
                   lineHeight: 1.12,
                   letterSpacing: '-0.025em',
                 }}
               >
-                Don&rsquo;t just get answers.{' '}
+                Stop searching for answers.{' '}
                 <span className="text-gradient block">
-                  Actually learn.
+                  Start truly understanding.
                 </span>
               </h1>
             </Reveal>
@@ -60,21 +76,21 @@ export default function Hero() {
                 fontSize: 'clamp(16px, 1.8vw, 19px)',
                 color: 'var(--text-secondary)',
                 margin: '20px 0 28px',
-                maxWidth: '44ch',
+                maxWidth: '46ch',
                 lineHeight: 1.6,
               }}
             >
-              RealLearn transforms any query into a structured 3-part learning journey —{' '}
+              RealLearn transforms any confusing question into a structured 3-step interactive journey —{' '}
               <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                 Foundation → Mechanism → Real World
               </strong>{' '}
-              — checkpointed by active recall quizzes and live news grounding.
+              — locked behind fun mini-quizzes so knowledge actually sticks.
             </Reveal>
 
-            {/* Quick Ask Box with Mode Switcher */}
-            <Reveal delay={0.16} style={{ marginBottom: 28 }}>
+            {/* Quick Ask Box with Mode Switcher & Suggestions */}
+            <Reveal delay={0.16} style={{ marginBottom: 24 }}>
               <div
-                className="p-2 rounded-3xl border max-w-xl"
+                className="p-2.5 rounded-3xl border max-w-xl"
                 style={{
                   background: 'var(--bg-card)',
                   borderColor: focused ? 'var(--accent)' : 'var(--border-default)',
@@ -95,7 +111,7 @@ export default function Hero() {
                       color: mode === 'explain' ? 'var(--on-accent)' : 'var(--text-primary)',
                     }}
                   >
-                    ✦ Explain Mode (3-Part Journey)
+                    ✦ Explain Mode (3-Step Mastery)
                   </button>
                   <button
                     type="button"
@@ -108,7 +124,7 @@ export default function Hero() {
                       color: mode === 'fast' ? 'var(--on-accent)' : 'var(--text-primary)',
                     }}
                   >
-                    ⚡ Fast Mode (1-Part Summary)
+                    ⚡ Fast Mode (Quick Summary)
                   </button>
                 </div>
 
@@ -127,7 +143,7 @@ export default function Hero() {
                     type="text"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Ask any concept (e.g. How does photosynthesis work?)..."
+                    placeholder="Ask anything (e.g. How does photosynthesis work?)..."
                     aria-label="Ask any concept"
                     className="flex-1 min-w-0 bg-transparent px-2 py-2.5 text-sm font-medium focus:outline-none"
                     style={{ color: 'var(--text-primary)' }}
@@ -137,14 +153,31 @@ export default function Hero() {
                     className="btn btn-action flex-none"
                     style={{ minHeight: 42, padding: '0 20px', fontSize: 13 }}
                   >
-                    Start Journey →
+                    Start Learning →
                   </button>
                 </form>
+              </div>
+
+              {/* Suggestion Chips */}
+              <div className="flex flex-wrap items-center gap-2 mt-3 max-w-xl">
+                <span className="text-xs font-medium" style={{ color: 'var(--text-tertiary)' }}>
+                  Try asking:
+                </span>
+                {SUGGESTIONS.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => handleSuggestion(s)}
+                    className="suggestion-pill"
+                  >
+                    {s}
+                  </button>
+                ))}
               </div>
             </Reveal>
 
             {/* Stat row */}
-            <Reveal delay={0.22} className="flex flex-wrap items-center gap-x-7 gap-y-3">
+            <Reveal delay={0.22} className="flex flex-wrap items-center gap-x-7 gap-y-3 pt-2">
               {STATS.map((s, i) => (
                 <div key={s.label} className="flex items-center gap-7">
                   {i > 0 && (

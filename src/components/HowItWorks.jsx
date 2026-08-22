@@ -4,33 +4,33 @@ import Icon from './Icon'
 const STEPS = [
   {
     icon: 'message',
-    title: 'Ask or Speak',
-    desc: 'Type any complex topic or tap the microphone button for native browser speech-to-text input.',
+    title: 'Ask or Speak Anything',
+    desc: 'Type any tricky homework problem, curious thought, or tap the microphone to ask with your voice.',
   },
   {
     icon: 'sliders',
-    title: 'Select Mode & Language',
-    desc: 'Pick Explain (3-part journey) or Fast (1-part summary), 3 grade tiers, and 12 native Indian languages.',
-  },
-  {
-    icon: 'zap',
-    title: 'Sub-Second Streaming',
-    desc: 'Groq LPU primary inference generates structured lesson streams with sub-second TTFT and live status tracking.',
+    title: 'Choose Level & Language',
+    desc: 'Pick your preferred language (12 native languages) and your difficulty tier (Class 6-8, 9-10, or College/Pro).',
   },
   {
     icon: 'book-open',
-    title: 'Part 1: Foundation',
-    desc: 'Beginner-friendly intuitive mental models arrive with verifiable source links and reading timers.',
+    title: 'Part 1: Build Intuition',
+    desc: 'Read a clear, intuitive foundation powered by relatable analogies that make complex topics feel simple.',
   },
   {
     icon: 'lock',
-    title: 'Banked Quiz Gating',
-    desc: 'Score 100% on the 2-question quiz to unlock Part 2 (Mechanism). Failed tries re-queue only missed questions.',
+    title: 'Pass Checkpoint Quizzes',
+    desc: 'Take a quick 2-question quiz to test your comprehension. Score 100% to unlock Part 2 (The Mechanism).',
+  },
+  {
+    icon: 'newspaper',
+    title: 'Part 3: Real-World Context',
+    desc: 'See how the concept applies to modern technology, fresh live news headlines, and daily life.',
   },
   {
     icon: 'trophy',
-    title: 'Master, Level Up & Earn XP',
-    desc: 'Earn XP, unlock 56 achievements, earn streak freezes, review key takeaways, and export study summaries.',
+    title: 'Level Up & Keep Streaks',
+    desc: 'Earn XP, unlock 56 badges, protect your streak with streak freezes, and save lessons to your private library.',
   },
 ]
 
@@ -41,10 +41,10 @@ export default function HowItWorks() {
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="sticker">03 · How It Works</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            A six-step learning journey.
+            A six-step journey to mastery.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            From initial curiosity to verified conceptual mastery in minutes.
+            From initial curiosity to lasting conceptual mastery in under five minutes.
           </p>
         </Reveal>
 

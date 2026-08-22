@@ -4,43 +4,47 @@ import Icon from './Icon'
 const PROBLEMS = [
   {
     icon: 'trending-down',
-    title: 'Too Shallow',
-    desc: 'One-line chatbot snippets deliver surface definitions without constructing intuitive mental models or deep comprehension.',
-    badge: 'Superficial Q&A',
+    title: 'Superficial Chatbot Answers',
+    desc: 'Generic AI chatbots spit out disposable, one-line answers that feel like an encyclopedia snippet. You read it, but you don’t build true intuition.',
+    badge: 'Surface-Level Q&A',
+    solution: 'RealLearn builds a 3-stage intuitive roadmap with real depth.',
   },
   {
     icon: 'file-text',
-    title: 'Too Advanced',
-    desc: 'Generic search results dump dense academic jargon that is completely disconnected from the learner’s actual grade tier.',
+    title: 'Dense Jargon Overload',
+    desc: 'Search engines and academic websites bury you in intimidating math and complex terminology before you even understand the basic concept.',
     badge: 'Cognitive Overload',
-  },
-  {
-    icon: 'archive',
-    title: 'Disconnected',
-    desc: 'Textbook examples frozen in past decades fail to connect theory with active real-world events, live news, and industry data.',
-    badge: 'Outdated Context',
+    solution: 'Starts with crystal-clear analogies before adding mechanics.',
   },
   {
     icon: 'eye-off',
-    title: 'Forgettable',
-    desc: 'Passive reading leaves zero active recall — research shows over 80% of un-tested information vanishes from memory within 24 hours.',
-    badge: 'Passive Decay',
+    title: 'Instant Forgetting Curve',
+    desc: 'When you just scroll and read passively, research shows over 80% of what you read evaporates from memory within 24 hours.',
+    badge: '80% Forgotten Tomorrow',
+    solution: 'Active recall checkpoint quizzes lock concepts into memory.',
+  },
+  {
+    icon: 'archive',
+    title: 'Disconnected From Reality',
+    desc: 'Textbook examples from 20 years ago feel dry and abstract, leaving you wondering: "Why does this actually matter in the real world?"',
+    badge: 'Dry & Outdated',
+    solution: 'Connects every concept to live news, real tech, and modern life.',
   },
 ]
 
 export default function ProblemSection() {
   return (
-    <section id="problem" className="py-20 relative z-10">
+    <section id="why" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="sticker">
-            01 · The Problem
+            01 · The Learning Dilemma
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Why traditional Q&A fails learners.
+            Why typical search & chatbots fail learners.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Conventional chatbots act like automated encyclopedias. RealLearn rebuilds the pedagogical journey from the ground up.
+            When you're trying to learn, getting a wall of text isn't enough. Here's why traditional tools leave you confused — and how RealLearn fixes it.
           </p>
         </Reveal>
 
@@ -70,12 +74,20 @@ export default function ProblemSection() {
                       {p.badge}
                     </span>
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  <h3 className="font-display text-xl font-bold mb-2.5" style={{ color: 'var(--text-primary)' }}>
                     {p.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                     {p.desc}
                   </p>
+                </div>
+
+                <div
+                  className="pt-3.5 border-t text-xs font-semibold flex items-center gap-2"
+                  style={{ borderColor: 'var(--border-default)', color: 'var(--accent)' }}
+                >
+                  <Icon name="check-circle" size={15} strokeWidth={2.2} />
+                  <span>{p.solution}</span>
                 </div>
               </div>
             </Reveal>

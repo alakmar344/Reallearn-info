@@ -4,61 +4,61 @@ import Icon from './Icon'
 
 const GROUPS = [
   {
-    id: 'engine',
-    label: 'AI & Inference',
-    items: [
-      { icon: 'zap', title: 'Groq LPU acceleration', desc: 'Sub-second TTFT streaming with Qwen 3.6 27B and GPT-OSS 120B.' },
-      { icon: 'layers', title: 'Multi-provider failover', desc: 'Hedged racing with Mistral AI JSON mode, NVIDIA NIM & Cloudflare.' },
-      { icon: 'newspaper', title: 'Live news grounding', desc: 'Real-time web news and research woven into Part 3 via Serper API.' },
-      { icon: 'refresh', title: 'Two-tier caching', desc: 'Instant cache peek with memory LRU and persistent MongoDB cache.' },
-    ],
-  },
-  {
-    id: 'learn',
-    label: 'Pedagogy',
-    items: [
-      { icon: 'book-open', title: 'Three-part spine', desc: 'Foundation, Mechanism, Real World — structured every single time.' },
-      { icon: 'lock', title: 'Banked quiz gating', desc: '100% score to advance; incorrect tries re-queue only missed questions.' },
-      { icon: 'globe', title: '12 Indian languages', desc: 'Direct native LLM generation preserving linguistic nuance.' },
-      { icon: 'graduation-cap', title: '3 adaptive tiers', desc: 'Calibrated complexity across Class 6–8, Class 9–10, and College.' },
-    ],
-  },
-  {
     id: 'personal',
-    label: 'Personalization & Audio',
+    label: 'Personalized & Adaptive',
     items: [
-      { icon: 'target', title: 'On-device personalization', desc: 'Learner goals and quiz evidence adapt lessons with zero server storage.' },
-      { icon: 'mic', title: 'Voice input support', desc: 'Speak complex questions natively with browser speech recognition.' },
-      { icon: 'volume', title: 'Natural audio TTS', desc: 'Listen to every lesson part with natural voice synthesis playback.' },
-      { icon: 'link', title: 'Verifiable citations', desc: 'Every factual claim links out to verifiable primary sources.' },
+      { icon: 'target', title: 'Custom Learner Goals', desc: 'Add your own learning notes to guide the AI on your specific goals and interests.' },
+      { icon: 'graduation-cap', title: '3 Grade Difficulty Tiers', desc: 'Tailored explanations calibrated for Class 6–8, Class 9–10, or College and beyond.' },
+      { icon: 'sliders', title: 'Explain vs Fast Mode', desc: 'Pick between a deep 3-stage interactive journey or a quick 1-part executive summary.' },
+      { icon: 'shield', title: '100% Private On-Device', desc: 'Your study goals and notes stay safely in your browser with zero ads or tracking.' },
     ],
   },
   {
-    id: 'mastery',
-    label: 'Progress & Design',
+    id: 'languages',
+    label: 'Languages & Audio',
     items: [
-      { icon: 'trophy', title: '56 achievement badges', desc: 'Milestones across speed, mastery, streak consistency, and depth.' },
-      { icon: 'archive', title: 'Earnable streak freezes', desc: 'Earn protective freezes every 7 days of hitting goals (max 2 banked).' },
-      { icon: 'book', title: 'Offline journey library', desc: 'Automatically archives completed lessons on-device for instant review.' },
-      { icon: 'palette', title: 'Olive Frenzy Minimal', desc: 'Tactile design in Paper daylight and Ink dark mode with zero purple.' },
+      { icon: 'globe', title: '12 Native Indian Languages', desc: 'Learn complex subjects naturally in Hindi, Tamil, Gujarati, Bengali, Marathi, and 7 more.' },
+      { icon: 'mic', title: 'Hands-Free Voice Input', desc: 'Ask complicated questions effortlessly using speech recognition in your native tongue.' },
+      { icon: 'headphones', title: 'Natural Audio Narration', desc: 'Listen to every lesson part read aloud like an engaging, customized learning podcast.' },
+      { icon: 'message', title: 'Culturally Natural Tone', desc: 'Native metaphors and phrasing that make sense instead of awkward literal translations.' },
+    ],
+  },
+  {
+    id: 'retention',
+    label: 'Retention & Active Recall',
+    items: [
+      { icon: 'book-open', title: '3-Part Structured Spine', desc: 'Foundation → Mechanism → Real World structured roadmap for every question you ask.' },
+      { icon: 'lock', title: 'Quiz-Gated Mastery', desc: 'Quick 2-question checkpoint quizzes ensure 100% comprehension before moving forward.' },
+      { icon: 'refresh', title: 'Smart Retry Gating', desc: 'Never restart from scratch — missed answers re-queue only the exact questions you missed.' },
+      { icon: 'link', title: 'Verifiable Primary Sources', desc: 'Every science fact and real-world event includes transparent, reputable source citations.' },
+    ],
+  },
+  {
+    id: 'gamification',
+    label: 'Habits & Motivation',
+    items: [
+      { icon: 'trophy', title: '56 Achievement Badges', desc: 'Earn badges and celebrate milestones across consistency, mastery, and curiosity.' },
+      { icon: 'zap', title: 'Daily Learning Streaks', desc: 'Build daily learning habits with streak tracking and protective streak freezes.' },
+      { icon: 'bar-chart', title: 'XP & Level Progression', desc: 'Earn experience points for every passed quiz and climb from Novice to Grandmaster.' },
+      { icon: 'book', title: 'Personal Offline Library', desc: 'Completed journeys are saved to your device for instant offline review anytime.' },
     ],
   },
 ]
 
 export default function FeatureTour() {
-  const [active, setActive] = useState('engine')
+  const [active, setActive] = useState('personal')
   const group = GROUPS.find((g) => g.id === active) || GROUPS[0]
 
   return (
-    <section id="tour" className="py-20 relative z-10">
+    <section id="features" className="py-20 relative z-10">
       <div className="container">
         <Reveal className="text-center max-w-2xl mx-auto mb-12">
           <span className="sticker">05 · Capabilities</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            16 Capabilities, One Unified System.
+            Everything you need to master any subject.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Every tool crafted to make learning fast, structured, verifiable, and deeply engaging.
+            Designed from the ground up to make learning fast, intuitive, verifiable, and deeply enjoyable.
           </p>
         </Reveal>
 

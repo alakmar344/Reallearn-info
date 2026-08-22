@@ -5,44 +5,44 @@ const STAGES = [
   {
     id: 'part1',
     badge: 'Part 01 · Foundation',
-    title: 'Photosynthesis & Solar Conversion',
-    subtitle: 'Intuitive Mental Model & Core Intuition',
+    title: 'Photosynthesis: How Plants Eat Sunlight',
+    subtitle: 'The Simple Big Picture & Intuition',
     status: { label: 'Unlocked', icon: 'check', locked: false },
     readingTime: '2 min read',
     content: [
-      { label: 'Core Concept', val: 'Chloroplasts absorb solar photons to split water molecules into hydrogen ions and oxygen.' },
-      { label: 'Key Equation', val: '6CO₂ + 6H₂O + Light Energy → C₆H₁₂O₆ + 6O₂' },
-      { label: 'Active Checkpoint', val: 'Identifies atmospheric inputs and photosynthetic conversion pathways.' },
+      { label: 'Simple Analogy', val: 'Think of plant leaves as solar-powered kitchens. They catch sunlight and mix it with air and water to cook their own food.' },
+      { label: 'What Goes In & Out', val: 'Takes in Carbon Dioxide + Water + Sunlight → Creates Sweet Energy (Glucose) + Fresh Oxygen for us to breathe.' },
+      { label: 'Quick Takeaway', val: 'Without this quiet leafy process, Earth would run out of breathable oxygen and food.' },
     ],
-    sources: ['Nature Education (2026)', 'NCERT Biology Ch. 13'],
+    sources: ['Nature Education', 'Encyclopedia of Life'],
   },
   {
     id: 'part2',
     badge: 'Part 02 · Mechanism',
-    title: 'Light-Dependent Reactions & ATP Synthase',
-    subtitle: 'Step-by-Step Molecular Machinery',
-    status: { label: 'Banked Quiz Gate', icon: 'lock', locked: true },
+    title: 'The Leaf’s Micro-Factory',
+    subtitle: 'Step-by-Step: What Actually Happens Inside',
+    status: { label: 'Quiz Checkpoint', icon: 'lock', locked: true },
     readingTime: '3 min read',
     content: [
-      { label: 'Photosystem II', val: 'P680 reaction center excites electrons transferred down the cytochrome b6f complex.' },
-      { label: 'Proton Gradient', val: 'Protons accumulate in the thylakoid lumen, driving catalytic ATP synthase rotation.' },
-      { label: 'Calvin Cycle', val: 'RuBisCO enzyme fixes carbon dioxide into 3-PGA sugars in the stroma.' },
+      { label: 'Step 1: Solar Traps', val: 'Tiny green structures called chloroplasts act like solar panels, absorbing light particles (photons).' },
+      { label: 'Step 2: Water Splitting', val: 'Light energy splits water molecules apart, releasing oxygen into the air and charging up microscopic biological batteries (ATP).' },
+      { label: 'Step 3: Sugar Synthesis', val: 'The leaf uses that stored battery energy to turn carbon dioxide from the air into rich, sweet sugar molecules.' },
     ],
-    sources: ['Cell Molecular Biology 9th Ed.', 'Biochem Quarterly'],
+    sources: ['Cell Biology Review', 'Botanical Science'],
   },
   {
     id: 'part3',
     badge: 'Part 03 · Real World',
-    title: 'Artificial Photosynthesis & Clean Energy',
-    subtitle: 'Live Grounding & Current Industry Updates',
+    title: 'Clean Energy & Artificial Leaves',
+    subtitle: 'Why This Matters In Modern Life & Tech',
     status: { label: 'Live Grounded', icon: 'zap', locked: false },
     readingTime: '2 min read',
     content: [
-      { label: 'Commercial Breakthrough', val: 'Bionic Leaf 3.0 reaches 10% solar-to-biomass conversion efficiency.' },
-      { label: 'Live News Wire', val: 'MIT Energy Initiative report published August 2026 via Serper API.' },
-      { label: 'Global Impact', val: 'Synthetic zero-carbon aviation fuels produced directly from sunlight and air.' },
+      { label: 'Modern Breakthrough', val: 'Scientists have invented "bionic leaves" that mimic plants to produce clean hydrogen fuel 10x more efficiently than nature.' },
+      { label: 'Live Real-World Wire', val: 'Latest renewable energy lab reports show synthetic zero-carbon aviation fuels made directly from sunlight and air.' },
+      { label: 'Everyday Connection', val: 'Every crop we harvest and every forest that cools our cities relies directly on this solar machinery.' },
     ],
-    sources: ['MIT Tech Review 2026', 'Serper Live News API'],
+    sources: ['Clean Energy Reports', 'Live Science Wire'],
   },
 ]
 
@@ -64,7 +64,7 @@ export default function Book3D() {
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] animate-pulse" />
             <span className="font-mono text-xs uppercase font-bold tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-              Interactive 3-Part Spine
+              3-Stage Lesson Preview
             </span>
           </div>
           <span
