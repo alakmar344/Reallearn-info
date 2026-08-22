@@ -41,11 +41,11 @@ const PILLARS = [
     id: 'multilingual-adaptive',
     num: '03',
     icon: 'globe',
-    title: '12 Native Languages & Adaptive Levels',
+    title: '63 Global Languages & Adaptive Levels',
     tagline: 'Your Language, Your Grade Level',
-    desc: 'Language should never be a barrier to curiosity. Learn complex science, economics, or history comfortably in 12 native Indian languages, calibrated to your exact grade tier or professional needs.',
+    desc: 'Language should never be a barrier to curiosity. Learn complex science, economics, or history comfortably in 63 global languages, calibrated to your exact grade tier or professional needs.',
     metrics: [
-      { label: 'Supported Languages', val: '12 Native' },
+      { label: 'Supported Languages', val: '63 Global' },
       { label: 'Difficulty Tiers', val: '3 Levels' },
     ],
     features: [
