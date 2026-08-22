@@ -8,11 +8,12 @@ const THEME_LABELS = {
 }
 
 const LINKS = [
-  { href: '#problem', label: 'The problem' },
-  { href: '#method', label: 'The method' },
-  { href: '#how', label: 'How it works' },
-  { href: '#try', label: 'Interactive demo' },
-  { href: '#tour', label: 'Capabilities' },
+  { href: '#why', label: 'Why RealLearn' },
+  { href: '#method', label: 'The 3-Step Method' },
+  { href: '#how', label: 'How It Works' },
+  { href: '#try', label: 'Try Mini Lesson' },
+  { href: '#features', label: 'Features' },
+  { href: '#compare', label: 'Comparison & FAQ' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes }) {
@@ -111,13 +112,13 @@ export default function Header() {
               className="hidden sm:block font-mono text-[11px] uppercase font-bold tracking-wider"
               style={{ color: 'var(--text-secondary)', lineHeight: 1 }}
             >
-              3-Part Interactive Pedagogy
+              The World Is Your Textbook
             </span>
           </span>
         </a>
 
         <nav
-          className="hidden md:flex items-center gap-8 text-[14px] font-semibold"
+          className="hidden lg:flex items-center gap-7 text-[14px] font-semibold"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
@@ -141,9 +142,9 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex btn btn-action"
-            style={{ minHeight: 40, padding: '0 18px', fontSize: 13 }}
+            style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
           >
-            Open App ↗
+            Start Learning Free ↗
           </a>
 
           <button
@@ -200,7 +201,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="btn btn-action w-full text-center mt-2"
             >
-              Open Live App ↗
+              Start Learning Free ↗
             </a>
           </div>
         </div>

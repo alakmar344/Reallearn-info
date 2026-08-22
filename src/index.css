@@ -376,6 +376,73 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   animation-play-state: paused;
 }
 
+/* Suggestion Pills */
+.suggestion-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--bg-card) 95%, transparent);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.suggestion-pill:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+/* Interactive Checkpoint Option */
+.quiz-option {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-a);
+}
+
+/* Accordion Item */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 20px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-primary);
+}
+
+.accordion-body {
+  padding: 0 24px 22px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* Comparison Table */
+.comparison-cell {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-default);
+  font-size: 14px;
+}
+
 /* High performance & reduced motion fallbacks */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
@@ -384,3 +451,4 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
     transition-duration: 0.01ms !important;
   }
 }
+

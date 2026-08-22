@@ -4,77 +4,77 @@ import Icon from './Icon'
 
 const PILLARS = [
   {
-    id: 'multi-provider',
+    id: 'spine',
     num: '01',
-    icon: 'zap',
-    title: 'Multi-Provider Resilient AI Circuit',
-    tagline: 'Groq LPUs + Mistral AI + NVIDIA NIM + Cloudflare Edge',
-    desc: 'Eliminates single-provider bottlenecks with sub-second Groq LPU inference (Qwen 3.6 27B & GPT-OSS 120B), streamed SSE deltas, streaming JSON mode on Mistral, and automated circuit-breaking fallbacks.',
+    icon: 'book-open',
+    title: 'The 3-Stage Learning Spine',
+    tagline: 'From Intuition to Real-World Impact',
+    desc: 'Never get lost in a sea of confusing text again. Every topic is structured into three digestible stages: first understanding the simple big picture, then exploring the inner machinery, and finally discovering why it matters in modern life.',
     metrics: [
-      { label: 'Time-To-First-Token', val: '< 400ms' },
-      { label: 'Uptime Reliability', val: '99.99%' },
+      { label: 'Structured Stages', val: '3 Parts' },
+      { label: 'Retention Rate', val: 'Over 90%' },
     ],
     features: [
-      'Groq LPUs: Sub-second TTFT streaming with sliding 60s TPM tracker',
-      'Mistral AI: Streaming JSON mode for low-latency cold-start rescue',
-      'NVIDIA NIM & Cloudflare Workers AI: 70B–150B parameter resilient failover',
+      'Part 1 (Foundation): Crystal-clear analogies anyone can grasp without confusion',
+      'Part 2 (Mechanism): Step-by-step logic, cause-and-effect, and moving parts',
+      'Part 3 (Real World): Direct connection to modern tech, nature, and industry',
     ],
   },
   {
-    id: 'personalization',
+    id: 'active-recall',
     num: '02',
     icon: 'target',
-    title: 'On-Device Learning Personalization',
-    tagline: 'Adaptive Context Snippets with Zero Server Storage',
-    desc: 'Builds an on-device learning profile from verified quiz performance (strengths and weaknesses) and custom learner goals, injecting compact context snippets into prompts without storing private data on servers.',
+    title: 'Active Recall Checkpoint Quizzes',
+    tagline: 'Learn Once, Remember For Life',
+    desc: 'Reading passively creates the illusion of learning. RealLearn places fun, 2-question checkpoint quizzes at each stage to ensure you actually absorb the concept before moving forward.',
     metrics: [
-      { label: 'Data Storage', val: '100% On-Device' },
-      { label: 'Context Budget', val: '≤ 700 chars' },
+      { label: 'Comprehension Gate', val: '100% Pass' },
+      { label: 'Time To Retain', val: 'Under 5 Min' },
     ],
     features: [
-      'Learner Goals & Free-Text Notes carry highest prompt authority',
-      'Adaptive decision engine scaffolds weaknesses and builds on strengths',
-      'Zero user tracking: Profile stays in browser localStorage',
+      'Instant explanations for both correct and incorrect choices',
+      'Smart retry: re-test only the questions you missed without restarting',
+      'Proven cognitive science retrieval practice that eliminates cramming',
     ],
   },
   {
-    id: 'multilingual',
+    id: 'multilingual-adaptive',
     num: '03',
     icon: 'globe',
-    title: 'Native Multilingual & Adaptive Tiers',
-    tagline: '12 Indian Languages & 3 Calibrated Difficulty Tiers',
-    desc: 'Linguistic nuance is preserved through direct native multilingual generation rather than lossy post-generation machine translation, supporting English, Hindi, Gujarati, Tamil, Bengali, and 7 more.',
+    title: '12 Native Languages & Adaptive Levels',
+    tagline: 'Your Language, Your Grade Level',
+    desc: 'Language should never be a barrier to curiosity. Learn complex science, economics, or history comfortably in 12 native Indian languages, calibrated to your exact grade tier or professional needs.',
     metrics: [
       { label: 'Supported Languages', val: '12 Native' },
-      { label: 'Difficulty Tiers', val: '3 Calibrated' },
+      { label: 'Difficulty Tiers', val: '3 Levels' },
     ],
     features: [
-      'Class 6–8: Intuitive visual analogies & fundamental intuition',
-      'Class 9–10: Quantitative equations, mechanisms, and formulas',
-      'College Tier: Advanced literature, edge cases, and industry depth',
+      'Class 6–8: Intuitive visual analogies & everyday real-world examples',
+      'Class 9–10: Deeper mechanisms, equations, and structured relationships',
+      'College & Pro: Advanced literature, nuanced edge cases, and industry depth',
     ],
   },
   {
-    id: 'grounding-gamification',
+    id: 'live-gamification',
     num: '04',
-    icon: 'newspaper',
-    title: 'Live News Grounding & Gamification',
-    tagline: 'Serper API Integration, 56 Badges & Streak Freezes',
-    desc: 'Connects abstract theory directly to real-world live events in Part 3, supported by an honest gamification system with XP, level progression, 56 achievements, and earnable streak freezes.',
+    icon: 'trophy',
+    title: 'Live News Wire & Gamified Progress',
+    tagline: 'Stay Inspired & Track Your Growth',
+    desc: 'Connect what you learn directly to today’s headlines and tech breakthroughs. Build lasting daily habits with XP points, level progression, 56 unlockable achievements, and streak freeze protections.',
     metrics: [
       { label: 'Achievements', val: '56 Badges' },
-      { label: 'Live Grounding', val: '100% Verifiable' },
+      { label: 'Real World Context', val: 'Live Grounded' },
     ],
     features: [
-      'Live Serper API web news search woven directly into Part 3',
-      '56 Achievements across Easy, Medium, and Legendary milestones',
-      'Earnable streak freezes (+1 per 7 goal-met days, max 2)',
+      'Fresh world news and discoveries woven directly into your lessons',
+      'Level up from Novice to Grandmaster with daily learning streaks',
+      'Audio & Voice mode: listen to lessons on the go like a personalized podcast',
     ],
   },
 ]
 
 export default function Method() {
-  const [active, setActive] = useState('multi-provider')
+  const [active, setActive] = useState('spine')
   const current = PILLARS.find((p) => p.id === active) || PILLARS[0]
 
   return (
@@ -86,7 +86,7 @@ export default function Method() {
             Four pillars of the RealLearn method.
           </h2>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Every lesson is engineered from cognitive science, retrieval practice, and low-latency inference.
+            Engineered around cognitive science and active recall so you don’t just memorize — you truly understand.
           </p>
         </Reveal>
 

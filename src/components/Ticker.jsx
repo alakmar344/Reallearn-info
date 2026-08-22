@@ -14,15 +14,15 @@ const LANGUAGES = [
 ]
 
 const SUBJECTS = [
-  'Physics',
-  'Chemistry',
-  'Biology',
-  'Mathematics',
-  'Economics',
+  'Artificial Intelligence',
+  'Physics & Astronomy',
+  'Biology & Medicine',
+  'Economics & Finance',
+  'World History',
   'Computer Science',
-  'History',
-  'Environmental Science',
-  'Political Science',
+  'Neuroscience & Psychology',
+  'Mathematics & Logic',
+  'Climate & Environment',
 ]
 
 const ITEMS = [...LANGUAGES, ...SUBJECTS]

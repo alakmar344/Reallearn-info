@@ -8,6 +8,7 @@ import Method from './components/Method'
 import HowItWorks from './components/HowItWorks'
 import Demo from './components/Demo'
 import FeatureTour from './components/FeatureTour'
+import ComparisonFAQ from './components/ComparisonFAQ'
 import Footer from './components/Footer'
 import ProgressBar from './components/ProgressBar'
 
@@ -33,6 +34,7 @@ export default function App() {
           <HowItWorks />
           <Demo />
           <FeatureTour />
+          <ComparisonFAQ />
         </main>
 
         <Footer />

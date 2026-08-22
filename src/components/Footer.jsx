@@ -24,7 +24,7 @@ export default function Footer() {
 
         <Reveal delay={0.08} className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <a className="btn btn-action" href="https://reallearn.site" target="_blank" rel="noopener noreferrer">
-            Start Learning Now ↗
+            Start Learning Free ↗
           </a>
           <a className="btn btn-ghost" href="#try">
             Try a Mini Lesson
@@ -55,9 +55,9 @@ export default function Footer() {
           style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border-default)', paddingTop: 28, maxWidth: 760 }}
         >
           <span>RealLearn AI</span>
-          <span>Groq LPU Powered</span>
-          <span>Structured 3-Part Pedagogy</span>
-          <span>Next.js 16 · React 19 · Node 24</span>
+          <span>The World Is Your Textbook</span>
+          <span>12 Native Languages</span>
+          <span>100% Free & Ad-Free</span>
         </div>
         <p className="font-mono text-[11px]" style={{ color: 'var(--text-tertiary)', marginTop: 14 }}>
           © {new Date().getFullYear()} RealLearn. The world is your textbook.
