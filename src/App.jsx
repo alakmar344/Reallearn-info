@@ -17,27 +17,28 @@ export default function App() {
     <ThemeProvider>
       <a className="skip-link" href="#main">Skip to content</a>
 
-      <ProgressBar />
+      <div className="site-shell">
+        <ProgressBar />
 
-      {/* Fixed Ambient Background Layer */}
-      <StickyScene3D />
+        {/* Fixed Ambient Background Layer */}
+        <StickyScene3D />
 
-      {/* Relative Content Layer */}
-      <div style={{ position: 'relative', zIndex: 2 }}>
-        <Header />
+        <div className="site-content">
+          <Header />
 
-        <main id="main">
-          <Hero />
-          <Ticker />
-          <ProblemSection />
-          <Method />
-          <HowItWorks />
-          <Demo />
-          <FeatureTour />
-          <ComparisonFAQ />
-        </main>
+          <main id="main" className="site-main">
+            <Hero />
+            <Ticker />
+            <ProblemSection />
+            <Method />
+            <HowItWorks />
+            <Demo />
+            <FeatureTour />
+            <ComparisonFAQ />
+          </main>
 
-        <Footer />
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   )

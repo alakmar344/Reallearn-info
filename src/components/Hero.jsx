@@ -40,20 +40,22 @@ export default function Hero() {
     <section
       id="top"
       className="relative section"
+      aria-labelledby="hero-title"
       style={{ paddingTop: 'clamp(52px, 8vw, 96px)', paddingBottom: 'clamp(44px, 6vw, 84px)' }}
     >
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="min-w-0">
             <Reveal style={{ marginBottom: 20 }}>
-              <span className="sticker">
+              <span className="sticker section-kicker">
                 <Icon name="sparkles" size={13} strokeWidth={2.2} />
-                AI Learning Coach · No More Boring Answers
+                AI Learning Coach
               </span>
             </Reveal>
 
             <Reveal delay={0.05}>
               <h1
+                id="hero-title"
                 className="font-display font-extrabold tracking-tight"
                 style={{
                   fontSize: 'clamp(36px, 6.5vw, 62px)',
@@ -62,9 +64,9 @@ export default function Hero() {
                   letterSpacing: '-0.025em',
                 }}
               >
-                Stop searching for answers.{' '}
+                Learn with structure, not clutter.{' '}
                 <span className="text-gradient block">
-                  Start truly understanding.
+                  Understand faster and retain more.
                 </span>
               </h1>
             </Reveal>
@@ -75,31 +77,40 @@ export default function Hero() {
               style={{
                 fontSize: 'clamp(16px, 1.8vw, 19px)',
                 color: 'var(--text-secondary)',
-                margin: '20px 0 28px',
-                maxWidth: '46ch',
+                margin: '18px 0 24px',
+                maxWidth: '44ch',
                 lineHeight: 1.6,
               }}
             >
-              RealLearn transforms any confusing question into a structured 3-step interactive journey —{' '}
+              RealLearn turns any confusing question into a guided 3-step lesson with active recall checkpoints, multilingual support, and real-world context.{` `}
               <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                 Foundation → Mechanism → Real World
-              </strong>{' '}
-              — locked behind fun mini-quizzes so knowledge actually sticks.
+              </strong>
+              .
             </Reveal>
 
-            {/* Quick Ask Box with Mode Switcher & Suggestions */}
             <Reveal delay={0.16} style={{ marginBottom: 24 }}>
               <div
-                className="p-2.5 rounded-3xl border max-w-xl"
+                className="max-w-xl rounded-[28px] border p-3 sm:p-3.5"
                 style={{
-                  background: 'var(--bg-card)',
+                  background: 'color-mix(in srgb, var(--bg-card) 92%, transparent)',
                   borderColor: focused ? 'var(--accent)' : 'var(--border-default)',
-                  boxShadow: focused ? 'var(--shadow-lift), 0 0 0 3px var(--accent-dim)' : '0 10px 30px var(--shadow-a)',
+                  boxShadow: focused
+                    ? '0 18px 40px var(--shadow-a), 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent)'
+                    : '0 16px 34px rgba(0, 0, 0, 0.18)',
                   transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
                 }}
               >
-                {/* Mode Selector */}
-                <div className="flex items-center gap-1.5 p-1 rounded-2xl mb-2 bg-[color:var(--bg-3)]">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.14em]" style={{ color: 'var(--text-tertiary)' }}>
+                    Try the learning engine
+                  </span>
+                  <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
+                    Ask anything and jump straight into a lesson.
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 rounded-2xl bg-[color:var(--bg-3)] p-1.5 mb-3">
                   <button
                     type="button"
                     onClick={() => setMode('explain')}
@@ -111,7 +122,7 @@ export default function Hero() {
                       color: mode === 'explain' ? 'var(--on-accent)' : 'var(--text-primary)',
                     }}
                   >
-                    ✦ Explain Mode (3-Step Mastery)
+                    Explain Mode
                   </button>
                   <button
                     type="button"
@@ -124,46 +135,58 @@ export default function Hero() {
                       color: mode === 'fast' ? 'var(--on-accent)' : 'var(--text-primary)',
                     }}
                   >
-                    ⚡ Fast Mode (Quick Summary)
+                    Fast Summary
                   </button>
                 </div>
 
                 <form
                   onSubmit={handleQuickAsk}
                   onFocus={() => setFocused(true)}
-                  onBlur={() => setFocused(false)}
-                  className="flex items-center gap-2"
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget)) {
+                      setFocused(false)
+                    }
+                  }}
+                  className="flex flex-col gap-3 sm:flex-row sm:items-center"
                 >
-                  <Icon
-                    name="search"
-                    size={18}
-                    style={{ marginLeft: 12, flex: 'none', color: 'var(--text-tertiary)' }}
-                  />
-                  <input
-                    type="text"
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Ask anything (e.g. How does photosynthesis work?)..."
-                    aria-label="Ask any concept"
-                    className="flex-1 min-w-0 bg-transparent px-2 py-2.5 text-sm font-medium focus:outline-none"
-                    style={{ color: 'var(--text-primary)' }}
-                  />
+                  <label
+                    className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border px-3"
+                    style={{
+                      minHeight: 52,
+                      borderColor: 'color-mix(in srgb, var(--border-default) 90%, transparent)',
+                      background: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)',
+                    }}
+                  >
+                    <Icon
+                      name="search"
+                      size={18}
+                      style={{ flex: 'none', color: 'var(--text-tertiary)' }}
+                    />
+                    <input
+                      type="text"
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      placeholder="Ask anything, from photosynthesis to inflation..."
+                      aria-label="Ask any concept"
+                      className="flex-1 min-w-0 bg-transparent py-3 text-sm font-medium focus:outline-none"
+                      style={{ color: 'var(--text-primary)' }}
+                    />
+                  </label>
                   <button
                     type="submit"
-                    className="btn btn-action flex-none"
-                    style={{ minHeight: 42, padding: '0 20px', fontSize: 13 }}
+                    className="btn btn-action w-full sm:w-auto flex-none"
+                    style={{ minHeight: 52, padding: '0 20px', fontSize: 13 }}
                   >
                     Start Learning →
                   </button>
                 </form>
               </div>
 
-              {/* Suggestion Chips */}
               <div className="flex flex-wrap items-center gap-2 mt-3 max-w-xl">
                 <span className="text-xs font-medium" style={{ color: 'var(--text-tertiary)' }}>
-                  Try asking:
+                  Popular prompts:
                 </span>
-                {SUGGESTIONS.map((s) => (
+                {SUGGESTIONS.slice(0, 3).map((s) => (
                   <button
                     key={s}
                     type="button"
@@ -176,16 +199,16 @@ export default function Hero() {
               </div>
             </Reveal>
 
-            {/* Stat row */}
-            <Reveal delay={0.22} className="flex flex-wrap items-center gap-x-7 gap-y-3 pt-2">
-              {STATS.map((s, i) => (
-                <div key={s.label} className="flex items-center gap-7">
-                  {i > 0 && (
-                    <span
-                      aria-hidden="true"
-                      style={{ width: 1, height: 28, background: 'var(--border-default)' }}
-                    />
-                  )}
+            <Reveal delay={0.22} className="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-4 max-w-3xl">
+              {STATS.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl border p-4"
+                  style={{
+                    borderColor: 'var(--border-default)',
+                    background: 'color-mix(in srgb, var(--bg-card) 82%, transparent)',
+                  }}
+                >
                   <div>
                     <div
                       className="font-display font-bold leading-none text-xl sm:text-2xl"

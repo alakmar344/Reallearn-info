@@ -74,16 +74,16 @@ export default function Header() {
     <header
       className="sticky top-0 z-50"
       style={{
-        background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
+        background: 'color-mix(in srgb, var(--bg-primary) 88%, transparent)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
         borderBottom: '1px solid var(--border-default)',
       }}
     >
-      <div className="container flex items-center justify-between" style={{ height: 72 }}>
+      <div className="container flex items-center justify-between gap-4" style={{ minHeight: 76 }}>
         <a
           href="#top"
-          className="flex items-center gap-3 group text-decoration-none"
+          className="flex min-w-0 items-center gap-3 group text-decoration-none"
           aria-label="RealLearn home"
           onClick={() => setOpen(false)}
         >
@@ -103,7 +103,7 @@ export default function Header() {
           </span>
           <span className="leading-tight">
             <span
-              className="block font-display text-[20px] font-extrabold tracking-tight"
+              className="block truncate font-display text-[19px] sm:text-[20px] font-extrabold tracking-tight"
               style={{ color: 'var(--text-primary)' }}
             >
               RealLearn <span style={{ color: 'var(--accent)' }}>AI</span>
@@ -118,7 +118,8 @@ export default function Header() {
         </a>
 
         <nav
-          className="hidden lg:flex items-center gap-7 text-[14px] font-semibold"
+          aria-label="Primary"
+          className="hidden xl:flex items-center gap-6 text-[14px] font-semibold"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
@@ -141,7 +142,7 @@ export default function Header() {
             href="https://reallearn.site"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex btn btn-action"
+            className="hidden sm:inline-flex btn btn-action"
             style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
           >
             Start Learning Free ↗
@@ -149,7 +150,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="md:hidden grid place-items-center w-10 h-10 rounded-xl cursor-pointer"
+            className="xl:hidden grid place-items-center w-10 h-10 rounded-xl cursor-pointer"
             style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)', background: 'var(--bg-card)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -164,9 +165,9 @@ export default function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-4 flex flex-col gap-4"
+          className="xl:hidden fixed inset-x-0 z-50 px-5 pb-8 pt-4 flex flex-col gap-4"
           style={{
-            top: 72,
+            top: 76,
             bottom: 0,
             background: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)',
             backdropFilter: 'blur(20px)',
@@ -175,7 +176,7 @@ export default function Header() {
             overflowY: 'auto',
           }}
         >
-          <nav className="flex flex-col text-lg font-display font-bold gap-2">
+          <nav aria-label="Mobile" className="flex flex-col text-lg font-display font-bold gap-2">
             {LINKS.map((l) => (
               <a
                 key={l.href}
