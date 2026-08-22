@@ -35,7 +35,7 @@ Physics, Chemistry, Biology, Mathematics, Economics, Computer Science, History, 
 
 ## Languages
 
-63 global languages including English, Hindi, Gujarati, Tamil, Bengali, Marathi, Telugu, Kannada, Malayalam, Punjabi, Urdu, Odia, Chinese, Spanish, French, Arabic, Portuguese, Russian, Japanese, German, Korean, Italian, Turkish, Vietnamese, Thai, Indonesian, Malay, Polish, Dutch, Greek, Czech, Romanian, Hungarian, Swedish, Norwegian, Danish, Finnish, Hebrew, Ukrainian, and many more.
+63 global languages — natively generated, never translated.
 
 ## How it works
 
