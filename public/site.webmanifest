@@ -1,0 +1,15 @@
+{
+  "name": "RealLearn AI — The World Is Your Textbook",
+  "short_name": "RealLearn AI",
+  "description": "Turn any question into a structured 3-stage learning journey with active-recall quizzes, 63 global languages, and live real-world news.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121510",
+  "theme_color": "#0E110B",
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/apple-touch-icon.svg", "sizes": "180x180", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

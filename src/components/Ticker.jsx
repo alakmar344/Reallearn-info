@@ -37,7 +37,7 @@ export default function Ticker() {
         backdropFilter: 'blur(8px)',
       }}
     >
-      <div className="animate-marquee gap-8">
+      <div className="animate-marquee gap-8 ticker-mask">
         {[...ITEMS, ...ITEMS].map((item, idx) => (
           <span
             key={`${item}-${idx}`}

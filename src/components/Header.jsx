@@ -8,12 +8,12 @@ const THEME_LABELS = {
 }
 
 const LINKS = [
-  { href: '#why', label: 'Why RealLearn' },
-  { href: '#method', label: 'The 3-Step Method' },
-  { href: '#how', label: 'How It Works' },
-  { href: '#try', label: 'Try Mini Lesson' },
-  { href: '#features', label: 'Features' },
-  { href: '#compare', label: 'Comparison & FAQ' },
+  { href: '#why', label: 'Why', full: 'Why RealLearn' },
+  { href: '#method', label: 'Method', full: 'The 3-Step Method' },
+  { href: '#how', label: 'How It Works', full: 'How It Works' },
+  { href: '#try', label: 'Try Demo', full: 'Try Mini Lesson' },
+  { href: '#features', label: 'Features', full: 'Features' },
+  { href: '#compare', label: 'FAQ', full: 'Comparison & FAQ' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes }) {
@@ -118,14 +118,15 @@ export default function Header() {
         </a>
 
         <nav
-          className="hidden lg:flex items-center gap-7 text-[14px] font-semibold"
+          className="hidden lg:flex items-center gap-6 text-[14px] font-semibold"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="hover:text-[color:var(--accent)] transition-colors py-2"
+              title={l.full}
+              className="hover:text-[color:var(--accent)] transition-colors py-2 whitespace-nowrap"
             >
               {l.label}
             </a>
@@ -137,15 +138,17 @@ export default function Header() {
             <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
           </div>
 
-          <a
-            href="https://reallearn.site"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex btn btn-action"
-            style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
-          >
-            Start Learning Free ↗
-          </a>
+          <span className="hidden md:inline-flex">
+            <a
+              href="https://reallearn.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-action"
+              style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
+            >
+              Start Learning Free ↗
+            </a>
+          </span>
 
           <button
             type="button"

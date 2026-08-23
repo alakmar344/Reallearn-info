@@ -51,7 +51,7 @@ export default function Book3D() {
   const currentStage = STAGES[activeTab]
 
   return (
-    <div className="w-full max-w-lg mx-auto">
+    <div className="w-full max-w-lg mx-auto glow-ring" style={{ borderRadius: 'var(--radius-2xl)' }}>
       <div
         className="glass-card p-6 sm:p-7 relative overflow-hidden"
         style={{

@@ -2,26 +2,158 @@
 <html lang="en" data-theme="ink">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#121510" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0E110B" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Primary Meta -->
     <title>RealLearn AI — The World Is Your Textbook | Stop Searching, Start Learning</title>
     <meta
       name="description"
-      content="RealLearn AI turns any confusing question into a crystal-clear 3-stage learning journey with active recall quizzes, 63 global languages, and live real-world news."
+      content="RealLearn AI turns any confusing question into a crystal-clear 3-stage learning journey — Foundation → Mechanism → Real World — with active-recall quizzes, 63 global languages, and live real-world news. 100% free and ad-free."
     />
+    <meta
+      name="keywords"
+      content="AI learning platform, learn anything with AI, active recall, 3-stage lessons, education AI, structured lessons, quiz-based learning, multilingual learning, RealLearn AI, free AI tutor"
+    />
+    <meta name="author" content="RealLearn AI" />
+    <meta name="application-name" content="RealLearn AI" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://reallearn.site/" />
+
+    <!-- Icons & Manifest -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="RealLearn AI" />
     <meta property="og:title" content="RealLearn AI — The World Is Your Textbook" />
     <meta
       property="og:description"
-      content="Turn any question into a structured 3-stage interactive journey — Foundation → Mechanism → Real World — with fun mini-quizzes and live news grounding."
+      content="Turn any question into a structured 3-stage interactive journey — Foundation → Mechanism → Real World — with fun mini-quizzes and live news grounding. Free and ad-free."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://reallearn.site" />
+    <meta property="og:url" content="https://reallearn.site/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://reallearn.site/og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RealLearn AI — Stop searching for answers. Start truly understanding." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RealLearn AI — The World Is Your Textbook" />
+    <meta
+      name="twitter:description"
+      content="Turn any question into a structured 3-stage interactive journey with active-recall quizzes and live real-world news. Free and ad-free."
+    />
+    <meta name="twitter:image" content="https://reallearn.site/og-image.svg" />
+    <meta name="twitter:image:alt" content="RealLearn AI — Stop searching for answers. Start truly understanding." />
+
+    <!-- Fonts: preconnect + non-blocking load with graceful fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Structured Data: WebSite + SoftwareApplication + FAQ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://reallearn.site/#website",
+            "url": "https://reallearn.site/",
+            "name": "RealLearn AI",
+            "description": "AI learning platform that turns any question into a structured 3-stage, quiz-verified lesson.",
+            "inLanguage": "en",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://reallearn.site/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://reallearn.site/#app",
+            "name": "RealLearn AI",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web, iOS, Android",
+            "url": "https://reallearn.site/",
+            "description": "Turn any confusing question into a crystal-clear 3-stage learning journey with active-recall quizzes, 63 global languages, and live real-world news.",
+            "featureList": [
+              "3-stage learning spine (Foundation, Mechanism, Real World)",
+              "Active-recall checkpoint quizzes",
+              "63 global languages",
+              "Live real-world news grounding",
+              "Gamified streaks, XP, and 56 achievement badges"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://reallearn.site/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is RealLearn AI free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! RealLearn AI is completely free to use and 100% ad-free. Anyone with a curious mind can start exploring and learning immediately without paywalls or subscriptions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does the 3-step method help me understand faster?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RealLearn breaks learning into three intuitive stages: first building simple intuition (The Foundation), then exploring the inner machinery (The Mechanism), and finally showing why it matters today (The Real World)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why are quizzes required to unlock the next part?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cognitive science shows that active recall is up to 3x more effective than passive reading. By answering quick questions, you lock knowledge into long-term memory before moving forward."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which languages are supported?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RealLearn supports 63 global languages. Lessons are crafted directly in your chosen language with natural phrasing — never translated after the fact."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

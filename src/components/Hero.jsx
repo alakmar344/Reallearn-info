@@ -42,6 +42,7 @@ export default function Hero() {
       className="relative section"
       style={{ paddingTop: 'clamp(52px, 8vw, 96px)', paddingBottom: 'clamp(44px, 6vw, 84px)' }}
     >
+      <span className="hero-halo" aria-hidden="true" />
       <div className="container relative z-10">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="min-w-0">
@@ -132,7 +133,7 @@ export default function Hero() {
                   onSubmit={handleQuickAsk}
                   onFocus={() => setFocused(true)}
                   onBlur={() => setFocused(false)}
-                  className="flex items-center gap-2"
+                  className="flex flex-wrap items-center gap-2"
                 >
                   <Icon
                     name="search"
@@ -150,7 +151,7 @@ export default function Hero() {
                   />
                   <button
                     type="submit"
-                    className="btn btn-action flex-none"
+                    className="btn btn-action flex-none w-full sm:w-auto"
                     style={{ minHeight: 42, padding: '0 20px', fontSize: 13 }}
                   >
                     Start Learning →
@@ -177,25 +178,24 @@ export default function Hero() {
             </Reveal>
 
             {/* Stat row */}
-            <Reveal delay={0.22} className="flex flex-wrap items-center gap-x-7 gap-y-3 pt-2">
-              {STATS.map((s, i) => (
-                <div key={s.label} className="flex items-center gap-7">
-                  {i > 0 && (
-                    <span
-                      aria-hidden="true"
-                      style={{ width: 1, height: 28, background: 'var(--border-default)' }}
-                    />
-                  )}
-                  <div>
-                    <div
-                      className="font-display font-bold leading-none text-xl sm:text-2xl"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      {s.val}
-                    </div>
-                    <div className="text-xs font-medium mt-1 font-mono uppercase" style={{ color: 'var(--text-tertiary)' }}>
-                      {s.label}
-                    </div>
+            <Reveal delay={0.22} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-5 max-w-xl">
+              {STATS.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl px-4 py-3"
+                  style={{
+                    background: 'color-mix(in srgb, var(--bg-card) 55%, transparent)',
+                    border: '1px solid var(--border-subtle)',
+                  }}
+                >
+                  <div
+                    className="font-display font-bold leading-none text-xl sm:text-2xl"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
+                    {s.val}
+                  </div>
+                  <div className="text-[11px] font-medium mt-1.5 font-mono uppercase tracking-wide" style={{ color: 'var(--text-tertiary)' }}>
+                    {s.label}
                   </div>
                 </div>
               ))}
