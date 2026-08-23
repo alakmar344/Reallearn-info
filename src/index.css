@@ -15,18 +15,19 @@
    ============================================================ */
 
 :root {
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Archivo', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --maxw: 1180px;
   --measure: 64ch;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-  --radius-2xl: 22px;
-  --radius-pill: 9999px;
+  /* Sharp modern geometry */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-pill: 10px;
 
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -36,13 +37,13 @@
 [data-theme='ink'], [data-theme='night'], :root:not([data-theme]) {
   color-scheme: dark;
 
-  --bg-primary: #121510;
-  --bg: #121510;
-  --bg-2: #1A1D16;
-  --bg-3: #262B1E;
-  --bg-card: #1A1D16;
-  --bg-card-hover: #232819;
-  --bg-solid: #262B1E;
+  --bg-primary: #0E110B;
+  --bg: #0E110B;
+  --bg-2: #15180F;
+  --bg-3: #20241A;
+  --bg-card: #16190F;
+  --bg-card-hover: #1E2216;
+  --bg-solid: #20241A;
 
   --text-primary: #F5F3E8;
   --ink: #F5F3E8;
@@ -74,6 +75,12 @@
   --shadow-a: rgba(0, 0, 0, 0.55);
   --shadow-lift: 0 12px 36px rgba(0, 0, 0, 0.6);
   --shadow-glow-accent: 0 4px 18px rgba(164, 198, 57, 0.3);
+
+  /* Tiered olive glow — used to deliberately guide attention to key actions */
+  --glow-sm: 0 0 0 1px rgba(164, 198, 57, 0.18), 0 6px 20px rgba(164, 198, 57, 0.14);
+  --glow-md: 0 0 0 1px rgba(164, 198, 57, 0.28), 0 8px 30px rgba(164, 198, 57, 0.24);
+  --glow-lg: 0 0 40px rgba(164, 198, 57, 0.34), 0 0 90px rgba(164, 198, 57, 0.14);
+  --glow-text: 0 0 24px rgba(164, 198, 57, 0.35);
 
   /* Semantic State Layer */
   --success: #10B981;
@@ -155,6 +162,12 @@
   --shadow-lift: 0 12px 36px rgba(31, 35, 24, 0.12);
   --shadow-glow-accent: 0 4px 12px rgba(85, 107, 47, 0.22);
 
+  /* Tiered olive glow — softer in the light room */
+  --glow-sm: 0 0 0 1px rgba(85, 107, 47, 0.16), 0 6px 18px rgba(85, 107, 47, 0.12);
+  --glow-md: 0 0 0 1px rgba(85, 107, 47, 0.24), 0 8px 26px rgba(85, 107, 47, 0.18);
+  --glow-lg: 0 0 34px rgba(85, 107, 47, 0.22), 0 0 70px rgba(85, 107, 47, 0.08);
+  --glow-text: 0 0 20px rgba(85, 107, 47, 0.20);
+
   /* Semantic State Layer */
   --success: #059669;
   --success-bg: rgba(5, 150, 105, 0.1);
@@ -193,6 +206,13 @@
 }
 
 /* Base Body Styles */
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor targets so they don't hide under the sticky 72px header */
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -201,13 +221,48 @@ body {
   line-height: 1.55;
   transition: background-color 0.25s var(--ease-reveal), color 0.25s var(--ease-reveal);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Headings enforce Space Grotesk 700 */
+/* Extra safety: any in-page anchor target clears the sticky header */
+section[id],
+[id='main'] {
+  scroll-margin-top: 88px;
+}
+
+/* Headings enforce Archivo — sharp, heavy grotesque */
 h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Editorial mega-type: hero + section titles go uppercase 900 */
+h1.font-display,
+main h2.font-display,
+footer h2.font-display {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+/* Section titles: one consistent editorial scale */
+main h2.font-display {
+  font-size: clamp(32px, 4.6vw, 56px);
+}
+
+/* Olive text selection */
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 .headline-lg {
@@ -268,9 +323,10 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   min-height: 48px;
   padding: 0 24px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border-radius: var(--radius-pill);
   background: var(--accent);
   color: var(--on-accent);
@@ -279,6 +335,7 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   cursor: pointer;
   border: none;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -317,11 +374,16 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
 .btn-action {
   background: var(--accent-gradient);
   color: var(--on-accent);
-  box-shadow: var(--key-bevel), 0 3px 0 var(--edge-accent), var(--shadow-glow-accent);
+  box-shadow: var(--key-bevel), 0 3px 0 var(--edge-accent), var(--glow-md);
 }
 
 .btn-action:hover {
-  box-shadow: var(--key-bevel), 0 4px 0 var(--edge-accent), 0 8px 24px var(--shadow-a);
+  box-shadow: var(--key-bevel), 0 4px 0 var(--edge-accent), var(--glow-lg);
+}
+
+.btn-action:active {
+  transform: translateY(2px);
+  box-shadow: var(--key-pressed), 0 0 0 var(--edge-accent), var(--glow-sm);
 }
 
 /* Chips & Badges */
@@ -341,16 +403,17 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
 .sticker {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
   font-weight: 700;
   font-size: 12px;
   font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--accent-dim);
-  border: 1px solid var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-left: 3px solid var(--accent);
   color: var(--accent);
 }
 
@@ -443,12 +506,159 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   font-size: 14px;
 }
 
+/* ============================================================
+   ENHANCEMENT LAYER
+   Skip-link · Reveal animations · Olive-glow hierarchy · Focus
+   ============================================================ */
+
+/* ---------- Accessible Skip Link (was unstyled) ---------- */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--on-accent);
+  background: var(--accent-gradient);
+  box-shadow: var(--glow-md);
+  text-decoration: none;
+  /* Hidden off-screen until focused, but still reachable by keyboard/AT */
+  transform: translateY(-160%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s var(--ease-spring), opacity 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  outline: none;
+  box-shadow: var(--glow-lg);
+}
+
+/* ---------- Reveal-on-scroll (classes were referenced but never defined) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s var(--ease-reveal),
+    transform 0.7s var(--ease-reveal);
+  transition-delay: var(--d, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Section rhythm helper ---------- */
+.section {
+  position: relative;
+}
+
+/* ---------- Deliberate olive-glow attention system ---------- */
+/* Applied to the single most important content object in a viewport. */
+.glow-focus {
+  box-shadow: var(--glow-md) !important;
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border-default)) !important;
+}
+
+.glow-ring {
+  position: relative;
+}
+.glow-ring::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: var(--glow-lg);
+  opacity: 0.55;
+}
+
+/* Text emphasis glow for the hero gradient headline */
+.text-gradient {
+  filter: drop-shadow(var(--glow-text));
+}
+
+/* Ambient hero halo — pulls the eye toward the primary CTA cluster */
+.hero-halo {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: min(46rem, 92vw);
+  height: min(46rem, 92vw);
+  top: -22%;
+  left: -12%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 62%);
+  filter: blur(30px);
+  opacity: 0.85;
+  animation: haloPulse 9s var(--ease-reveal) infinite;
+}
+
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.06); }
+}
+
+/* Sticker/eyebrow gets a subtle glow so section intros read as signposts */
+.sticker {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+/* Cards lift with an olive-tinted edge on hover to reinforce interactivity */
+.glass-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Header CTA & focus polish */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+/* Marquee edge fade so the ticker doesn't hard-cut at the viewport edges */
+.ticker-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Utility: keep long words / URLs from forcing horizontal overflow.
+   Headings are excluded — mid-word breaks in mega-type look broken. */
+p, span, a, li {
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
 /* High performance & reduced motion fallbacks */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-halo {
+    animation: none !important;
   }
 }
 

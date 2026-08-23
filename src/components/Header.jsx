@@ -8,18 +8,18 @@ const THEME_LABELS = {
 }
 
 const LINKS = [
-  { href: '#why', label: 'Why RealLearn' },
-  { href: '#method', label: 'The 3-Step Method' },
-  { href: '#how', label: 'How It Works' },
-  { href: '#try', label: 'Try Mini Lesson' },
-  { href: '#features', label: 'Features' },
-  { href: '#compare', label: 'Comparison & FAQ' },
+  { href: '#why', label: 'Why', full: 'Why RealLearn' },
+  { href: '#method', label: 'Method', full: 'The 3-Step Method' },
+  { href: '#how', label: 'How It Works', full: 'How It Works' },
+  { href: '#try', label: 'Try Demo', full: 'Try Mini Lesson' },
+  { href: '#features', label: 'Features', full: 'Features' },
+  { href: '#compare', label: 'FAQ', full: 'Comparison & FAQ' },
 ]
 
 function ThemeSwitch({ theme, setTheme, themes }) {
   return (
     <div
-      className="theme-switch flex items-center p-1 rounded-full border"
+      className="theme-switch flex items-center p-1 rounded-lg border"
       style={{
         borderColor: 'var(--border-default)',
         background: 'color-mix(in srgb, var(--bg-card) 85%, transparent)',
@@ -35,7 +35,7 @@ function ThemeSwitch({ theme, setTheme, themes }) {
             type="button"
             aria-pressed={isActive}
             aria-label={`${THEME_LABELS[t]?.label || t} theme`}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer"
             style={{
               background: isActive ? 'var(--accent)' : 'transparent',
               color: isActive ? 'var(--on-accent)' : 'var(--text-primary)',
@@ -93,18 +93,19 @@ export default function Header() {
             style={{
               width: 40,
               height: 40,
-              borderRadius: 12,
-              background: 'var(--accent)',
+              borderRadius: 8,
+              background: 'var(--accent-gradient)',
               color: 'var(--on-accent)',
-              boxShadow: '0 4px 14px var(--shadow-glow-accent)',
+              boxShadow: 'var(--glow-sm)',
+              fontWeight: 900,
             }}
           >
             RL
           </span>
           <span className="leading-tight">
             <span
-              className="block font-display text-[20px] font-extrabold tracking-tight"
-              style={{ color: 'var(--text-primary)' }}
+              className="block font-display text-[19px] uppercase tracking-tight"
+              style={{ color: 'var(--text-primary)', fontWeight: 900 }}
             >
               RealLearn <span style={{ color: 'var(--accent)' }}>AI</span>
             </span>
@@ -118,14 +119,15 @@ export default function Header() {
         </a>
 
         <nav
-          className="hidden lg:flex items-center gap-7 text-[14px] font-semibold"
+          className="hidden lg:flex items-center gap-6 text-[12px] font-display font-bold uppercase tracking-[0.08em]"
           style={{ color: 'var(--text-secondary)' }}
         >
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="hover:text-[color:var(--accent)] transition-colors py-2"
+              title={l.full}
+              className="hover:text-[color:var(--accent)] transition-colors py-2 whitespace-nowrap"
             >
               {l.label}
             </a>
@@ -137,15 +139,17 @@ export default function Header() {
             <ThemeSwitch theme={theme} setTheme={setTheme} themes={themes} />
           </div>
 
-          <a
-            href="https://reallearn.site"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex btn btn-action"
-            style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
-          >
-            Start Learning Free ↗
-          </a>
+          <span className="hidden md:inline-flex">
+            <a
+              href="https://reallearn.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-action"
+              style={{ minHeight: 40, padding: '0 20px', fontSize: 13 }}
+            >
+              Start Learning Free ↗
+            </a>
+          </span>
 
           <button
             type="button"

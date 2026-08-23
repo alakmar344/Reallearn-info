@@ -1,5 +1,16 @@
+# robots.txt — RealLearn AI
+# All crawlers welcome; nothing is disallowed.
 User-agent: *
 Allow: /
-Disallow:
+
+# Explicitly welcome major AI/search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
 
 Sitemap: https://reallearn.site/sitemap.xml

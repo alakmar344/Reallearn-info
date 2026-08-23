@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="RealLearn AI — Stop searching for answers. Start truly understanding.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141810"/>
+      <stop offset="1" stop-color="#0E110B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C3E85B"/>
+      <stop offset="0.55" stop-color="#A4C639"/>
+      <stop offset="1" stop-color="#8AAD26"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#A4C639" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#A4C639" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="960" cy="150" r="380" fill="url(#glow)"/>
+  <circle cx="180" cy="560" r="320" fill="url(#glow)"/>
+
+  <!-- Drafting grid -->
+  <g stroke="#3C4230" stroke-width="1" opacity="0.18">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="480" x2="1200" y2="480"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Logo -->
+  <g transform="translate(80,80)">
+    <rect width="72" height="72" rx="18" fill="url(#accent)"/>
+    <text x="36" y="50" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif" font-size="32" font-weight="700" text-anchor="middle" fill="#121510">RL</text>
+    <text x="92" y="34" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif" font-size="30" font-weight="700" fill="#F5F3E8">RealLearn <tspan fill="#A4C639">AI</tspan></text>
+    <text x="92" y="60" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="15" letter-spacing="2" fill="#A9AE9A">THE WORLD IS YOUR TEXTBOOK</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="80" y="300" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif" font-size="72" font-weight="700" fill="#F5F3E8">Stop searching for answers.</text>
+  <text x="80" y="388" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif" font-size="72" font-weight="700" fill="url(#accent)">Start truly understanding.</text>
+
+  <!-- Subhead -->
+  <text x="80" y="452" font-family="'Inter','Segoe UI',system-ui,sans-serif" font-size="26" fill="#A9AE9A">A structured 3-stage journey: Foundation → Mechanism → Real World.</text>
+
+  <!-- Chips -->
+  <g font-family="'JetBrains Mono',ui-monospace,monospace" font-size="18" font-weight="700">
+    <g transform="translate(80,510)">
+      <rect width="250" height="52" rx="26" fill="none" stroke="#3C4230"/>
+      <text x="125" y="34" text-anchor="middle" fill="#C3E85B">ACTIVE-RECALL QUIZZES</text>
+    </g>
+    <g transform="translate(348,510)">
+      <rect width="235" height="52" rx="26" fill="none" stroke="#3C4230"/>
+      <text x="117" y="34" text-anchor="middle" fill="#C3E85B">63 GLOBAL LANGUAGES</text>
+    </g>
+    <g transform="translate(601,510)">
+      <rect width="220" height="52" rx="26" fill="none" stroke="#3C4230"/>
+      <text x="110" y="34" text-anchor="middle" fill="#C3E85B">100% FREE &amp; AD-FREE</text>
+    </g>
+  </g>
+</svg>
