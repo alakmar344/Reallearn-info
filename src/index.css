@@ -15,18 +15,19 @@
    ============================================================ */
 
 :root {
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Archivo', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --maxw: 1180px;
   --measure: 64ch;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-  --radius-2xl: 22px;
-  --radius-pill: 9999px;
+  /* Sharp modern geometry */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-pill: 10px;
 
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -231,12 +232,33 @@ section[id],
   scroll-margin-top: 88px;
 }
 
-/* Headings enforce Space Grotesk 700 */
+/* Headings enforce Archivo — sharp, heavy grotesque */
 h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+/* Editorial mega-type: hero + section titles go uppercase 900 */
+h1.font-display,
+main h2.font-display,
+footer h2.font-display {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+/* Section titles: one consistent editorial scale */
+main h2.font-display {
+  font-size: clamp(32px, 4.6vw, 56px);
+}
+
+/* Olive text selection */
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -301,9 +323,10 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   min-height: 48px;
   padding: 0 24px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border-radius: var(--radius-pill);
   background: var(--accent);
   color: var(--on-accent);
@@ -380,16 +403,17 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
 .sticker {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
   font-weight: 700;
   font-size: 12px;
   font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--accent-dim);
-  border: 1px solid var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-left: 3px solid var(--accent);
   color: var(--accent);
 }
 
@@ -611,9 +635,15 @@ h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm 
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
-/* Utility: keep long words / URLs from forcing horizontal overflow */
-p, span, a, h1, h2, h3, li {
+/* Utility: keep long words / URLs from forcing horizontal overflow.
+   Headings are excluded — mid-word breaks in mega-type look broken. */
+p, span, a, li {
   overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 /* High performance & reduced motion fallbacks */

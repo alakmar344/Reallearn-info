@@ -55,17 +55,17 @@ export default function Hero() {
 
             <Reveal delay={0.05}>
               <h1
-                className="font-display font-extrabold tracking-tight"
+                className="font-display"
                 style={{
-                  fontSize: 'clamp(36px, 6.5vw, 62px)',
+                  fontSize: 'clamp(34px, 5vw, 62px)',
                   color: 'var(--text-primary)',
-                  lineHeight: 1.12,
-                  letterSpacing: '-0.025em',
+                  lineHeight: 0.99,
+                  letterSpacing: '-0.02em',
                 }}
               >
                 Stop searching for answers.{' '}
-                <span className="text-gradient block">
-                  Start truly understanding.
+                <span className="text-gradient block" style={{ marginTop: '0.08em' }}>
+                  Start truly <span style={{ whiteSpace: 'nowrap' }}>understanding.</span>
                 </span>
               </h1>
             </Reveal>

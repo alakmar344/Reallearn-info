@@ -41,10 +41,10 @@ export default function Ticker() {
         {[...ITEMS, ...ITEMS].map((item, idx) => (
           <span
             key={`${item}-${idx}`}
-            className="inline-flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+            className="inline-flex items-center gap-3 font-display text-sm font-extrabold uppercase tracking-[0.06em] whitespace-nowrap"
             style={{ color: 'var(--text-secondary)' }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)]" />
+            <span className="w-1.5 h-1.5 bg-[color:var(--accent)]" style={{ transform: 'rotate(45deg)' }} />
             {item}
           </span>
         ))}

@@ -79,12 +79,12 @@ export default function FeatureTour() {
                   id={`tab-${g.id}`}
                   aria-selected={isActive}
                   aria-controls={`panel-${g.id}`}
-                  className="px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all cursor-pointer"
+                  className="px-5 py-2.5 rounded-lg font-display font-bold uppercase tracking-[0.05em] text-[11px] sm:text-xs transition-all cursor-pointer"
                   style={{
                     background: isActive ? 'var(--accent)' : 'var(--bg-card)',
                     color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
                     border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
-                    boxShadow: isActive ? 'var(--shadow-lift)' : 'none',
+                    boxShadow: isActive ? 'var(--glow-sm)' : 'none',
                   }}
                   onClick={() => setActive(g.id)}
                 >
