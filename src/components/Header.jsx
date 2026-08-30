@@ -19,10 +19,11 @@ const LINKS = [
 function ThemeSwitch({ theme, setTheme, themes }) {
   return (
     <div
-      className="theme-switch flex items-center p-1 rounded-lg border"
+      className="theme-switch flex items-center p-1"
       style={{
-        borderColor: 'var(--border-default)',
-        background: 'color-mix(in srgb, var(--bg-card) 85%, transparent)',
+        border: '2px solid var(--line)',
+        background: 'var(--bg-card)',
+        boxShadow: '3px 3px 0 var(--hard)',
       }}
       role="group"
       aria-label="Color theme switcher"
@@ -74,13 +75,11 @@ export default function Header() {
     <header
       className="sticky top-0 z-50"
       style={{
-        background: 'color-mix(in srgb, var(--bg-primary) 85%, transparent)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid var(--border-default)',
+        background: 'var(--bg-primary)',
+        borderBottom: '3px solid var(--line)',
       }}
     >
-      <div className="container flex items-center justify-between" style={{ height: 72 }}>
+      <div className="container flex items-center justify-between" style={{ height: 78 }}>
         <a
           href="#top"
           className="flex items-center gap-3 group text-decoration-none"
@@ -91,12 +90,13 @@ export default function Header() {
             aria-hidden="true"
             className="grid place-items-center flex-none font-display font-bold text-sm"
             style={{
-              width: 40,
-              height: 40,
-              borderRadius: 8,
-              background: 'var(--accent-gradient)',
+              width: 42,
+              height: 42,
+              borderRadius: 0,
+              background: 'var(--accent)',
               color: 'var(--on-accent)',
-              boxShadow: 'var(--glow-sm)',
+              border: '2px solid var(--line)',
+              boxShadow: '3px 3px 0 var(--hard)',
               fontWeight: 900,
             }}
           >
@@ -154,7 +154,7 @@ export default function Header() {
           <button
             type="button"
             className="md:hidden grid place-items-center w-10 h-10 rounded-xl cursor-pointer"
-            style={{ color: 'var(--text-primary)', border: '1px solid var(--border-default)', background: 'var(--bg-card)' }}
+            style={{ color: 'var(--text-primary)', border: '2px solid var(--line)', background: 'var(--bg-card)', boxShadow: '3px 3px 0 var(--hard)' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -170,12 +170,10 @@ export default function Header() {
           id="mobile-nav"
           className="md:hidden fixed inset-x-0 z-50 px-6 pb-8 pt-4 flex flex-col gap-4"
           style={{
-            top: 72,
+            top: 78,
             bottom: 0,
-            background: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid var(--border-default)',
+            background: 'var(--bg-primary)',
+            borderBottom: '3px solid var(--line)',
             overflowY: 'auto',
           }}
         >

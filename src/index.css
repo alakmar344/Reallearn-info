@@ -3,15 +3,22 @@
 @tailwind utilities;
 
 /* ============================================================
-   RealLearn — Official Olive Frenzy Minimal Design System
+   RealLearn — Olive Frenzy BRUTALIST / MAXIMALIST Design System
    Reference: Canonical spec in docs/AGENT_MEMORY.md §1 & docs/REDESIGN.md
-   Themes: Paper (Warm Cream + Rich Olive) / Ink (Deep Olive-Black + Glowing Lime)
-   
+   Themes: Paper (Bone White + Deep Olive) / Ink (Near-Black + Electric Lime)
+
    STRICT STANDING RULES:
    1. NO PURPLE OR VIOLET ANYWHERE, EVER.
    2. NO GOLD.
-   3. Single Olive Accent Family (#556B2F light / #A4C639 dark).
-   4. High contrast on buttons: dark mode on-accent is ink #121510.
+   3. Single Olive Accent Family (deep olive light / electric lime dark).
+   4. High contrast on buttons: dark mode on-accent is ink.
+
+   BRUTALIST GRAMMAR:
+   - Zero border radius. Everything is a hard rectangle.
+   - 2-3px solid frame borders in the theme line color.
+   - Hard offset block shadows (no blur, ever).
+   - Mega uppercase display type, loud mono labels.
+   - Maximal density: stripes, grids, double marquees, giant numerals.
    ============================================================ */
 
 :root {
@@ -19,197 +26,211 @@
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  --maxw: 1180px;
-  --measure: 64ch;
-  /* Sharp modern geometry */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-pill: 10px;
+  /* WIDE canvas — content breathes across the whole viewport */
+  --maxw: 1640px;
+  --measure: 72ch;
+
+  /* Brutalist geometry: no curves */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-pill: 0px;
 
   --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ---------- INK ROOM (Dark Olive-Black - Default) ---------- */
+/* ---------- INK ROOM (Near-Black + Electric Lime — Default) ---------- */
 [data-theme='ink'], [data-theme='night'], :root:not([data-theme]) {
   color-scheme: dark;
 
-  --bg-primary: #0E110B;
-  --bg: #0E110B;
-  --bg-2: #15180F;
-  --bg-3: #20241A;
-  --bg-card: #16190F;
-  --bg-card-hover: #1E2216;
-  --bg-solid: #20241A;
+  --bg-primary: #060803;
+  --bg: #060803;
+  --bg-2: #0B0E05;
+  --bg-3: #161B0B;
+  --bg-card: #0A0D04;
+  --bg-card-hover: #141908;
+  --bg-solid: #161B0B;
 
-  --text-primary: #F5F3E8;
-  --ink: #F5F3E8;
-  --text-secondary: #A9AE9A;
-  --ink-dim: #A9AE9A;
-  --text-tertiary: #7E8471;
-  --ink-faint: #7E8471;
-  --text-accent-strong: #C3E85B;
+  --text-primary: #F4FFDE;
+  --ink: #F4FFDE;
+  --text-secondary: #B9C2A0;
+  --ink-dim: #B9C2A0;
+  --text-tertiary: #8B9377;
+  --ink-faint: #8B9377;
+  --text-accent-strong: #D9FF4D;
 
-  --accent: #A4C639;
-  --accent-2: #C3E85B;
-  --accent-action: #A4C639;
-  --accent-hover: #8AAD26;
-  --accent-dim: rgba(164, 198, 57, 0.15);
-  --accent-glow: rgba(164, 198, 57, 0.28);
-  --accent-companion: #C3E85B;
-  --accent-ink: #121510;
-  --on-accent: #121510;
+  /* Sharpened electric lime — same olive family, more voltage */
+  --accent: #B8E822;
+  --accent-2: #D9FF4D;
+  --accent-action: #B8E822;
+  --accent-hover: #A4D50E;
+  --accent-dim: rgba(184, 232, 34, 0.16);
+  --accent-glow: rgba(184, 232, 34, 0.3);
+  --accent-companion: #D9FF4D;
+  --accent-ink: #0B0E04;
+  --on-accent: #0B0E04;
 
-  --accent-gradient: linear-gradient(135deg, #C3E85B 0%, #A4C639 55%, #8AAD26 100%);
-  --text-pop-gradient: linear-gradient(105deg, #D7F284 0%, #A4C639 60%, #7E9C2C 100%);
+  --accent-gradient: linear-gradient(135deg, #E4FF66 0%, #B8E822 55%, #8CB50D 100%);
+  --text-pop-gradient: linear-gradient(105deg, #EAFF85 0%, #B8E822 55%, #86A80E 100%);
 
-  --border-subtle: #262B1E;
-  --border-default: #3C4230;
-  --border-accent: #A4C639;
-  --border-glow: rgba(164, 198, 57, 0.35);
+  --border-subtle: #232B12;
+  --border-default: #48542B;
+  --border-accent: #B8E822;
+  --border-glow: rgba(184, 232, 34, 0.45);
+
+  /* Brutalist frame + hard-shadow palette */
+  --line: #E4F2BE;                 /* heavy frame borders */
+  --hard: #202912;                 /* neutral hard block shadow */
+  --hard-accent: #55700D;          /* olive hard block shadow for CTAs */
 
   --shadow-c: #000000;
-  --shadow-a: rgba(0, 0, 0, 0.55);
-  --shadow-lift: 0 12px 36px rgba(0, 0, 0, 0.6);
-  --shadow-glow-accent: 0 4px 18px rgba(164, 198, 57, 0.3);
+  --shadow-a: #202912;
+  --shadow-lift: 10px 10px 0 #202912;
+  --shadow-glow-accent: 6px 6px 0 #55700D;
 
-  /* Tiered olive glow — used to deliberately guide attention to key actions */
-  --glow-sm: 0 0 0 1px rgba(164, 198, 57, 0.18), 0 6px 20px rgba(164, 198, 57, 0.14);
-  --glow-md: 0 0 0 1px rgba(164, 198, 57, 0.28), 0 8px 30px rgba(164, 198, 57, 0.24);
-  --glow-lg: 0 0 40px rgba(164, 198, 57, 0.34), 0 0 90px rgba(164, 198, 57, 0.14);
-  --glow-text: 0 0 24px rgba(164, 198, 57, 0.35);
+  /* Tiered hard-offset attention system (formerly soft glow) */
+  --glow-sm: 4px 4px 0 #55700D;
+  --glow-md: 7px 7px 0 #55700D;
+  --glow-lg: 11px 11px 0 #55700D;
+  --glow-text: 4px 4px 0 rgba(184, 232, 34, 0.35);
 
-  /* Semantic State Layer */
-  --success: #10B981;
-  --success-bg: rgba(16, 185, 129, 0.15);
-  --danger: #FB7185;
-  --danger-bg: rgba(251, 113, 133, 0.15);
-  --warning: #FBBF24;
-  --warning-bg: rgba(251, 191, 36, 0.14);
-  --info: #38BDF8;
-  --info-bg: rgba(56, 189, 248, 0.14);
+  /* Semantic State Layer — cranked */
+  --success: #00E68A;
+  --success-bg: rgba(0, 230, 138, 0.14);
+  --danger: #FF5C7A;
+  --danger-bg: rgba(255, 92, 122, 0.14);
+  --warning: #FFC933;
+  --warning-bg: rgba(255, 201, 51, 0.12);
+  --info: #33CFFF;
+  --info-bg: rgba(51, 207, 255, 0.12);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum */
-  --subject-physics: #38BDF8;
-  --subject-chemistry: #34D399;
-  --subject-economics: #FBBF24;
-  --subject-biology: #4ADE80;
-  --subject-cs: #FB923C;
-  --subject-history: #FB7185;
-  --subject-general: #A4C639;
+  /* Subject Spectrum — saturated */
+  --subject-physics: #33CFFF;
+  --subject-chemistry: #2BE8A4;
+  --subject-economics: #FFC933;
+  --subject-biology: #4AE873;
+  --subject-cs: #FF8C3B;
+  --subject-history: #FF5C7A;
+  --subject-general: #B8E822;
 
   /* Tactile Press Keys */
-  --edge-accent: #66801F;
-  --edge-neutral: rgba(0, 0, 0, 0.55);
-  --key-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  --key-bevel-soft: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --key-pressed: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+  --edge-accent: #55700D;
+  --edge-neutral: #202912;
+  --key-bevel: inset 0 0 0 2px rgba(6, 8, 3, 0.25);
+  --key-bevel-soft: inset 0 0 0 1px rgba(228, 242, 190, 0.12);
+  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.35);
 
-  /* Ambient Aurora */
-  --aurora-1: rgba(164, 198, 57, 0.12);
-  --aurora-2: rgba(85, 107, 47, 0.16);
-  --aurora-3: rgba(245, 243, 232, 0.04);
+  /* Ambient field */
+  --aurora-1: rgba(184, 232, 34, 0.14);
+  --aurora-2: rgba(85, 107, 47, 0.2);
+  --aurora-3: rgba(244, 255, 222, 0.05);
 }
 
-/* ---------- PAPER ROOM (Light Warm Cream + Rich Olive) ---------- */
+/* ---------- PAPER ROOM (Bone White + Deep Saturated Olive) ---------- */
 [data-theme='paper'], [data-theme='light'] {
   color-scheme: light;
 
-  --bg-primary: #FAF9F3;
-  --bg: #FAF9F3;
+  --bg-primary: #FAF8EC;
+  --bg: #FAF8EC;
   --bg-2: #FFFFFF;
-  --bg-3: #F1F0E6;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #F3F2E9;
-  --bg-solid: #F1F0E6;
+  --bg-3: #EFEDDA;
+  --bg-card: #FFFDF4;
+  --bg-card-hover: #F2F0E0;
+  --bg-solid: #EFEDDA;
 
-  --text-primary: #1F2318;
-  --ink: #1F2318;
-  --text-secondary: #565B48;
-  --ink-dim: #565B48;
-  --text-tertiary: #6E7460;
-  --ink-faint: #6E7460;
-  --text-accent-strong: #46591F;
+  --text-primary: #101207;
+  --ink: #101207;
+  --text-secondary: #494F38;
+  --ink-dim: #494F38;
+  --text-tertiary: #656C50;
+  --ink-faint: #656C50;
+  --text-accent-strong: #3A4C0A;
 
-  --accent: #556B2F;
-  --accent-2: #6B8236;
-  --accent-action: #556B2F;
-  --accent-hover: #46591F;
-  --accent-dim: rgba(85, 107, 47, 0.1);
-  --accent-glow: rgba(85, 107, 47, 0.18);
-  --accent-companion: #3F6212;
-  --accent-ink: #FFFFFF;
-  --on-accent: #FFFFFF;
+  /* Sharpened deep olive — same family, more pigment */
+  --accent: #4E6410;
+  --accent-2: #66821A;
+  --accent-action: #4E6410;
+  --accent-hover: #3D4F0B;
+  --accent-dim: rgba(78, 100, 16, 0.12);
+  --accent-glow: rgba(78, 100, 16, 0.22);
+  --accent-companion: #3A4C0A;
+  --accent-ink: #FFFFF2;
+  --on-accent: #FFFFF2;
 
-  --accent-gradient: linear-gradient(135deg, #6B8236 0%, #556B2F 55%, #46591F 100%);
-  --text-pop-gradient: linear-gradient(105deg, #6B8236 0%, #556B2F 50%, #3D4D1D 100%);
+  --accent-gradient: linear-gradient(135deg, #66821A 0%, #4E6410 55%, #3A4C0A 100%);
+  --text-pop-gradient: linear-gradient(105deg, #66821A 0%, #4E6410 50%, #2F3D08 100%);
 
-  --border-subtle: #E7E5D8;
-  --border-default: #D6D4C4;
-  --border-accent: #556B2F;
-  --border-glow: rgba(85, 107, 47, 0.22);
+  --border-subtle: #DDDCC6;
+  --border-default: #A9A98C;
+  --border-accent: #4E6410;
+  --border-glow: rgba(78, 100, 16, 0.3);
 
-  --shadow-c: #1F2318;
-  --shadow-a: rgba(31, 35, 24, 0.08);
-  --shadow-lift: 0 12px 36px rgba(31, 35, 24, 0.12);
-  --shadow-glow-accent: 0 4px 12px rgba(85, 107, 47, 0.22);
+  /* Brutalist frame + hard-shadow palette */
+  --line: #101207;                 /* heavy frame borders: near-black ink */
+  --hard: #101207;                 /* classic black block shadow */
+  --hard-accent: #4E6410;          /* olive block shadow for CTAs */
 
-  /* Tiered olive glow — softer in the light room */
-  --glow-sm: 0 0 0 1px rgba(85, 107, 47, 0.16), 0 6px 18px rgba(85, 107, 47, 0.12);
-  --glow-md: 0 0 0 1px rgba(85, 107, 47, 0.24), 0 8px 26px rgba(85, 107, 47, 0.18);
-  --glow-lg: 0 0 34px rgba(85, 107, 47, 0.22), 0 0 70px rgba(85, 107, 47, 0.08);
-  --glow-text: 0 0 20px rgba(85, 107, 47, 0.20);
+  --shadow-c: #101207;
+  --shadow-a: rgba(16, 18, 7, 0.9);
+  --shadow-lift: 10px 10px 0 #101207;
+  --shadow-glow-accent: 6px 6px 0 #4E6410;
 
-  /* Semantic State Layer */
-  --success: #059669;
-  --success-bg: rgba(5, 150, 105, 0.1);
-  --danger: #DC2626;
-  --danger-bg: rgba(220, 38, 38, 0.1);
-  --warning: #A16207;
-  --warning-bg: rgba(161, 98, 7, 0.1);
-  --info: #0369A1;
-  --info-bg: rgba(3, 105, 161, 0.1);
+  /* Tiered hard-offset attention system */
+  --glow-sm: 4px 4px 0 #4E6410;
+  --glow-md: 7px 7px 0 #4E6410;
+  --glow-lg: 11px 11px 0 #4E6410;
+  --glow-text: 4px 4px 0 rgba(78, 100, 16, 0.3);
+
+  /* Semantic State Layer — cranked */
+  --success: #00875A;
+  --success-bg: rgba(0, 135, 90, 0.12);
+  --danger: #E0163C;
+  --danger-bg: rgba(224, 22, 60, 0.1);
+  --warning: #8A5A00;
+  --warning-bg: rgba(138, 90, 0, 0.1);
+  --info: #0072B0;
+  --info-bg: rgba(0, 114, 176, 0.1);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum */
-  --subject-physics: #0284C7;
-  --subject-chemistry: #059669;
-  --subject-economics: #D97706;
-  --subject-biology: #16A34A;
-  --subject-cs: #EA580C;
-  --subject-history: #DC2626;
-  --subject-general: #556B2F;
+  /* Subject Spectrum — saturated */
+  --subject-physics: #0072B0;
+  --subject-chemistry: #00875A;
+  --subject-economics: #C25E00;
+  --subject-biology: #0F8A2F;
+  --subject-cs: #DE4A00;
+  --subject-history: #E0163C;
+  --subject-general: #4E6410;
 
   /* Tactile Press Keys */
-  --edge-accent: #38471A;
-  --edge-neutral: #D4D4D8;
-  --key-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --key-bevel-soft: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  --key-pressed: inset 0 2px 4px rgba(31, 35, 24, 0.15);
+  --edge-accent: #2F3D08;
+  --edge-neutral: #101207;
+  --key-bevel: inset 0 0 0 2px rgba(255, 255, 242, 0.25);
+  --key-bevel-soft: inset 0 0 0 1px rgba(16, 18, 7, 0.06);
+  --key-pressed: inset 3px 3px 0 rgba(16, 18, 7, 0.18);
 
-  /* Ambient Aurora */
-  --aurora-1: rgba(85, 107, 47, 0.06);
-  --aurora-2: rgba(107, 130, 54, 0.08);
-  --aurora-3: rgba(0, 0, 0, 0.02);
+  /* Ambient field */
+  --aurora-1: rgba(78, 100, 16, 0.08);
+  --aurora-2: rgba(102, 130, 26, 0.1);
+  --aurora-3: rgba(16, 18, 7, 0.03);
 }
 
 /* Base Body Styles */
 html {
   scroll-behavior: smooth;
-  /* Offset anchor targets so they don't hide under the sticky 72px header */
-  scroll-padding-top: 88px;
+  /* Offset anchor targets so they don't hide under the sticky header */
+  scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -229,30 +250,35 @@ body {
 /* Extra safety: any in-page anchor target clears the sticky header */
 section[id],
 [id='main'] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 96px;
 }
 
 /* Headings enforce Archivo — sharp, heavy grotesque */
 h1, h2, h3, h4, h5, h6, .font-display, .headline-lg, .headline-md, .headline-sm {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
-/* Editorial mega-type: hero + section titles go uppercase 900 */
+/* Brutalist mega-type: hero + section titles go uppercase 900 */
 h1.font-display,
 main h2.font-display,
 footer h2.font-display {
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
-/* Section titles: one consistent editorial scale */
+/* Section titles: one loud editorial scale — fills the wide canvas */
 main h2.font-display {
-  font-size: clamp(32px, 4.6vw, 56px);
+  font-size: clamp(38px, 6vw, 88px);
+}
+
+/* Hard section rule between every major band */
+main section:not(#top) {
+  border-top: 3px solid var(--border-default);
 }
 
 /* Olive text selection */
@@ -266,13 +292,13 @@ main h2.font-display {
 }
 
 .headline-lg {
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1.15;
+  font-size: clamp(30px, 4.4vw, 52px);
+  line-height: 1.05;
 }
 
 .headline-md {
-  font-size: clamp(18px, 2.5vw, 24px);
-  line-height: 1.25;
+  font-size: clamp(18px, 2.5vw, 26px);
+  line-height: 1.2;
 }
 
 .headline-sm {
@@ -280,150 +306,155 @@ main h2.font-display {
   line-height: 1.35;
 }
 
-/* Layout Container */
+/* Layout Container — WIDE with generous gutters, never compacted */
 .container {
   max-width: var(--maxw);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: clamp(16px, 3.5vw, 56px);
+  padding-right: clamp(16px, 3.5vw, 56px);
 }
 
-/* Text Gradient */
+/* Text Gradient — hard offset print-shadow instead of soft glow */
 .text-gradient {
   background: var(--text-pop-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(var(--glow-text));
 }
 
-/* Glassmorphism Cards */
+/* Brutalist Cards (class name kept for compatibility — no glass left) */
 .glass-card {
-  background: color-mix(in srgb, var(--bg-card) 90%, transparent);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-xl);
-  transition: transform 0.18s var(--ease-reveal), box-shadow 0.18s var(--ease-reveal), border-color 0.18s ease;
+  background: var(--bg-card);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--hard);
+  transition: transform 0.16s var(--ease-reveal), box-shadow 0.16s var(--ease-reveal), border-color 0.16s ease;
 }
 
 .glass-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border-default));
-  box-shadow: 0 12px 32px var(--shadow-a);
+  transform: translate(-3px, -3px);
+  border-color: var(--line);
+  box-shadow: 9px 9px 0 var(--hard-accent);
 }
 
 .glow-border {
   position: relative;
 }
 
-/* Tactile Buttons System */
+/* Tactile Buttons System — hard blocks that physically press */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 48px;
-  padding: 0 24px;
+  min-height: 50px;
+  padding: 0 26px;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 13px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: var(--key-bevel), 0 3px 0 var(--edge-accent), 0 6px 16px var(--shadow-a);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  border: 2px solid var(--line);
+  box-shadow: 5px 5px 0 var(--hard-accent);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
   cursor: pointer;
-  border: none;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--key-bevel), 0 4px 0 var(--edge-accent), 0 10px 24px var(--shadow-a);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--hard-accent);
 }
 
 .btn:active {
-  transform: translateY(2px);
-  box-shadow: var(--key-pressed), 0 0 0 var(--edge-accent);
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--hard-accent), var(--key-pressed);
 }
 
 .btn-primary {
-  background: var(--accent-gradient);
+  background: var(--accent);
   color: var(--on-accent);
 }
 
 .btn-ghost {
-  background: color-mix(in srgb, var(--bg-card) 75%, transparent);
+  background: var(--bg-card);
   color: var(--text-primary);
-  border: 1px solid var(--border-default);
-  box-shadow: var(--key-bevel-soft), 0 2px 0 var(--edge-neutral);
+  border: 2px solid var(--line);
+  box-shadow: 5px 5px 0 var(--hard);
 }
 
 .btn-ghost:hover {
-  border-color: var(--accent);
+  border-color: var(--line);
   color: var(--accent);
-  box-shadow: var(--key-bevel-soft), 0 3px 0 var(--edge-neutral), 0 6px 18px var(--shadow-a);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--hard);
 }
 
 .btn-ghost:active {
-  transform: translateY(2px);
-  box-shadow: var(--key-pressed), 0 0 0 var(--edge-neutral);
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--hard), var(--key-pressed);
 }
 
 .btn-action {
-  background: var(--accent-gradient);
+  background: var(--accent);
   color: var(--on-accent);
-  box-shadow: var(--key-bevel), 0 3px 0 var(--edge-accent), var(--glow-md);
+  box-shadow: 6px 6px 0 var(--hard-accent);
 }
 
 .btn-action:hover {
-  box-shadow: var(--key-bevel), 0 4px 0 var(--edge-accent), var(--glow-lg);
+  box-shadow: 9px 9px 0 var(--hard-accent);
 }
 
 .btn-action:active {
-  transform: translateY(2px);
-  box-shadow: var(--key-pressed), 0 0 0 var(--edge-accent), var(--glow-sm);
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--hard-accent), var(--key-pressed);
 }
 
-/* Chips & Badges */
+/* Chips & Badges — framed rectangles */
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   font-size: 13px;
-  font-weight: 600;
-  background: color-mix(in srgb, var(--bg-card) 90%, transparent);
-  border: 1px solid var(--border-default);
+  font-weight: 700;
+  background: var(--bg-card);
+  border: 2px solid var(--border-default);
   color: var(--text-primary);
 }
 
+/* Sticker — the loud section signpost: solid accent slab, hard shadow */
 .sticker {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 16px;
-  border-radius: var(--radius-sm);
+  padding: 9px 18px;
+  border-radius: 0;
   font-weight: 700;
   font-size: 12px;
   font-family: var(--font-mono);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  background: var(--accent-dim);
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  border-left: 3px solid var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  border: 2px solid var(--line);
+  color: var(--on-accent);
+  box-shadow: 4px 4px 0 var(--hard);
 }
 
 /* Focus States */
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: 0 0 0 3px var(--bg-primary), 0 0 0 6px var(--accent);
 }
 
-/* Marquee Animation for Ticker */
+/* Marquee Animation for Ticker (double band, both directions) */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -432,47 +463,55 @@ main h2.font-display {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
-.animate-marquee:hover {
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite reverse;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
   animation-play-state: paused;
 }
 
-/* Suggestion Pills */
+/* Suggestion Pills — framed micro-blocks that jump */
 .suggestion-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  border-radius: 0;
   font-size: 12px;
-  font-weight: 600;
-  background: color-mix(in srgb, var(--bg-card) 95%, transparent);
-  border: 1px solid var(--border-default);
+  font-weight: 700;
+  background: var(--bg-card);
+  border: 2px solid var(--border-default);
   color: var(--text-secondary);
-  transition: all 0.15s ease;
+  transition: all 0.12s ease;
   cursor: pointer;
 }
 
 .suggestion-pill:hover {
-  border-color: var(--accent);
+  border-color: var(--line);
   color: var(--text-primary);
   background: var(--accent-dim);
-  transform: translateY(-1px);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--hard);
 }
 
 /* Interactive Checkpoint Option */
 .quiz-option {
   position: relative;
   overflow: hidden;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quiz-option:hover:not(:disabled) {
-  border-color: var(--accent) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-a);
+  border-color: var(--line) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--hard);
 }
 
 /* Accordion Item */
@@ -482,18 +521,18 @@ main h2.font-display {
   align-items: center;
   justify-content: space-between;
   text-align: left;
-  padding: 20px 24px;
+  padding: 22px 26px;
   border: none;
   background: transparent;
   cursor: pointer;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
+  font-weight: 800;
+  font-size: 18px;
   color: var(--text-primary);
 }
 
 .accordion-body {
-  padding: 0 24px 22px;
+  padding: 0 26px 24px;
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.65;
@@ -502,16 +541,16 @@ main h2.font-display {
 /* Comparison Table */
 .comparison-cell {
   padding: 16px 20px;
-  border-bottom: 1px solid var(--border-default);
+  border-bottom: 2px solid var(--border-default);
   font-size: 14px;
 }
 
 /* ============================================================
    ENHANCEMENT LAYER
-   Skip-link · Reveal animations · Olive-glow hierarchy · Focus
+   Skip-link · Reveal animations · Hard-offset hierarchy · Focus
    ============================================================ */
 
-/* ---------- Accessible Skip Link (was unstyled) ---------- */
+/* ---------- Accessible Skip Link ---------- */
 .skip-link {
   position: fixed;
   top: 12px;
@@ -521,13 +560,15 @@ main h2.font-display {
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 14px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--on-accent);
-  background: var(--accent-gradient);
+  background: var(--accent);
+  border: 2px solid var(--line);
   box-shadow: var(--glow-md);
   text-decoration: none;
   /* Hidden off-screen until focused, but still reachable by keyboard/AT */
@@ -546,10 +587,10 @@ main h2.font-display {
   box-shadow: var(--glow-lg);
 }
 
-/* ---------- Reveal-on-scroll (classes were referenced but never defined) ---------- */
+/* ---------- Reveal-on-scroll ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(26px);
   transition:
     opacity 0.7s var(--ease-reveal),
     transform 0.7s var(--ease-reveal);
@@ -567,11 +608,11 @@ main h2.font-display {
   position: relative;
 }
 
-/* ---------- Deliberate olive-glow attention system ---------- */
+/* ---------- Deliberate hard-offset attention system ---------- */
 /* Applied to the single most important content object in a viewport. */
 .glow-focus {
   box-shadow: var(--glow-md) !important;
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--border-default)) !important;
+  border-color: var(--line) !important;
 }
 
 .glow-ring {
@@ -580,59 +621,48 @@ main h2.font-display {
 .glow-ring::after {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
+  inset: -2px;
+  border-radius: 0;
   pointer-events: none;
   box-shadow: var(--glow-lg);
-  opacity: 0.55;
+  opacity: 0.6;
 }
 
-/* Text emphasis glow for the hero gradient headline */
-.text-gradient {
-  filter: drop-shadow(var(--glow-text));
-}
-
-/* Ambient hero halo — pulls the eye toward the primary CTA cluster */
+/* Maximalist hero field — hard diagonal accent stripes, zero blur */
 .hero-halo {
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  width: min(46rem, 92vw);
-  height: min(46rem, 92vw);
-  top: -22%;
-  left: -12%;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 62%);
-  filter: blur(30px);
-  opacity: 0.85;
-  animation: haloPulse 9s var(--ease-reveal) infinite;
+  width: min(52rem, 96vw);
+  height: min(34rem, 70vw);
+  top: -6%;
+  left: -8%;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent-dim) 0 12px,
+    transparent 12px 34px
+  );
+  -webkit-mask-image: linear-gradient(115deg, #000 0%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  mask-image: linear-gradient(115deg, #000 0%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
+  opacity: 0.9;
+  animation: stripeShift 14s linear infinite;
 }
 
-@keyframes haloPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0.95; transform: scale(1.06); }
+@keyframes stripeShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 92px 0; }
 }
 
-/* Sticker/eyebrow gets a subtle glow so section intros read as signposts */
-.sticker {
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent);
+/* Giant outline utility for maximalist watermark type */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--border-default);
 }
 
-/* Cards lift with an olive-tinted edge on hover to reinforce interactivity */
-.glass-card:hover {
-  transform: translateY(-3px);
-}
-
-/* Header CTA & focus polish */
-:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
-  border-radius: var(--radius-sm);
-}
-
-/* Marquee edge fade so the ticker doesn't hard-cut at the viewport edges */
+/* Marquee bands hard-cut at the viewport edge — no fades in brutalism */
 .ticker-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* Utility: keep long words / URLs from forcing horizontal overflow.
@@ -661,4 +691,3 @@ h1, h2, h3 {
     animation: none !important;
   }
 }
-

@@ -51,16 +51,16 @@ export default function Book3D() {
   const currentStage = STAGES[activeTab]
 
   return (
-    <div className="w-full max-w-lg mx-auto glow-ring" style={{ borderRadius: 'var(--radius-2xl)' }}>
+    <div className="w-full max-w-xl mx-auto">
       <div
-        className="glass-card p-6 sm:p-7 relative overflow-hidden"
+        className="glass-card p-6 sm:p-8 relative overflow-hidden"
         style={{
-          borderRadius: 'var(--radius-2xl)',
-          boxShadow: '0 24px 60px var(--shadow-a)',
+          border: '3px solid var(--line)',
+          boxShadow: '12px 12px 0 var(--hard-accent)',
         }}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between mb-5 pb-4 border-b border-[color:var(--border-default)]">
+        <div className="flex items-center justify-between mb-5 pb-4 border-b-2 border-[color:var(--line)]">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] animate-pulse" />
             <span className="font-mono text-xs uppercase font-bold tracking-wider" style={{ color: 'var(--text-secondary)' }}>
@@ -72,7 +72,7 @@ export default function Book3D() {
             style={{
               background: currentStage.status.locked ? 'var(--danger-bg)' : 'var(--accent-dim)',
               color: currentStage.status.locked ? 'var(--danger)' : 'var(--accent)',
-              border: `1px solid ${currentStage.status.locked ? 'var(--danger)' : 'var(--accent)'}`,
+              border: `2px solid ${currentStage.status.locked ? 'var(--danger)' : 'var(--accent)'}`,
             }}
           >
             <Icon name={currentStage.status.icon} size={12} strokeWidth={2.2} />
@@ -125,10 +125,10 @@ export default function Book3D() {
               return (
                 <div
                   key={item.label}
-                  className="p-3.5 rounded-xl border border-[color:var(--border-default)] flex flex-col gap-1"
+                  className="p-3.5 border-2 border-[color:var(--border-default)] flex flex-col gap-1"
                   style={{
                     background: 'var(--bg-primary)',
-                    borderLeftWidth: 3,
+                    borderLeftWidth: 5,
                     borderLeftColor: 'var(--accent)',
                   }}
                 >

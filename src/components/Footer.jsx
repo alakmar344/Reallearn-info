@@ -12,13 +12,17 @@ export default function Footer() {
   return (
     <footer
       className="relative z-10 overflow-hidden"
-      style={{ paddingBottom: 56, paddingTop: 'clamp(56px, 7vw, 88px)', backgroundColor: 'color-mix(in srgb, var(--bg-2) 70%, transparent)', borderTop: '1px solid var(--border-default)' }}
+      style={{ paddingBottom: 64, paddingTop: 'clamp(64px, 8vw, 112px)', backgroundColor: 'var(--bg-2)', borderTop: '4px solid var(--line)' }}
     >
       <div className="container text-center relative z-10">
         <Reveal style={{ marginBottom: 20 }}>
           <span className="sticker">The world is your textbook</span>
         </Reveal>
-        <Reveal as="h2" className="font-display font-extrabold text-2xl sm:text-4xl max-w-2xl mx-auto mb-8" style={{ color: 'var(--text-primary)' }}>
+        <Reveal
+          as="h2"
+          className="font-display font-black max-w-5xl mx-auto mb-10"
+          style={{ color: 'var(--text-primary)', fontSize: 'clamp(30px, 4.8vw, 68px)' }}
+        >
           Master it, one <span className="text-gradient">structured lesson</span> at a time.
         </Reveal>
 
@@ -52,7 +56,7 @@ export default function Footer() {
 
         <div
           className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.08em] uppercase font-bold"
-          style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border-default)', paddingTop: 28, maxWidth: 760 }}
+          style={{ color: 'var(--text-secondary)', borderTop: '2px solid var(--line)', paddingTop: 28, maxWidth: 980 }}
         >
           <span>RealLearn AI</span>
           <span>The World Is Your Textbook</span>
