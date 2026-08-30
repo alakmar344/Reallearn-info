@@ -42,188 +42,190 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ---------- INK ROOM (Near-Black + Electric Lime — Default) ---------- */
+/* ---------- INK ROOM (Pure Black + Acid Chartreuse — Default) ---------- */
 [data-theme='ink'], [data-theme='night'], :root:not([data-theme]) {
   color-scheme: dark;
 
-  --bg-primary: #060803;
-  --bg: #060803;
-  --bg-2: #0B0E05;
-  --bg-3: #161B0B;
-  --bg-card: #0A0D04;
-  --bg-card-hover: #141908;
-  --bg-solid: #161B0B;
+  --bg-primary: #000000;
+  --bg: #000000;
+  --bg-2: #070803;
+  --bg-3: #111407;
+  --bg-card: #050603;
+  --bg-card-hover: #0E1106;
+  --bg-solid: #111407;
 
-  --text-primary: #F4FFDE;
-  --ink: #F4FFDE;
-  --text-secondary: #B9C2A0;
-  --ink-dim: #B9C2A0;
-  --text-tertiary: #8B9377;
-  --ink-faint: #8B9377;
-  --text-accent-strong: #D9FF4D;
+  --text-primary: #FFFFFF;
+  --ink: #FFFFFF;
+  --text-secondary: #BEC7A2;
+  --ink-dim: #BEC7A2;
+  --text-tertiary: #868E6D;
+  --ink-faint: #868E6D;
+  --text-accent-strong: #E4FF4A;
 
-  /* Sharpened electric lime — same olive family, more voltage */
-  --accent: #B8E822;
-  --accent-2: #D9FF4D;
-  --accent-action: #B8E822;
-  --accent-hover: #A4D50E;
-  --accent-dim: rgba(184, 232, 34, 0.16);
-  --accent-glow: rgba(184, 232, 34, 0.3);
-  --accent-companion: #D9FF4D;
-  --accent-ink: #0B0E04;
-  --on-accent: #0B0E04;
+  /* Acid chartreuse — maximum voltage against pure black */
+  --accent: #C8FF00;
+  --accent-2: #E4FF4A;
+  --accent-action: #C8FF00;
+  --accent-hover: #B2E600;
+  --accent-dim: rgba(200, 255, 0, 0.14);
+  --accent-glow: rgba(200, 255, 0, 0.32);
+  --accent-companion: #E4FF4A;
+  --accent-ink: #000000;
+  --on-accent: #000000;
 
-  --accent-gradient: linear-gradient(135deg, #E4FF66 0%, #B8E822 55%, #8CB50D 100%);
-  --text-pop-gradient: linear-gradient(105deg, #EAFF85 0%, #B8E822 55%, #86A80E 100%);
+  /* Hard 50/50 color break — no soft blends anywhere */
+  --accent-gradient: linear-gradient(135deg, #E4FF4A 0 50%, #C8FF00 50% 100%);
+  --text-pop-gradient: linear-gradient(105deg, #E4FF4A 0 50%, #C8FF00 50% 100%);
 
-  --border-subtle: #232B12;
-  --border-default: #48542B;
-  --border-accent: #B8E822;
-  --border-glow: rgba(184, 232, 34, 0.45);
+  --border-subtle: #1E2410;
+  --border-default: #55632A;
+  --border-accent: #C8FF00;
+  --border-glow: rgba(200, 255, 0, 0.5);
 
   /* Brutalist frame + hard-shadow palette */
-  --line: #E4F2BE;                 /* heavy frame borders */
-  --hard: #202912;                 /* neutral hard block shadow */
-  --hard-accent: #55700D;          /* olive hard block shadow for CTAs */
+  --line: #F4FFDC;                 /* heavy frame borders: near-white */
+  --hard: #2A3A00;                 /* dark acid hard block shadow */
+  --hard-accent: #5F7A00;          /* acid-olive hard block shadow for CTAs */
 
   --shadow-c: #000000;
-  --shadow-a: #202912;
-  --shadow-lift: 10px 10px 0 #202912;
-  --shadow-glow-accent: 6px 6px 0 #55700D;
+  --shadow-a: #2A3A00;
+  --shadow-lift: 10px 10px 0 #2A3A00;
+  --shadow-glow-accent: 6px 6px 0 #5F7A00;
 
   /* Tiered hard-offset attention system (formerly soft glow) */
-  --glow-sm: 4px 4px 0 #55700D;
-  --glow-md: 7px 7px 0 #55700D;
-  --glow-lg: 11px 11px 0 #55700D;
-  --glow-text: 4px 4px 0 rgba(184, 232, 34, 0.35);
+  --glow-sm: 4px 4px 0 #5F7A00;
+  --glow-md: 7px 7px 0 #5F7A00;
+  --glow-lg: 11px 11px 0 #5F7A00;
+  --glow-text: 5px 5px 0 #465A00;
 
-  /* Semantic State Layer — cranked */
-  --success: #00E68A;
-  --success-bg: rgba(0, 230, 138, 0.14);
-  --danger: #FF5C7A;
-  --danger-bg: rgba(255, 92, 122, 0.14);
-  --warning: #FFC933;
-  --warning-bg: rgba(255, 201, 51, 0.12);
-  --info: #33CFFF;
-  --info-bg: rgba(51, 207, 255, 0.12);
+  /* Semantic State Layer — full neon */
+  --success: #00FF94;
+  --success-bg: rgba(0, 255, 148, 0.12);
+  --danger: #FF2E5F;
+  --danger-bg: rgba(255, 46, 95, 0.14);
+  --warning: #FFD400;
+  --warning-bg: rgba(255, 212, 0, 0.1);
+  --info: #00D4FF;
+  --info-bg: rgba(0, 212, 255, 0.1);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum — saturated */
-  --subject-physics: #33CFFF;
-  --subject-chemistry: #2BE8A4;
-  --subject-economics: #FFC933;
-  --subject-biology: #4AE873;
-  --subject-cs: #FF8C3B;
-  --subject-history: #FF5C7A;
-  --subject-general: #B8E822;
+  /* Subject Spectrum — full neon */
+  --subject-physics: #00D4FF;
+  --subject-chemistry: #00FFC2;
+  --subject-economics: #FFD400;
+  --subject-biology: #2BFF57;
+  --subject-cs: #FF7A00;
+  --subject-history: #FF2E5F;
+  --subject-general: #C8FF00;
 
   /* Tactile Press Keys */
-  --edge-accent: #55700D;
-  --edge-neutral: #202912;
-  --key-bevel: inset 0 0 0 2px rgba(6, 8, 3, 0.25);
-  --key-bevel-soft: inset 0 0 0 1px rgba(228, 242, 190, 0.12);
-  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.35);
+  --edge-accent: #5F7A00;
+  --edge-neutral: #2A3A00;
+  --key-bevel: inset 0 0 0 2px rgba(0, 0, 0, 0.25);
+  --key-bevel-soft: inset 0 0 0 1px rgba(244, 255, 220, 0.12);
+  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.4);
 
   /* Ambient field */
-  --aurora-1: rgba(184, 232, 34, 0.14);
-  --aurora-2: rgba(85, 107, 47, 0.2);
-  --aurora-3: rgba(244, 255, 222, 0.05);
+  --aurora-1: rgba(200, 255, 0, 0.12);
+  --aurora-2: rgba(95, 122, 0, 0.18);
+  --aurora-3: rgba(255, 255, 255, 0.05);
 }
 
-/* ---------- PAPER ROOM (Bone White + Deep Saturated Olive) ---------- */
+/* ---------- PAPER ROOM (Pure White + Jet Black + Pigment Acid Olive) ---------- */
 [data-theme='paper'], [data-theme='light'] {
   color-scheme: light;
 
-  --bg-primary: #FAF8EC;
-  --bg: #FAF8EC;
-  --bg-2: #FFFFFF;
-  --bg-3: #EFEDDA;
-  --bg-card: #FFFDF4;
-  --bg-card-hover: #F2F0E0;
-  --bg-solid: #EFEDDA;
+  --bg-primary: #FFFFFF;
+  --bg: #FFFFFF;
+  --bg-2: #FAFBF0;
+  --bg-3: #EFF2DA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F4F6E6;
+  --bg-solid: #EFF2DA;
 
-  --text-primary: #101207;
-  --ink: #101207;
-  --text-secondary: #494F38;
-  --ink-dim: #494F38;
-  --text-tertiary: #656C50;
-  --ink-faint: #656C50;
-  --text-accent-strong: #3A4C0A;
+  --text-primary: #000000;
+  --ink: #000000;
+  --text-secondary: #3D4430;
+  --ink-dim: #3D4430;
+  --text-tertiary: #5C644A;
+  --ink-faint: #5C644A;
+  --text-accent-strong: #2F4200;
 
-  /* Sharpened deep olive — same family, more pigment */
-  --accent: #4E6410;
-  --accent-2: #66821A;
-  --accent-action: #4E6410;
-  --accent-hover: #3D4F0B;
-  --accent-dim: rgba(78, 100, 16, 0.12);
-  --accent-glow: rgba(78, 100, 16, 0.22);
-  --accent-companion: #3A4C0A;
-  --accent-ink: #FFFFF2;
-  --on-accent: #FFFFF2;
+  /* Pigment acid olive — deep, fully saturated print color */
+  --accent: #3E5700;
+  --accent-2: #567800;
+  --accent-action: #3E5700;
+  --accent-hover: #2F4200;
+  --accent-dim: rgba(62, 87, 0, 0.1);
+  --accent-glow: rgba(62, 87, 0, 0.26);
+  --accent-companion: #2F4200;
+  --accent-ink: #FFFFFF;
+  --on-accent: #FFFFFF;
 
-  --accent-gradient: linear-gradient(135deg, #66821A 0%, #4E6410 55%, #3A4C0A 100%);
-  --text-pop-gradient: linear-gradient(105deg, #66821A 0%, #4E6410 50%, #2F3D08 100%);
+  /* Hard 50/50 color break — no soft blends anywhere */
+  --accent-gradient: linear-gradient(135deg, #567800 0 50%, #3E5700 50% 100%);
+  --text-pop-gradient: linear-gradient(105deg, #567800 0 50%, #2F4200 50% 100%);
 
-  --border-subtle: #DDDCC6;
-  --border-default: #A9A98C;
-  --border-accent: #4E6410;
-  --border-glow: rgba(78, 100, 16, 0.3);
+  --border-subtle: #E2E6CE;
+  --border-default: #6E7553;
+  --border-accent: #3E5700;
+  --border-glow: rgba(62, 87, 0, 0.35);
 
   /* Brutalist frame + hard-shadow palette */
-  --line: #101207;                 /* heavy frame borders: near-black ink */
-  --hard: #101207;                 /* classic black block shadow */
-  --hard-accent: #4E6410;          /* olive block shadow for CTAs */
+  --line: #000000;                 /* heavy frame borders: jet black */
+  --hard: #000000;                 /* classic black block shadow */
+  --hard-accent: #3E5700;          /* pigment olive block shadow for CTAs */
 
-  --shadow-c: #101207;
-  --shadow-a: rgba(16, 18, 7, 0.9);
-  --shadow-lift: 10px 10px 0 #101207;
-  --shadow-glow-accent: 6px 6px 0 #4E6410;
+  --shadow-c: #000000;
+  --shadow-a: #000000;
+  --shadow-lift: 10px 10px 0 #000000;
+  --shadow-glow-accent: 6px 6px 0 #3E5700;
 
   /* Tiered hard-offset attention system */
-  --glow-sm: 4px 4px 0 #4E6410;
-  --glow-md: 7px 7px 0 #4E6410;
-  --glow-lg: 11px 11px 0 #4E6410;
-  --glow-text: 4px 4px 0 rgba(78, 100, 16, 0.3);
+  --glow-sm: 4px 4px 0 #3E5700;
+  --glow-md: 7px 7px 0 #3E5700;
+  --glow-lg: 11px 11px 0 #3E5700;
+  --glow-text: 5px 5px 0 #CBD5A0;
 
-  /* Semantic State Layer — cranked */
-  --success: #00875A;
-  --success-bg: rgba(0, 135, 90, 0.12);
-  --danger: #E0163C;
-  --danger-bg: rgba(224, 22, 60, 0.1);
-  --warning: #8A5A00;
-  --warning-bg: rgba(138, 90, 0, 0.1);
-  --info: #0072B0;
-  --info-bg: rgba(0, 114, 176, 0.1);
+  /* Semantic State Layer — full pigment */
+  --success: #00913D;
+  --success-bg: rgba(0, 145, 61, 0.1);
+  --danger: #E60023;
+  --danger-bg: rgba(230, 0, 35, 0.08);
+  --warning: #995C00;
+  --warning-bg: rgba(153, 92, 0, 0.1);
+  --info: #0064C8;
+  --info-bg: rgba(0, 100, 200, 0.08);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum — saturated */
-  --subject-physics: #0072B0;
-  --subject-chemistry: #00875A;
+  /* Subject Spectrum — full pigment */
+  --subject-physics: #0064C8;
+  --subject-chemistry: #00913D;
   --subject-economics: #C25E00;
   --subject-biology: #0F8A2F;
-  --subject-cs: #DE4A00;
-  --subject-history: #E0163C;
-  --subject-general: #4E6410;
+  --subject-cs: #E64A00;
+  --subject-history: #E60023;
+  --subject-general: #3E5700;
 
   /* Tactile Press Keys */
-  --edge-accent: #2F3D08;
-  --edge-neutral: #101207;
-  --key-bevel: inset 0 0 0 2px rgba(255, 255, 242, 0.25);
-  --key-bevel-soft: inset 0 0 0 1px rgba(16, 18, 7, 0.06);
-  --key-pressed: inset 3px 3px 0 rgba(16, 18, 7, 0.18);
+  --edge-accent: #2F4200;
+  --edge-neutral: #000000;
+  --key-bevel: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+  --key-bevel-soft: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.2);
 
   /* Ambient field */
-  --aurora-1: rgba(78, 100, 16, 0.08);
-  --aurora-2: rgba(102, 130, 26, 0.1);
-  --aurora-3: rgba(16, 18, 7, 0.03);
+  --aurora-1: rgba(62, 87, 0, 0.08);
+  --aurora-2: rgba(86, 120, 0, 0.1);
+  --aurora-3: rgba(0, 0, 0, 0.03);
 }
 
 /* Base Body Styles */
@@ -278,7 +280,7 @@ main h2.font-display {
 
 /* Hard section rule between every major band */
 main section:not(#top) {
-  border-top: 3px solid var(--border-default);
+  border-top: 4px solid var(--line);
 }
 
 /* Olive text selection */
@@ -327,16 +329,16 @@ main section:not(#top) {
 /* Brutalist Cards (class name kept for compatibility — no glass left) */
 .glass-card {
   background: var(--bg-card);
-  border: 2px solid var(--line);
+  border: 3px solid var(--line);
   border-radius: 0;
-  box-shadow: 6px 6px 0 var(--hard);
+  box-shadow: 7px 7px 0 var(--hard);
   transition: transform 0.16s var(--ease-reveal), box-shadow 0.16s var(--ease-reveal), border-color 0.16s ease;
 }
 
 .glass-card:hover {
   transform: translate(-3px, -3px);
   border-color: var(--line);
-  box-shadow: 9px 9px 0 var(--hard-accent);
+  box-shadow: 10px 10px 0 var(--hard-accent);
 }
 
 .glow-border {
@@ -359,8 +361,8 @@ main section:not(#top) {
   border-radius: 0;
   background: var(--accent);
   color: var(--on-accent);
-  border: 2px solid var(--line);
-  box-shadow: 5px 5px 0 var(--hard-accent);
+  border: 3px solid var(--line);
+  box-shadow: 6px 6px 0 var(--hard-accent);
   transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
   cursor: pointer;
   text-decoration: none;
@@ -369,7 +371,7 @@ main section:not(#top) {
 
 .btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 var(--hard-accent);
+  box-shadow: 9px 9px 0 var(--hard-accent);
 }
 
 .btn:active {
@@ -385,15 +387,15 @@ main section:not(#top) {
 .btn-ghost {
   background: var(--bg-card);
   color: var(--text-primary);
-  border: 2px solid var(--line);
-  box-shadow: 5px 5px 0 var(--hard);
+  border: 3px solid var(--line);
+  box-shadow: 6px 6px 0 var(--hard);
 }
 
 .btn-ghost:hover {
   border-color: var(--line);
   color: var(--accent);
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 var(--hard);
+  box-shadow: 9px 9px 0 var(--hard);
 }
 
 .btn-ghost:active {
@@ -404,11 +406,11 @@ main section:not(#top) {
 .btn-action {
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: 6px 6px 0 var(--hard-accent);
+  box-shadow: 7px 7px 0 var(--hard-accent);
 }
 
 .btn-action:hover {
-  box-shadow: 9px 9px 0 var(--hard-accent);
+  box-shadow: 10px 10px 0 var(--hard-accent);
 }
 
 .btn-action:active {

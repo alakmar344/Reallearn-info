@@ -88,7 +88,7 @@ export default function Demo() {
                     type="button"
                     onClick={() => setDemoMode('explain')}
                     className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      demoMode === 'explain' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                      demoMode === 'explain' ? '' : 'opacity-70 hover:opacity-100'
                     }`}
                     style={{
                       background: demoMode === 'explain' ? 'var(--accent)' : 'transparent',
@@ -101,7 +101,7 @@ export default function Demo() {
                     type="button"
                     onClick={() => setDemoMode('fast')}
                     className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      demoMode === 'fast' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                      demoMode === 'fast' ? '' : 'opacity-70 hover:opacity-100'
                     }`}
                     style={{
                       background: demoMode === 'fast' ? 'var(--accent)' : 'transparent',
