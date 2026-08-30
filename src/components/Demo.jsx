@@ -49,9 +49,9 @@ export default function Demo() {
   }
 
   return (
-    <section id="try" className="py-20 relative z-10">
+    <section id="try" className="py-24 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+        <Reveal className="text-center max-w-5xl mx-auto mb-12">
           <span className="sticker">04 · Interactive Demo</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Try a quiz-gated mini lesson.
@@ -61,13 +61,13 @@ export default function Demo() {
           </p>
         </Reveal>
 
-        <Reveal className="max-w-xl mx-auto">
+        <Reveal className="max-w-3xl mx-auto">
           <div
-            className="glass-card p-6 sm:p-8 relative"
-            style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
+            className="glass-card p-6 sm:p-10 relative"
+            style={{ border: '3px solid var(--line)', boxShadow: '12px 12px 0 var(--hard-accent)' }}
           >
             {/* Top Bar Status */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b" style={{ borderColor: 'var(--border-default)' }}>
+            <div className="flex items-center justify-between mb-6 pb-4 border-b-2" style={{ borderColor: 'var(--line)' }}>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[color:var(--accent)] animate-pulse" />
                 <span className="chip text-xs font-mono font-bold">
@@ -127,7 +127,7 @@ export default function Demo() {
             {phase === 'loading' && (
               <div className="text-center py-10">
                 <div
-                  className="w-10 h-10 rounded-full border-3 animate-spin mx-auto mb-4"
+                  className="w-10 h-10 border-4 animate-spin mx-auto mb-4"
                   style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }}
                 />
                 <p className="font-mono text-xs font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
@@ -171,11 +171,11 @@ export default function Demo() {
                         type="button"
                         onClick={() => choose(i)}
                         disabled={picked !== null}
-                        className="p-3.5 rounded-xl font-medium text-xs sm:text-sm text-left transition-all cursor-pointer"
+                        className="quiz-option p-4 font-semibold text-xs sm:text-sm text-left cursor-pointer"
                         style={{
                           background: bg,
                           color: color,
-                          border: `1px solid ${borderColor}`,
+                          border: `2px solid ${borderColor}`,
                         }}
                       >
                         <span className="font-mono font-bold mr-2 text-[11px] opacity-70">
@@ -189,10 +189,11 @@ export default function Demo() {
 
                 {picked !== null && (
                   <div
-                    className="p-4 rounded-xl mb-6 text-xs sm:text-sm leading-relaxed"
+                    className="p-4 mb-6 text-xs sm:text-sm leading-relaxed"
                     style={{
                       background: solved ? 'var(--success-bg)' : 'var(--danger-bg)',
-                      border: `1px solid ${solved ? 'var(--success)' : 'var(--danger)'}`,
+                      border: `2px solid ${solved ? 'var(--success)' : 'var(--danger)'}`,
+                      boxShadow: `4px 4px 0 ${solved ? 'var(--success)' : 'var(--danger)'}`,
                       color: 'var(--text-primary)',
                     }}
                   >
@@ -208,7 +209,7 @@ export default function Demo() {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: 'var(--border-default)' }}>
+                <div className="flex items-center justify-between pt-4 border-t-2" style={{ borderColor: 'var(--line)' }}>
                   {solved ? (
                     <button type="button" className="btn btn-action" onClick={next}>
                       Next question

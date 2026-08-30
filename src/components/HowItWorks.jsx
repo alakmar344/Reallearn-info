@@ -36,9 +36,9 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="py-20 relative z-10">
+    <section id="how" className="py-24 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+        <Reveal className="text-center max-w-5xl mx-auto mb-16">
           <span className="sticker">03 · How It Works</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             A six-step journey to mastery.
@@ -48,7 +48,7 @@ export default function HowItWorks() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
           {STEPS.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.07}>
               <div className="glass-card p-6 h-full flex flex-col justify-between">
@@ -61,8 +61,11 @@ export default function HowItWorks() {
                       <Icon name={s.icon} size={20} />
                     </span>
                     <span
-                      className="font-mono text-2xl font-extrabold"
-                      style={{ color: 'color-mix(in srgb, var(--accent) 45%, transparent)' }}
+                      className="font-display text-5xl font-black leading-none"
+                      style={{
+                        color: 'transparent',
+                        WebkitTextStroke: '2px var(--accent)',
+                      }}
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>

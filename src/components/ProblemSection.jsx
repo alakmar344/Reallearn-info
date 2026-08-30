@@ -34,21 +34,21 @@ const PROBLEMS = [
 
 export default function ProblemSection() {
   return (
-    <section id="why" className="py-20 relative z-10">
+    <section id="why" className="py-24 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+        <Reveal className="text-center max-w-5xl mx-auto mb-16">
           <span className="sticker">
             01 · The Learning Dilemma
           </span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Why typical search & chatbots fail learners.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             When you're trying to learn, getting a wall of text isn't enough. Here's why traditional tools leave you confused — and how RealLearn fixes it.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
           {PROBLEMS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <div className="glass-card p-6 h-full flex flex-col justify-between">
@@ -68,7 +68,7 @@ export default function ProblemSection() {
                       style={{
                         background: 'var(--danger-bg)',
                         color: 'var(--danger)',
-                        border: '1px solid var(--danger)',
+                        border: '2px solid var(--danger)',
                       }}
                     >
                       {p.badge}
@@ -83,8 +83,8 @@ export default function ProblemSection() {
                 </div>
 
                 <div
-                  className="pt-3.5 border-t text-xs font-semibold flex items-center gap-2"
-                  style={{ borderColor: 'var(--border-default)', color: 'var(--accent)' }}
+                  className="pt-3.5 border-t-2 text-xs font-bold flex items-center gap-2"
+                  style={{ borderColor: 'var(--line)', color: 'var(--accent)' }}
                 >
                   <Icon name="check-circle" size={15} strokeWidth={2.2} />
                   <span>{p.solution}</span>

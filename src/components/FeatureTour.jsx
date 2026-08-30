@@ -50,9 +50,9 @@ export default function FeatureTour() {
   const group = GROUPS.find((g) => g.id === active) || GROUPS[0]
 
   return (
-    <section id="features" className="py-20 relative z-10">
+    <section id="features" className="py-24 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+        <Reveal className="text-center max-w-5xl mx-auto mb-12">
           <span className="sticker">05 · Capabilities</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Everything you need to master any subject.
@@ -79,12 +79,13 @@ export default function FeatureTour() {
                   id={`tab-${g.id}`}
                   aria-selected={isActive}
                   aria-controls={`panel-${g.id}`}
-                  className="px-5 py-2.5 rounded-lg font-display font-bold uppercase tracking-[0.05em] text-[11px] sm:text-xs transition-all cursor-pointer"
+                  className="px-6 py-3 font-display font-black uppercase tracking-[0.06em] text-[11px] sm:text-xs transition-all cursor-pointer"
                   style={{
                     background: isActive ? 'var(--accent)' : 'var(--bg-card)',
                     color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
-                    border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
-                    boxShadow: isActive ? 'var(--glow-sm)' : 'none',
+                    border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
+                    boxShadow: isActive ? '4px 4px 0 var(--hard)' : 'none',
+                    transform: isActive ? 'translate(-2px, -2px)' : 'none',
                   }}
                   onClick={() => setActive(g.id)}
                 >
@@ -101,7 +102,7 @@ export default function FeatureTour() {
             id={`panel-${group.id}`}
             role="tabpanel"
             aria-labelledby={`tab-${group.id}`}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8"
           >
             {group.items.map((f) => (
               <div key={f.title} className="glass-card p-6 flex flex-col justify-between">

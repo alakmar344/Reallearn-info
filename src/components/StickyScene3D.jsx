@@ -1,7 +1,7 @@
 /**
  * StickyScene3D / AmbientBackground Component
- * Provides a sleek, high-performance ambient mesh gradient & subtle technical grid layer.
- * Uses static compositor-friendly radial washes in the canonical Olive Frenzy palette.
+ * Brutalist-maximalist ambient field: a loud drafting grid, a hard halftone
+ * dot-matrix band, and saturated olive washes in the canonical palette.
  */
 export default function StickyScene3D() {
   return (
@@ -15,48 +15,62 @@ export default function StickyScene3D() {
         overflow: 'hidden',
       }}
     >
-      {/* Radial Gradient Ambient Olive Washes */}
+      {/* Saturated olive washes — bolder presence */}
       <div
         style={{
           position: 'absolute',
           top: '-15%',
-          left: '10%',
-          width: '55vw',
-          height: '55vw',
-          maxWidth: '650px',
-          maxHeight: '650px',
-          background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          borderRadius: '50%',
+          left: '8%',
+          width: '58vw',
+          height: '58vw',
+          maxWidth: '760px',
+          maxHeight: '760px',
+          background: 'radial-gradient(circle, var(--aurora-1) 0%, transparent 68%)',
+          filter: 'blur(50px)',
         }}
       />
       <div
         style={{
           position: 'absolute',
-          bottom: '-10%',
-          right: '5%',
-          width: '60vw',
-          height: '60vw',
-          maxWidth: '700px',
-          maxHeight: '700px',
-          background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 70%)',
-          filter: 'blur(90px)',
-          borderRadius: '50%',
+          bottom: '-12%',
+          right: '4%',
+          width: '62vw',
+          height: '62vw',
+          maxWidth: '820px',
+          maxHeight: '820px',
+          background: 'radial-gradient(circle, var(--aurora-2) 0%, transparent 68%)',
+          filter: 'blur(60px)',
         }}
       />
-      {/* Subtle Technical Drafting Grid overlay */}
+
+      {/* Loud technical drafting grid — full bleed, no vignette softening */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(to right, color-mix(in srgb, var(--border-default) 20%, transparent) 1px, transparent 1px),
-            linear-gradient(to bottom, color-mix(in srgb, var(--border-default) 20%, transparent) 1px, transparent 1px)
+            linear-gradient(to right, color-mix(in srgb, var(--border-default) 34%, transparent) 1px, transparent 1px),
+            linear-gradient(to bottom, color-mix(in srgb, var(--border-default) 34%, transparent) 1px, transparent 1px)
           `,
-          backgroundSize: '48px 48px',
-          maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, transparent 80%)',
-          opacity: 0.35,
+          backgroundSize: '56px 56px',
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Hard halftone dot-matrix band along the right edge */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: 'clamp(120px, 18vw, 340px)',
+          backgroundImage:
+            'radial-gradient(color-mix(in srgb, var(--accent) 32%, transparent) 1.5px, transparent 1.5px)',
+          backgroundSize: '22px 22px',
+          opacity: 0.4,
+          maskImage: 'linear-gradient(to left, #000 30%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to left, #000 30%, transparent 100%)',
         }}
       />
     </div>

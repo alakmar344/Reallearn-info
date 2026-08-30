@@ -44,7 +44,7 @@ export default function Hero() {
     >
       <span className="hero-halo" aria-hidden="true" />
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid grid-cols-1 items-center gap-14 xl:gap-20 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="min-w-0">
             <Reveal style={{ marginBottom: 20 }}>
               <span className="sticker">
@@ -57,10 +57,10 @@ export default function Hero() {
               <h1
                 className="font-display"
                 style={{
-                  fontSize: 'clamp(34px, 5vw, 62px)',
+                  fontSize: 'clamp(36px, 5.2vw, 74px)',
                   color: 'var(--text-primary)',
-                  lineHeight: 0.99,
-                  letterSpacing: '-0.02em',
+                  lineHeight: 0.94,
+                  letterSpacing: '-0.03em',
                 }}
               >
                 Stop searching for answers.{' '}
@@ -74,10 +74,10 @@ export default function Hero() {
               delay={0.12}
               as="p"
               style={{
-                fontSize: 'clamp(16px, 1.8vw, 19px)',
+                fontSize: 'clamp(17px, 1.9vw, 21px)',
                 color: 'var(--text-secondary)',
-                margin: '20px 0 28px',
-                maxWidth: '46ch',
+                margin: '24px 0 32px',
+                maxWidth: '58ch',
                 lineHeight: 1.6,
               }}
             >
@@ -91,12 +91,12 @@ export default function Hero() {
             {/* Quick Ask Box with Mode Switcher & Suggestions */}
             <Reveal delay={0.16} style={{ marginBottom: 24 }}>
               <div
-                className="p-2.5 rounded-3xl border max-w-xl"
+                className="p-2.5 max-w-2xl"
                 style={{
                   background: 'var(--bg-card)',
-                  borderColor: focused ? 'var(--accent)' : 'var(--border-default)',
-                  boxShadow: focused ? 'var(--shadow-lift), 0 0 0 3px var(--accent-dim)' : '0 10px 30px var(--shadow-a)',
-                  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                  border: '2px solid var(--line)',
+                  boxShadow: focused ? '8px 8px 0 var(--hard-accent)' : '6px 6px 0 var(--hard)',
+                  transition: 'box-shadow 0.15s ease',
                 }}
               >
                 {/* Mode Selector */}
@@ -160,7 +160,7 @@ export default function Hero() {
               </div>
 
               {/* Suggestion Chips */}
-              <div className="flex flex-wrap items-center gap-2 mt-3 max-w-xl">
+              <div className="flex flex-wrap items-center gap-2 mt-4 max-w-2xl">
                 <span className="text-xs font-medium" style={{ color: 'var(--text-tertiary)' }}>
                   Try asking:
                 </span>
@@ -178,19 +178,20 @@ export default function Hero() {
             </Reveal>
 
             {/* Stat row */}
-            <Reveal delay={0.22} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-5 max-w-xl">
+            <Reveal delay={0.22} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
               {STATS.map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-xl px-4 py-3"
+                  className="px-4 py-4"
                   style={{
-                    background: 'color-mix(in srgb, var(--bg-card) 55%, transparent)',
-                    border: '1px solid var(--border-subtle)',
+                    background: 'var(--bg-card)',
+                    border: '2px solid var(--line)',
+                    boxShadow: '4px 4px 0 var(--hard)',
                   }}
                 >
                   <div
-                    className="font-display font-bold leading-none text-xl sm:text-2xl"
-                    style={{ color: 'var(--text-primary)' }}
+                    className="font-display font-black leading-none text-2xl sm:text-3xl uppercase"
+                    style={{ color: 'var(--accent)' }}
                   >
                     {s.val}
                   </div>

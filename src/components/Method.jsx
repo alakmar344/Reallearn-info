@@ -78,9 +78,9 @@ export default function Method() {
   const current = PILLARS.find((p) => p.id === active) || PILLARS[0]
 
   return (
-    <section id="method" className="py-20 relative z-10">
+    <section id="method" className="py-24 relative z-10">
       <div className="container">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+        <Reveal className="text-center max-w-5xl mx-auto mb-16">
           <span className="sticker">02 · The Method</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Four pillars of the RealLearn method.
@@ -91,7 +91,7 @@ export default function Method() {
         </Reveal>
 
         <Reveal delay={0.05}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-8 xl:gap-12 items-stretch">
             {/* Pillar Selector */}
             <div className="flex flex-col gap-3">
               {PILLARS.map((p) => {
@@ -102,18 +102,20 @@ export default function Method() {
                     type="button"
                     onClick={() => setActive(p.id)}
                     aria-pressed={isActive}
-                    className="p-5 rounded-2xl text-left transition-all flex items-start gap-4 cursor-pointer"
+                    className="p-5 text-left transition-all flex items-start gap-4 cursor-pointer"
                     style={{
                       background: isActive ? 'var(--bg-card)' : 'transparent',
-                      border: `1px solid ${isActive ? 'var(--accent)' : 'var(--border-default)'}`,
-                      boxShadow: isActive ? 'var(--shadow-lift)' : 'none',
+                      border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
+                      boxShadow: isActive ? '6px 6px 0 var(--hard-accent)' : 'none',
+                      transform: isActive ? 'translate(-2px, -2px)' : 'none',
                     }}
                   >
                     <span
-                      className="grid place-items-center w-10 h-10 rounded-xl flex-none font-mono font-bold"
+                      className="grid place-items-center w-10 h-10 flex-none font-mono font-bold"
                       style={{
                         background: isActive ? 'var(--accent)' : 'var(--bg-3)',
                         color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
+                        border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
                       }}
                     >
                       <Icon name={p.icon} size={18} />
@@ -133,8 +135,8 @@ export default function Method() {
 
             {/* Selected Pillar Detail */}
             <div
-              className="glass-card p-6 sm:p-8 flex flex-col justify-between"
-              style={{ borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-lift)' }}
+              className="glass-card p-6 sm:p-10 flex flex-col justify-between"
+              style={{ border: '3px solid var(--line)', boxShadow: '10px 10px 0 var(--hard)' }}
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -168,13 +170,15 @@ export default function Method() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t" style={{ borderColor: 'var(--border-default)' }}>
+              <div className="grid grid-cols-2 gap-4 pt-6 border-t-2" style={{ borderColor: 'var(--line)' }}>
                 {current.metrics.map((m) => (
                   <div
                     key={m.label}
-                    className="p-4 rounded-xl border border-[color:var(--border-default)]"
+                    className="p-4"
                     style={{
                       background: 'var(--bg-primary)',
+                      border: '2px solid var(--line)',
+                      boxShadow: '4px 4px 0 var(--hard)',
                     }}
                   >
                     <div className="font-mono text-2xl font-extrabold" style={{ color: 'var(--accent)' }}>

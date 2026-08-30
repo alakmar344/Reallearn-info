@@ -99,10 +99,10 @@ export default function ComparisonFAQ() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section id="compare" className="py-20 relative z-10">
+    <section id="compare" className="py-24 relative z-10">
       <div className="container">
         {/* Audience Section */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+        <Reveal className="text-center max-w-5xl mx-auto mb-16">
           <span className="sticker">06 · Who It&rsquo;s For</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Built for anyone hungry to learn.
@@ -112,7 +112,7 @@ export default function ComparisonFAQ() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 mb-24">
           {AUDIENCES.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.08}>
               <div className="glass-card p-6 h-full flex flex-col justify-between">
@@ -141,7 +141,7 @@ export default function ComparisonFAQ() {
         </div>
 
         {/* Comparison Matrix */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+        <Reveal className="text-center max-w-5xl mx-auto mb-12">
           <span className="sticker">07 · The Difference</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             How RealLearn compares.
@@ -154,25 +154,25 @@ export default function ComparisonFAQ() {
         <Reveal delay={0.06} className="mb-24 overflow-x-auto">
           <div
             className="glass-card min-w-[680px] overflow-hidden"
-            style={{ borderRadius: 'var(--radius-2xl)', border: '1px solid var(--border-default)' }}
+            style={{ border: '3px solid var(--line)', boxShadow: '10px 10px 0 var(--hard)' }}
           >
             <div
-              className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs uppercase font-mono font-bold tracking-wider py-4 px-6 border-b"
-              style={{ background: 'var(--bg-3)', borderColor: 'var(--border-default)', color: 'var(--text-primary)' }}
+              className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs uppercase font-mono font-bold tracking-wider py-4 px-6 border-b-2"
+              style={{ background: 'var(--accent)', borderColor: 'var(--line)', color: 'var(--on-accent)' }}
             >
               <div>Dimension</div>
-              <div style={{ color: 'var(--accent)' }}>✨ RealLearn AI</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Generic Chatbots</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Search Engines</div>
+              <div style={{ fontWeight: 800 }}>✨ RealLearn AI</div>
+              <div style={{ opacity: 0.75 }}>Generic Chatbots</div>
+              <div style={{ opacity: 0.75 }}>Search Engines</div>
             </div>
 
             {COMPARISONS.map((row, idx) => (
               <div
                 key={row.feature}
-                className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs sm:text-sm items-center py-4 px-6 border-b"
+                className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs sm:text-sm items-center py-4 px-6 border-b-2"
                 style={{
                   borderColor: 'var(--border-default)',
-                  background: idx % 2 === 0 ? 'transparent' : 'color-mix(in srgb, var(--bg-card) 60%, transparent)',
+                  background: idx % 2 === 0 ? 'transparent' : 'var(--bg-3)',
                 }}
               >
                 <div className="font-bold" style={{ color: 'var(--text-primary)' }}>
@@ -194,7 +194,7 @@ export default function ComparisonFAQ() {
         </Reveal>
 
         {/* FAQ Accordion */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+        <Reveal className="text-center max-w-5xl mx-auto mb-12">
           <span className="sticker">08 · Questions & Answers</span>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
             Frequently asked questions.
@@ -204,8 +204,8 @@ export default function ComparisonFAQ() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.08} className="max-w-3xl mx-auto">
-          <div className="flex flex-col gap-3">
+        <Reveal delay={0.08} className="max-w-4xl mx-auto">
+          <div className="flex flex-col gap-4">
             {FAQS.map((faq, idx) => {
               const isOpen = openFaq === idx
               return (
@@ -213,8 +213,8 @@ export default function ComparisonFAQ() {
                   key={faq.q}
                   className="glass-card overflow-hidden transition-all"
                   style={{
-                    borderRadius: 'var(--radius-xl)',
-                    borderColor: isOpen ? 'var(--accent)' : 'var(--border-default)',
+                    borderColor: 'var(--line)',
+                    boxShadow: isOpen ? '7px 7px 0 var(--hard-accent)' : '5px 5px 0 var(--hard)',
                   }}
                 >
                   <button
