@@ -90,7 +90,7 @@ export default function Book3D() {
                 type="button"
                 onClick={() => setActiveTab(idx)}
                 className={`flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
-                  isSelected ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                  isSelected ? '' : 'opacity-70 hover:opacity-100'
                 }`}
                 style={{
                   background: isSelected ? 'var(--bg-card)' : 'transparent',

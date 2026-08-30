@@ -105,7 +105,7 @@ export default function Hero() {
                     type="button"
                     onClick={() => setMode('explain')}
                     className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      mode === 'explain' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                      mode === 'explain' ? '' : 'opacity-70 hover:opacity-100'
                     }`}
                     style={{
                       background: mode === 'explain' ? 'var(--accent)' : 'transparent',
@@ -118,7 +118,7 @@ export default function Hero() {
                     type="button"
                     onClick={() => setMode('fast')}
                     className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      mode === 'fast' ? 'shadow-sm' : 'opacity-70 hover:opacity-100'
+                      mode === 'fast' ? '' : 'opacity-70 hover:opacity-100'
                     }`}
                     style={{
                       background: mode === 'fast' ? 'var(--accent)' : 'transparent',
