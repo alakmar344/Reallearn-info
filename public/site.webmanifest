@@ -4,8 +4,8 @@
   "description": "Turn any question into a structured 3-stage learning journey with active-recall quizzes, 63 global languages, and live real-world news.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#121510",
-  "theme_color": "#0E110B",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "categories": ["education", "productivity"],
   "lang": "en",
   "icons": [
