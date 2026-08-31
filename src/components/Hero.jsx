@@ -4,10 +4,10 @@ import Book3D from './Book3D'
 import Icon from './Icon'
 
 const STATS = [
-  { val: '3-Step', label: 'Mastery Journey' },
-  { val: '12', label: 'Native Languages' },
-  { val: '100%', label: 'Active Retention' },
-  { val: '100%', label: 'Free & Ad-Free' },
+  { val: '3-Step', label: 'Mastery Journey', color: 'var(--c-magenta)' },
+  { val: '12', label: 'Native Languages', color: 'var(--c-cyan)' },
+  { val: '100%', label: 'Active Retention', color: 'var(--c-yellow)' },
+  { val: '100%', label: 'Free & Ad-Free', color: 'var(--c-orange)' },
 ]
 
 const SUGGESTIONS = [
@@ -43,13 +43,25 @@ export default function Hero() {
       style={{ paddingTop: 'clamp(52px, 8vw, 96px)', paddingBottom: 'clamp(44px, 6vw, 84px)' }}
     >
       <span className="hero-halo" aria-hidden="true" />
+      {/* Colossal outline watermark — bleeds behind the fold */}
+      <span
+        className="blast-watermark"
+        aria-hidden="true"
+        style={{ top: '2%', right: '-2%', fontSize: 'clamp(120px, 20vw, 340px)' }}
+      >
+        LEARN
+      </span>
       <div className="container relative z-10">
         <div className="grid grid-cols-1 items-center gap-14 xl:gap-20 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="min-w-0">
-            <Reveal style={{ marginBottom: 20 }}>
-              <span className="sticker">
+            <Reveal style={{ marginBottom: 20 }} className="flex flex-wrap items-center gap-2.5">
+              <span className="sticker tag-rotate">
                 <Icon name="sparkles" size={13} strokeWidth={2.2} />
                 AI Learning Coach · No More Boring Answers
+              </span>
+              <span className="sticker sticker--cyan tag-rotate-r">
+                <Icon name="zap" size={13} strokeWidth={2.2} />
+                100% Free
               </span>
             </Reveal>
 
@@ -64,7 +76,7 @@ export default function Hero() {
                 }}
               >
                 Stop searching for answers.{' '}
-                <span className="text-gradient block" style={{ marginTop: '0.08em' }}>
+                <span className="text-gradient glitch block" style={{ marginTop: '0.08em' }}>
                   Start truly <span style={{ whiteSpace: 'nowrap' }}>understanding.</span>
                 </span>
               </h1>
@@ -179,19 +191,20 @@ export default function Hero() {
 
             {/* Stat row */}
             <Reveal delay={0.22} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-              {STATS.map((s) => (
+              {STATS.map((s, i) => (
                 <div
                   key={s.label}
                   className="px-4 py-4"
                   style={{
                     background: 'var(--bg-card)',
-                    border: '2px solid var(--line)',
-                    boxShadow: '4px 4px 0 var(--hard)',
+                    border: '3px solid var(--line)',
+                    boxShadow: `5px 5px 0 ${s.color}`,
+                    transform: `rotate(${i % 2 ? 1 : -1}deg)`,
                   }}
                 >
                   <div
                     className="font-display font-black leading-none text-2xl sm:text-3xl uppercase"
-                    style={{ color: 'var(--accent)' }}
+                    style={{ color: s.color }}
                   >
                     {s.val}
                   </div>

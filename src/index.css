@@ -3,22 +3,18 @@
 @tailwind utilities;
 
 /* ============================================================
-   RealLearn — Olive Frenzy BRUTALIST / MAXIMALIST Design System
-   Reference: Canonical spec in docs/AGENT_MEMORY.md §1 & docs/REDESIGN.md
-   Themes: Paper (Bone White + Deep Olive) / Ink (Near-Black + Electric Lime)
+   RealLearn — HYPERPOP BRUTALIST / ULTRA-MAXIMALIST Design System
+   Themes: Paper (Blast White + Pigment Magenta) / Ink (Void Black + Neon Magenta)
 
-   STRICT STANDING RULES:
-   1. NO PURPLE OR VIOLET ANYWHERE, EVER.
-   2. NO GOLD.
-   3. Single Olive Accent Family (deep olive light / electric lime dark).
-   4. High contrast on buttons: dark mode on-accent is ink.
-
-   BRUTALIST GRAMMAR:
-   - Zero border radius. Everything is a hard rectangle.
-   - 2-3px solid frame borders in the theme line color.
-   - Hard offset block shadows (no blur, ever).
-   - Mega uppercase display type, loud mono labels.
-   - Maximal density: stripes, grids, double marquees, giant numerals.
+   HIGH-DOPAMINE GRAMMAR:
+   1. NO GREEN as a brand color — the aura is magenta / cyan / yellow / orange / red.
+   2. Explosive complementary contrast: magenta content throws cyan/yellow shadows.
+   3. Zero border radius. Everything is a hard, loud rectangle.
+   4. Thick 3-4px solid frame borders; hard offset block shadows (no blur, ever).
+   5. Colored hard shadows layered in DIFFERENT hues per tier = chaotic depth.
+   6. Mega uppercase display type, giant outline watermarks, loud mono labels.
+   7. Maximal density: hazard stripes, drafting grids, double marquees, tri-color
+      text splits, rotated tags, dot-matrix, scanlines, giant numerals.
    ============================================================ */
 
 :root {
@@ -42,190 +38,206 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ---------- INK ROOM (Pure Black + Acid Chartreuse — Default) ---------- */
+/* ---------- INK ROOM (Void Black + Neon Magenta/Cyan/Yellow — Default) ---------- */
 [data-theme='ink'], [data-theme='night'], :root:not([data-theme]) {
   color-scheme: dark;
 
   --bg-primary: #000000;
   --bg: #000000;
-  --bg-2: #070803;
-  --bg-3: #111407;
-  --bg-card: #050603;
-  --bg-card-hover: #0E1106;
-  --bg-solid: #111407;
+  --bg-2: #0A0410;
+  --bg-3: #16081C;
+  --bg-card: #08040C;
+  --bg-card-hover: #16091E;
+  --bg-solid: #16081C;
 
   --text-primary: #FFFFFF;
   --ink: #FFFFFF;
-  --text-secondary: #BEC7A2;
-  --ink-dim: #BEC7A2;
-  --text-tertiary: #868E6D;
-  --ink-faint: #868E6D;
-  --text-accent-strong: #E4FF4A;
+  --text-secondary: #E9CFE0;
+  --ink-dim: #E9CFE0;
+  --text-tertiary: #A88EB0;
+  --ink-faint: #A88EB0;
+  --text-accent-strong: #FF57AE;
 
-  /* Acid chartreuse — maximum voltage against pure black */
-  --accent: #C8FF00;
-  --accent-2: #E4FF4A;
-  --accent-action: #C8FF00;
-  --accent-hover: #B2E600;
-  --accent-dim: rgba(200, 255, 0, 0.14);
-  --accent-glow: rgba(200, 255, 0, 0.32);
-  --accent-companion: #E4FF4A;
+  /* Neon hyperpop magenta — maximum voltage against void black */
+  --accent: #FF1B8D;
+  --accent-2: #00E5FF;
+  --accent-action: #FF1B8D;
+  --accent-hover: #FF52A9;
+  --accent-dim: rgba(255, 27, 141, 0.16);
+  --accent-glow: rgba(255, 27, 141, 0.42);
+  --accent-companion: #00E5FF;
   --accent-ink: #000000;
   --on-accent: #000000;
 
-  /* Hard 50/50 color break — no soft blends anywhere */
-  --accent-gradient: linear-gradient(135deg, #E4FF4A 0 50%, #C8FF00 50% 100%);
-  --text-pop-gradient: linear-gradient(105deg, #E4FF4A 0 50%, #C8FF00 50% 100%);
+  /* The blast palette — vibrant, non-green, high-dopamine */
+  --c-magenta: #FF1B8D;
+  --c-cyan: #00E5FF;
+  --c-yellow: #FFE500;
+  --c-orange: #FF6A00;
+  --c-red: #FF1F4B;
+  --c-blue: #3D5AFE;
 
-  --border-subtle: #1E2410;
-  --border-default: #55632A;
-  --border-accent: #C8FF00;
-  --border-glow: rgba(200, 255, 0, 0.5);
+  /* Hard multi-stop color breaks — explosive, no soft blends anywhere */
+  --accent-gradient: linear-gradient(135deg, #FF1B8D 0 50%, #00E5FF 50% 100%);
+  --text-pop-gradient: linear-gradient(100deg, #FFE500 0 33%, #FF1B8D 33% 66%, #00E5FF 66% 100%);
 
-  /* Brutalist frame + hard-shadow palette */
-  --line: #F4FFDC;                 /* heavy frame borders: near-white */
-  --hard: #2A3A00;                 /* dark acid hard block shadow */
-  --hard-accent: #5F7A00;          /* acid-olive hard block shadow for CTAs */
+  --border-subtle: #2A1030;
+  --border-default: #7A3A6E;
+  --border-accent: #FF1B8D;
+  --border-glow: rgba(255, 27, 141, 0.5);
+
+  /* Brutalist frame + COLORED hard-shadow palette */
+  --line: #FFFFFF;                 /* heavy frame borders: pure white */
+  --hard: #FF1B8D;                 /* magenta hard block shadow */
+  --hard-accent: #00E5FF;          /* cyan hard block shadow for CTAs (complementary blast) */
 
   --shadow-c: #000000;
-  --shadow-a: #2A3A00;
-  --shadow-lift: 10px 10px 0 #2A3A00;
-  --shadow-glow-accent: 6px 6px 0 #5F7A00;
+  --shadow-a: #FF1B8D;
+  --shadow-lift: 12px 12px 0 #FF1B8D;
+  --shadow-glow-accent: 8px 8px 0 #00E5FF;
 
-  /* Tiered hard-offset attention system (formerly soft glow) */
-  --glow-sm: 4px 4px 0 #5F7A00;
-  --glow-md: 7px 7px 0 #5F7A00;
-  --glow-lg: 11px 11px 0 #5F7A00;
-  --glow-text: 5px 5px 0 #465A00;
+  /* Tiered hard-offset attention system — DIFFERENT hue per tier = chaotic depth */
+  --glow-sm: 4px 4px 0 #FF1B8D;
+  --glow-md: 8px 8px 0 #00E5FF;
+  --glow-lg: 13px 13px 0 #FFE500;
+  --glow-text: 4px 4px 0 #00E5FF;
 
-  /* Semantic State Layer — full neon */
-  --success: #00FF94;
-  --success-bg: rgba(0, 255, 148, 0.12);
-  --danger: #FF2E5F;
-  --danger-bg: rgba(255, 46, 95, 0.14);
-  --warning: #FFD400;
-  --warning-bg: rgba(255, 212, 0, 0.1);
-  --info: #00D4FF;
-  --info-bg: rgba(0, 212, 255, 0.1);
+  /* Semantic State Layer — full neon, non-green */
+  --success: #00E5C0;
+  --success-bg: rgba(0, 229, 192, 0.14);
+  --danger: #FF1F4B;
+  --danger-bg: rgba(255, 31, 75, 0.16);
+  --warning: #FFE500;
+  --warning-bg: rgba(255, 229, 0, 0.12);
+  --info: #00E5FF;
+  --info-bg: rgba(0, 229, 255, 0.12);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum — full neon */
-  --subject-physics: #00D4FF;
-  --subject-chemistry: #00FFC2;
-  --subject-economics: #FFD400;
-  --subject-biology: #2BFF57;
-  --subject-cs: #FF7A00;
-  --subject-history: #FF2E5F;
-  --subject-general: #C8FF00;
+  /* Subject Spectrum — full neon, non-green */
+  --subject-physics: #00E5FF;
+  --subject-chemistry: #FF6A00;
+  --subject-economics: #FFE500;
+  --subject-biology: #FF1B8D;
+  --subject-cs: #3D5AFE;
+  --subject-history: #FF1F4B;
+  --subject-general: #FF1B8D;
 
   /* Tactile Press Keys */
-  --edge-accent: #5F7A00;
-  --edge-neutral: #2A3A00;
+  --edge-accent: #00E5FF;
+  --edge-neutral: #FF1B8D;
   --key-bevel: inset 0 0 0 2px rgba(0, 0, 0, 0.25);
-  --key-bevel-soft: inset 0 0 0 1px rgba(244, 255, 220, 0.12);
-  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.4);
+  --key-bevel-soft: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.45);
 
   /* Ambient field */
-  --aurora-1: rgba(200, 255, 0, 0.12);
-  --aurora-2: rgba(95, 122, 0, 0.18);
-  --aurora-3: rgba(255, 255, 255, 0.05);
+  --aurora-1: rgba(255, 27, 141, 0.16);
+  --aurora-2: rgba(0, 229, 255, 0.16);
+  --aurora-3: rgba(255, 229, 0, 0.10);
 }
 
-/* ---------- PAPER ROOM (Pure White + Jet Black + Pigment Acid Olive) ---------- */
+/* ---------- PAPER ROOM (Blast White + Jet Black + Pigment Magenta) ---------- */
 [data-theme='paper'], [data-theme='light'] {
   color-scheme: light;
 
   --bg-primary: #FFFFFF;
   --bg: #FFFFFF;
-  --bg-2: #FAFBF0;
-  --bg-3: #EFF2DA;
+  --bg-2: #FFF0F8;
+  --bg-3: #FFE0F1;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F4F6E6;
-  --bg-solid: #EFF2DA;
+  --bg-card-hover: #FFF0F8;
+  --bg-solid: #FFE0F1;
 
-  --text-primary: #000000;
-  --ink: #000000;
-  --text-secondary: #3D4430;
-  --ink-dim: #3D4430;
-  --text-tertiary: #5C644A;
-  --ink-faint: #5C644A;
-  --text-accent-strong: #2F4200;
+  --text-primary: #0A0006;
+  --ink: #0A0006;
+  --text-secondary: #4A1E38;
+  --ink-dim: #4A1E38;
+  --text-tertiary: #7A4462;
+  --ink-faint: #7A4462;
+  --text-accent-strong: #B3005F;
 
-  /* Pigment acid olive — deep, fully saturated print color */
-  --accent: #3E5700;
-  --accent-2: #567800;
-  --accent-action: #3E5700;
-  --accent-hover: #2F4200;
-  --accent-dim: rgba(62, 87, 0, 0.1);
-  --accent-glow: rgba(62, 87, 0, 0.26);
-  --accent-companion: #2F4200;
+  /* Pigment magenta — deep, fully saturated print color */
+  --accent: #E6007A;
+  --accent-2: #00B0D4;
+  --accent-action: #E6007A;
+  --accent-hover: #C00068;
+  --accent-dim: rgba(230, 0, 122, 0.1);
+  --accent-glow: rgba(230, 0, 122, 0.28);
+  --accent-companion: #00B0D4;
   --accent-ink: #FFFFFF;
   --on-accent: #FFFFFF;
 
-  /* Hard 50/50 color break — no soft blends anywhere */
-  --accent-gradient: linear-gradient(135deg, #567800 0 50%, #3E5700 50% 100%);
-  --text-pop-gradient: linear-gradient(105deg, #567800 0 50%, #2F4200 50% 100%);
+  /* The blast palette — pigment, non-green */
+  --c-magenta: #E6007A;
+  --c-cyan: #00B0D4;
+  --c-yellow: #FFC400;
+  --c-orange: #FF5A00;
+  --c-red: #E6003C;
+  --c-blue: #2038E6;
 
-  --border-subtle: #E2E6CE;
-  --border-default: #6E7553;
-  --border-accent: #3E5700;
-  --border-glow: rgba(62, 87, 0, 0.35);
+  /* Hard multi-stop color breaks — no soft blends anywhere */
+  --accent-gradient: linear-gradient(135deg, #E6007A 0 50%, #00B0D4 50% 100%);
+  --text-pop-gradient: linear-gradient(100deg, #FF8A00 0 33%, #E6007A 33% 66%, #00B0D4 66% 100%);
 
-  /* Brutalist frame + hard-shadow palette */
+  --border-subtle: #F3C9E0;
+  --border-default: #C77AA8;
+  --border-accent: #E6007A;
+  --border-glow: rgba(230, 0, 122, 0.35);
+
+  /* Brutalist frame + COLORED hard-shadow palette */
   --line: #000000;                 /* heavy frame borders: jet black */
   --hard: #000000;                 /* classic black block shadow */
-  --hard-accent: #3E5700;          /* pigment olive block shadow for CTAs */
+  --hard-accent: #00B0D4;          /* cyan block shadow for magenta CTAs (complementary blast) */
 
   --shadow-c: #000000;
   --shadow-a: #000000;
-  --shadow-lift: 10px 10px 0 #000000;
-  --shadow-glow-accent: 6px 6px 0 #3E5700;
+  --shadow-lift: 12px 12px 0 #000000;
+  --shadow-glow-accent: 8px 8px 0 #00B0D4;
 
-  /* Tiered hard-offset attention system */
-  --glow-sm: 4px 4px 0 #3E5700;
-  --glow-md: 7px 7px 0 #3E5700;
-  --glow-lg: 11px 11px 0 #3E5700;
-  --glow-text: 5px 5px 0 #CBD5A0;
+  /* Tiered hard-offset attention system — DIFFERENT hue per tier */
+  --glow-sm: 4px 4px 0 #E6007A;
+  --glow-md: 8px 8px 0 #00B0D4;
+  --glow-lg: 13px 13px 0 #FFC400;
+  --glow-text: 4px 4px 0 #00B0D4;
 
-  /* Semantic State Layer — full pigment */
-  --success: #00913D;
-  --success-bg: rgba(0, 145, 61, 0.1);
-  --danger: #E60023;
-  --danger-bg: rgba(230, 0, 35, 0.08);
-  --warning: #995C00;
-  --warning-bg: rgba(153, 92, 0, 0.1);
-  --info: #0064C8;
-  --info-bg: rgba(0, 100, 200, 0.08);
+  /* Semantic State Layer — full pigment, non-green */
+  --success: #008A6B;
+  --success-bg: rgba(0, 138, 107, 0.1);
+  --danger: #E6003C;
+  --danger-bg: rgba(230, 0, 60, 0.08);
+  --warning: #B36B00;
+  --warning-bg: rgba(179, 107, 0, 0.1);
+  --info: #0038CC;
+  --info-bg: rgba(0, 56, 204, 0.08);
 
   --correct: var(--success);
   --correct-bg: var(--success-bg);
   --wrong: var(--danger);
   --wrong-bg: var(--danger-bg);
 
-  /* Subject Spectrum — full pigment */
-  --subject-physics: #0064C8;
-  --subject-chemistry: #00913D;
-  --subject-economics: #C25E00;
-  --subject-biology: #0F8A2F;
-  --subject-cs: #E64A00;
-  --subject-history: #E60023;
-  --subject-general: #3E5700;
+  /* Subject Spectrum — full pigment, non-green */
+  --subject-physics: #0038CC;
+  --subject-chemistry: #FF5A00;
+  --subject-economics: #B36B00;
+  --subject-biology: #E6007A;
+  --subject-cs: #2038E6;
+  --subject-history: #E6003C;
+  --subject-general: #E6007A;
 
   /* Tactile Press Keys */
-  --edge-accent: #2F4200;
+  --edge-accent: #00B0D4;
   --edge-neutral: #000000;
   --key-bevel: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
   --key-bevel-soft: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
   --key-pressed: inset 3px 3px 0 rgba(0, 0, 0, 0.2);
 
   /* Ambient field */
-  --aurora-1: rgba(62, 87, 0, 0.08);
-  --aurora-2: rgba(86, 120, 0, 0.1);
-  --aurora-3: rgba(0, 0, 0, 0.03);
+  --aurora-1: rgba(230, 0, 122, 0.08);
+  --aurora-2: rgba(0, 176, 212, 0.1);
+  --aurora-3: rgba(255, 196, 0, 0.05);
 }
 
 /* Base Body Styles */
@@ -273,17 +285,19 @@ footer h2.font-display {
   line-height: 0.95;
 }
 
-/* Section titles: one loud editorial scale — fills the wide canvas */
+/* Section titles: one loud editorial scale — fills the wide canvas, blasting */
 main h2.font-display {
-  font-size: clamp(38px, 6vw, 88px);
+  font-size: clamp(44px, 7vw, 104px);
+  line-height: 0.9;
 }
 
-/* Hard section rule between every major band */
+/* Hard section rule between every major band — thick + accent underscore */
 main section:not(#top) {
-  border-top: 4px solid var(--line);
+  border-top: 5px solid var(--line);
+  box-shadow: inset 0 5px 0 var(--accent);
 }
 
-/* Olive text selection */
+/* Magenta text selection */
 ::selection {
   background: var(--accent);
   color: var(--accent-ink);
@@ -317,7 +331,7 @@ main section:not(#top) {
   padding-right: clamp(16px, 3.5vw, 56px);
 }
 
-/* Text Gradient — hard offset print-shadow instead of soft glow */
+/* Text Gradient — explosive tri-color hard split + offset print-shadow */
 .text-gradient {
   background: var(--text-pop-gradient);
   -webkit-background-clip: text;
@@ -331,14 +345,14 @@ main section:not(#top) {
   background: var(--bg-card);
   border: 3px solid var(--line);
   border-radius: 0;
-  box-shadow: 7px 7px 0 var(--hard);
+  box-shadow: 9px 9px 0 var(--hard);
   transition: transform 0.16s var(--ease-reveal), box-shadow 0.16s var(--ease-reveal), border-color 0.16s ease;
 }
 
 .glass-card:hover {
-  transform: translate(-3px, -3px);
+  transform: translate(-4px, -4px) rotate(-0.5deg);
   border-color: var(--line);
-  box-shadow: 10px 10px 0 var(--hard-accent);
+  box-shadow: 14px 14px 0 var(--hard-accent);
 }
 
 .glow-border {
@@ -635,18 +649,16 @@ main section:not(#top) {
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  width: min(52rem, 96vw);
-  height: min(34rem, 70vw);
-  top: -6%;
-  left: -8%;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--accent-dim) 0 12px,
-    transparent 12px 34px
-  );
+  width: min(62rem, 104vw);
+  height: min(40rem, 78vw);
+  top: -8%;
+  left: -10%;
+  background:
+    repeating-linear-gradient(45deg, rgba(0, 229, 255, 0.10) 0 10px, transparent 10px 30px),
+    repeating-linear-gradient(-45deg, var(--accent-dim) 0 12px, transparent 12px 34px);
   -webkit-mask-image: linear-gradient(115deg, #000 0%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
   mask-image: linear-gradient(115deg, #000 0%, rgba(0, 0, 0, 0.5) 55%, transparent 85%);
-  opacity: 0.9;
+  opacity: 0.95;
   animation: stripeShift 14s linear infinite;
 }
 
@@ -660,6 +672,106 @@ main section:not(#top) {
   color: transparent;
   -webkit-text-stroke: 2px var(--border-default);
 }
+
+/* ============================================================
+   ULTRA-MAXIMALIST BLAST LAYER
+   Giant watermarks · rotated tags · hazard chaos · scanlines · glitch
+   ============================================================ */
+
+/* Colossal outline watermark word — bleeds behind content, aura-maxing */
+.blast-watermark {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--border-default);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+/* Solid neon fill watermark variant */
+.blast-watermark--fill {
+  -webkit-text-stroke: 0;
+  color: var(--accent-dim);
+  opacity: 1;
+}
+
+/* Rotated loud tag — a sticker knocked off-axis for chaotic energy */
+.tag-rotate { transform: rotate(-4deg); transform-origin: left center; }
+.tag-rotate-r { transform: rotate(3.5deg); transform-origin: left center; }
+
+/* Multi-color sticker variants for dense polychrome layering */
+.sticker--cyan { background: var(--c-cyan); color: #000; }
+.sticker--yellow { background: var(--c-yellow); color: #000; }
+.sticker--orange { background: var(--c-orange); color: #000; }
+.sticker--red { background: var(--c-red); color: #fff; }
+.sticker--blue { background: var(--c-blue); color: #fff; }
+
+/* Hazard stripe slab — loud construction-tape energy */
+.hazard {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 16px,
+    #000 16px 32px
+  );
+}
+.hazard-thin {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 8px,
+    transparent 8px 20px
+  );
+}
+
+/* Overhead scanline film — dense retro-CRT layering, zero perf cost */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.22) 0 1px,
+    transparent 1px 4px
+  );
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+
+/* Chaos dot-matrix — halftone field for depth */
+.dot-matrix {
+  background-image: radial-gradient(var(--accent) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* Blasting shadow helper — layered TRI-COLOR hard offset, explosive depth */
+.blast-shadow {
+  box-shadow:
+    6px 6px 0 var(--c-cyan),
+    12px 12px 0 var(--c-yellow),
+    18px 18px 0 var(--accent) !important;
+}
+
+/* Chromatic glitch pulse for hero display type */
+@keyframes glitch-shift {
+  0%, 92%, 100% { text-shadow: 4px 0 0 var(--c-cyan), -4px 0 0 var(--c-magenta); }
+  94% { text-shadow: -6px 0 0 var(--c-cyan), 6px 0 0 var(--c-yellow); transform: translate(1px, -1px); }
+  96% { text-shadow: 6px 0 0 var(--c-magenta), -6px 0 0 var(--c-cyan); transform: translate(-1px, 1px); }
+  98% { text-shadow: -4px 0 0 var(--c-yellow), 4px 0 0 var(--c-magenta); }
+}
+.glitch {
+  animation: glitch-shift 5s steps(1) infinite;
+}
+
+/* Endless slow spin for orbiting accent badges */
+@keyframes slow-spin { to { transform: rotate(360deg); } }
+.spin-badge { animation: slow-spin 18s linear infinite; }
 
 /* Marquee bands hard-cut at the viewport edge — no fades in brutalism */
 .ticker-mask {

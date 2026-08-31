@@ -47,22 +47,22 @@ export default function Ticker() {
         </div>
       </div>
 
-      {/* Band 2 — reversed direction, subjects on paper/ink */}
+      {/* Band 2 — reversed direction, subjects on a cyan complementary slab */}
       <div
         className="py-3"
-        style={{ background: 'var(--bg-2)', borderTop: '3px solid var(--line)' }}
+        style={{ background: 'var(--accent-2)', borderTop: '3px solid var(--line)' }}
       >
         <div className="animate-marquee-reverse gap-10">
           {[...SUBJECTS, ...SUBJECTS, ...SUBJECTS, ...SUBJECTS].map((item, idx) => (
             <span
               key={`${item}-${idx}`}
               className="inline-flex items-center gap-4 font-display text-base sm:text-lg font-black uppercase tracking-[0.08em] whitespace-nowrap"
-              style={{ color: 'var(--text-primary)' }}
+              style={{ color: '#000000' }}
             >
               <span
                 aria-hidden="true"
-                className="w-2.5 h-2.5 bg-[color:var(--accent)] inline-block"
-                style={{ transform: 'rotate(45deg)', border: '1px solid var(--line)' }}
+                className="w-2.5 h-2.5 inline-block"
+                style={{ background: '#000000', transform: 'rotate(45deg)', border: '1px solid #000' }}
               />
               {item}
             </span>
