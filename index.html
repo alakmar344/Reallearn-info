@@ -1,38 +1,50 @@
 <!doctype html>
-<html lang="en" data-theme="ink">
+<html lang="en" data-theme="paper">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#edeef1" />
+    <meta name="color-scheme" content="light dark" />
 
-    <!-- Primary Meta -->
-    <title>RealLearn AI — The World Is Your Textbook | Stop Searching, Start Learning</title>
+    <!-- Primary Meta (SEO) -->
+    <title>RealLearn AI — The World Is Your Textbook | Stop Searching, Start Understanding</title>
     <meta
       name="description"
-      content="RealLearn AI turns any confusing question into a crystal-clear 3-stage learning journey — Foundation → Mechanism → Real World — with active-recall quizzes, 63 global languages, and live real-world news. 100% free and ad-free."
+      content="RealLearn AI turns any question into a clear 3-stage learning journey — Foundation → Mechanism → Real World — with active-recall quizzes, 63 languages, and live real-world news. Free and ad-free."
     />
     <meta
       name="keywords"
-      content="AI learning platform, learn anything with AI, active recall, 3-stage lessons, education AI, structured lessons, quiz-based learning, multilingual learning, RealLearn AI, free AI tutor"
+      content="RealLearn AI, AI learning platform, learn anything with AI, active recall, quiz-based learning, 3-stage lessons, Foundation Mechanism Real World, multilingual learning, 63 languages, free AI tutor, education AI, AI study coach, understanding over answers"
     />
     <meta name="author" content="RealLearn AI" />
+    <meta name="publisher" content="RealLearn AI" />
     <meta name="application-name" content="RealLearn AI" />
+    <meta name="generator" content="RealLearn AI info site" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large" />
+    <meta name="bingbot" content="index, follow" />
     <link rel="canonical" href="https://reallearn.site/" />
+
+    <!-- Answer-Engine (AEO) hints: short canonical answers -->
+    <meta name="what-is-reallearn-ai" content="RealLearn AI is a free, ad-free AI learning platform that turns any question into a structured 3-stage lesson — Foundation, Mechanism, Real World — verified by active-recall quizzes." />
+    <meta name="reallearn-ai-cost" content="RealLearn AI is 100% free and ad-free." />
+    <meta name="reallearn-ai-languages" content="RealLearn AI supports 63 global languages with native-quality lessons." />
 
     <!-- Icons & Manifest -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- AI / LLM discovery files (GEO) -->
+    <link rel="alternate" type="text/plain" title="RealLearn AI — LLM summary" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" title="RealLearn AI — full LLM reference" href="/llms-full.txt" />
+
     <!-- Open Graph -->
     <meta property="og:site_name" content="RealLearn AI" />
     <meta property="og:title" content="RealLearn AI — The World Is Your Textbook" />
     <meta
       property="og:description"
-      content="Turn any question into a structured 3-stage interactive journey — Foundation → Mechanism → Real World — with fun mini-quizzes and live news grounding. Free and ad-free."
+      content="Stop searching for answers. Start truly understanding. Structured 3-stage lessons with quizzes, 63 languages, and live news grounding. Free and ad-free."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://reallearn.site/" />
@@ -74,18 +86,36 @@
       />
     </noscript>
 
-    <!-- Structured Data: WebSite + SoftwareApplication + FAQ -->
+    <!-- Structured Data: Organization + WebSite + App + Course + HowTo + FAQ (SEO/AEO/GEO) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "Organization",
+            "@id": "https://reallearn.site/#organization",
+            "name": "RealLearn AI",
+            "alternateName": ["RealLearn", "reallearn.ai", "reallearn ai"],
+            "url": "https://reallearn.site/",
+            "slogan": "The world is your textbook.",
+            "description": "RealLearn AI is a free, ad-free AI learning platform that turns any question into a structured 3-stage lesson verified by active-recall quizzes.",
+            "knowsAbout": [
+              "AI learning platform",
+              "Active recall",
+              "Multilingual education",
+              "Quiz-based learning",
+              "Structured lessons"
+            ]
+          },
+          {
             "@type": "WebSite",
             "@id": "https://reallearn.site/#website",
             "url": "https://reallearn.site/",
             "name": "RealLearn AI",
+            "alternateName": "RealLearn — The World Is Your Textbook",
             "description": "AI learning platform that turns any question into a structured 3-stage, quiz-verified lesson.",
             "inLanguage": "en",
+            "publisher": { "@id": "https://reallearn.site/#organization" },
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://reallearn.site/?q={search_term_string}",
@@ -93,30 +123,114 @@
             }
           },
           {
+            "@type": "WebPage",
+            "@id": "https://reallearn.site/#webpage",
+            "url": "https://reallearn.site/",
+            "name": "RealLearn AI — The World Is Your Textbook",
+            "isPartOf": { "@id": "https://reallearn.site/#website" },
+            "about": { "@id": "https://reallearn.site/#app" },
+            "description": "Stop searching for answers. Start truly understanding with structured 3-stage lessons, checkpoint quizzes, 63 languages, and live news grounding.",
+            "inLanguage": "en",
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": ["#hero-heading", "#try-heading", "#compare-heading"]
+            }
+          },
+          {
             "@type": "SoftwareApplication",
             "@id": "https://reallearn.site/#app",
             "name": "RealLearn AI",
+            "alternateName": "RealLearn",
             "applicationCategory": "EducationalApplication",
             "operatingSystem": "Web, iOS, Android",
             "url": "https://reallearn.site/",
             "description": "Turn any confusing question into a crystal-clear 3-stage learning journey with active-recall quizzes, 63 global languages, and live real-world news.",
+            "isAccessibleForFree": true,
             "featureList": [
               "3-stage learning spine (Foundation, Mechanism, Real World)",
-              "Active-recall checkpoint quizzes",
-              "63 global languages",
-              "Live real-world news grounding",
-              "Gamified streaks, XP, and 56 achievement badges"
+              "Active-recall checkpoint quizzes with 100% mastery gates",
+              "63 global languages with native-quality lessons",
+              "Live real-world news grounding in every lesson",
+              "Explain Mode and Fast Mode",
+              "Voice input and audio narration",
+              "Gamified streaks, XP, and 56 achievement badges",
+              "Personal offline library"
             ],
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
             }
+          },
+          {
+            "@type": "Course",
+            "@id": "https://reallearn.site/#course",
+            "name": "The RealLearn 3-Stage Learning Method",
+            "description": "Every RealLearn lesson follows the same spine: Part 1 Foundation builds intuition with analogies, Part 2 Mechanism reveals step-by-step cause and effect, Part 3 Real World connects the concept to live news and modern technology.",
+            "provider": { "@id": "https://reallearn.site/#organization" },
+            "isAccessibleForFree": true,
+            "inLanguage": "en",
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "online",
+              "courseWorkload": "PT5M"
+            }
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://reallearn.site/#howto",
+            "name": "How to learn anything with RealLearn AI",
+            "description": "Go from curiosity to lasting mastery in six steps in under five minutes.",
+            "totalTime": "PT5M",
+            "step": [
+              { "@type": "HowToStep", "position": 1, "name": "Ask or speak anything", "text": "Type any question or tap the microphone to ask with your voice." },
+              { "@type": "HowToStep", "position": 2, "name": "Choose level and language", "text": "Pick from 63 global languages and Class 6–8, 9–10, or College/Pro tiers." },
+              { "@type": "HowToStep", "position": 3, "name": "Build intuition in Part 1", "text": "Read the Foundation: relatable analogies that make complex topics feel simple." },
+              { "@type": "HowToStep", "position": 4, "name": "Pass checkpoint quizzes", "text": "Score 100% on quick 2-question quizzes to unlock the next part." },
+              { "@type": "HowToStep", "position": 5, "name": "Connect to the real world", "text": "See the concept in modern tech, live news headlines, and daily life." },
+              { "@type": "HowToStep", "position": 6, "name": "Level up and keep streaks", "text": "Earn XP, unlock 56 badges, and save lessons to your library." }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://reallearn.site/#capabilities",
+            "name": "RealLearn AI capabilities",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "3-part structured spine: Foundation, Mechanism, Real World" },
+              { "@type": "ListItem", "position": 2, "name": "Quiz-gated mastery with smart retry" },
+              { "@type": "ListItem", "position": 3, "name": "63 global languages, natively generated" },
+              { "@type": "ListItem", "position": 4, "name": "Live news grounding in every lesson" },
+              { "@type": "ListItem", "position": 5, "name": "Explain Mode and Fast Mode" },
+              { "@type": "ListItem", "position": 6, "name": "Voice input and audio narration" },
+              { "@type": "ListItem", "position": 7, "name": "XP, streaks, levels, and 56 badges" },
+              { "@type": "ListItem", "position": 8, "name": "Personal offline library with verifiable sources" }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://reallearn.site/#breadcrumbs",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reallearn.site/#top" },
+              { "@type": "ListItem", "position": 2, "name": "Why RealLearn", "item": "https://reallearn.site/#why" },
+              { "@type": "ListItem", "position": 3, "name": "The 3-Step Method", "item": "https://reallearn.site/#method" },
+              { "@type": "ListItem", "position": 4, "name": "How It Works", "item": "https://reallearn.site/#how" },
+              { "@type": "ListItem", "position": 5, "name": "Interactive Demo", "item": "https://reallearn.site/#try" },
+              { "@type": "ListItem", "position": 6, "name": "FAQ", "item": "https://reallearn.site/#compare" }
+            ]
           },
           {
             "@type": "FAQPage",
             "@id": "https://reallearn.site/#faq",
             "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is RealLearn AI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RealLearn AI is a free, ad-free AI learning platform that turns any question into a structured 3-stage lesson — Foundation, Mechanism, Real World — verified by active-recall quizzes. Its tagline is “The world is your textbook.”"
+                }
+              },
               {
                 "@type": "Question",
                 "name": "Is RealLearn AI free to use?",
@@ -148,6 +262,22 @@
                   "@type": "Answer",
                   "text": "RealLearn supports 63 global languages. Lessons are crafted directly in your chosen language with natural phrasing — never translated after the fact."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I listen to lessons or speak my questions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! RealLearn features built-in speech recognition and natural audio narration so you can ask aloud and listen to lessons like a personalized podcast."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What topics can I ask about?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Anything — from Physics, Biology, Chemistry, and Mathematics to Economics, World History, Psychology, Philosophy, Artificial Intelligence, and Space Exploration."
+                }
               }
             ]
           }
@@ -157,6 +287,35 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Crawlable summary for search & answer engines (the app shell is client-rendered) -->
+    <noscript>
+      <div style="font-family:system-ui,sans-serif;max-width:72ch;margin:0 auto;padding:32px 20px;color:#131315;background:#edeef1">
+        <p><strong>RealLearn AI — The world is your textbook.</strong></p>
+        <h1>Stop searching for answers. Start truly understanding.</h1>
+        <p>RealLearn AI is a free, ad-free AI learning platform that turns any confusing question into a structured 3-stage interactive journey — Foundation, Mechanism, Real World — with fun mini-quizzes, 63 global languages, and live real-world news.</p>
+        <h2>How it works</h2>
+        <ol>
+          <li>Ask or speak anything.</li>
+          <li>Choose your level and language (63 global languages).</li>
+          <li>Build intuition in Part 1: Foundation.</li>
+          <li>Pass 2-question checkpoint quizzes to unlock Part 2: Mechanism.</li>
+          <li>Connect to the real world with live news in Part 3.</li>
+          <li>Earn XP, unlock 56 badges, and keep daily streaks.</li>
+        </ol>
+        <h2>Key facts</h2>
+        <ul>
+          <li>What is RealLearn AI? A free AI learning platform for structured, quiz-verified lessons.</li>
+          <li>Cost: 100% free and ad-free.</li>
+          <li>Languages: 63 global languages.</li>
+          <li>Modes: Explain Mode (3-step mastery) and Fast Mode (quick summary).</li>
+        </ul>
+        <p>
+          <a href="https://reallearn.site/">Start learning free at reallearn.site</a> ·
+          <a href="https://youtu.be/zehBGs-xBC0">Watch the demo video</a> ·
+          <a href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook">RealLearn on Product Hunt</a>
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

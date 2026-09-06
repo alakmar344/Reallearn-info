@@ -17,7 +17,7 @@ const GROUPS = [
     id: 'languages',
     label: 'Languages & Audio',
     items: [
-      { icon: 'globe', title: '12 Native Indian Languages', desc: 'Learn complex subjects naturally in Hindi, Tamil, Gujarati, Bengali, Marathi, and 7 more.' },
+      { icon: 'globe', title: '63 Global Languages', desc: 'Learn complex subjects naturally in Hindi, Tamil, Gujarati, Bengali, Marathi, and many more.' },
       { icon: 'mic', title: 'Hands-Free Voice Input', desc: 'Ask complicated questions effortlessly using speech recognition in your native tongue.' },
       { icon: 'headphones', title: 'Natural Audio Narration', desc: 'Listen to every lesson part read aloud like an engaging, customized learning podcast.' },
       { icon: 'message', title: 'Culturally Natural Tone', desc: 'Native metaphors and phrasing that make sense instead of awkward literal translations.' },
@@ -50,19 +50,18 @@ export default function FeatureTour() {
   const group = GROUPS.find((g) => g.id === active) || GROUPS[0]
 
   return (
-    <section id="features" className="py-24 relative z-10">
+    <section id="features" className="py-20 relative z-10" aria-labelledby="features-heading">
       <div className="container">
-        <Reveal className="text-center max-w-5xl mx-auto mb-12">
-          <span className="sticker">05 · Capabilities</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
+          <span className="sticker tag-rotate">05 · Capabilities</span>
+          <h2 id="features-heading" className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             Everything you need to master any subject.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Designed from the ground up to make learning fast, intuitive, verifiable, and deeply enjoyable.
           </p>
         </Reveal>
 
-        {/* Tab Row */}
         <Reveal delay={0.05} className="mb-8">
           <div
             role="tablist"
@@ -79,13 +78,15 @@ export default function FeatureTour() {
                   id={`tab-${g.id}`}
                   aria-selected={isActive}
                   aria-controls={`panel-${g.id}`}
-                  className="px-6 py-3 font-display font-black uppercase tracking-[0.06em] text-[11px] sm:text-xs transition-all cursor-pointer"
+                  className="px-5 py-2.5 font-display font-extrabold uppercase text-[11px] sm:text-xs transition-all cursor-pointer"
                   style={{
-                    background: isActive ? 'var(--accent)' : 'var(--bg-card)',
-                    color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
-                    border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
-                    boxShadow: isActive ? '4px 4px 0 var(--hard)' : 'none',
-                    transform: isActive ? 'translate(-2px, -2px)' : 'none',
+                    letterSpacing: '0.06em',
+                    borderRadius: 9,
+                    background: isActive ? 'var(--lime)' : 'var(--bg-card)',
+                    color: isActive ? '#131315' : 'var(--text-secondary)',
+                    border: `1.5px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
+                    boxShadow: isActive ? '3px 3px 0 var(--hard)' : 'none',
+                    transform: isActive ? 'translate(-1px, -1px)' : 'none',
                   }}
                   onClick={() => setActive(g.id)}
                 >
@@ -96,30 +97,27 @@ export default function FeatureTour() {
           </div>
         </Reveal>
 
-        {/* Active Group Grid */}
-        <Reveal key={group.id} delay={0.08}>
+        <Reveal key={group.id} delay={0.06}>
           <div
             id={`panel-${group.id}`}
             role="tabpanel"
             aria-labelledby={`tab-${group.id}`}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
             {group.items.map((f) => (
-              <div key={f.title} className="glass-card p-6 flex flex-col justify-between">
-                <div>
-                  <span
-                    className="grid place-items-center w-10 h-10 rounded-xl mb-4"
-                    style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
-                  >
-                    <Icon name={f.icon} size={20} />
-                  </span>
-                  <h3 className="font-display text-base font-bold mb-1.5" style={{ color: 'var(--text-primary)' }}>
-                    {f.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {f.desc}
-                  </p>
-                </div>
+              <div key={f.title} className="glass-card p-6">
+                <span
+                  className="grid place-items-center mb-4"
+                  style={{ width: 40, height: 40, borderRadius: 9, background: '#131315', color: 'var(--lime)' }}
+                >
+                  <Icon name={f.icon} size={19} />
+                </span>
+                <h3 className="font-display text-[16.5px] font-extrabold mb-1.5" style={{ color: 'var(--text-primary)' }}>
+                  {f.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  {f.desc}
+                </p>
               </div>
             ))}
           </div>

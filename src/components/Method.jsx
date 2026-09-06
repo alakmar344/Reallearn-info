@@ -78,56 +78,62 @@ export default function Method() {
   const current = PILLARS.find((p) => p.id === active) || PILLARS[0]
 
   return (
-    <section id="method" className="py-24 relative z-10">
-      <div className="container">
-        <Reveal className="text-center max-w-5xl mx-auto mb-16">
+    <section id="method" className="py-20 relative z-10" aria-labelledby="method-heading">
+      <div className="container relative">
+        <span className="deco-plus" aria-hidden="true" style={{ top: 10, left: '4%' }}>+</span>
+        <Reveal className="text-center max-w-3xl mx-auto mb-12">
           <span className="sticker">02 · The Method</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 id="method-heading" className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             Four pillars of the RealLearn method.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Engineered around cognitive science and active recall so you don’t just memorize — you truly understand.
           </p>
         </Reveal>
 
         <Reveal delay={0.05}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-8 xl:gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-6 items-stretch">
             {/* Pillar Selector */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3" role="tablist" aria-label="Method pillars">
               {PILLARS.map((p) => {
                 const isActive = active === p.id
                 return (
                   <button
                     key={p.id}
                     type="button"
+                    role="tab"
+                    aria-selected={isActive}
                     onClick={() => setActive(p.id)}
-                    aria-pressed={isActive}
                     className="p-5 text-left transition-all flex items-start gap-4 cursor-pointer"
                     style={{
                       background: isActive ? 'var(--bg-card)' : 'transparent',
-                      border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
-                      boxShadow: isActive ? '6px 6px 0 var(--hard-accent)' : 'none',
+                      border: `1.5px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
+                      borderRadius: 12,
+                      boxShadow: isActive ? '4px 4px 0 var(--hard)' : 'none',
                       transform: isActive ? 'translate(-2px, -2px)' : 'none',
                     }}
                   >
                     <span
-                      className="grid place-items-center w-10 h-10 flex-none font-mono font-bold"
+                      className="grid place-items-center flex-none"
                       style={{
-                        background: isActive ? 'var(--accent)' : 'var(--bg-3)',
-                        color: isActive ? 'var(--on-accent)' : 'var(--text-secondary)',
-                        border: `2px solid ${isActive ? 'var(--line)' : 'var(--border-default)'}`,
+                        width: 40,
+                        height: 40,
+                        borderRadius: 9,
+                        background: isActive ? '#131315' : 'var(--bg-3)',
+                        color: isActive ? 'var(--lime)' : 'var(--text-secondary)',
+                        border: '1.5px solid var(--line)',
                       }}
                     >
                       <Icon name={p.icon} size={18} />
                     </span>
-                    <div>
-                      <h3 className="font-display text-base sm:text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
+                    <span>
+                      <span className="block font-display text-[16px] font-extrabold" style={{ color: 'var(--text-primary)' }}>
                         {p.title}
-                      </h3>
-                      <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+                      </span>
+                      <span className="block text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
                         {p.tagline}
-                      </p>
-                    </div>
+                      </span>
+                    </span>
                   </button>
                 )
               })}
@@ -135,34 +141,35 @@ export default function Method() {
 
             {/* Selected Pillar Detail */}
             <div
-              className="glass-card p-6 sm:p-10 flex flex-col justify-between"
-              style={{ border: '3px solid var(--line)', boxShadow: '10px 10px 0 var(--hard)' }}
+              className="glass-card p-6 sm:p-9 flex flex-col justify-between"
+              role="tabpanel"
+              style={{ boxShadow: '6px 6px 0 var(--hard)' }}
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
-                    Pillar {current.num} of 4
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <span className="font-mono text-xs font-bold uppercase" style={{ letterSpacing: '0.1em', color: 'var(--text-accent-strong)' }}>
+                    Pillar {current.num} of 04
                   </span>
                   <span className="chip text-[11px] font-mono">
                     {current.tagline}
                   </span>
                 </div>
 
-                <h3 className="font-display text-2xl sm:text-3xl font-extrabold mb-3" style={{ color: 'var(--text-primary)' }}>
+                <h3 className="font-display text-2xl sm:text-[28px] font-extrabold mb-3" style={{ color: 'var(--text-primary)' }}>
                   {current.title}
                 </h3>
-                <p className="text-sm sm:text-base leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-[15px] leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
                   {current.desc}
                 </p>
 
                 <div className="flex flex-col gap-2.5 mb-8">
                   {current.features.map((feat) => (
-                    <div key={feat} className="flex items-center gap-3 text-xs sm:text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                    <div key={feat} className="flex items-center gap-3 text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
                       <span
-                        className="grid place-items-center w-5 h-5 rounded-full flex-none"
-                        style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                        className="grid place-items-center flex-none"
+                        style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--lime)', border: '1.5px solid var(--line)' }}
                       >
-                        <Icon name="check" size={12} strokeWidth={2.5} />
+                        <Icon name="check" size={12} strokeWidth={2.6} />
                       </span>
                       <span>{feat}</span>
                     </div>
@@ -170,21 +177,22 @@ export default function Method() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t-2" style={{ borderColor: 'var(--line)' }}>
+              <div className="grid grid-cols-2 gap-4 pt-6" style={{ borderTop: '1.5px solid var(--line)' }}>
                 {current.metrics.map((m) => (
                   <div
                     key={m.label}
                     className="p-4"
                     style={{
                       background: 'var(--bg-primary)',
-                      border: '2px solid var(--line)',
-                      boxShadow: '4px 4px 0 var(--hard)',
+                      border: '1.5px solid var(--line)',
+                      borderRadius: 10,
+                      boxShadow: '3px 3px 0 var(--hard)',
                     }}
                   >
-                    <div className="font-mono text-2xl font-extrabold" style={{ color: 'var(--accent)' }}>
+                    <div className="font-display text-2xl font-black" style={{ color: 'var(--text-primary)' }}>
                       {m.val}
                     </div>
-                    <div className="text-[11px] font-mono uppercase tracking-wider mt-1" style={{ color: 'var(--text-secondary)' }}>
+                    <div className="text-[11px] font-mono uppercase mt-1" style={{ letterSpacing: '0.08em', color: 'var(--text-secondary)' }}>
                       {m.label}
                     </div>
                   </div>

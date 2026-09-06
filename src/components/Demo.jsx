@@ -49,32 +49,31 @@ export default function Demo() {
   }
 
   return (
-    <section id="try" className="py-24 relative z-10">
+    <section id="try" className="py-20 relative z-10" aria-labelledby="try-heading">
       <div className="container">
-        <Reveal className="text-center max-w-5xl mx-auto mb-12">
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
           <span className="sticker">04 · Interactive Demo</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 id="try-heading" className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             Try a quiz-gated mini lesson.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Experience active recall in action. Correct answers unlock progress; incorrect answers re-queue missed questions.
           </p>
         </Reveal>
 
         <Reveal className="max-w-3xl mx-auto">
           <div
-            className="glass-card p-6 sm:p-10 relative"
-            style={{ border: '3px solid var(--line)', boxShadow: '12px 12px 0 var(--hard-accent)' }}
+            className="glass-card p-6 sm:p-9 relative"
+            style={{ boxShadow: '6px 6px 0 var(--hard)' }}
           >
-            {/* Top Bar Status */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b-2" style={{ borderColor: 'var(--line)' }}>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-6 pb-4" style={{ borderBottom: '1.5px solid var(--line)' }}>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[color:var(--accent)] animate-pulse" />
+                <span className="inline-block" style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--lime-deep)' }} aria-hidden="true" />
                 <span className="chip text-xs font-mono font-bold">
                   {demoMode === 'explain' ? 'Part 01 · Foundation Checkpoint' : 'Fast Mode · Summary Checkpoint'}
                 </span>
               </div>
-              <span className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+              <span className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase" style={{ letterSpacing: '0.08em', color: 'var(--text-accent-strong)' }}>
                 <Icon name="check" size={13} strokeWidth={2.4} />
                 Active recall gate
               </span>
@@ -82,17 +81,17 @@ export default function Demo() {
 
             {phase === 'idle' && (
               <div className="text-center py-6">
-                {/* Mode Glider */}
-                <div className="flex items-center gap-1.5 p-1 rounded-2xl mb-6 bg-[color:var(--bg-3)] max-w-xs mx-auto">
+                <div className="flex items-center gap-1.5 p-1 mb-6 max-w-xs mx-auto" style={{ background: 'var(--bg-2)', borderRadius: 10 }}>
                   <button
                     type="button"
                     onClick={() => setDemoMode('explain')}
-                    className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      demoMode === 'explain' ? '' : 'opacity-70 hover:opacity-100'
-                    }`}
+                    aria-pressed={demoMode === 'explain'}
+                    className="flex-1 py-2 px-3 text-xs font-bold transition-all cursor-pointer"
                     style={{
-                      background: demoMode === 'explain' ? 'var(--accent)' : 'transparent',
-                      color: demoMode === 'explain' ? 'var(--on-accent)' : 'var(--text-primary)',
+                      borderRadius: 7,
+                      border: 'none',
+                      background: demoMode === 'explain' ? 'var(--lime)' : 'transparent',
+                      color: demoMode === 'explain' ? '#131315' : 'var(--text-secondary)',
                     }}
                   >
                     Explain Mode
@@ -100,19 +99,20 @@ export default function Demo() {
                   <button
                     type="button"
                     onClick={() => setDemoMode('fast')}
-                    className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      demoMode === 'fast' ? '' : 'opacity-70 hover:opacity-100'
-                    }`}
+                    aria-pressed={demoMode === 'fast'}
+                    className="flex-1 py-2 px-3 text-xs font-bold transition-all cursor-pointer"
                     style={{
-                      background: demoMode === 'fast' ? 'var(--accent)' : 'transparent',
-                      color: demoMode === 'fast' ? 'var(--on-accent)' : 'var(--text-primary)',
+                      borderRadius: 7,
+                      border: 'none',
+                      background: demoMode === 'fast' ? 'var(--lime)' : 'transparent',
+                      color: demoMode === 'fast' ? '#131315' : 'var(--text-secondary)',
                     }}
                   >
                     Fast Mode
                   </button>
                 </div>
 
-                <h3 className="font-display text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                <h3 className="font-display text-2xl font-extrabold mb-3" style={{ color: 'var(--text-primary)' }}>
                   Interactive Checkpoint Demo
                 </h3>
                 <p className="mb-6 text-sm max-w-md mx-auto" style={{ color: 'var(--text-secondary)' }}>
@@ -125,12 +125,12 @@ export default function Demo() {
             )}
 
             {phase === 'loading' && (
-              <div className="text-center py-10">
+              <div className="text-center py-10" role="status" aria-live="polite">
                 <div
-                  className="w-10 h-10 border-4 animate-spin mx-auto mb-4"
-                  style={{ borderColor: 'var(--accent)', borderTopColor: 'transparent' }}
+                  className="mx-auto mb-4"
+                  style={{ width: 40, height: 40, borderRadius: 999, border: '4px solid var(--border-default)', borderTopColor: 'var(--lime-deep)', animation: 'spin-slow 0.9s linear infinite' }}
                 />
-                <p className="font-mono text-xs font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--accent)' }}>
+                <p className="font-mono text-xs font-bold uppercase mb-1" style={{ letterSpacing: '0.08em', color: 'var(--text-primary)' }}>
                   Preparing your active recall quiz…
                 </p>
                 <p className="font-mono text-[11px]" style={{ color: 'var(--text-secondary)' }}>
@@ -145,11 +145,11 @@ export default function Demo() {
                   {q.q}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6" role="group" aria-label="Answer choices">
                   {q.opts.map((opt, i) => {
                     const isCorrect = i === q.correct
                     const isPicked = picked === i
-                    let bg = 'var(--bg-3)'
+                    let bg = 'var(--bg-card)'
                     let color = 'var(--text-primary)'
                     let borderColor = 'var(--border-default)'
 
@@ -171,12 +171,8 @@ export default function Demo() {
                         type="button"
                         onClick={() => choose(i)}
                         disabled={picked !== null}
-                        className="quiz-option p-4 font-semibold text-xs sm:text-sm text-left cursor-pointer"
-                        style={{
-                          background: bg,
-                          color: color,
-                          border: `2px solid ${borderColor}`,
-                        }}
+                        className="quiz-option p-4 font-semibold text-[13px] text-left cursor-pointer"
+                        style={{ background: bg, color, border: `1.5px solid ${borderColor}` }}
                       >
                         <span className="font-mono font-bold mr-2 text-[11px] opacity-70">
                           {String.fromCharCode(65 + i)}.
@@ -189,11 +185,13 @@ export default function Demo() {
 
                 {picked !== null && (
                   <div
-                    className="p-4 mb-6 text-xs sm:text-sm leading-relaxed"
+                    className="p-4 mb-6 text-sm leading-relaxed"
+                    role="status"
                     style={{
                       background: solved ? 'var(--success-bg)' : 'var(--danger-bg)',
-                      border: `2px solid ${solved ? 'var(--success)' : 'var(--danger)'}`,
-                      boxShadow: `4px 4px 0 ${solved ? 'var(--success)' : 'var(--danger)'}`,
+                      border: `1.5px solid ${solved ? 'var(--success)' : 'var(--danger)'}`,
+                      borderRadius: 10,
+                      boxShadow: `3px 3px 0 ${solved ? 'var(--success)' : 'var(--danger)'}`,
                       color: 'var(--text-primary)',
                     }}
                   >
@@ -209,14 +207,14 @@ export default function Demo() {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t-2" style={{ borderColor: 'var(--line)' }}>
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-4" style={{ borderTop: '1.5px solid var(--line)' }}>
                   {solved ? (
                     <button type="button" className="btn btn-action" onClick={next}>
                       Next question
                       <Icon name="chevron-right" size={15} strokeWidth={2.2} />
                     </button>
                   ) : (
-                    <span className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                    <span className="flex items-center gap-2 text-xs font-mono font-bold uppercase" style={{ letterSpacing: '0.06em', color: 'var(--text-secondary)' }}>
                       <Icon name="lock" size={14} />
                       100% score to unlock next part
                     </span>
@@ -224,7 +222,7 @@ export default function Demo() {
                   <button
                     type="button"
                     className="text-xs font-mono font-bold underline cursor-pointer"
-                    style={{ color: 'var(--accent)' }}
+                    style={{ color: 'var(--text-accent-strong)', background: 'none', border: 'none' }}
                     onClick={generate}
                   >
                     Reset checkpoint

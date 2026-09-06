@@ -112,10 +112,10 @@ Traditional answers are too shallow, too advanced, disconnected from real life, 
     A gorgeous score card to share when you finish.
 
 17. XP, streaks and badges
-    Seventeen achievements from First Steps to Unstoppable.
+    56 collectible badges across bronze, silver, gold, and legendary tiers — each with its own animated unlock party.
 
-18. Three themes
-    Paper, Night, Twilight — pick the mood you are in.
+18. Two themes
+    Paper and Ink — pick the mood you are in.
 
 ---
 
@@ -165,7 +165,7 @@ A GitHub-style grid of the last 14 weeks. Watch the empty squares fill up as cur
 - 3 difficulty levels: Class 6–8, 9–10, College / Advanced
 - 56 collectible badges
 - 7 XP levels
-- 3 selectable themes: Paper, Night, Twilight
+- 2 selectable themes: Paper and Ink
 
 ---
 

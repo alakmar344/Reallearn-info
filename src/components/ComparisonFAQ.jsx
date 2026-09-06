@@ -99,87 +99,89 @@ export default function ComparisonFAQ() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section id="compare" className="py-24 relative z-10">
+    <section id="compare" className="py-20 relative z-10" aria-labelledby="compare-heading">
       <div className="container">
-        {/* Audience Section */}
-        <Reveal className="text-center max-w-5xl mx-auto mb-16">
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
           <span className="sticker">06 · Who It&rsquo;s For</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 id="compare-heading" className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             Built for anyone hungry to learn.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Whether you&rsquo;re preparing for an exam or just curious about how the universe works.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
           {AUDIENCES.map((a, i) => (
-            <Reveal key={a.title} delay={i * 0.08}>
-              <div className="glass-card p-6 h-full flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className="grid place-items-center w-10 h-10 rounded-xl"
-                      style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
-                    >
-                      <Icon name={a.icon} size={20} />
-                    </span>
-                    <span className="chip text-[11px] font-mono">
-                      {a.tag}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                    {a.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {a.desc}
-                  </p>
+            <Reveal key={a.title} delay={i * 0.06}>
+              <article className="glass-card p-6 h-full" aria-label={a.title}>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span
+                    className="grid place-items-center"
+                    style={{ width: 40, height: 40, borderRadius: 9, background: '#131315', color: 'var(--lime)' }}
+                  >
+                    <Icon name={a.icon} size={19} />
+                  </span>
+                  <span className="chip text-[10.5px] font-mono">
+                    {a.tag}
+                  </span>
                 </div>
-              </div>
+                <h3 className="font-display text-[19px] font-extrabold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  {a.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  {a.desc}
+                </p>
+              </article>
             </Reveal>
           ))}
         </div>
 
-        {/* Comparison Matrix */}
-        <Reveal className="text-center max-w-5xl mx-auto mb-12">
-          <span className="sticker">07 · The Difference</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
+          <span className="sticker tag-rotate-r">07 · The Difference</span>
+          <h2 className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             How RealLearn compares.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Why a structured teaching system beats generic chatbots and endless search results.
           </p>
         </Reveal>
 
-        <Reveal delay={0.06} className="mb-24 overflow-x-auto">
+        <Reveal delay={0.05} className="mb-20 overflow-x-auto">
           <div
             className="glass-card min-w-[680px] overflow-hidden"
-            style={{ border: '3px solid var(--line)', boxShadow: '10px 10px 0 var(--hard)' }}
+            style={{ boxShadow: '6px 6px 0 var(--hard)' }}
           >
             <div
-              className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs uppercase font-mono font-bold tracking-wider py-4 px-6 border-b-2"
-              style={{ background: 'var(--accent)', borderColor: 'var(--line)', color: 'var(--on-accent)' }}
+              className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs uppercase font-mono font-bold py-4 px-6"
+              style={{ background: 'var(--lime)', borderBottom: '1.5px solid var(--line)', color: '#131315', letterSpacing: '0.06em' }}
             >
               <div>Dimension</div>
-              <div style={{ fontWeight: 800 }}>✨ RealLearn AI</div>
-              <div style={{ opacity: 0.75 }}>Generic Chatbots</div>
-              <div style={{ opacity: 0.75 }}>Search Engines</div>
+              <div>✳ RealLearn AI</div>
+              <div style={{ opacity: 0.7 }}>Generic Chatbots</div>
+              <div style={{ opacity: 0.7 }}>Search Engines</div>
             </div>
 
             {COMPARISONS.map((row, idx) => (
               <div
                 key={row.feature}
-                className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs sm:text-sm items-center py-4 px-6 border-b-2"
+                className="grid grid-cols-[1.2fr_1.5fr_1.3fr_1.3fr] text-xs sm:text-sm items-center py-4 px-6"
                 style={{
-                  borderColor: 'var(--border-default)',
-                  background: idx % 2 === 0 ? 'transparent' : 'var(--bg-3)',
+                  borderBottom: idx === COMPARISONS.length - 1 ? 'none' : '1px solid var(--border-subtle)',
+                  background: idx % 2 === 0 ? 'transparent' : 'var(--bg-card-hover)',
                 }}
               >
                 <div className="font-bold" style={{ color: 'var(--text-primary)' }}>
                   {row.feature}
                 </div>
-                <div className="font-semibold flex items-center gap-2 pr-4" style={{ color: 'var(--accent)' }}>
-                  <Icon name="check" size={15} strokeWidth={2.5} className="flex-none" />
+                <div className="font-semibold flex items-center gap-2 pr-4" style={{ color: 'var(--text-primary)' }}>
+                  <span
+                    aria-hidden="true"
+                    className="grid place-items-center flex-none"
+                    style={{ width: 20, height: 20, borderRadius: 999, background: 'var(--lime)', border: '1.5px solid var(--line)' }}
+                  >
+                    <Icon name="check" size={11} strokeWidth={3} />
+                  </span>
                   <span>{row.reallearn}</span>
                 </div>
                 <div className="text-xs pr-4" style={{ color: 'var(--text-secondary)' }}>
@@ -193,50 +195,52 @@ export default function ComparisonFAQ() {
           </div>
         </Reveal>
 
-        {/* FAQ Accordion */}
-        <Reveal className="text-center max-w-5xl mx-auto mb-12">
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
           <span className="sticker">08 · Questions & Answers</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
             Frequently asked questions.
           </h2>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
             Everything you need to know about getting started with RealLearn AI.
           </p>
         </Reveal>
 
-        <Reveal delay={0.08} className="max-w-4xl mx-auto">
-          <div className="flex flex-col gap-4">
+        <Reveal delay={0.06} className="max-w-4xl mx-auto">
+          <div className="flex flex-col gap-3">
             {FAQS.map((faq, idx) => {
               const isOpen = openFaq === idx
               return (
                 <div
                   key={faq.q}
                   className="glass-card overflow-hidden transition-all"
-                  style={{
-                    borderColor: 'var(--line)',
-                    boxShadow: isOpen ? '7px 7px 0 var(--hard-accent)' : '5px 5px 0 var(--hard)',
-                  }}
+                  style={{ boxShadow: isOpen ? '5px 5px 0 var(--hard)' : '3px 3px 0 var(--hard)' }}
                 >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? -1 : idx)}
                     className="accordion-header"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${idx}`}
+                    id={`faq-button-${idx}`}
                   >
                     <span>{faq.q}</span>
                     <span
-                      className="grid place-items-center w-7 h-7 rounded-full flex-none transition-transform"
+                      className="grid place-items-center flex-none transition-transform"
                       style={{
-                        background: isOpen ? 'var(--accent-dim)' : 'var(--bg-3)',
-                        color: isOpen ? 'var(--accent)' : 'var(--text-secondary)',
+                        width: 30,
+                        height: 30,
+                        borderRadius: 999,
+                        background: isOpen ? 'var(--lime)' : 'var(--bg-2)',
+                        color: '#131315',
+                        border: '1.5px solid var(--line)',
                         transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                       }}
                     >
-                      <Icon name="chevron-down" size={16} strokeWidth={2.4} />
+                      <Icon name="chevron-down" size={15} strokeWidth={2.4} />
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="accordion-body">
+                    <div className="accordion-body" id={`faq-panel-${idx}`} role="region" aria-labelledby={`faq-button-${idx}`}>
                       <p>{faq.a}</p>
                     </div>
                   )}

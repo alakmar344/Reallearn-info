@@ -1,62 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="RealLearn AI — Stop searching for answers. Start truly understanding.">
+<svg xmlns="http://www.w3.org/200/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="RealLearn AI — Stop searching for answers. Start truly understanding.">
   <defs>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFE500"/>
-      <stop offset="0.5" stop-color="#FF1B8D"/>
-      <stop offset="1" stop-color="#00E5FF"/>
-    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#131315" stroke-width="1" opacity="0.12"/>
+    </pattern>
   </defs>
 
-  <rect width="1200" height="630" fill="#000000"/>
+  <rect width="1200" height="630" fill="#edeef1"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
 
-  <!-- Hazard stripe corner -->
+  <!-- Volt burst -->
+  <path d="M880 60 L905 150 L965 95 L945 185 L1035 170 L975 230 L1060 255 L975 275 L1005 365 L940 315 L930 410 L900 320 L855 385 L850 295 L770 305 L830 250 L755 220 L850 210 L830 125 L885 165 Z"
+    fill="#c5f82a" stroke="#131315" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Header pill -->
   <g>
-    <rect x="0" y="0" width="1200" height="14" fill="#FF1B8D"/>
-    <rect x="0" y="616" width="1200" height="14" fill="#00E5FF"/>
+    <rect x="60" y="48" width="1080" height="72" rx="12" fill="#ffffff" stroke="#131315" stroke-width="2.5"/>
+    <g stroke="#131315" stroke-width="2.4" stroke-linecap="round">
+      <line x1="104" y1="70" x2="104" y2="98"/>
+      <line x1="90" y1="84" x2="118" y2="84"/>
+      <line x1="94" y1="74" x2="114" y2="94"/>
+      <line x1="114" y1="74" x2="94" y2="94"/>
+    </g>
+    <text x="132" y="92" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="28" font-weight="800" fill="#131315">RealLearn AI</text>
+    <rect x="880" y="62" width="150" height="44" rx="8" fill="#c5f82a" stroke="#131315" stroke-width="2.5"/>
+    <text x="955" y="91" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="19" font-weight="800" text-anchor="middle" fill="#131315">GET STARTED</text>
+    <rect x="1040" y="62" width="44" height="44" rx="8" fill="#131315"/>
+    <text x="1062" y="93" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="26" font-weight="800" text-anchor="middle" fill="#ffffff">↗</text>
   </g>
 
-  <!-- Drafting grid -->
-  <g stroke="#7A3A6E" stroke-width="1" opacity="0.35">
-    <line x1="0" y1="120" x2="1200" y2="120"/>
-    <line x1="0" y1="240" x2="1200" y2="240"/>
-    <line x1="0" y1="360" x2="1200" y2="360"/>
-    <line x1="0" y1="480" x2="1200" y2="480"/>
-    <line x1="300" y1="0" x2="300" y2="630"/>
-    <line x1="600" y1="0" x2="600" y2="630"/>
-    <line x1="900" y1="0" x2="900" y2="630"/>
-  </g>
-
-  <!-- Giant outline watermark -->
-  <text x="1180" y="560" text-anchor="end" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="300" font-weight="900" letter-spacing="-8" fill="none" stroke="#7A3A6E" stroke-width="2" opacity="0.4">LEARN</text>
-
-  <!-- Logo -->
-  <g transform="translate(80,80)">
-    <rect width="72" height="72" fill="url(#accent)" stroke="#FFFFFF" stroke-width="3"/>
-    <text x="36" y="50" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="#000000">RL</text>
-    <text x="96" y="34" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">REALLEARN <tspan fill="#FF1B8D">AI</tspan></text>
-    <text x="96" y="60" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="15" letter-spacing="2" fill="#00E5FF">THE WORLD IS YOUR TEXTBOOK</text>
+  <!-- Badge -->
+  <g>
+    <rect x="60" y="170" width="300" height="44" rx="6" fill="#c5f82a" stroke="#131315" stroke-width="2.5"/>
+    <text x="210" y="199" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="17" font-weight="700" letter-spacing="2" text-anchor="middle" fill="#131315">✳ AI LEARNING PLATFORM</text>
   </g>
 
   <!-- Headline -->
-  <text x="80" y="300" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="76" font-weight="900" fill="#FFFFFF">STOP SEARCHING FOR ANSWERS.</text>
-  <text x="80" y="392" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="76" font-weight="900" fill="url(#accent)">START TRULY UNDERSTANDING.</text>
+  <text x="60" y="300" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="84" font-weight="900" fill="#131315">STOP SEARCHING.</text>
+  <text x="60" y="388" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="84" font-weight="900" fill="#131315">START TRULY</text>
+  <text x="60" y="476" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="84" font-weight="900" fill="#c5f82a" stroke="#131315" stroke-width="2">UNDERSTANDING.</text>
 
   <!-- Subhead -->
-  <text x="80" y="456" font-family="'Inter','Segoe UI',system-ui,sans-serif" font-size="26" fill="#E9CFE0">A structured 3-stage journey: Foundation → Mechanism → Real World.</text>
+  <text x="60" y="530" font-family="'Inter','Segoe UI',system-ui,sans-serif" font-size="24" fill="#3f434b">Foundation → Mechanism → Real World · Quizzes · 63 languages.</text>
 
   <!-- Chips -->
-  <g font-family="'JetBrains Mono',ui-monospace,monospace" font-size="18" font-weight="700">
-    <g transform="translate(80,510)">
-      <rect width="250" height="52" fill="#FF1B8D" stroke="#FFFFFF" stroke-width="2"/>
-      <text x="125" y="34" text-anchor="middle" fill="#000000">ACTIVE-RECALL QUIZZES</text>
+  <g font-family="'JetBrains Mono',ui-monospace,monospace" font-size="17" font-weight="700">
+    <g transform="translate(60,556)">
+      <rect width="270" height="48" rx="8" fill="#ffffff" stroke="#131315" stroke-width="2.5"/>
+      <text x="135" y="31" text-anchor="middle" fill="#131315">ACTIVE-RECALL QUIZZES</text>
     </g>
-    <g transform="translate(348,510)">
-      <rect width="235" height="52" fill="#00E5FF" stroke="#FFFFFF" stroke-width="2"/>
-      <text x="117" y="34" text-anchor="middle" fill="#000000">63 GLOBAL LANGUAGES</text>
+    <g transform="translate(346,556)">
+      <rect width="250" height="48" rx="8" fill="#131315" stroke="#131315" stroke-width="2.5"/>
+      <text x="125" y="31" text-anchor="middle" fill="#c5f82a">63 GLOBAL LANGUAGES</text>
     </g>
-    <g transform="translate(601,510)">
-      <rect width="220" height="52" fill="#FFE500" stroke="#FFFFFF" stroke-width="2"/>
-      <text x="110" y="34" text-anchor="middle" fill="#000000">100% FREE &amp; AD-FREE</text>
+    <g transform="translate(612,556)">
+      <rect width="230" height="48" rx="8" fill="#c5f82a" stroke="#131315" stroke-width="2.5"/>
+      <text x="115" y="31" text-anchor="middle" fill="#131315">100% FREE &amp; AD-FREE</text>
     </g>
   </g>
 </svg>
