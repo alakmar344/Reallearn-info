@@ -6,12 +6,12 @@ const THEMES = ['paper', 'ink']
 const STORAGE_KEY = 'reallearn-theme'
 
 function getInitial() {
-  if (typeof window === 'undefined') return 'ink'
+  if (typeof window === 'undefined') return 'paper'
   const saved = window.localStorage.getItem(STORAGE_KEY)
   if (saved && (THEMES.includes(saved) || saved === 'night' || saved === 'twilight')) {
     return saved === 'night' || saved === 'twilight' ? 'ink' : saved
   }
-  return 'ink'
+  return 'paper'
 }
 
 export function ThemeProvider({ children }) {

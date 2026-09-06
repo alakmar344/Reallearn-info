@@ -34,47 +34,45 @@ const PROBLEMS = [
 
 export default function ProblemSection() {
   return (
-    <section id="why" className="py-24 relative z-10">
-      <div className="container">
-        <Reveal className="text-center max-w-5xl mx-auto mb-16">
-          <span className="sticker">
-            01 · The Learning Dilemma
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: 'var(--text-primary)' }}>
-            Why typical search & chatbots fail learners.
+    <section id="why" className="py-20 relative z-10" aria-labelledby="why-heading">
+      <div className="container relative">
+        <span className="deco-plus" aria-hidden="true" style={{ top: 0, right: '8%' }}>+</span>
+        <span className="deco-dots" aria-hidden="true" style={{ width: 80, height: 60, top: 40, right: 0 }} />
+        <Reveal className="text-center max-w-3xl mx-auto mb-12">
+          <span className="sticker tag-rotate">01 · The Learning Dilemma</span>
+          <h2 id="why-heading" className="font-display mt-5 mb-4" style={{ color: 'var(--text-primary)' }}>
+            Why search & chatbots fail learners.
           </h2>
-          <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            When you're trying to learn, getting a wall of text isn't enough. Here's why traditional tools leave you confused — and how RealLearn fixes it.
+          <p className="text-[17px]" style={{ color: 'var(--text-secondary)' }}>
+            When you&apos;re trying to learn, a wall of text isn&apos;t enough. Here&apos;s why traditional tools leave you confused — and how RealLearn fixes it.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {PROBLEMS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.08}>
-              <div className="glass-card p-6 h-full flex flex-col justify-between">
+            <Reveal key={p.title} delay={i * 0.07}>
+              <article className="glass-card p-6 h-full flex flex-col justify-between" aria-label={p.title}>
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className="grid place-items-center w-10 h-10 rounded-xl"
-                      style={{
-                        background: 'var(--danger-bg)',
-                        color: 'var(--danger)',
-                      }}
+                      className="grid place-items-center flex-none"
+                      style={{ width: 40, height: 40, borderRadius: 9, background: '#131315', color: 'var(--lime)' }}
                     >
-                      <Icon name={p.icon} size={20} />
+                      <Icon name={p.icon} size={19} />
                     </span>
                     <span
-                      className="font-mono text-[11px] font-bold px-2.5 py-1 rounded-full uppercase"
+                      className="font-mono text-[10.5px] font-bold px-2.5 py-1 uppercase whitespace-nowrap"
                       style={{
                         background: 'var(--danger-bg)',
                         color: 'var(--danger)',
-                        border: '2px solid var(--danger)',
+                        border: '1.5px solid var(--danger)',
+                        borderRadius: 999,
                       }}
                     >
                       {p.badge}
                     </span>
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-2.5" style={{ color: 'var(--text-primary)' }}>
+                  <h3 className="font-display text-[19px] font-extrabold mb-2" style={{ color: 'var(--text-primary)' }}>
                     {p.title}
                   </h3>
                   <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
@@ -83,13 +81,19 @@ export default function ProblemSection() {
                 </div>
 
                 <div
-                  className="pt-3.5 border-t-2 text-xs font-bold flex items-center gap-2"
-                  style={{ borderColor: 'var(--line)', color: 'var(--accent)' }}
+                  className="pt-3.5 text-[13px] font-bold flex items-center gap-2"
+                  style={{ borderTop: '1.5px solid var(--line)', color: 'var(--text-primary)' }}
                 >
-                  <Icon name="check-circle" size={15} strokeWidth={2.2} />
+                  <span
+                    aria-hidden="true"
+                    className="grid place-items-center flex-none"
+                    style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--lime)', border: '1.5px solid var(--line)' }}
+                  >
+                    <Icon name="check" size={12} strokeWidth={2.6} />
+                  </span>
                   <span>{p.solution}</span>
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>

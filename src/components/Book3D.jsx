@@ -53,26 +53,24 @@ export default function Book3D() {
   return (
     <div className="w-full max-w-xl mx-auto">
       <div
-        className="glass-card p-6 sm:p-8 relative overflow-hidden"
-        style={{
-          border: '3px solid var(--line)',
-          boxShadow: '12px 12px 0 var(--hard-accent)',
-        }}
+        className="glass-card p-6 sm:p-7 relative overflow-hidden"
+        style={{ boxShadow: '6px 6px 0 var(--hard)' }}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between mb-5 pb-4 border-b-2 border-[color:var(--line)]">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-5 pb-4" style={{ borderBottom: '1.5px solid var(--line)' }}>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] animate-pulse" />
-            <span className="font-mono text-xs uppercase font-bold tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+            <span className="inline-block" style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--lime-deep)' }} aria-hidden="true" />
+            <span className="font-mono text-xs uppercase font-bold" style={{ letterSpacing: '0.08em', color: 'var(--text-secondary)' }}>
               3-Stage Lesson Preview
             </span>
           </div>
           <span
-            className="flex items-center gap-1.5 text-xs font-mono font-bold px-3 py-1 rounded-full uppercase"
+            className="flex items-center gap-1.5 text-[11px] font-mono font-bold px-3 py-1 uppercase whitespace-nowrap"
             style={{
-              background: currentStage.status.locked ? 'var(--danger-bg)' : 'var(--accent-dim)',
-              color: currentStage.status.locked ? 'var(--danger)' : 'var(--accent)',
-              border: `2px solid ${currentStage.status.locked ? 'var(--danger)' : 'var(--accent)'}`,
+              borderRadius: 999,
+              background: currentStage.status.locked ? 'var(--danger-bg)' : 'var(--lime-soft)',
+              color: currentStage.status.locked ? 'var(--danger)' : 'var(--text-accent-strong)',
+              border: `1.5px solid ${currentStage.status.locked ? 'var(--danger)' : 'var(--line)'}`,
             }}
           >
             <Icon name={currentStage.status.icon} size={12} strokeWidth={2.2} />
@@ -81,21 +79,25 @@ export default function Book3D() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="grid grid-cols-3 gap-1.5 p-1.5 rounded-2xl mb-5 bg-[color:var(--bg-3)]">
+        <div className="grid grid-cols-3 gap-1.5 p-1.5 mb-5" style={{ background: 'var(--bg-2)', borderRadius: 10 }} role="tablist" aria-label="Lesson stages">
           {STAGES.map((s, idx) => {
             const isSelected = activeTab === idx
             return (
               <button
                 key={s.id}
                 type="button"
+                role="tab"
+                aria-selected={isSelected}
                 onClick={() => setActiveTab(idx)}
-                className={`flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-bold transition-all text-center cursor-pointer ${
-                  isSelected ? '' : 'opacity-70 hover:opacity-100'
-                }`}
+                className="flex items-center justify-center gap-1.5 py-2 px-2 text-xs font-bold transition-all text-center cursor-pointer"
                 style={{
+                  borderRadius: 7,
+                  border: 'none',
                   background: isSelected ? 'var(--bg-card)' : 'transparent',
                   color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  border: isSelected ? '1px solid var(--border-default)' : '1px solid transparent',
+                  boxShadow: isSelected ? '2px 2px 0 var(--hard)' : 'none',
+                  outline: isSelected ? '1.5px solid var(--line)' : 'none',
+                  outlineOffset: -1.5,
                 }}
               >
                 {s.status.locked && <Icon name="lock" size={11} strokeWidth={2} />}
@@ -108,10 +110,10 @@ export default function Book3D() {
         {/* Stage Content */}
         <div className="flex flex-col gap-4">
           <div>
-            <span className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+            <span className="text-xs font-mono font-bold uppercase" style={{ letterSpacing: '0.08em', color: 'var(--text-accent-strong)' }}>
               {currentStage.badge} · {currentStage.readingTime}
             </span>
-            <h3 className="font-display text-xl font-bold mt-1" style={{ color: 'var(--text-primary)' }}>
+            <h3 className="font-display text-xl font-extrabold mt-1" style={{ color: 'var(--text-primary)' }}>
               {currentStage.title}
             </h3>
             <p className="text-xs font-medium mt-0.5" style={{ color: 'var(--text-secondary)' }}>
@@ -125,18 +127,19 @@ export default function Book3D() {
               return (
                 <div
                   key={item.label}
-                  className="p-3.5 border-2 border-[color:var(--border-default)] flex flex-col gap-1"
+                  className="p-3.5 flex flex-col gap-1"
                   style={{
                     background: 'var(--bg-primary)',
-                    borderLeftWidth: 5,
-                    borderLeftColor: 'var(--accent)',
+                    border: '1.5px solid var(--border-default)',
+                    borderLeft: '4px solid var(--lime-deep)',
+                    borderRadius: 9,
                   }}
                 >
-                  <span className="text-[11px] font-mono uppercase font-bold tracking-wider" style={{ color: 'var(--accent)' }}>
+                  <span className="text-[11px] font-mono uppercase font-bold" style={{ letterSpacing: '0.06em', color: 'var(--text-accent-strong)' }}>
                     {item.label}
                   </span>
                   <span
-                    className="text-xs font-medium leading-relaxed"
+                    className="text-[13px] font-medium leading-relaxed"
                     style={{
                       color: 'var(--text-primary)',
                       fontFamily: isEquation ? 'var(--font-mono)' : 'inherit',
@@ -150,16 +153,16 @@ export default function Book3D() {
           </div>
 
           {/* Verifiable Sources */}
-          <div className="flex items-center justify-between pt-3 border-t border-[color:var(--border-default)] text-[11px]">
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-3 text-[11px]" style={{ borderTop: '1px solid var(--border-subtle)' }}>
             <span className="font-mono" style={{ color: 'var(--text-secondary)' }}>
               Verifiable Sources:
             </span>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {currentStage.sources.map((src) => (
                 <span
                   key={src}
-                  className="font-mono px-2 py-0.5 rounded border border-[color:var(--border-default)] text-[10px]"
-                  style={{ color: 'var(--text-secondary)', background: 'var(--bg-3)' }}
+                  className="font-mono px-2 py-0.5 text-[10px]"
+                  style={{ color: 'var(--text-secondary)', background: 'var(--bg-2)', border: '1px solid var(--border-default)', borderRadius: 999 }}
                 >
                   {src}
                 </span>
