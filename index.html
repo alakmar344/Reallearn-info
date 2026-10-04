@@ -284,10 +284,242 @@
         ]
       }
     </script>
+<style>
+:root{--c:#dfe2e8;--k:#000;--b:#1f2bff;--y:#ffe500;--p:#ff4d8d;--w:#fff;--bw:4px;--sh:8px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--c);color:var(--k);font:500 18px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;
+  background-image:linear-gradient(#0000000f 1px,transparent 1px),linear-gradient(90deg,#0000000f 1px,transparent 1px);background-size:48px 48px}
+h1,h2,h3,.d{font-family:Archivo,Impact,sans-serif;font-weight:900;line-height:.88;letter-spacing:-.04em;text-transform:uppercase}
+a{color:inherit}
+:focus-visible{outline:var(--bw) solid var(--b);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.box{border:var(--bw) solid var(--k);box-shadow:var(--sh) var(--sh) 0 var(--k);background:var(--w)}
+.btn{display:inline-block;font:900 20px Archivo,sans-serif;text-transform:uppercase;text-decoration:none;padding:16px 26px;background:var(--y);
+  border:var(--bw) solid var(--k);box-shadow:6px 6px 0 var(--k);transition:transform .08s,box-shadow .08s;cursor:pointer}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--k)}
+.btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--k)}
+.btn.blue{background:var(--b);color:#fff}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:var(--y);border-bottom:var(--bw) solid var(--k);padding-top:env(safe-area-inset-top,0)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .logo{font:900 26px Archivo;letter-spacing:-.05em;text-decoration:none}
+nav .logo i{background:var(--k);color:var(--y);font-style:normal;padding:0 6px;margin-left:3px}
+nav .links{display:flex;gap:22px;font-weight:600}
+nav .links a{text-decoration:none}nav .links a:hover{background:var(--k);color:var(--y)}
+@media(max-width:700px){nav .links{display:none}}
+
+/* hero */
+.hero{padding:56px 0 70px;position:relative}
+.hero h1{font-size:clamp(56px,13.5vw,210px)}
+.hero h1 .row{display:block}
+.hero h1 .hl{background:var(--k);color:var(--y);padding:0 .08em;display:inline-block;transform:rotate(-1.5deg)}
+.hero h1 .bl{color:var(--b);-webkit-text-stroke:0}
+.hero p{max-width:34ch;font-size:22px;margin:34px 0;font-weight:600}
+.hero .cta{display:flex;gap:18px;flex-wrap:wrap}
+.sticker{position:absolute;right:2%;top:70px;width:170px;height:170px;border-radius:50%;background:var(--p);border:var(--bw) solid var(--k);box-shadow:var(--sh) var(--sh) 0 var(--k);
+  display:grid;place-items:center;text-align:center;font:900 22px/1 Archivo;text-transform:uppercase;transform:rotate(12deg);animation:spin 14s linear infinite}
+.sticker span{display:block;font-size:48px}
+@keyframes spin{to{transform:rotate(372deg)}}
+@media(max-width:800px){.sticker{width:110px;height:110px;font-size:14px;top:20px}.sticker span{font-size:30px}}
+
+/* marquee */
+.mq{background:var(--k);color:var(--y);border-block:var(--bw) solid var(--k);overflow:hidden;white-space:nowrap;transform:rotate(-1deg);margin:0 -20px}
+.mq div{display:inline-block;padding:14px 0;font:900 34px Archivo;text-transform:uppercase;animation:mq 28s linear infinite}
+.mq span{margin:0 26px}.mq b{color:var(--p)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{padding:90px 0}
+h2{font-size:clamp(44px,8vw,120px);margin-bottom:44px}
+h2 mark{background:var(--b);color:#fff;padding:0 .1em}
+
+/* slabs */
+.slabs{display:grid;gap:0}
+.slab{display:grid;grid-template-columns:minmax(120px,220px) 1fr;border:var(--bw) solid var(--k);margin-top:calc(var(--bw)*-1);background:var(--w);position:relative;transition:transform .12s}
+.slab:hover{transform:translateX(14px);box-shadow:-14px 0 0 var(--k)}
+.slab .n{display:grid;place-items:center;font:900 clamp(90px,14vw,190px)/1 Archivo;border-right:var(--bw) solid var(--k);letter-spacing:-.06em}
+.slab:nth-child(1) .n{background:var(--y)}.slab:nth-child(2) .n{background:var(--b);color:#fff}.slab:nth-child(3) .n{background:var(--p)}
+.slab .t{padding:28px}
+.slab h3{font-size:clamp(34px,5vw,64px);margin-bottom:14px}
+.slab p{max-width:52ch}
+@media(max-width:640px){.slab{grid-template-columns:1fr}.slab .n{border-right:0;border-bottom:var(--bw) solid var(--k);font-size:90px}}
+
+/* demo */
+.demo{background:var(--b);border-block:var(--bw) solid var(--k);color:#fff}
+.demo h2 mark{background:var(--y);color:var(--k)}
+.term{color:var(--k);padding:26px}
+.term form{display:flex;gap:12px;flex-wrap:wrap}
+.term input{flex:1;min-width:200px;font:600 20px Inter;padding:14px;border:var(--bw) solid var(--k);background:var(--c)}
+.chips{margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap}
+.chip{font:600 15px Inter;border:3px solid var(--k);background:var(--w);padding:4px 12px;cursor:pointer}
+.chip:hover{background:var(--y)}
+.stage{margin-top:22px;border:var(--bw) solid var(--k);padding:20px;background:var(--c)}
+.stage.locked{background:repeating-linear-gradient(45deg,#cfd2d9 0 12px,#dfe2e8 12px 24px);color:#555}
+.stage h3{font-size:30px;margin-bottom:8px}
+.q{margin-top:14px;font-weight:600}
+.opts{display:grid;gap:10px;margin-top:10px}
+.opts button{text-align:left;font:600 17px Inter;padding:12px 14px;border:3px solid var(--k);background:var(--w);cursor:pointer;transition:transform .08s}
+.opts button:hover{background:var(--y)}
+.opts .ok{background:#2bd96b!important}.opts .no{background:var(--p)!important;animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.msg{margin-top:10px;font-weight:800}
+[hidden]{display:none!important}
+
+/* steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.step{padding:24px;counter-increment:s}
+.step:nth-child(odd){transform:rotate(-.8deg)}.step:nth-child(even){transform:rotate(.8deg)}
+.step::before{content:counter(s);display:inline-grid;place-items:center;width:56px;height:56px;background:var(--k);color:var(--y);font:900 32px Archivo;margin-bottom:12px}
+.step h3{font-size:30px;margin-bottom:8px;line-height:.95}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.stat{border:var(--bw) solid var(--k);margin:0 calc(var(--bw)*-1) calc(var(--bw)*-1) 0;padding:26px;background:var(--w)}
+.stat b{display:block;font:900 clamp(70px,9vw,130px)/.9 Archivo;letter-spacing:-.06em}
+.stat:nth-child(2){background:var(--y)}.stat:nth-child(3){background:var(--p)}
+
+/* faq */
+details{border:var(--bw) solid var(--k);background:var(--w);margin-top:calc(var(--bw)*-1)}
+summary{cursor:pointer;list-style:none;padding:22px;font:900 clamp(22px,3vw,34px)/1 Archivo;text-transform:uppercase;letter-spacing:-.03em;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:40px;line-height:.8;transition:transform .15s}
+details[open] summary{background:var(--y)}details[open] summary::after{transform:rotate(45deg)}
+details p{padding:22px;border-top:var(--bw) solid var(--k);max-width:70ch}
+
+/* footer */
+.final{background:var(--y);border-top:var(--bw) solid var(--k);text-align:center;padding:100px 0}
+.final h2{font-size:clamp(50px,11vw,170px);margin-bottom:34px}
+footer{background:var(--k);color:var(--c);padding:24px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:env(safe-area-inset-bottom,0)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
   </head>
   <body>
-    <div id="root"></div>
-    <!-- Crawlable summary for search & answer engines (the app shell is client-rendered) -->
+<nav><div class="wrap">
+  <a class="logo" href="#top">Real<i>Learn</i></a>
+  <div class="links"><a href="#method">Method</a><a href="#try">Try it</a><a href="#how">How</a><a href="#faq">FAQ</a></div>
+  <a class="btn" style="padding:6px 14px;font-size:16px;box-shadow:4px 4px 0 #000" href="https://reallearn.site/">Start free</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="sticker" aria-hidden="true"><div><span>$0</span>no ads<br>ever</div></div>
+  <h1 id="hero-heading">
+    <span class="row">Stop</span>
+    <span class="row">searching.</span>
+    <span class="row"><span class="hl">Start</span> <span class="bl">understanding.</span></span>
+  </h1>
+  <p>Ask any question. RealLearn turns it into a three-part lesson, then checks you actually got it.</p>
+  <div class="cta"><a class="btn blue" href="https://reallearn.site/">Ask your first question</a><a class="btn" href="https://youtu.be/zehBGs-xBC0">Watch the demo</a></div>
+</div></header>
+
+<div class="mq" aria-hidden="true"><div>
+  <span>Foundation</span><b>✱</b><span>Mechanism</span><b>✱</b><span>Real World</span><b>✱</b><span>63 languages</span><b>✱</b><span>Free</span><b>✱</b><span>No ads</span><b>✱</b>
+  <span>Foundation</span><b>✱</b><span>Mechanism</span><b>✱</b><span>Real World</span><b>✱</b><span>63 languages</span><b>✱</b><span>Free</span><b>✱</b><span>No ads</span><b>✱</b>
+</div></div>
+
+<section id="method"><div class="wrap">
+  <h2>Every lesson, <mark>three slabs.</mark></h2>
+  <div class="slabs">
+    <article class="slab"><div class="n">1</div><div class="t"><h3>Foundation</h3><p>Plain analogies that make a hard idea feel obvious before any jargon shows up.</p></div></article>
+    <article class="slab"><div class="n">2</div><div class="t"><h3>Mechanism</h3><p>Open the machine. See the inner parts and how they push on each other.</p></div></article>
+    <article class="slab"><div class="n">3</div><div class="t"><h3>Real World</h3><p>Connect it to modern technology, live news headlines and your daily life.</p></div></article>
+  </div>
+</div></section>
+
+<section class="demo" id="try"><div class="wrap">
+  <h2 id="try-heading">Try the <mark>gate.</mark></h2>
+  <div class="box term">
+    <form id="f"><input id="q" aria-label="Your question" value="Why is the sky blue?" /><button class="btn blue" type="submit">Build lesson</button></form>
+    <div class="chips"><button class="chip" type="button">Why is the sky blue?</button><button class="chip" type="button">How do vaccines work?</button><button class="chip" type="button">What is inflation?</button></div>
+    <div id="out" hidden>
+      <div class="stage"><h3>1 · Foundation</h3><p id="fnd"></p>
+        <p class="q" id="qtxt"></p><div class="opts" id="opts"></div><p class="msg" id="msg"></p></div>
+      <div class="stage locked" id="s2"><h3 id="h2t">2 · Mechanism — locked</h3><p id="s2p">Pass the checkpoint quiz to unlock this part.</p></div>
+      <div class="stage locked" id="s3"><h3 id="h3t">3 · Real World — locked</h3><p id="s3p">Unlocks after Mechanism.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>Six steps. <mark>Five minutes.</mark></h2>
+  <div class="steps">
+    <div class="box step"><h3>Ask or speak</h3><p>Type a question or tap the mic.</p></div>
+    <div class="box step"><h3>Pick level + language</h3><p>63 languages. Class 6–8, 9–10 or College/Pro.</p></div>
+    <div class="box step"><h3>Read the Foundation</h3><p>Build intuition with analogies.</p></div>
+    <div class="box step"><h3>Pass the quiz</h3><p>Score 100% on two questions to unlock the next part.</p></div>
+    <div class="box step"><h3>See the real world</h3><p>Live news and daily-life examples.</p></div>
+    <div class="box step"><h3>Level up</h3><p>Earn XP, keep streaks, unlock 56 badges, save lessons.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>63</b>languages, written natively</div>
+    <div class="stat"><b>56</b>badges to unlock</div>
+    <div class="stat"><b>3×</b>better recall than passive reading</div>
+    <div class="stat"><b>0</b>ads. 0 paywalls.</div>
+  </div>
+</div></section>
+
+<section id="features" style="padding-top:0"><div class="wrap">
+  <h2>Built for <mark>real study.</mark></h2>
+  <div class="steps">
+    <div class="box step"><h3>Explain Mode</h3><p>The full 3-step mastery path with quizzes.</p></div>
+    <div class="box step"><h3>Fast Mode</h3><p>A quick summary when you only need the gist.</p></div>
+    <div class="box step"><h3>Voice in, audio out</h3><p>Ask aloud with speech recognition. Listen to lessons like a personal podcast.</p></div>
+    <div class="box step"><h3>Live news grounding</h3><p>Every lesson ties the idea to what is happening in the world now.</p></div>
+    <div class="box step"><h3>Three levels</h3><p>Class 6–8, Class 9–10, or College/Pro.</p></div>
+    <div class="box step"><h3>Personal library</h3><p>Save lessons offline with verifiable sources, and level up with XP, streaks and 56 badges.</p></div>
+  </div>
+</div></section>
+
+<section id="compare" style="padding-top:0"><div class="wrap">
+  <h2 id="compare-heading">Questions.</h2>
+  <div id="faq">
+    <details open><summary>What is RealLearn AI?</summary><p>A free, ad-free learning platform that turns any question into a three-part lesson, verified by quizzes.</p></details>
+    <details><summary>Is it really free?</summary><p>Yes. No subscriptions, no paywalls and no ads.</p></details>
+    <details><summary>Why do quizzes lock the next part?</summary><p>Active recall locks knowledge into long-term memory far better than re-reading. Answering before moving on makes it stick.</p></details>
+    <details><summary>Which languages work?</summary><p>63. Lessons are written directly in your language, not translated afterwards.</p></details>
+    <details><summary>Can I talk to it?</summary><p>Yes. Ask aloud with speech recognition and listen to lessons as narration.</p></details>
+    <details><summary>What can I ask about?</summary><p>Anything: physics, biology, economics, history, psychology, AI, space and more.</p></details>
+  </div>
+</div></section>
+
+<div class="final"><div class="wrap">
+  <h2>The world is your textbook.</h2>
+  <a class="btn blue" href="https://reallearn.site/">Start learning free</a>
+</div></div>
+<footer><div class="wrap"><span>© RealLearn AI</span><span><a href="https://youtu.be/zehBGs-xBC0">Demo</a> · <a href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook">Product Hunt</a></span></div></footer>
+
+<script>
+const L={
+ "Why is the sky blue?":{f:"Sunlight looks white but hides every colour. Air scatters short blue waves far more than long red ones, like a pinball machine that bounces blue the most.",q:"Which colour scatters most in air?",o:["Red","Blue","Green"],a:1,m:["Scattering is stronger for shorter wavelengths, so blue bounces around the whole sky.","Sunsets: light travels through more air, the blue is scattered away and red is left."]},
+ "How do vaccines work?":{f:"A vaccine is a practice drill. Your body meets a harmless piece of a germ and learns its face before the real one arrives.",q:"What does a vaccine train?",o:["Immune memory","Bone density","Blood type"],a:0,m:["Memory B and T cells store the pattern so the response is fast next time.","Outbreak news shows herd protection: more trained people means fewer places for a virus to spread."]},
+ "What is inflation?":{f:"Inflation is your money buying less. Imagine the same coin getting a smaller slice of pizza every year.",q:"Inflation means prices generally…",o:["Fall","Rise","Stay fixed"],a:1,m:["When demand outruns supply or money supply grows, sellers raise prices and each unit buys less.","Central-bank rate decisions in the headlines are attempts to steer it."]}
+};
+const $=id=>document.getElementById(id);
+function build(t){
+  const d=L[t]||{f:"Great question. In the real app, RealLearn writes a full Foundation lesson for “"+t+"” here, then tests you. Try one of the sample questions to see the gate in action.",q:"Ready to unlock the next part?",o:["Yes","Not yet"],a:0,m:["The Mechanism part opens the machine behind your topic.","The Real World part connects it to live news."]};
+  $("out").hidden=false;$("fnd").textContent=d.f;$("qtxt").textContent=d.q;$("msg").textContent="";
+  for(const [i,h] of [["s2","2 · Mechanism — locked"],["s3","3 · Real World — locked"]]){$(i).classList.add("locked");$(i).querySelector("h3").textContent=h}
+  $("s2p").textContent="Pass the checkpoint quiz to unlock this part.";$("s3p").textContent="Unlocks after Mechanism.";
+  const box=$("opts");box.innerHTML="";
+  d.o.forEach((x,i)=>{const b=document.createElement("button");b.textContent=x;b.onclick=()=>{
+    if(i===d.a){b.className="ok";$("msg").textContent="Correct. Part 2 unlocked.";
+      $("s2").classList.remove("locked");$("s2").querySelector("h3").textContent="2 · Mechanism";$("s2p").textContent=d.m[0];
+      $("s3").classList.remove("locked");$("s3").querySelector("h3").textContent="3 · Real World";$("s3p").textContent=d.m[1];
+    }else{b.className="no";$("msg").textContent="Not quite. Re-read the Foundation and try again."}};box.appendChild(b)});
+}
+$("f").onsubmit=e=>{e.preventDefault();build($("q").value.trim()||"Why is the sky blue?")};
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{$("q").value=c.textContent;build(c.textContent)});
+</script>
+
+<!-- Original app mount, disabled so it does not render under this page. Re-enable to use your React app instead:
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+-->
     <noscript>
       <div style="font-family:system-ui,sans-serif;max-width:72ch;margin:0 auto;padding:32px 20px;color:#131315;background:#edeef1">
         <p><strong>RealLearn AI — The world is your textbook.</strong></p>
@@ -316,6 +548,5 @@
         </p>
       </div>
     </noscript>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
