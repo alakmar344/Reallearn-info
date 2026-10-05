@@ -71,17 +71,17 @@
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -285,235 +285,536 @@
       }
     </script>
 <style>
-:root{--c:#dfe2e8;--k:#000;--b:#1f2bff;--y:#ffe500;--p:#ff4d8d;--w:#fff;--bw:4px;--sh:8px}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:var(--c);color:var(--k);font:500 18px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;
-  background-image:linear-gradient(#0000000f 1px,transparent 1px),linear-gradient(90deg,#0000000f 1px,transparent 1px);background-size:48px 48px}
-h1,h2,h3,.d{font-family:Archivo,Impact,sans-serif;font-weight:900;line-height:.88;letter-spacing:-.04em;text-transform:uppercase}
+/* =====================================================================
+   RealLearn — TACTILE BRUTALISM / KINETIC TYPE
+   Hard ink, raw grid, variable-width mega type, grain, light-reactive
+   hard shadows, sticky slab stacks, pinned horizontal rail.
+   ===================================================================== */
+:root{
+  --c:#e4e6ea;--c2:#d6d9df;--k:#0a0a0a;--b:#1f2bff;--y:#ffe500;--p:#ff4d8d;--g:#2bd96b;--w:#fff;
+  --bw:4px;--sh:8px;--lx:0;--ly:0;
+  --sx:calc(var(--sh) - var(--lx) * 5px);--sy:calc(var(--sh) - var(--ly) * 5px);
+  --mono:"JetBrains Mono",ui-monospace,monospace;--disp:Archivo,Impact,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.7,0,.2,1);--nav:64px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav)}
+body{background:var(--c);color:var(--k);font:500 18px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(#0000000d 1px,transparent 1px),linear-gradient(90deg,#0000000d 1px,transparent 1px);background-size:48px 48px}
+h1,h2,h3,.d{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.035em;text-transform:uppercase;font-variation-settings:"wdth" 100}
 a{color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--k);color:var(--y)}
 :focus-visible{outline:var(--bw) solid var(--b);outline-offset:3px}
-.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
-.box{border:var(--bw) solid var(--k);box-shadow:var(--sh) var(--sh) 0 var(--k);background:var(--w)}
-.btn{display:inline-block;font:900 20px Archivo,sans-serif;text-transform:uppercase;text-decoration:none;padding:16px 26px;background:var(--y);
-  border:var(--bw) solid var(--k);box-shadow:6px 6px 0 var(--k);transition:transform .08s,box-shadow .08s;cursor:pointer}
-.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--k)}
+.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+.mono{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- film grain (CSS/SVG, zero images) ---------- */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .9s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-2%,6%)}80%{transform:translate(5%,2%)}100%{transform:translate(0,0)}}
+
+/* ---------- custom cursor ---------- */
+#cur{position:fixed;left:0;top:0;z-index:100;width:18px;height:18px;margin:-9px 0 0 -9px;background:var(--y);mix-blend-mode:difference;pointer-events:none;
+  transition:width .25s var(--ease),height .25s var(--ease),margin .25s var(--ease),border-radius .25s;display:grid;place-items:center;will-change:transform}
+#cur b{font:700 10px var(--mono);letter-spacing:.12em;color:#000;opacity:0;transition:opacity .15s;white-space:nowrap}
+#cur.big{width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%}
+#cur.big b{opacity:1}
+@media (hover:none),(pointer:coarse){#cur{display:none}}
+@media (hover:hover) and (pointer:fine){html.has-cur,html.has-cur a,html.has-cur button,html.has-cur summary{cursor:none}}
+
+/* ---------- boot curtain ---------- */
+#boot{position:fixed;inset:0;z-index:200;display:grid;grid-template-columns:repeat(5,1fr);pointer-events:none}
+#boot i{background:var(--k);transform-origin:top;transition:transform .7s var(--snap)}
+#boot i:nth-child(2){transition-delay:.05s}#boot i:nth-child(3){transition-delay:.1s}#boot i:nth-child(4){transition-delay:.15s}#boot i:nth-child(5){transition-delay:.2s}
+#boot .num{position:absolute;left:clamp(16px,3vw,40px);bottom:24px;color:var(--y);font:900 clamp(90px,22vw,320px)/.8 var(--disp);letter-spacing:-.06em;transition:opacity .25s}
+#boot .tag{position:absolute;right:clamp(16px,3vw,40px);top:24px;color:var(--c);transition:opacity .25s}
+#boot.done i{transform:scaleY(0)}#boot.done .num,#boot.done .tag{opacity:0}
+html:not(.js) #boot,#boot.gone{display:none}
+
+/* ---------- hard boxes: shadow follows the light (cursor) ---------- */
+.box{border:var(--bw) solid var(--k);box-shadow:var(--sx) var(--sy) 0 var(--k);background:var(--w)}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;font:900 20px var(--disp);text-transform:uppercase;letter-spacing:-.01em;text-decoration:none;padding:18px 26px;background:var(--y);
+  border:var(--bw) solid var(--k);box-shadow:6px 6px 0 var(--k);transition:transform .12s,box-shadow .12s,font-variation-settings .3s var(--ease);cursor:pointer;overflow:hidden;isolation:isolate;font-variation-settings:"wdth" 100}
+.btn::before{content:"";position:absolute;inset:0;background:var(--k);transform:translateY(101%);transition:transform .3s var(--snap);z-index:-1}
+.btn:hover{color:var(--y);font-variation-settings:"wdth" 118}
+.btn:hover::before{transform:none}
 .btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--k)}
-.btn.blue{background:var(--b);color:#fff}
+.btn .ar{display:inline-block;transition:transform .3s var(--ease)}.btn:hover .ar{transform:translateX(4px) rotate(-45deg)}
+.btn.blue{background:var(--b);color:#fff}.btn.blue::before{background:var(--y)}.btn.blue:hover{color:var(--k)}
+.btn.sm{padding:8px 14px;font-size:15px;box-shadow:4px 4px 0 var(--k)}
 
-/* nav */
-nav{position:sticky;top:0;z-index:20;background:var(--y);border-bottom:var(--bw) solid var(--k);padding-top:env(safe-area-inset-top,0)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-nav .logo{font:900 26px Archivo;letter-spacing:-.05em;text-decoration:none}
-nav .logo i{background:var(--k);color:var(--y);font-style:normal;padding:0 6px;margin-left:3px}
-nav .links{display:flex;gap:22px;font-weight:600}
-nav .links a{text-decoration:none}nav .links a:hover{background:var(--k);color:var(--y)}
-@media(max-width:700px){nav .links{display:none}}
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:var(--y);border-bottom:var(--bw) solid var(--k);padding-top:env(safe-area-inset-top,0)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav);gap:20px}
+nav .logo{font:900 28px var(--disp);letter-spacing:-.05em;text-decoration:none;font-variation-settings:"wdth" 100;transition:font-variation-settings .4s var(--ease)}
+nav .logo:hover{font-variation-settings:"wdth" 125}
+nav .logo i{background:var(--k);color:var(--y);font-style:normal;padding:0 6px;margin-left:3px;display:inline-block;transform:rotate(-3deg)}
+nav .links{display:flex;gap:4px;font:700 13px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+nav .links a{text-decoration:none;padding:8px 12px;position:relative;overflow:hidden;isolation:isolate}
+nav .links a::before{content:"";position:absolute;inset:0;background:var(--k);z-index:-1;transform:scaleX(0);transform-origin:right;transition:transform .3s var(--snap)}
+nav .links a:hover{color:var(--y)}nav .links a:hover::before{transform:scaleX(1);transform-origin:left}
+nav .links a.on::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:3px;background:var(--k)}
+nav .meta{display:flex;align-items:center;gap:18px}
+nav .live{display:flex;align-items:center;gap:8px}
+nav .live::before{content:"";width:10px;height:10px;background:var(--g);border:2px solid var(--k);animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+#prog{position:absolute;left:0;bottom:calc(var(--bw)*-1);height:var(--bw);width:100%;background:var(--p);transform-origin:left;transform:scaleX(0)}
+@media(max-width:900px){nav .links,nav .live{display:none}}
 
-/* hero */
-.hero{padding:56px 0 70px;position:relative}
-.hero h1{font-size:clamp(56px,13.5vw,210px)}
-.hero h1 .row{display:block}
-.hero h1 .hl{background:var(--k);color:var(--y);padding:0 .08em;display:inline-block;transform:rotate(-1.5deg)}
-.hero h1 .bl{color:var(--b);-webkit-text-stroke:0}
-.hero p{max-width:34ch;font-size:22px;margin:34px 0;font-weight:600}
-.hero .cta{display:flex;gap:18px;flex-wrap:wrap}
-.sticker{position:absolute;right:2%;top:70px;width:170px;height:170px;border-radius:50%;background:var(--p);border:var(--bw) solid var(--k);box-shadow:var(--sh) var(--sh) 0 var(--k);
-  display:grid;place-items:center;text-align:center;font:900 22px/1 Archivo;text-transform:uppercase;transform:rotate(12deg);animation:spin 14s linear infinite}
-.sticker span{display:block;font-size:48px}
-@keyframes spin{to{transform:rotate(372deg)}}
-@media(max-width:800px){.sticker{width:110px;height:110px;font-size:14px;top:20px}.sticker span{font-size:30px}}
+/* ---------- hero ---------- */
+.hero{padding:34px 0 60px;position:relative;overflow:hidden}
+.hero .top{display:flex;justify-content:space-between;gap:16px;border-bottom:3px solid var(--k);padding-bottom:12px;margin-bottom:28px;flex-wrap:wrap}
+.hero h1{font-size:clamp(58px,13.2vw,200px);position:relative;z-index:2}
+.hero h1 .row{display:block;white-space:nowrap;will-change:transform}
+.hero h1 .r1{font-variation-settings:"wdth" 125}
+.hero h1 .r2{font-variation-settings:"wdth" 92}
+.hero h1 .r4{font-variation-settings:"wdth" 62;color:var(--b);font-size:1.02em}
+.hero h1 .hl{background:var(--k);color:var(--y);padding:.02em .1em 0;display:inline-block;transform:rotate(-2deg);font-variation-settings:"wdth" 125;box-shadow:10px 10px 0 var(--p)}
+.ch{display:inline-block;transition:transform .35s var(--ease),color .2s;will-change:transform}
+.ch.hot{color:var(--p)}
+.js .ch{animation:drop .9s var(--ease) both;animation-delay:calc(var(--i) * 28ms + var(--d0, 0ms))}
+@keyframes drop{from{transform:translateY(-110%) rotate(-14deg);opacity:0}}
+.hero .side{position:absolute;right:clamp(16px,3vw,40px);top:300px;width:min(330px,26vw);z-index:3}
+.hero .row-bottom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-top:40px}
+.hero p.lede{max-width:30ch;font-size:clamp(20px,2vw,26px);font-weight:600;line-height:1.3}
+.hero p.lede mark{background:var(--y);padding:0 .15em;box-shadow:inset 0 -.1em 0 var(--k)}
+.hero .cta{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.scrollhint{display:flex;flex-direction:column;align-items:center;gap:10px}
+.scrollhint i{width:4px;height:70px;background:var(--k);position:relative;overflow:hidden}
+.scrollhint i::after{content:"";position:absolute;left:0;top:-30px;width:100%;height:30px;background:var(--p);animation:drip 1.6s var(--snap) infinite}
+@keyframes drip{to{top:100%}}
 
-/* marquee */
-.mq{background:var(--k);color:var(--y);border-block:var(--bw) solid var(--k);overflow:hidden;white-space:nowrap;transform:rotate(-1deg);margin:0 -20px}
-.mq div{display:inline-block;padding:14px 0;font:900 34px Archivo;text-transform:uppercase;animation:mq 28s linear infinite}
-.mq span{margin:0 26px}.mq b{color:var(--p)}
-@keyframes mq{to{transform:translateX(-50%)}}
+/* spinning seal */
+.seal{position:absolute;right:clamp(10px,4vw,70px);top:150px;width:clamp(120px,15vw,210px);aspect-ratio:1;z-index:4;filter:drop-shadow(8px 8px 0 var(--k))}
+.seal svg{width:100%;height:100%;animation:spin 16s linear infinite;overflow:visible}
+.seal .core{position:absolute;inset:22%;border-radius:50%;background:var(--y);border:var(--bw) solid var(--k);display:grid;place-items:center;font:900 clamp(30px,4.2vw,58px)/1 var(--disp);letter-spacing:-.06em;transition:transform .4s var(--ease)}
+.seal:hover .core{transform:scale(1.12) rotate(-12deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:800px){.seal{top:74px;width:96px}.seal .core{font-size:24px}.hero .top span:not(:first-child){display:none}.hero .top{margin-bottom:56px}.hero .row-bottom{grid-template-columns:1fr}.scrollhint{display:none}}
 
-section{padding:90px 0}
-h2{font-size:clamp(44px,8vw,120px);margin-bottom:44px}
-h2 mark{background:var(--b);color:#fff;padding:0 .1em}
+/* ---------- crossing tapes ---------- */
+.tapes{position:relative;height:170px;margin:10px 0 40px;z-index:5}
+.tape{position:absolute;left:-5%;width:110%;top:50%;border-block:var(--bw) solid var(--k);overflow:hidden;white-space:nowrap}
+.tape .tk{display:inline-flex;padding:14px 0;font:900 clamp(26px,3.2vw,44px)/1 var(--disp);text-transform:uppercase;will-change:transform}
+.tape span{margin:0 26px}
+.t1{background:var(--k);color:var(--y);transform:translateY(-50%) rotate(-3.5deg);z-index:2}.t1 b{color:var(--p)}
+.t2{background:var(--p);color:var(--k);transform:translateY(-50%) rotate(3deg)}.t2 .tk{font-variation-settings:"wdth" 70}
+.t2 b{color:var(--w)}
 
-/* slabs */
-.slabs{display:grid;gap:0}
-.slab{display:grid;grid-template-columns:minmax(120px,220px) 1fr;border:var(--bw) solid var(--k);margin-top:calc(var(--bw)*-1);background:var(--w);position:relative;transition:transform .12s}
-.slab:hover{transform:translateX(14px);box-shadow:-14px 0 0 var(--k)}
-.slab .n{display:grid;place-items:center;font:900 clamp(90px,14vw,190px)/1 Archivo;border-right:var(--bw) solid var(--k);letter-spacing:-.06em}
+/* ---------- section scaffolding ---------- */
+section{padding:110px 0;position:relative}
+.lbl{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.lbl i{flex:1;height:3px;background:currentColor}
+.lbl .n{background:var(--k);color:var(--y);padding:4px 8px}
+.demo .lbl .n{background:var(--y);color:var(--k)}
+h2{font-size:clamp(48px,8.6vw,138px);margin-bottom:54px}
+h2 mark{color:#fff;padding:0 .1em;background:linear-gradient(var(--b),var(--b)) no-repeat left/0% 100%;transition:background-size .9s var(--snap) .2s;display:inline-block;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+h2.in mark,html:not(.js) h2 mark{background-size:100% 100%}
+h2 .w{font-variation-settings:"wdth" 62}
+h2 .xw{font-variation-settings:"wdth" 125}
+.rv{opacity:0;transform:translateY(50px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--dl,0s)}
+.rv.in,html:not(.js) .rv{opacity:1;transform:none}
+
+/* ---------- sticky stacked slabs ---------- */
+.slabs{display:grid;gap:26px;padding-bottom:4vh}
+.slab{position:sticky;top:calc(var(--nav) + 24px + var(--s) * 34px);display:grid;grid-template-columns:minmax(140px,300px) 1fr;min-height:min(56vh,500px);
+  border:var(--bw) solid var(--k);background:var(--w);box-shadow:var(--sx) var(--sy) 0 var(--k);overflow:hidden;transform-origin:center top}
+.slab .n{display:grid;place-items:center;font:900 clamp(120px,19vw,300px)/1 var(--disp);border-right:var(--bw) solid var(--k);letter-spacing:-.07em;font-variation-settings:"wdth" 62}
 .slab:nth-child(1) .n{background:var(--y)}.slab:nth-child(2) .n{background:var(--b);color:#fff}.slab:nth-child(3) .n{background:var(--p)}
-.slab .t{padding:28px}
-.slab h3{font-size:clamp(34px,5vw,64px);margin-bottom:14px}
-.slab p{max-width:52ch}
-@media(max-width:640px){.slab{grid-template-columns:1fr}.slab .n{border-right:0;border-bottom:var(--bw) solid var(--k);font-size:90px}}
+.slab .t{padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;position:relative}
+.slab .t::after{content:attr(data-ghost);position:absolute;right:-.06em;bottom:-.18em;font:900 clamp(90px,15vw,240px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px #0000001f;pointer-events:none;font-variation-settings:"wdth" 62}
+.slab .mono{display:flex;justify-content:space-between}
+.slab h3{font-size:clamp(46px,7vw,110px);margin-bottom:18px;font-variation-settings:"wdth" 112}
+.slab p{max-width:40ch;font-size:clamp(18px,1.6vw,23px);font-weight:600;position:relative;z-index:1}
+.slab .ex{display:inline-block;margin-top:18px;border:3px solid var(--k);padding:10px 14px;font-weight:600;background:var(--c);max-width:52ch;position:relative;z-index:1}
+.slab .ex b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;margin-right:8px}
+@media(max-width:700px){.slab{grid-template-columns:1fr;min-height:0}.slab .n{border-right:0;border-bottom:var(--bw) solid var(--k);font-size:110px;padding:10px}}
 
-/* demo */
-.demo{background:var(--b);border-block:var(--bw) solid var(--k);color:#fff}
-.demo h2 mark{background:var(--y);color:var(--k)}
-.term{color:var(--k);padding:26px}
+/* ---------- demo / terminal ---------- */
+.demo{background:var(--b);border-block:var(--bw) solid var(--k);color:#fff;overflow:hidden}
+.demo::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff2e 1.5px,transparent 1.6px);background-size:22px 22px;pointer-events:none}
+.demo h2 mark{color:var(--k);background-image:linear-gradient(var(--y),var(--y))}
+.demo .grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(24px,4vw,60px);align-items:start;position:relative}
+.demo .copy p{font-size:clamp(19px,1.7vw,23px);font-weight:600;max-width:34ch}
+.demo .copy ol{list-style:none;margin-top:28px;display:grid;gap:10px;counter-reset:d}
+.demo .copy li{counter-increment:d;display:flex;gap:14px;align-items:center;font:700 13px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.demo .copy li::before{content:"0" counter(d);background:var(--y);color:var(--k);padding:4px 8px;border:3px solid var(--k)}
+@media(max-width:900px){.demo .grid2{grid-template-columns:1fr}}
+.win{color:var(--k);overflow:hidden}
+.win .bar{display:flex;align-items:center;gap:8px;background:var(--k);color:var(--y);padding:10px 14px}
+.win .bar i{width:14px;height:14px;border:2px solid var(--y)}.win .bar i:nth-child(1){background:var(--p)}.win .bar i:nth-child(2){background:var(--y)}
+.win .bar .mono{margin-left:auto}
+.term{padding:clamp(18px,2.4vw,30px)}
 .term form{display:flex;gap:12px;flex-wrap:wrap}
-.term input{flex:1;min-width:200px;font:600 20px Inter;padding:14px;border:var(--bw) solid var(--k);background:var(--c)}
+.term .inp{flex:1;min-width:220px;display:flex;align-items:center;border:var(--bw) solid var(--k);background:var(--c)}
+.term .inp span{font:900 22px var(--mono);padding:0 0 0 14px;color:var(--b)}
+.term input{flex:1;min-width:0;font:600 20px Inter;padding:14px;border:0;background:transparent;outline:none}
+.term .inp:focus-within{background:var(--w);box-shadow:inset 0 0 0 3px var(--y)}
 .chips{margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap}
-.chip{font:600 15px Inter;border:3px solid var(--k);background:var(--w);padding:4px 12px;cursor:pointer}
-.chip:hover{background:var(--y)}
-.stage{margin-top:22px;border:var(--bw) solid var(--k);padding:20px;background:var(--c)}
-.stage.locked{background:repeating-linear-gradient(45deg,#cfd2d9 0 12px,#dfe2e8 12px 24px);color:#555}
-.stage h3{font-size:30px;margin-bottom:8px}
-.q{margin-top:14px;font-weight:600}
+.chip{font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;border:3px solid var(--k);background:var(--w);padding:7px 12px;cursor:pointer;transition:transform .12s,box-shadow .12s,background .12s}
+.chip:hover{background:var(--y);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--k)}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:22px}
+.meter i{height:14px;border:3px solid var(--k);background:var(--c);position:relative;overflow:hidden}
+.meter i::after{content:"";position:absolute;inset:0;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--snap)}
+.meter i.on::after{transform:none}
+.stage{margin-top:16px;border:var(--bw) solid var(--k);padding:20px;background:var(--c);position:relative;transition:background .3s}
+.stage.pop{animation:pop .5s var(--ease)}
+@keyframes pop{0%{transform:scale(.97);background:var(--y)}100%{transform:none}}
+.stage.locked{background:repeating-linear-gradient(45deg,#cfd2d9 0 12px,var(--c) 12px 24px);color:#555}
+.stage.locked h3::before{content:"⛌ ";color:var(--p)}
+.stage h3{font-size:30px;margin-bottom:8px;font-variation-settings:"wdth" 110}
+.q{margin-top:14px;font-weight:700}
 .opts{display:grid;gap:10px;margin-top:10px}
-.opts button{text-align:left;font:600 17px Inter;padding:12px 14px;border:3px solid var(--k);background:var(--w);cursor:pointer;transition:transform .08s}
-.opts button:hover{background:var(--y)}
-.opts .ok{background:#2bd96b!important}.opts .no{background:var(--p)!important;animation:shake .3s}
+.opts button{text-align:left;font:600 17px Inter;padding:12px 14px;border:3px solid var(--k);background:var(--w);cursor:pointer;transition:transform .1s,box-shadow .1s}
+.opts button:hover{background:var(--y);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--k)}
+.opts .ok{background:var(--g)!important}.opts .no{background:var(--p)!important;animation:shake .3s}
 @keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .msg{margin-top:10px;font-weight:800}
+.caret{display:inline-block;width:.55em;height:1em;background:var(--k);vertical-align:-.12em;margin-left:2px;animation:blink 1s steps(2) infinite}
 [hidden]{display:none!important}
 
-/* steps */
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
-.step{padding:24px;counter-increment:s}
-.step:nth-child(odd){transform:rotate(-.8deg)}.step:nth-child(even){transform:rotate(.8deg)}
-.step::before{content:counter(s);display:inline-grid;place-items:center;width:56px;height:56px;background:var(--k);color:var(--y);font:900 32px Archivo;margin-bottom:12px}
-.step h3{font-size:30px;margin-bottom:8px;line-height:.95}
+/* ---------- pinned horizontal rail ---------- */
+.rail{padding:0;border-bottom:var(--bw) solid var(--k)}
+.rail .pin{position:sticky;top:var(--nav);height:calc(100vh - var(--nav));overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+.rail h2{margin-bottom:34px}
+.track{display:flex;gap:30px;padding:0 clamp(16px,3vw,40px) 20px;will-change:transform;width:max-content}
+.card{width:clamp(280px,30vw,420px);min-height:330px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0;position:relative}
+.card .big{font:900 120px/.8 var(--disp);letter-spacing:-.07em;color:transparent;-webkit-text-stroke:3px var(--k);font-variation-settings:"wdth" 62;transition:color .3s}
+.card:hover .big{color:var(--k)}
+.card h3{font-size:clamp(30px,2.8vw,42px);margin:16px 0 10px;line-height:.92;font-variation-settings:"wdth" 108}
+.card:nth-child(3n+1){transform:rotate(-1.2deg)}.card:nth-child(3n+2){transform:rotate(.9deg);background:var(--y)}.card:nth-child(3n){transform:rotate(-.4deg)}
+.card:nth-child(4){background:var(--p)}.card:nth-child(6){background:var(--k);color:var(--w)}.card:nth-child(6) .big{-webkit-text-stroke-color:var(--y)}.card:nth-child(6):hover .big{color:var(--y)}
+.railbar{margin:24px clamp(16px,3vw,40px) 0;height:10px;border:3px solid var(--k);background:var(--w)}
+.railbar i{display:block;height:100%;background:var(--k);transform-origin:left;transform:scaleX(0)}
+@media(max-width:820px),(prefers-reduced-motion:reduce){
+  .rail{padding:90px 0}.rail .pin{position:static;height:auto;overflow:visible;padding:0}
+  .track{width:auto;flex-direction:column;transform:none!important}.card{width:auto;min-height:0}.railbar{display:none}
+}
 
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
-.stat{border:var(--bw) solid var(--k);margin:0 calc(var(--bw)*-1) calc(var(--bw)*-1) 0;padding:26px;background:var(--w)}
-.stat b{display:block;font:900 clamp(70px,9vw,130px)/.9 Archivo;letter-spacing:-.06em}
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--k);background:var(--k);gap:var(--bw);box-shadow:var(--sx) var(--sy) 0 var(--p)}
+.stat{padding:26px;background:var(--w);font-weight:600;transition:background .2s,color .2s;position:relative;overflow:hidden}
+.stat b{display:block;font:900 clamp(80px,10vw,160px)/.85 var(--disp);letter-spacing:-.06em;margin-bottom:12px;font-variation-settings:"wdth" 62;font-variant-numeric:tabular-nums}
+.stat .mono{position:absolute;top:14px;right:14px}
 .stat:nth-child(2){background:var(--y)}.stat:nth-child(3){background:var(--p)}
+.stat:hover{background:var(--k);color:var(--y)}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.stats{grid-template-columns:1fr}}
 
-/* faq */
-details{border:var(--bw) solid var(--k);background:var(--w);margin-top:calc(var(--bw)*-1)}
-summary{cursor:pointer;list-style:none;padding:22px;font:900 clamp(22px,3vw,34px)/1 Archivo;text-transform:uppercase;letter-spacing:-.03em;display:flex;justify-content:space-between;gap:20px}
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(200px,auto);gap:22px;perspective:1200px}
+.tile{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .5s var(--ease);
+  transform:rotateX(calc(var(--ry,0) * 1deg)) rotateY(calc(var(--rx,0) * 1deg))}
+.tile h3{font-size:clamp(30px,3vw,48px);line-height:.9;font-variation-settings:"wdth" 108}
+.tile p{max-width:38ch;font-weight:500}
+.tile .ic{position:absolute;top:22px;left:26px;width:58px;height:58px;border:var(--bw) solid var(--k);display:grid;place-items:center;background:var(--y);font:900 26px var(--disp)}
+.tile .tagc{position:absolute;top:24px;right:24px}
+.tile.a{grid-column:span 4;grid-row:span 2;background:var(--k);color:var(--w)}
+.tile.a h3{font-size:clamp(48px,6vw,96px);font-variation-settings:"wdth" 120}
+.tile.a .ic{background:var(--p)}
+.tile.b{grid-column:span 2;background:var(--y)}.tile.b .ic{background:var(--w)}
+.tile.c{grid-column:span 2;background:var(--b);color:#fff}
+.tile.d{grid-column:span 2}
+.tile.e{grid-column:span 2;background:var(--p)}.tile.e .ic{background:var(--w)}
+.tile.f{grid-column:span 6;flex-direction:row;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;min-height:200px}
+.tile .wave{display:flex;gap:4px;align-items:flex-end;height:60px;margin-bottom:auto}
+.tile .wave i{width:8px;background:var(--y);animation:eq 1s ease-in-out infinite alternate;animation-delay:calc(var(--j) * -.13s)}
+@keyframes eq{from{height:12%}to{height:100%}}
+@media(max-width:900px){.tile.a,.tile.b,.tile.c,.tile.d,.tile.e,.tile.f{grid-column:span 6;grid-row:auto}}
+.tile .ic ~ h3{margin-top:90px}
+
+/* ---------- faq ---------- */
+details{border:var(--bw) solid var(--k);background:var(--w);margin-top:calc(var(--bw)*-1);transition:background .2s}
+summary{cursor:pointer;list-style:none;padding:24px;font:900 clamp(22px,3vw,40px)/1 var(--disp);text-transform:uppercase;letter-spacing:-.03em;display:flex;align-items:center;gap:20px;
+  font-variation-settings:"wdth" 100;transition:font-variation-settings .4s var(--ease),background .2s,color .2s}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:40px;line-height:.8;transition:transform .15s}
-details[open] summary{background:var(--y)}details[open] summary::after{transform:rotate(45deg)}
-details p{padding:22px;border-top:var(--bw) solid var(--k);max-width:70ch}
+summary .qn{font:700 13px var(--mono);letter-spacing:.12em;background:var(--k);color:var(--y);padding:5px 8px;flex-shrink:0}
+summary .qt{flex:1}
+summary::after{content:"+";font-size:48px;line-height:.7;transition:transform .3s var(--ease)}
+summary:hover{background:var(--k);color:var(--y);font-variation-settings:"wdth" 118}
+summary:hover .qn{background:var(--y);color:var(--k)}
+details[open] summary{background:var(--y);color:var(--k)}details[open] summary::after{transform:rotate(135deg)}
+details p{padding:24px;border-top:var(--bw) solid var(--k);max-width:70ch;font-size:19px;animation:slide .4s var(--ease)}
+@keyframes slide{from{opacity:0;transform:translateY(-10px)}}
 
-/* footer */
-.final{background:var(--y);border-top:var(--bw) solid var(--k);text-align:center;padding:100px 0}
-.final h2{font-size:clamp(50px,11vw,170px);margin-bottom:34px}
-footer{background:var(--k);color:var(--c);padding:24px 0;font-size:15px}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:env(safe-area-inset-bottom,0)}
+/* ---------- final: scroll-filled mega type ---------- */
+.final{background:var(--y);border-top:var(--bw) solid var(--k);text-align:center;padding:120px 0 110px;position:relative;overflow:hidden;--f:0}
+.final .bgw{position:absolute;inset:0;display:grid;align-content:space-around;pointer-events:none;opacity:.09;font:900 13vw/1 var(--disp);text-transform:uppercase;white-space:nowrap;letter-spacing:-.05em;font-variation-settings:"wdth" 62}
+.final h2{font-size:clamp(54px,11.5vw,190px);margin-bottom:44px;position:relative;
+  color:transparent;-webkit-text-stroke:3px var(--k);
+  background:linear-gradient(90deg,var(--k) calc(var(--f) * 100%),transparent calc(var(--f) * 100%));-webkit-background-clip:text;background-clip:text}
+html:not(.js) .final h2{color:var(--k)}
+.final h2 .w{font-variation-settings:"wdth" 125}
+.final .btn{font-size:clamp(20px,2vw,28px);padding:24px 36px}
 
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---------- footer ---------- */
+footer{background:var(--k);color:var(--c);padding:40px 0 24px;font-size:15px;overflow:hidden}
+footer .wm{font:900 12.6vw/.8 var(--disp);letter-spacing:-.06em;text-transform:uppercase;color:var(--y);white-space:nowrap;text-align:center;font-variation-settings:"wdth" var(--fw,100);transition:font-variation-settings .2s linear;user-select:none}
+footer .wm span{color:var(--p)}
+footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:26px;margin-top:26px;border-top:3px solid #333;padding-bottom:env(safe-area-inset-bottom,0)}
+footer a{text-decoration:none;border-bottom:2px solid var(--y)}footer a:hover{background:var(--y);color:var(--k)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}#boot{display:none}.grain{display:none}h2 mark{background-size:100% 100%}}
 </style>
   </head>
   <body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="grain" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"><b>CLICK</b></div>
+<div id="boot" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span class="num">000</span><span class="mono tag">RealLearn // loading understanding</span></div>
+
 <nav><div class="wrap">
   <a class="logo" href="#top">Real<i>Learn</i></a>
-  <div class="links"><a href="#method">Method</a><a href="#try">Try it</a><a href="#how">How</a><a href="#faq">FAQ</a></div>
-  <a class="btn" style="padding:6px 14px;font-size:16px;box-shadow:4px 4px 0 #000" href="https://reallearn.site/">Start free</a>
-</div></nav>
+  <div class="links"><a href="#method">Method</a><a href="#try">Try it</a><a href="#how">How</a><a href="#features">Features</a><a href="#faq">FAQ</a></div>
+  <div class="meta"><span class="mono live">Free · No ads</span><a class="btn sm" href="https://reallearn.site/" data-cur="GO">Start free</a></div>
+</div><i id="prog"></i></nav>
 
 <header class="hero" id="top"><div class="wrap">
-  <div class="sticker" aria-hidden="true"><div><span>$0</span>no ads<br>ever</div></div>
-  <h1 id="hero-heading">
-    <span class="row">Stop</span>
-    <span class="row">searching.</span>
-    <span class="row"><span class="hl">Start</span> <span class="bl">understanding.</span></span>
+  <div class="top mono"><span>N°001 — AI learning system</span><span>Foundation → Mechanism → Real World</span><span>63 languages</span></div>
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><defs><path id="cp" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
+      <circle cx="100" cy="100" r="98" fill="#ff4d8d" stroke="#0a0a0a" stroke-width="4"/>
+      <text font-family="JetBrains Mono, monospace" font-weight="700" font-size="17" letter-spacing="4.2" fill="#0a0a0a"><textPath href="#cp">NO ADS ✱ NO PAYWALL ✱ FREE FOREVER ✱ </textPath></text></svg>
+    <div class="core">$0</div>
+  </div>
+  <h1 id="hero-heading" aria-label="Stop searching. Start understanding.">
+    <span class="row r1" data-px="-0.6" aria-hidden="true">Stop</span>
+    <span class="row r2" data-px="0.4" aria-hidden="true">searching.</span>
+    <span class="row r3" data-px="-0.25" aria-hidden="true"><span class="hl">Start</span></span>
+    <span class="row r4" data-px="0.5" aria-hidden="true">understanding.</span>
   </h1>
-  <p>Ask any question. RealLearn turns it into a three-part lesson, then checks you actually got it.</p>
-  <div class="cta"><a class="btn blue" href="https://reallearn.site/">Ask your first question</a><a class="btn" href="https://youtu.be/zehBGs-xBC0">Watch the demo</a></div>
+  <div class="row-bottom">
+    <div>
+      <p class="lede">Ask any question. RealLearn turns it into a <mark>three-part lesson</mark>, then checks you actually got it.</p>
+      <div class="cta"><a class="btn blue" href="https://reallearn.site/" data-cur="ASK">Ask your first question <span class="ar">→</span></a><a class="btn" href="https://youtu.be/zehBGs-xBC0" data-cur="PLAY">▶ Watch the demo</a></div>
+    </div>
+    <div class="scrollhint mono" aria-hidden="true"><i></i>Scroll</div>
+  </div>
 </div></header>
 
-<div class="mq" aria-hidden="true"><div>
-  <span>Foundation</span><b>✱</b><span>Mechanism</span><b>✱</b><span>Real World</span><b>✱</b><span>63 languages</span><b>✱</b><span>Free</span><b>✱</b><span>No ads</span><b>✱</b>
-  <span>Foundation</span><b>✱</b><span>Mechanism</span><b>✱</b><span>Real World</span><b>✱</b><span>63 languages</span><b>✱</b><span>Free</span><b>✱</b><span>No ads</span><b>✱</b>
-</div></div>
+<div class="tapes" aria-hidden="true">
+  <div class="tape t2"><div class="tk" data-speed="-0.6"></div></div>
+  <div class="tape t1"><div class="tk" data-speed="1"></div></div>
+</div>
+<template id="tape1"><span>Foundation</span><b>✱</b><span>Mechanism</span><b>✱</b><span>Real World</span><b>✱</b><span>63 languages</span><b>✱</b><span>Free</span><b>✱</b><span>No ads</span><b>✱</b></template>
+<template id="tape2"><span>Understand</span><b>●</b><span>Don't memorise</span><b>●</b><span>Recall beats re-reading</span><b>●</b><span>Pass the gate</span><b>●</b></template>
 
 <section id="method"><div class="wrap">
-  <h2>Every lesson, <mark>three slabs.</mark></h2>
+  <div class="lbl mono"><span class="n">01</span><span>The method</span><i></i><span>3 parts / every lesson</span></div>
+  <h2>Every lesson, <mark>three <span class="w">slabs.</span></mark></h2>
   <div class="slabs">
-    <article class="slab"><div class="n">1</div><div class="t"><h3>Foundation</h3><p>Plain analogies that make a hard idea feel obvious before any jargon shows up.</p></div></article>
-    <article class="slab"><div class="n">2</div><div class="t"><h3>Mechanism</h3><p>Open the machine. See the inner parts and how they push on each other.</p></div></article>
-    <article class="slab"><div class="n">3</div><div class="t"><h3>Real World</h3><p>Connect it to modern technology, live news headlines and your daily life.</p></div></article>
+    <article class="slab" style="--s:0"><div class="n">1</div><div class="t" data-ghost="Intuition"><div class="mono"><span>Part 01</span><span>Build intuition</span></div><div><h3>Foundation</h3><p>Plain analogies that make a hard idea feel obvious before any jargon shows up.</p><span class="ex"><b>E.G.</b>Air is a pinball machine that bounces blue light the most.</span></div></div></article>
+    <article class="slab" style="--s:1"><div class="n">2</div><div class="t" data-ghost="Machine"><div class="mono"><span>Part 02</span><span>Unlocked by quiz</span></div><div><h3>Mechanism</h3><p>Open the machine. See the inner parts and how they push on each other.</p><span class="ex"><b>E.G.</b>Scattering grows sharply as wavelength shrinks.</span></div></div></article>
+    <article class="slab" style="--s:2"><div class="n">3</div><div class="t" data-ghost="Today"><div class="mono"><span>Part 03</span><span>Live news</span></div><div><h3>Real World</h3><p>Connect it to modern technology, live news headlines and your daily life.</p><span class="ex"><b>E.G.</b>Why sunsets glow red, and what it means for today's air quality.</span></div></div></article>
   </div>
 </div></section>
 
 <section class="demo" id="try"><div class="wrap">
+  <div class="lbl mono"><span class="n">02</span><span>Interactive</span><i></i><span>Try it live</span></div>
   <h2 id="try-heading">Try the <mark>gate.</mark></h2>
-  <div class="box term">
-    <form id="f"><input id="q" aria-label="Your question" value="Why is the sky blue?" /><button class="btn blue" type="submit">Build lesson</button></form>
-    <div class="chips"><button class="chip" type="button">Why is the sky blue?</button><button class="chip" type="button">How do vaccines work?</button><button class="chip" type="button">What is inflation?</button></div>
-    <div id="out" hidden>
-      <div class="stage"><h3>1 · Foundation</h3><p id="fnd"></p>
-        <p class="q" id="qtxt"></p><div class="opts" id="opts"></div><p class="msg" id="msg"></p></div>
-      <div class="stage locked" id="s2"><h3 id="h2t">2 · Mechanism — locked</h3><p id="s2p">Pass the checkpoint quiz to unlock this part.</p></div>
-      <div class="stage locked" id="s3"><h3 id="h3t">3 · Real World — locked</h3><p id="s3p">Unlocks after Mechanism.</p></div>
+  <div class="grid2">
+    <div class="copy rv">
+      <p>Nothing moves forward until you prove you understood. Ask, read the Foundation, answer the checkpoint — and watch the next part unlock.</p>
+      <ol><li>Pick a question</li><li>Read the foundation</li><li>Pass the quiz</li><li>Unlock the rest</li></ol>
+    </div>
+    <div class="box win rv" style="--dl:.1s">
+      <div class="bar"><i></i><i></i><i></i><span class="mono">reallearn://lesson</span></div>
+      <div class="term">
+        <form id="f"><label class="inp"><span>?</span><input id="q" aria-label="Your question" value="Why is the sky blue?" /></label><button class="btn blue" type="submit" data-cur="BUILD">Build lesson</button></form>
+        <div class="chips"><button class="chip" type="button">Why is the sky blue?</button><button class="chip" type="button">How do vaccines work?</button><button class="chip" type="button">What is inflation?</button></div>
+        <div id="out" hidden>
+          <div class="meter" aria-hidden="true"><i id="m1"></i><i id="m2"></i><i id="m3"></i></div>
+          <div class="stage" id="s1"><h3>1 · Foundation</h3><p id="fnd"></p>
+            <p class="q" id="qtxt"></p><div class="opts" id="opts"></div><p class="msg" id="msg" aria-live="polite"></p></div>
+          <div class="stage locked" id="s2"><h3 id="h2t">2 · Mechanism — locked</h3><p id="s2p">Pass the checkpoint quiz to unlock this part.</p></div>
+          <div class="stage locked" id="s3"><h3 id="h3t">3 · Real World — locked</h3><p id="s3p">Unlocks after Mechanism.</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </div></section>
 
-<section id="how"><div class="wrap">
-  <h2>Six steps. <mark>Five minutes.</mark></h2>
-  <div class="steps">
-    <div class="box step"><h3>Ask or speak</h3><p>Type a question or tap the mic.</p></div>
-    <div class="box step"><h3>Pick level + language</h3><p>63 languages. Class 6–8, 9–10 or College/Pro.</p></div>
-    <div class="box step"><h3>Read the Foundation</h3><p>Build intuition with analogies.</p></div>
-    <div class="box step"><h3>Pass the quiz</h3><p>Score 100% on two questions to unlock the next part.</p></div>
-    <div class="box step"><h3>See the real world</h3><p>Live news and daily-life examples.</p></div>
-    <div class="box step"><h3>Level up</h3><p>Earn XP, keep streaks, unlock 56 badges, save lessons.</p></div>
+<section class="rail" id="how"><div class="pin">
+  <div class="wrap">
+    <div class="lbl mono"><span class="n">03</span><span>How it works</span><i></i><span>Scroll →</span></div>
+    <h2>Six steps. <mark>Five <span class="w">minutes.</span></mark></h2>
   </div>
+  <div class="track">
+    <div class="box card"><span class="big">01</span><div><h3>Ask or speak</h3><p>Type a question or tap the mic.</p></div></div>
+    <div class="box card"><span class="big">02</span><div><h3>Pick level + language</h3><p>63 languages. Class 6–8, 9–10 or College/Pro.</p></div></div>
+    <div class="box card"><span class="big">03</span><div><h3>Read the Foundation</h3><p>Build intuition with analogies.</p></div></div>
+    <div class="box card"><span class="big">04</span><div><h3>Pass the quiz</h3><p>Score 100% on two questions to unlock the next part.</p></div></div>
+    <div class="box card"><span class="big">05</span><div><h3>See the real world</h3><p>Live news and daily-life examples.</p></div></div>
+    <div class="box card"><span class="big">06</span><div><h3>Level up</h3><p>Earn XP, keep streaks, unlock 56 badges, save lessons.</p></div></div>
+  </div>
+  <div class="railbar" aria-hidden="true"><i id="rbar"></i></div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
-  <div class="stats">
-    <div class="stat"><b>63</b>languages, written natively</div>
-    <div class="stat"><b>56</b>badges to unlock</div>
-    <div class="stat"><b>3×</b>better recall than passive reading</div>
-    <div class="stat"><b>0</b>ads. 0 paywalls.</div>
+<section><div class="wrap">
+  <div class="lbl mono"><span class="n">04</span><span>By the numbers</span><i></i></div>
+  <div class="stats rv">
+    <div class="stat"><span class="mono">LANG</span><b data-count="63">63</b>languages, written natively</div>
+    <div class="stat"><span class="mono">XP</span><b data-count="56">56</b>badges to unlock</div>
+    <div class="stat"><span class="mono">RECALL</span><b data-count="3" data-suffix="×">3×</b>better recall than passive reading</div>
+    <div class="stat"><span class="mono">ADS</span><b>0</b>ads. 0 paywalls.</div>
   </div>
 </div></section>
 
 <section id="features" style="padding-top:0"><div class="wrap">
-  <h2>Built for <mark>real study.</mark></h2>
-  <div class="steps">
-    <div class="box step"><h3>Explain Mode</h3><p>The full 3-step mastery path with quizzes.</p></div>
-    <div class="box step"><h3>Fast Mode</h3><p>A quick summary when you only need the gist.</p></div>
-    <div class="box step"><h3>Voice in, audio out</h3><p>Ask aloud with speech recognition. Listen to lessons like a personal podcast.</p></div>
-    <div class="box step"><h3>Live news grounding</h3><p>Every lesson ties the idea to what is happening in the world now.</p></div>
-    <div class="box step"><h3>Three levels</h3><p>Class 6–8, Class 9–10, or College/Pro.</p></div>
-    <div class="box step"><h3>Personal library</h3><p>Save lessons offline with verifiable sources, and level up with XP, streaks and 56 badges.</p></div>
+  <div class="lbl mono"><span class="n">05</span><span>Features</span><i></i><span>Built for real study</span></div>
+  <h2>Built for <mark>real <span class="xw">study.</span></mark></h2>
+  <div class="bento">
+    <div class="box tile a rv"><span class="ic">✱</span><span class="mono tagc">Core</span><h3>Explain Mode</h3><p>The full 3-step mastery path with quizzes. Foundation, Mechanism, Real World — gated by recall.</p></div>
+    <div class="box tile b rv" style="--dl:.06s"><span class="ic">↯</span><h3>Fast Mode</h3><p>A quick summary when you only need the gist.</p></div>
+    <div class="box tile c rv" style="--dl:.12s"><div class="wave" aria-hidden="true"><i style="--j:0"></i><i style="--j:1"></i><i style="--j:2"></i><i style="--j:3"></i><i style="--j:4"></i><i style="--j:5"></i><i style="--j:6"></i><i style="--j:7"></i><i style="--j:8"></i></div><h3>Voice in, audio out</h3><p>Ask aloud with speech recognition. Listen to lessons like a personal podcast.</p></div>
+    <div class="box tile d rv"><span class="ic">◉</span><h3>Live news grounding</h3><p>Every lesson ties the idea to what is happening in the world now.</p></div>
+    <div class="box tile e rv" style="--dl:.06s"><span class="ic">▲</span><h3>Three levels</h3><p>Class 6–8, Class 9–10, or College/Pro.</p></div>
+    <div class="box tile f rv" style="--dl:.12s"><div><h3>Personal library</h3><p>Save lessons offline with verifiable sources, and level up with XP, streaks and 56 badges.</p></div><a class="btn" href="https://reallearn.site/" data-cur="GO">Open RealLearn <span class="ar">→</span></a></div>
   </div>
 </div></section>
 
 <section id="compare" style="padding-top:0"><div class="wrap">
-  <h2 id="compare-heading">Questions.</h2>
+  <div class="lbl mono"><span class="n">06</span><span>FAQ</span><i></i><span>Straight answers</span></div>
+  <h2 id="compare-heading">Questions<mark>?</mark></h2>
   <div id="faq">
-    <details open><summary>What is RealLearn AI?</summary><p>A free, ad-free learning platform that turns any question into a three-part lesson, verified by quizzes.</p></details>
-    <details><summary>Is it really free?</summary><p>Yes. No subscriptions, no paywalls and no ads.</p></details>
-    <details><summary>Why do quizzes lock the next part?</summary><p>Active recall locks knowledge into long-term memory far better than re-reading. Answering before moving on makes it stick.</p></details>
-    <details><summary>Which languages work?</summary><p>63. Lessons are written directly in your language, not translated afterwards.</p></details>
-    <details><summary>Can I talk to it?</summary><p>Yes. Ask aloud with speech recognition and listen to lessons as narration.</p></details>
-    <details><summary>What can I ask about?</summary><p>Anything: physics, biology, economics, history, psychology, AI, space and more.</p></details>
+    <details open><summary><span class="qn">Q.01</span><span class="qt">What is RealLearn AI?</span></summary><p>A free, ad-free learning platform that turns any question into a three-part lesson, verified by quizzes.</p></details>
+    <details><summary><span class="qn">Q.02</span><span class="qt">Is it really free?</span></summary><p>Yes. No subscriptions, no paywalls and no ads.</p></details>
+    <details><summary><span class="qn">Q.03</span><span class="qt">Why do quizzes lock the next part?</span></summary><p>Active recall locks knowledge into long-term memory far better than re-reading. Answering before moving on makes it stick.</p></details>
+    <details><summary><span class="qn">Q.04</span><span class="qt">Which languages work?</span></summary><p>63. Lessons are written directly in your language, not translated afterwards.</p></details>
+    <details><summary><span class="qn">Q.05</span><span class="qt">Can I talk to it?</span></summary><p>Yes. Ask aloud with speech recognition and listen to lessons as narration.</p></details>
+    <details><summary><span class="qn">Q.06</span><span class="qt">What can I ask about?</span></summary><p>Anything: physics, biology, economics, history, psychology, AI, space and more.</p></details>
   </div>
 </div></section>
 
-<div class="final"><div class="wrap">
-  <h2>The world is your textbook.</h2>
-  <a class="btn blue" href="https://reallearn.site/">Start learning free</a>
-</div></div>
-<footer><div class="wrap"><span>© RealLearn AI</span><span><a href="https://youtu.be/zehBGs-xBC0">Demo</a> · <a href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook">Product Hunt</a></span></div></footer>
+<div class="final" id="final">
+  <div class="bgw" aria-hidden="true"><span>Physics · Biology · Economics · History</span><span>Psychology · AI · Space · Chemistry</span><span>Anything · Everything · Today</span></div>
+  <div class="wrap">
+    <h2>The world is <span class="w">your</span> textbook.</h2>
+    <a class="btn blue" href="https://reallearn.site/" data-cur="START">Start learning free <span class="ar">→</span></a>
+  </div>
+</div>
+<footer><div class="wrap">
+  <div class="wm" id="wm" aria-hidden="true">Real<span>Learn</span></div>
+  <div class="row"><span class="mono">© RealLearn AI — The world is your textbook</span><span><a href="https://youtu.be/zehBGs-xBC0">Demo</a> · <a href="https://www.producthunt.com/products/reallearn-the-world-is-your-textbook">Product Hunt</a> · <a href="#top">Back to top ↑</a></span></div>
+</div></footer>
 
 <script>
+/* ---------- lesson demo ---------- */
 const L={
  "Why is the sky blue?":{f:"Sunlight looks white but hides every colour. Air scatters short blue waves far more than long red ones, like a pinball machine that bounces blue the most.",q:"Which colour scatters most in air?",o:["Red","Blue","Green"],a:1,m:["Scattering is stronger for shorter wavelengths, so blue bounces around the whole sky.","Sunsets: light travels through more air, the blue is scattered away and red is left."]},
  "How do vaccines work?":{f:"A vaccine is a practice drill. Your body meets a harmless piece of a germ and learns its face before the real one arrives.",q:"What does a vaccine train?",o:["Immune memory","Bone density","Blood type"],a:0,m:["Memory B and T cells store the pattern so the response is fast next time.","Outbreak news shows herd protection: more trained people means fewer places for a virus to spread."]},
  "What is inflation?":{f:"Inflation is your money buying less. Imagine the same coin getting a smaller slice of pizza every year.",q:"Inflation means prices generally…",o:["Fall","Rise","Stay fixed"],a:1,m:["When demand outruns supply or money supply grows, sellers raise prices and each unit buys less.","Central-bank rate decisions in the headlines are attempts to steer it."]}
 };
 const $=id=>document.getElementById(id);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let typing=0;
+function typeOut(el,txt){
+  clearInterval(typing);
+  if(RM){el.textContent=txt;return}
+  let i=0;el.textContent="";const c=document.createElement('span');c.className='caret';el.appendChild(c);
+  typing=setInterval(()=>{i+=2;el.textContent=txt.slice(0,i);if(i<txt.length)el.appendChild(c);else clearInterval(typing)},14);
+}
+function unlock(id,title,txt){const s=$(id);s.classList.remove("locked");s.querySelector("h3").textContent=title;s.querySelector("p").textContent=txt;s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop')}
 function build(t){
   const d=L[t]||{f:"Great question. In the real app, RealLearn writes a full Foundation lesson for “"+t+"” here, then tests you. Try one of the sample questions to see the gate in action.",q:"Ready to unlock the next part?",o:["Yes","Not yet"],a:0,m:["The Mechanism part opens the machine behind your topic.","The Real World part connects it to live news."]};
-  $("out").hidden=false;$("fnd").textContent=d.f;$("qtxt").textContent=d.q;$("msg").textContent="";
+  $("out").hidden=false;typeOut($("fnd"),d.f);$("qtxt").textContent=d.q;$("msg").textContent="";
+  ["m2","m3"].forEach(m=>$(m).classList.remove("on"));setTimeout(()=>$("m1").classList.add("on"),50);
   for(const [i,h] of [["s2","2 · Mechanism — locked"],["s3","3 · Real World — locked"]]){$(i).classList.add("locked");$(i).querySelector("h3").textContent=h}
   $("s2p").textContent="Pass the checkpoint quiz to unlock this part.";$("s3p").textContent="Unlocks after Mechanism.";
   const box=$("opts");box.innerHTML="";
   d.o.forEach((x,i)=>{const b=document.createElement("button");b.textContent=x;b.onclick=()=>{
     if(i===d.a){b.className="ok";$("msg").textContent="Correct. Part 2 unlocked.";
-      $("s2").classList.remove("locked");$("s2").querySelector("h3").textContent="2 · Mechanism";$("s2p").textContent=d.m[0];
-      $("s3").classList.remove("locked");$("s3").querySelector("h3").textContent="3 · Real World";$("s3p").textContent=d.m[1];
+      unlock("s2","2 · Mechanism",d.m[0]);$("m2").classList.add("on");
+      setTimeout(()=>{unlock("s3","3 · Real World",d.m[1]);$("m3").classList.add("on")},RM?0:450);
     }else{b.className="no";$("msg").textContent="Not quite. Re-read the Foundation and try again."}};box.appendChild(b)});
 }
 $("f").onsubmit=e=>{e.preventDefault();build($("q").value.trim()||"Why is the sky blue?")};
 document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{$("q").value=c.textContent;build(c.textContent)});
+
+/* ---------- boot curtain (once per session) ---------- */
+(()=>{const b=$("boot");if(RM||sessionStorage.getItem('rl-boot')){b.classList.add('gone');document.documentElement.style.setProperty('--d0','0ms');return}
+  sessionStorage.setItem('rl-boot',1);document.documentElement.style.setProperty('--d0','900ms');
+  const n=b.querySelector('.num');const t0=performance.now();
+  (function f(t){const p=Math.min(1,(t-t0)/800);n.textContent=String(Math.round(p*100)).padStart(3,'0');if(p<1)requestAnimationFrame(f);else{b.classList.add('done');setTimeout(()=>b.classList.add('gone'),1000)}})(t0);
+})();
+
+/* ---------- split hero letters ---------- */
+let k=0;
+document.querySelectorAll('.hero h1 .row').forEach(r=>{
+  const tgt=r.querySelector('.hl')||r;const txt=tgt.textContent;tgt.textContent='';
+  [...txt].forEach(c=>{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',k++);s.textContent=c;tgt.appendChild(s)});
+});
+const chars=[...document.querySelectorAll('.ch')];
+
+/* ---------- tapes ---------- */
+const tks=[...document.querySelectorAll('.tk')].map((el,i)=>{const tpl=$(i===0?'tape2':'tape1').innerHTML;el.innerHTML=tpl.repeat(6);return {el,sp:+el.dataset.speed,x:0}});
+
+/* ---------- reveal on view ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.dataset.count)countUp(e.target)}}),{threshold:.25});
+document.querySelectorAll('.rv,h2,[data-count]').forEach(el=>io.observe(el));
+function countUp(el){const end=+el.dataset.count,suf=el.dataset.suffix||'';if(RM)return;const t0=performance.now();
+  (function f(t){const p=Math.min(1,(t-t0)/1200),e=1-Math.pow(1-p,4);el.textContent=Math.round(end*e)+suf;if(p<1)requestAnimationFrame(f)})(t0)}
+
+/* ---------- nav active link ---------- */
+const navA=[...document.querySelectorAll('nav .links a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('on',a.hash==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+navA.forEach(a=>{const s=document.querySelector(a.hash);if(s)so.observe(s)});
+
+/* ---------- pointer: cursor, light, letters, tilt ---------- */
+const cur=$("cur"),root=document.documentElement;
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(fine&&!RM)root.classList.add('has-cur');
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;
+  root.style.setProperty('--lx',((mx/innerWidth)*2-1).toFixed(3));root.style.setProperty('--ly',((my/innerHeight)*2-1).toFixed(3));},{passive:true});
+document.addEventListener('pointerover',e=>{const t=e.target.closest('a,button,summary,input');cur.classList.toggle('big',!!t);cur.querySelector('b').textContent=t&&t.dataset.cur||(t&&t.tagName==='INPUT'?'TYPE':'CLICK')});
+document.querySelectorAll('.tile').forEach(t=>{
+  t.addEventListener('pointermove',e=>{if(RM||!fine)return;const r=t.getBoundingClientRect();t.style.setProperty('--rx',(((e.clientX-r.left)/r.width-.5)*10).toFixed(2));t.style.setProperty('--ry',(-((e.clientY-r.top)/r.height-.5)*10).toFixed(2))});
+  t.addEventListener('pointerleave',()=>{t.style.setProperty('--rx',0);t.style.setProperty('--ry',0)});
+});
+const wm=$("wm");
+wm.parentElement.parentElement.addEventListener('pointermove',e=>{wm.style.setProperty('--fw',(62+(e.clientX/innerWidth)*50).toFixed(0))});
+
+/* ---------- main loop: scroll-driven everything ---------- */
+const rows=[...document.querySelectorAll('.hero h1 .row')];
+const rail=document.querySelector('.rail'),track=document.querySelector('.track'),rbar=$("rbar"),prog=$("prog"),final=$("final");
+const slabs=[...document.querySelectorAll('.slab')];
+let lastY=scrollY,vel=0;
+function sizeRail(){
+  if(innerWidth<=820||RM){rail.style.height='';return}
+  rail.style.height=(track.scrollWidth-innerWidth+innerHeight)+'px';
+}
+sizeRail();addEventListener('resize',sizeRail);addEventListener('load',sizeRail);
+function frame(){
+  const y=scrollY,dy=y-lastY;lastY=y;vel+=(dy-vel)*.12;
+  /* cursor */
+  cx+=(mx-cx)*.22;cy+=(my-cy)*.22;cur.style.transform=`translate3d(${cx}px,${cy}px,0)`;
+  /* progress */
+  const max=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?y/max:0})`;
+  if(!RM){
+    /* hero rows drift apart */
+    if(y<innerHeight*1.4)rows.forEach(r=>r.style.transform=`translate3d(${(+r.dataset.px)*y*.6}px,0,0)`);
+    /* letter proximity */
+    if(fine&&y<innerHeight*1.2)for(const c of chars){const r=c.getBoundingClientRect(),dx=mx-(r.left+r.width/2),dyy=my-(r.top+r.height/2),d=Math.hypot(dx,dyy),p=Math.max(0,1-d/220);
+      c.style.transform=p?`translateY(${-p*22}px) rotate(${dx>0?-p*8:p*8}deg)`:'';c.classList.toggle('hot',p>.55)}
+    /* tapes speed up with scroll velocity */
+    for(const t of tks){t.x-=(1.1+Math.abs(vel)*.5)*t.sp*(vel<0?-1:1);const w=t.el.scrollWidth/6;if(t.x<-w*2)t.x+=w;if(t.x>0)t.x-=w;t.el.style.transform=`translate3d(${t.x}px,0,0)`}
+    /* slabs shrink as they get stacked */
+    slabs.forEach((s,i)=>{const nx=slabs[i+1];if(!nx)return;const a=s.getBoundingClientRect(),b=nx.getBoundingClientRect();const p=Math.min(1,Math.max(0,1-(b.top-a.top)/a.height));s.style.transform=`scale(${1-p*.05})`;s.style.filter=`brightness(${1-p*.25})`});
+    /* pinned rail */
+    if(innerWidth>820){const r=rail.getBoundingClientRect();const total=rail.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/(total||1)));
+      track.style.transform=`translate3d(${-p*(track.scrollWidth-innerWidth)}px,0,0)`;rbar.style.transform=`scaleX(${p})`}
+    /* final fill */
+    const fr=final.getBoundingClientRect();final.style.setProperty('--f',Math.min(1,Math.max(0,(innerHeight-fr.top)/(innerHeight*.9))).toFixed(3));
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+if(RM)final.style.setProperty('--f',1);
 </script>
 
 <!-- Original app mount, disabled so it does not render under this page. Re-enable to use your React app instead:
