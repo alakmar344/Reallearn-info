@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#edeef1" />
+    <meta name="theme-color" content="#dcff3d" />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Primary Meta (SEO) -->
@@ -291,7 +291,8 @@
    hard shadows, sticky slab stacks, pinned horizontal rail.
    ===================================================================== */
 :root{
-  --c:#e4e6ea;--c2:#d6d9df;--k:#0a0a0a;--b:#1f2bff;--y:#ffe500;--p:#ff4d8d;--g:#2bd96b;--w:#fff;
+  /* "Acid Paper" palette: warm paper, ink, acid lime, electric violet, blaze orange, lavender */
+  --c:#f3ede1;--c2:#e6dfcf;--k:#111010;--b:#6a4dff;--y:#dcff3d;--p:#ff5a1f;--l:#c9b8ff;--g:#3ddc84;--w:#fffdf8;
   --bw:4px;--sh:8px;--lx:0;--ly:0;
   --sx:calc(var(--sh) - var(--lx) * 5px);--sy:calc(var(--sh) - var(--ly) * 5px);
   --mono:"JetBrains Mono",ui-monospace,monospace;--disp:Archivo,Impact,sans-serif;
@@ -300,8 +301,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:var(--nav)}
 body{background:var(--c);color:var(--k);font:500 18px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  background-image:linear-gradient(#0000000d 1px,transparent 1px),linear-gradient(90deg,#0000000d 1px,transparent 1px);background-size:48px 48px}
-h1,h2,h3,.d{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.035em;text-transform:uppercase;font-variation-settings:"wdth" 100}
+  background-image:linear-gradient(#1110100f 1px,transparent 1px),linear-gradient(90deg,#1110100f 1px,transparent 1px);background-size:48px 48px}
+h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.035em;text-transform:uppercase;font-variation-settings:"wdth" 100}
 a{color:inherit}
 button{font:inherit;color:inherit}
 ::selection{background:var(--k);color:var(--y)}
@@ -432,7 +433,7 @@ h2 .xw{font-variation-settings:"wdth" 125}
 .slab p{max-width:40ch;font-size:clamp(18px,1.6vw,23px);font-weight:600;position:relative;z-index:1}
 .slab .ex{display:inline-block;margin-top:18px;border:3px solid var(--k);padding:10px 14px;font-weight:600;background:var(--c);max-width:52ch;position:relative;z-index:1}
 .slab .ex b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;margin-right:8px}
-@media(max-width:700px){.slab{grid-template-columns:1fr;min-height:0}.slab .n{border-right:0;border-bottom:var(--bw) solid var(--k);font-size:110px;padding:10px}}
+@media(max-width:700px){.slab{grid-template-columns:1fr;min-height:0;position:relative;top:auto}.slab h3{font-size:clamp(34px,10vw,46px);font-variation-settings:"wdth" 90}.slab .n{border-right:0;border-bottom:var(--bw) solid var(--k);font-size:110px;padding:10px}}
 
 /* ---------- demo / terminal ---------- */
 .demo{background:var(--b);border-block:var(--bw) solid var(--k);color:#fff;overflow:hidden}
@@ -464,7 +465,7 @@ h2 .xw{font-variation-settings:"wdth" 125}
 .stage{margin-top:16px;border:var(--bw) solid var(--k);padding:20px;background:var(--c);position:relative;transition:background .3s}
 .stage.pop{animation:pop .5s var(--ease)}
 @keyframes pop{0%{transform:scale(.97);background:var(--y)}100%{transform:none}}
-.stage.locked{background:repeating-linear-gradient(45deg,#cfd2d9 0 12px,var(--c) 12px 24px);color:#555}
+.stage.locked{background:repeating-linear-gradient(45deg,var(--c2) 0 12px,var(--c) 12px 24px);color:#5c564d}
 .stage.locked h3::before{content:"⛌ ";color:var(--p)}
 .stage h3{font-size:30px;margin-bottom:8px;font-variation-settings:"wdth" 110}
 .q{margin-top:14px;font-weight:700}
@@ -520,7 +521,7 @@ h2 .xw{font-variation-settings:"wdth" 125}
 .tile.c{grid-column:span 2;background:var(--b);color:#fff}
 .tile.d{grid-column:span 2}
 .tile.e{grid-column:span 2;background:var(--p)}.tile.e .ic{background:var(--w)}
-.tile.f{grid-column:span 6;flex-direction:row;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;min-height:200px}
+.tile.f{grid-column:span 2;background:var(--k);color:var(--w);gap:18px}.tile.f .btn{align-self:flex-start}
 .tile .wave{display:flex;gap:4px;align-items:flex-end;height:60px;margin-bottom:auto}
 .tile .wave i{width:8px;background:var(--y);animation:eq 1s ease-in-out infinite alternate;animation-delay:calc(var(--j) * -.13s)}
 @keyframes eq{from{height:12%}to{height:100%}}
@@ -555,10 +556,31 @@ html:not(.js) .final h2{color:var(--k)}
 footer{background:var(--k);color:var(--c);padding:40px 0 24px;font-size:15px;overflow:hidden}
 footer .wm{font:900 12.6vw/.8 var(--disp);letter-spacing:-.06em;text-transform:uppercase;color:var(--y);white-space:nowrap;text-align:center;font-variation-settings:"wdth" var(--fw,100);transition:font-variation-settings .2s linear;user-select:none}
 footer .wm span{color:var(--p)}
-footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:26px;margin-top:26px;border-top:3px solid #333;padding-bottom:env(safe-area-inset-bottom,0)}
+footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:26px;margin-top:26px;border-top:3px solid #2e2b28;padding-bottom:env(safe-area-inset-bottom,0)}
 footer a{text-decoration:none;border-bottom:2px solid var(--y)}footer a:hover{background:var(--y);color:var(--k)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}#boot{display:none}.grain{display:none}h2 mark{background-size:100% 100%}}
+
+/* ---------- palette accents ---------- */
+.card:nth-child(1){background:var(--l)}
+.card:nth-child(3){background:var(--w)}
+.tile.d{background:var(--l)}
+.stat:nth-child(4){background:var(--l)}
+.slab .ex{background:var(--y)}
+.slab:nth-child(2) .ex{background:var(--l)}
+.slab:nth-child(3) .ex{background:var(--c)}
+.hero p.lede mark{background:var(--l)}
+.demo .copy li::before{background:var(--y)}
+.tile.c .wave i{background:var(--y)}
+nav .live::before{background:var(--g)}
+.t1 b{color:var(--y)}.t1{color:var(--w)}
+.t2 b{color:var(--k)}
+footer .wm{color:var(--y)}footer .wm span{color:var(--l)}
+.stats{box-shadow:var(--sx) var(--sy) 0 var(--b)}
+.hero h1 .hl{box-shadow:10px 10px 0 var(--b)}
+.seal .core{background:var(--y)}
+#prog{background:var(--b)}
+::selection{background:var(--b);color:var(--w)}
 </style>
   </head>
   <body>
@@ -577,8 +599,8 @@ footer a{text-decoration:none;border-bottom:2px solid var(--y)}footer a:hover{ba
   <div class="top mono"><span>N°001 — AI learning system</span><span>Foundation → Mechanism → Real World</span><span>63 languages</span></div>
   <div class="seal" aria-hidden="true">
     <svg viewBox="0 0 200 200"><defs><path id="cp" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
-      <circle cx="100" cy="100" r="98" fill="#ff4d8d" stroke="#0a0a0a" stroke-width="4"/>
-      <text font-family="JetBrains Mono, monospace" font-weight="700" font-size="17" letter-spacing="4.2" fill="#0a0a0a"><textPath href="#cp">NO ADS ✱ NO PAYWALL ✱ FREE FOREVER ✱ </textPath></text></svg>
+      <circle cx="100" cy="100" r="98" fill="#ff5a1f" stroke="#111010" stroke-width="4"/>
+      <text font-family="JetBrains Mono, monospace" font-weight="700" font-size="17" letter-spacing="4.2" fill="#111010"><textPath href="#cp">NO ADS ✱ NO PAYWALL ✱ FREE FOREVER ✱ </textPath></text></svg>
     <div class="core">$0</div>
   </div>
   <h1 id="hero-heading" aria-label="Stop searching. Start understanding.">
