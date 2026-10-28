@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/200/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="RealLearn AI">
-  <rect width="180" height="180" rx="40" fill="#c5f82a"/>
-  <rect x="8" y="8" width="164" height="164" rx="34" fill="none" stroke="#131315" stroke-width="7"/>
-  <g stroke="#131315" stroke-width="7" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="RealLearn AI">
+  <rect width="180" height="180" rx="40" fill="#c6ff00"/>
+  <rect x="8" y="8" width="164" height="164" rx="34" fill="none" stroke="#05060b" stroke-width="7"/>
+  <g stroke="#05060b" stroke-width="7" stroke-linecap="round">
     <line x1="90" y1="34" x2="90" y2="146"/>
     <line x1="34" y1="90" x2="146" y2="90"/>
     <line x1="50.4" y1="50.4" x2="129.6" y2="129.6"/>
     <line x1="129.6" y1="50.4" x2="50.4" y2="129.6"/>
   </g>
-  <circle cx="90" cy="90" r="26" fill="#131315"/>
-  <text x="90" y="102" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#c5f82a">RL</text>
+  <circle cx="90" cy="90" r="26" fill="#05060b"/>
+  <text x="90" y="102" font-family="'Archivo','Segoe UI',system-ui,sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#c6ff00">RL</text>
 </svg>
